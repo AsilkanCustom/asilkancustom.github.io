@@ -21,4 +21,99 @@
       width: 120px;
       height: auto;
       border-radius: 50%;
-      border: 3px solid #a52a2
+      border: 3px solid #a52a2a;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin: 1rem 0 0.5rem;
+      color: #7a1e1e; /* Koyu bordo */
+    }
+
+    p.description {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto;
+      color: #3d2b1f;
+    }
+
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      padding: 3rem 1rem;
+      background-color: #f2e7da;
+    }
+
+    .product-card {
+      background-color: #fffaf5;
+      border: 2px solid #d6bfa7;
+      border-radius: 16px;
+      padding: 1rem;
+      max-width: 300px;
+      box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .product-card img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+    }
+
+    .product-card h2 {
+      color: #5a1c1c;
+      margin: 0.5rem 0;
+    }
+
+    .product-card p {
+      font-size: 1rem;
+      color: #4b3b2b;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: #d7c2b0;
+      color: #3d2b1f;
+    }
+
+    footer a {
+      color: #5a1c1c;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="https://i.imgur.com/PqS1gLL.jpeg" alt="Asilkan Custom Logo" />
+    <h1>Asilkan Custom</h1>
+    <p class="description">
+      Duvar halılarından özel ceketler: Geçmişin ruhunu, el emeğini ve sizin hikayenizi bir araya getiriyoruz. Giyilebilir sanatla tarzınızı yaşayın.
+    </p>
+  </header>
+
+  <section class="products">
+    <div class="product-card">
+      <img src="https://i.imgur.com/xYyn2TZ.png" alt="Ürün 1" />
+      <h2>Halılı Vintage Ceket</h2>
+      <p>Türk halısından özel dikim, el emeği ile üretilmiştir.</p>
+    </div>
+    <div class="product-card">
+      <img src="https://i.imgur.com/NLe0LjK.png" alt="Ürün 2" />
+      <h2>Renkli Desen Ceket</h2>
+      <p>Benzersiz dokular ve klasik desenlerle modern bir tarz.</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Asilkan Custom | <a href="https://instagram.com/asilkancustom" target="_blank">Instagram</a></p>
+  </footer>
+</body>
+</html>
