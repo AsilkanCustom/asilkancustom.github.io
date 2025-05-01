@@ -1,178 +1,215 @@
 <!DOCTYPE html>
 <html lang="tr">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Asilkan Custom</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: "Times New Roman", serif;
-      background-color: #f6f0e8;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Asilkan Custom</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: #f6f0e8;
+        }
 
-    nav {
-      background-color: #e8d8c3;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-    }
+        /* Menü ve üst kısmı sabitle */
+        nav {
+            position: sticky;
+            top: 0;
+            background-color: #3d2b1f;
+            padding: 15px 0;
+            z-index: 1000;
+        }
 
-    .nav-left {
-      display: flex;
-      gap: 1rem;
-    }
+        nav ul {
+            list-style: none;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
 
-    .nav-left a,
-    .nav-right a {
-      color: #5a1c1c;
-      text-decoration: none;
-      font-weight: bold;
-    }
+        nav ul li {
+            display: inline-block;
+            margin: 0 20px;
+        }
 
-    .nav-left a:hover,
-    .nav-right a:hover {
-      text-decoration: underline;
-    }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
 
-    header {
-      text-align: center;
-      background-color: #f2e7da;
-      padding: 2rem 1rem;
-    }
+        nav ul li a:hover {
+            color: #a52a2a;
+        }
 
-    header img {
-      width: 120px;
-      height: auto;
-      border-radius: 50%;
-      border: 3px solid #a52a2a;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    }
+        /* Ana sayfa başlığı ve görsel */
+        header {
+            position: relative;
+            overflow: hidden;
+            background: #e8d8c3;
+            color: #7a1e1e;
+            text-align: center;
+            padding: 100px 20px;
+        }
 
-    h1 {
-      font-size: 3rem;
-      margin: 1rem 0 0.5rem;
-      color: #7a1e1e;
-    }
+        header h1 {
+            font-size: 4rem;
+            margin: 0;
+        }
 
-    p.description {
-      font-size: 1.2rem;
-      max-width: 700px;
-      margin: 0 auto;
-      color: #3d2b1f;
-    }
+        header p {
+            font-size: 1.5rem;
+            max-width: 800px;
+            margin: 20px auto;
+            line-height: 1.6;
+            font-weight: 400;
+        }
 
-    .video-section {
-      margin-top: 2rem;
-      text-align: center;
-    }
+        /* Slayt Görsel */
+        .carousel {
+            position: relative;
+            width: 100%;
+            max-height: 500px;
+            overflow: hidden;
+            margin-top: 50px;
+        }
 
-    .video-section iframe {
-      width: 90%;
-      max-width: 800px;
-      height: 450px;
-      border: none;
-      border-radius: 16px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
-    }
+        .carousel img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            animation: slide 10s infinite;
+        }
 
-    .products {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 2rem;
-      padding: 3rem 1rem;
-      background-color: #fffaf5;
-    }
+        @keyframes slide {
+            0% {
+                transform: translateX(0);
+            }
 
-    .product-card {
-      background-color: #fff;
-      border: 2px solid #d6bfa7;
-      border-radius: 16px;
-      padding: 1rem;
-      max-width: 300px;
-      box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.1);
-      text-align: center;
-    }
+            25% {
+                transform: translateX(-100%);
+            }
 
-    .product-card img {
-      width: 100%;
-      border-radius: 10px;
-      margin-bottom: 1rem;
-    }
+            50% {
+                transform: translateX(-200%);
+            }
 
-    .product-card h2 {
-      color: #5a1c1c;
-      margin: 0.5rem 0;
-    }
+            75% {
+                transform: translateX(-300%);
+            }
 
-    .product-card p {
-      font-size: 1rem;
-      color: #4b3b2b;
-    }
+            100% {
+                transform: translateX(0);
+            }
+        }
 
-    footer {
-      text-align: center;
-      padding: 1rem;
-      background-color: #d7c2b0;
-      color: #3d2b1f;
-    }
+        /* Ürün kartları */
+        .products {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            padding: 50px 20px;
+            background-color: #f2e7da;
+        }
 
-    footer a {
-      color: #5a1c1c;
-      text-decoration: none;
-    }
+        .product-card {
+            background-color: #fffaf5;
+            border-radius: 16px;
+            overflow: hidden;
+            width: 300px;
+            box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
 
-    footer a:hover {
-      text-decoration: underline;
-    }
-  </style>
+        .product-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .product-card:hover {
+            transform: scale(1.05);
+        }
+
+        .product-card h2 {
+            color: #5a1c1c;
+            font-size: 1.5rem;
+            padding: 10px;
+            margin: 0;
+            background-color: #a52a2a;
+            color: white;
+        }
+
+        .product-card p {
+            padding: 10px;
+            font-size: 1.1rem;
+            color: #4b3b2b;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #d7c2b0;
+            color: #3d2b1f;
+            text-align: center;
+            padding: 20px;
+        }
+
+        footer a {
+            color: #7a1e1e;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
+
 <body>
+    <nav>
+        <ul>
+            <li><a href="#">Ana Sayfa</a></li>
+            <li><a href="#vintage">Vintage Giyim</a></li>
+            <li><a href="#products">Ürünler</a></li>
+            <li><a href="#contact">İletişim</a></li>
+            <li><a href="#login">Giriş Yap</a></li>
+        </ul>
+    </nav>
 
-  <nav>
-    <div class="nav-left">
-      <a href="#">VINTAGE GİYİM</a>
-      <a href="#">Ceket</a>
-      <a href="#">Pantolon</a>
-      <a href="#">Çanta</a>
-    </div>
-    <div class="nav-right">
-      <a href="#">Sepet</a>
-      <a href="#">Giriş Yap / Kayıt Ol</a>
-    </div>
-  </nav>
+    <header>
+        <h1>Asilkan Custom</h1>
+        <p>Duvar halılarından özel ceketler: Geçmişin ruhunu, el emeğini ve sizin hikayenizi bir araya getiriyoruz. Giyilebilir sanatla tarzınızı yaşayın.</p>
+        <div class="carousel">
+            <img src="https://i.imgur.com/xYyn2TZ.png" alt="Ürün 1">
+            <img src="https://i.imgur.com/NLe0LjK.png" alt="Ürün 2">
+            <img src="https://i.imgur.com/PqS1gLL.jpeg" alt="Ürün 3">
+        </div>
+    </header>
 
-  <header>
-    <img src="https://i.imgur.com/PqS1gLL.jpeg" alt="Asilkan Custom Logo" />
-    <h1>Asilkan Custom</h1>
-    <p class="description">
-      Duvar halılarından özel ceketler: Geçmişin ruhunu, el emeğini ve sizin hikayenizi bir araya getiriyoruz. Giyilebilir sanatla tarzınızı yaşayın.
-    </p>
-  </header>
+    <section id="products" class="products">
+        <div class="product-card">
+            <img src="https://i.imgur.com/xYyn2TZ.png" alt="Ürün 1">
+            <h2>Halılı Vintage Ceket</h2>
+            <p>Türk halısından özel dikim, el emeği ile üretilmiştir.</p>
+        </div>
+        <div class="product-card">
+            <img src="https://i.imgur.com/NLe0LjK.png" alt="Ürün 2">
+            <h2>Renkli Desen Ceket</h2>
+            <p>Benzersiz dokular ve klasik desenlerle modern bir tarz.</p>
+        </div>
+    </section>
 
-  <section class="video-section">
-    <iframe src="https://streamable.com/e/xy3pde" allowfullscreen></iframe>
-  </section>
-
-  <section class="products">
-    <div class="product-card">
-      <img src="https://i.imgur.com/xYyn2TZ.png" alt="Ürün 1" />
-      <h2>Halılı Vintage Ceket</h2>
-      <p>Türk halısından özel dikim, el emeği ile üretilmiştir.</p>
-    </div>
-    <div class="product-card">
-      <img src="https://i.imgur.com/NLe0LjK.png" alt="Ürün 2" />
-      <h2>Renkli Desen Ceket</h2>
-      <p>Benzersiz dokular ve klasik desenlerle modern bir tarz.</p>
-    </div>
-  </section>
-
-  <footer>
-    <p>© 2025 Asilkan Custom | <a href="https://instagram.com/asilkancustom" target="_blank">Instagram</a></p>
-  </footer>
+    <footer id="contact">
+        <p>© 2025 Asilkan Custom | <a href="https://instagram.com/asilkancustom" target="_blank">Instagram</a></p>
+    </footer>
 
 </body>
+
 </html>
