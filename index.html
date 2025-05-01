@@ -1,59 +1,59 @@
 <!DOCTYPE html>
 <html lang="tr">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Asilkan Custom</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AsilkanCustom</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    <nav>
-        <ul>
-            <li><a href="#">Ana Sayfa</a></li>
-            <li><a href="#vintage">Vintage Giyim</a></li>
-            <li><a href="#products">Ürünler</a></li>
-            <li><a href="#contact">İletişim</a></li>
-            <li><a href="#login">Giriş Yap</a></li>
-        </ul>
+  <header class="main-header">
+    <div class="logo-container">
+      <img src="https://i.imgur.com/mKp7ZHK.jpeg" alt="Asilkan Logo" class="logo">
+      <h1 class="brand-title">AsilkanCustom</h1>
+    </div>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="#">Ana Sayfa</a></li>
+        <li class="dropdown">
+          <a href="#">Vintage Giyim</a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Ceket</a></li>
+            <li><a href="#">Pantolon</a></li>
+            <li><a href="#">Çanta</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Sepet</a></li>
+        <li><a href="#">Giriş Yap</a></li>
+      </ul>
     </nav>
+  </header>
 
-    <header>
-        <div class="logo-container">
-            <img src="https://i.imgur.com/mKp7ZHK.jpeg" alt="Asilkan Custom Logo" class="logo">
-        </div>
-        <h1>Asilkan Custom</h1>
-        <p>Duvar halılarından özel ceketler: Geçmişin ruhunu, el emeğini ve sizin hikayenizi bir araya getiriyoruz. Giyilebilir sanatla tarzınızı yaşayın.</p>
-        <div class="carousel">
-            <div class="carousel-images">
-                <img src="https://i.imgur.com/s4XkXqV.jpeg" alt="Halı 1">
-                <img src="https://i.imgur.com/Fvjt8yz.jpeg" alt="Halı 2">
-                <img src="https://i.imgur.com/BGECmbh.jpeg" alt="Halı 3">
-                <img src="https://i.imgur.com/QrExQJC.jpeg" alt="Halı 4">
-                <img src="https://i.imgur.com/k3SqxLh.jpeg" alt="Halı 5">
-            </div>
-        </div>
-    </header>
+  <section class="hero">
+    <video autoplay muted loop class="hero-video">
+      <source src="https://streamable.com/e/yourvideoid" type="video/mp4">
+      Tarayıcınız video etiketini desteklemiyor.
+    </video>
+    <div class="hero-text">
+      <p>Duvar halılarından özel ceketler: Geçmişin ruhunu, el emeğini ve sizin hikayenizi bir araya getiriyoruz. Giyilebilir sanatla tarzınızı yaşayın.</p>
+    </div>
+  </section>
 
-    <section id="products" class="products">
-        <div class="product-card">
-            <img src="https://i.imgur.com/xYyn2TZ.png" alt="Ürün 1">
-            <h2>Halılı Vintage Ceket</h2>
-            <p>Türk halısından özel dikim, el emeği ile üretilmiştir.</p>
-        </div>
-        <div class="product-card">
-            <img src="https://i.imgur.com/NLe0LjK.png" alt="Ürün 2">
-            <h2>Renkli Desen Ceket</h2>
-            <p>Benzersiz dokular ve klasik desenlerle modern bir tarz.</p>
-        </div>
-    </section>
-
-    <footer id="contact">
-        <p>© 2025 Asilkan Custom | <a href="https://instagram.com/asilkancustom" target="_blank">Instagram</a></p>
-    </footer>
+  <section class="carousel">
+    <div class="carousel-track">
+      <!-- Halı görselleri 2 defa tekrarlanarak boşluksuz scroll sağlanır -->
+      <img src="https://i.imgur.com/s4XkXqV.jpeg" alt="halı1">
+      <img src="https://i.imgur.com/Fvjt8yz.jpeg" alt="halı2">
+      <img src="https://i.imgur.com/BGECmbh.jpeg" alt="halı3">
+      <img src="https://i.imgur.com/QrExQJC.jpeg" alt="halı4">
+      <img src="https://i.imgur.com/k3SqxLh.jpeg" alt="halı5">
+      <img src="https://i.imgur.com/s4XkXqV.jpeg" alt="halı1">
+      <img src="https://i.imgur.com/Fvjt8yz.jpeg" alt="halı2">
+      <img src="https://i.imgur.com/BGECmbh.jpeg" alt="halı3">
+      <img src="https://i.imgur.com/QrExQJC.jpeg" alt="halı4">
+      <img src="https://i.imgur.com/k3SqxLh.jpeg" alt="halı5">
+    </div>
+  </section>
 
 </body>
-
 </html>
