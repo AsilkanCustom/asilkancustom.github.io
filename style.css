@@ -68,22 +68,24 @@ header p {
     font-weight: 400;
 }
 
-/* Kaydırmalı Görseller */
+/* Kaydırmalı Görseller - Yatay Sıra */
 .carousel {
     position: relative;
     width: 100%;
+    height: 500px;
     overflow: hidden;
     margin-top: 50px;
 }
 
 .carousel-images {
     display: flex;
-    animation: slide 15s infinite;
+    width: 500%; /* Görsellerin 5 katını kapsaması için */
+    animation: slide 15s infinite linear;
 }
 
 .carousel-images img {
     width: 100%;
-    height: 500px;
+    height: 100%;
     object-fit: cover;
 }
 
