@@ -88,14 +88,14 @@
 
         .carousel-images {
             display: flex;
-            width: 500%; /* Görsellerin 5 katını kapsaması için */
-            animation: slide 30s infinite linear;
+            width: 500%;
+            animation: slide 40s infinite linear; /* Hızı 40s yaparak daha yavaş kaymasını sağlıyoruz */
         }
 
         .carousel-images img {
             width: 100%;
             height: 100%;
-            object-fit: contain; /* Zoom etkisini engellemek için 'cover' yerine 'contain' kullanıldı */
+            object-fit: contain;
         }
 
         @keyframes slide {
