@@ -38,6 +38,29 @@
       color: #3d2b1f;
     }
 
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 1rem;
+      background-color: #d7c2b0;
+    }
+
+    nav ul li {
+      display: inline;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #7a1e1e;
+      font-size: 1.2rem;
+    }
+
+    nav ul li a:hover {
+      text-decoration: underline;
+    }
+
     .products {
       display: flex;
       flex-wrap: wrap;
@@ -88,6 +111,52 @@
     footer a:hover {
       text-decoration: underline;
     }
+
+    /* Form stili */
+    form {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #f6f0e8;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    form label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+
+    form input, form textarea {
+      width: 100%;
+      padding: 0.8rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    form button {
+      background-color: #7a1e1e;
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    form button:hover {
+      background-color: #5a1414;
+    }
+    
+    .social-media {
+      text-align: center;
+      padding: 1rem;
+    }
+
+    .social-media a {
+      margin: 0 10px;
+    }
   </style>
 </head>
 <body>
@@ -99,21 +168,82 @@
     </p>
   </header>
 
+  <!-- Navigasyon Menüsü -->
+  <nav>
+    <ul>
+      <li><a href="index.html">Ana Sayfa</a></li>
+      <li><a href="about.html">Hakkımızda</a></li>
+      <li><a href="contact.html">İletişim</a></li>
+    </ul>
+  </nav>
+
+  <!-- Ürün Filtreleme -->
+  <div>
+    <label for="category">Kategori Seçin:</label>
+    <select id="category" onchange="filterProducts()">
+      <option value="all">Hepsi</option>
+      <option value="ceket">Ceketler</option>
+      <option value="aksesuar">Aksesuarlar</option>
+    </select>
+  </div>
+
   <section class="products">
-    <div class="product-card">
+    <div class="product-card ceket">
       <img src="https://i.imgur.com/xYyn2TZ.png" alt="Ürün 1" />
       <h2>Halılı Vintage Ceket</h2>
       <p>Türk halısından özel dikim, el emeği ile üretilmiştir.</p>
     </div>
-    <div class="product-card">
+    <div class="product-card ceket">
       <img src="https://i.imgur.com/NLe0LjK.png" alt="Ürün 2" />
       <h2>Renkli Desen Ceket</h2>
       <p>Benzersiz dokular ve klasik desenlerle modern bir tarz.</p>
     </div>
   </section>
 
+  <!-- İletişim Formu -->
+  <section id="contact">
+    <h2>İletişim</h2>
+    <form action="https://formspree.io/f/mrgrwejv" method="POST">
+      <label for="name">Adınız:</label>
+      <input type="text" id="name" name="name" required>
+      
+      <label for="email">E-posta:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="message">Mesajınız:</label>
+      <textarea id="message" name="message" required></textarea>
+
+      <button type="submit">Gönder</button>
+    </form>
+  </section>
+
+  <!-- Sosyal Medya Bağlantıları -->
+  <div class="social-media">
+    <a href="https://instagram.com/asilkancustom" target="_blank">
+      <img src="instagram-icon.png" alt="Instagram" width="40">
+    </a>
+    <a href="https://facebook.com/asilkancustom" target="_blank">
+      <img src="facebook-icon.png" alt="Facebook" width="40">
+    </a>
+  </div>
+
   <footer>
     <p>© 2025 Asilkan Custom | <a href="https://instagram.com/asilkancustom" target="_blank">Instagram</a></p>
   </footer>
+
+  <script>
+    function filterProducts() {
+      var category = document.getElementById('category').value;
+      var products = document.getElementsByClassName('product-card');
+      
+      for (var i = 0; i < products.length; i++) {
+        if (category === 'all' || products[i].classList.contains(category)) {
+          products[i].style.display = 'block';
+        } else {
+          products[i].style.display = 'none';
+        }
+      }
+    }
+  </script>
 </body>
 </html>
