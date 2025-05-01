@@ -80,7 +80,7 @@ header p {
 .carousel-images {
     display: flex;
     width: 500%; /* Görsellerin 5 katını kapsaması için */
-    animation: slide 15s infinite linear;
+    animation: slide 30s infinite linear; /* Süreyi 30 saniye olarak ayarladık */
 }
 
 .carousel-images img {
@@ -106,10 +106,11 @@ header p {
         transform: translateX(-400%);
     }
     100% {
-        transform: translateX(0);
+        transform: translateX(-500%);
     }
 }
 
+/* Ürün Kartları */
 .products {
     display: flex;
     justify-content: center;
