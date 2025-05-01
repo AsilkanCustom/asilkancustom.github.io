@@ -38,62 +38,73 @@
       color: #3d2b1f;
     }
 
-    nav ul {
-      list-style: none;
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      padding: 1rem;
-      background-color: #d7c2b0;
-    }
-
-    nav ul li {
-      display: inline;
-    }
-
-    nav ul li a {
-      text-decoration: none;
-      color: #7a1e1e;
-      font-size: 1.2rem;
-    }
-
-    nav ul li a:hover {
-      text-decoration: underline;
-    }
-
-    .products {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 2rem;
+    .vintage-fashion {
       padding: 3rem 1rem;
       background-color: #f2e7da;
-    }
-
-    .product-card {
-      background-color: #fffaf5;
-      border: 2px solid #d6bfa7;
-      border-radius: 16px;
-      padding: 1rem;
-      max-width: 300px;
-      box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.1);
       text-align: center;
     }
 
-    .product-card img {
-      width: 100%;
-      border-radius: 10px;
-      margin-bottom: 1rem;
+    .vintage-fashion h2 {
+      font-size: 2rem;
+      color: #7a1e1e;
     }
 
-    .product-card h2 {
-      color: #5a1c1c;
+    .category {
+      background-color: #fffaf5;
+      border: 2px solid #d6bfa7;
+      border-radius: 8px;
+      padding: 1rem;
+      margin: 1rem;
+      display: inline-block;
+      width: 30%;
+      text-align: center;
+    }
+
+    .cart {
+      text-align: center;
+      padding: 2rem;
+      background-color: #e8d8c3;
+    }
+
+    .cart button {
+      padding: 1rem 2rem;
+      background-color: #7a1e1e;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    .login, .signup {
+      padding: 2rem;
+      text-align: center;
+      background-color: #e8d8c3;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    input[type="text"], input[type="password"] {
+      padding: 0.5rem;
       margin: 0.5rem 0;
+      width: 80%;
+      max-width: 300px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
     }
 
-    .product-card p {
-      font-size: 1rem;
-      color: #4b3b2b;
+    button {
+      padding: 0.7rem 1.5rem;
+      background-color: #7a1e1e;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1.2rem;
     }
 
     footer {
@@ -111,52 +122,6 @@
     footer a:hover {
       text-decoration: underline;
     }
-
-    /* Form stili */
-    form {
-      max-width: 600px;
-      margin: 0 auto;
-      background-color: #f6f0e8;
-      padding: 1rem;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    form label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: bold;
-    }
-
-    form input, form textarea {
-      width: 100%;
-      padding: 0.8rem;
-      margin-bottom: 1rem;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-
-    form button {
-      background-color: #7a1e1e;
-      color: white;
-      padding: 0.8rem 1.5rem;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    form button:hover {
-      background-color: #5a1414;
-    }
-    
-    .social-media {
-      text-align: center;
-      padding: 1rem;
-    }
-
-    .social-media a {
-      margin: 0 10px;
-    }
   </style>
 </head>
 <body>
@@ -168,82 +133,62 @@
     </p>
   </header>
 
-  <!-- Navigasyon Menüsü -->
-  <nav>
-    <ul>
-      <li><a href="index.html">Ana Sayfa</a></li>
-      <li><a href="about.html">Hakkımızda</a></li>
-      <li><a href="contact.html">İletişim</a></li>
-    </ul>
-  </nav>
-
-  <!-- Ürün Filtreleme -->
-  <div>
-    <label for="category">Kategori Seçin:</label>
-    <select id="category" onchange="filterProducts()">
-      <option value="all">Hepsi</option>
-      <option value="ceket">Ceketler</option>
-      <option value="aksesuar">Aksesuarlar</option>
-    </select>
-  </div>
-
-  <section class="products">
-    <div class="product-card ceket">
-      <img src="https://i.imgur.com/xYyn2TZ.png" alt="Ürün 1" />
-      <h2>Halılı Vintage Ceket</h2>
-      <p>Türk halısından özel dikim, el emeği ile üretilmiştir.</p>
+  <!-- VINTAGE GİYİM Bölümü -->
+  <section class="vintage-fashion">
+    <h2>VINTAGE GİYİM</h2>
+    <div class="category">
+      <h3>Ceket</h3>
+      <p>Vintage tarzı ceketler.</p>
     </div>
-    <div class="product-card ceket">
-      <img src="https://i.imgur.com/NLe0LjK.png" alt="Ürün 2" />
-      <h2>Renkli Desen Ceket</h2>
-      <p>Benzersiz dokular ve klasik desenlerle modern bir tarz.</p>
+    <div class="category">
+      <h3>Pantolon</h3>
+      <p>Şık ve rahat vintage pantolonlar.</p>
+    </div>
+    <div class="category">
+      <h3>Çanta</h3>
+      <p>Özel tasarım vintage çantalar.</p>
     </div>
   </section>
 
-  <!-- İletişim Formu -->
-  <section id="contact">
-    <h2>İletişim</h2>
-    <form action="https://formspree.io/f/mrgrwejv" method="POST">
-      <label for="name">Adınız:</label>
-      <input type="text" id="name" name="name" required>
-      
-      <label for="email">E-posta:</label>
-      <input type="email" id="email" name="email" required>
+  <!-- Sepet Bölümü -->
+  <section class="cart">
+    <h2>Sepet</h2>
+    <button onclick="goToCart()">Sepete Git</button>
+  </section>
 
-      <label for="message">Mesajınız:</label>
-      <textarea id="message" name="message" required></textarea>
+  <script>
+    function goToCart() {
+      // Sepete gitmek için sayfayı yönlendirebilirsiniz
+      window.location.href = "/cart";
+    }
+  </script>
 
-      <button type="submit">Gönder</button>
+  <!-- Giriş ve Hesap Oluşturma Bölümü -->
+  <section class="login">
+    <h2>Giriş Yap</h2>
+    <form action="/login" method="POST">
+      <label for="username">Kullanıcı Adı:</label>
+      <input type="text" id="username" name="username" required>
+      <label for="password">Şifre:</label>
+      <input type="password" id="password" name="password" required>
+      <button type="submit">Giriş Yap</button>
+    </form>
+    <p>Hesabınız yok mu? <a href="/signup">Hesap oluşturun</a></p>
+  </section>
+
+  <section class="signup">
+    <h2>Hesap Oluştur</h2>
+    <form action="/signup" method="POST">
+      <label for="new-username">Kullanıcı Adı:</label>
+      <input type="text" id="new-username" name="username" required>
+      <label for="new-password">Şifre:</label>
+      <input type="password" id="new-password" name="password" required>
+      <button type="submit">Hesap Oluştur</button>
     </form>
   </section>
-
-  <!-- Sosyal Medya Bağlantıları -->
-  <div class="social-media">
-    <a href="https://instagram.com/asilkancustom" target="_blank">
-      <img src="instagram-icon.png" alt="Instagram" width="40">
-    </a>
-    <a href="https://facebook.com/asilkancustom" target="_blank">
-      <img src="facebook-icon.png" alt="Facebook" width="40">
-    </a>
-  </div>
 
   <footer>
     <p>© 2025 Asilkan Custom | <a href="https://instagram.com/asilkancustom" target="_blank">Instagram</a></p>
   </footer>
-
-  <script>
-    function filterProducts() {
-      var category = document.getElementById('category').value;
-      var products = document.getElementsByClassName('product-card');
-      
-      for (var i = 0; i < products.length; i++) {
-        if (category === 'all' || products[i].classList.contains(category)) {
-          products[i].style.display = 'block';
-        } else {
-          products[i].style.display = 'none';
-        }
-      }
-    }
-  </script>
 </body>
 </html>
