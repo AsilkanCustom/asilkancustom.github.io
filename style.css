@@ -79,8 +79,8 @@ header p {
 
 .carousel-images {
     display: flex;
-    width: 500%; /* Görsellerin 5 katını kapsaması için */
-    animation: slide 30s infinite linear; /* Süreyi 30 saniye olarak ayarladık */
+    width: calc(100% * 5); /* 5 görselin genişliği */
+    animation: slide 30s infinite linear;
 }
 
 .carousel-images img {
