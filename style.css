@@ -49,7 +49,7 @@ header {
 }
 
 header h1 {
-    font-size: 4rem;
+    font-size: 3.5rem;
     margin: 0;
 }
 
@@ -62,28 +62,33 @@ header p {
 }
 
 .logo-container {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 .logo-container img {
-    width: 200px; /* Logo boyutunu ayarlayabilirsin */
+    width: 150px; /* Logo boyutunu uygun hale getirdik */
     height: auto;
+    margin: 0 auto;
+    display: block;
 }
 
-/* Slayt Görsel - Halı Kaydırıcı */
+/* Kaydırmalı görseller */
 .carousel {
-    position: relative;
-    width: 100%;
-    max-height: 500px;
+    display: flex;
+    justify-content: center;
     overflow: hidden;
-    margin-top: 50px;
+    position: relative;
+}
+
+.carousel-item {
+    min-width: 100%;
+    transition: transform 0.5s ease;
 }
 
 .carousel img {
     width: 100%;
-    height: 100%;
+    height: auto;
     object-fit: cover;
-    animation: slide 15s infinite;
 }
 
 @keyframes slide {
@@ -91,25 +96,25 @@ header p {
         transform: translateX(0);
     }
 
-    20% {
+    25% {
         transform: translateX(-100%);
     }
 
-    40% {
+    50% {
         transform: translateX(-200%);
     }
 
-    60% {
+    75% {
         transform: translateX(-300%);
-    }
-
-    80% {
-        transform: translateX(-400%);
     }
 
     100% {
         transform: translateX(0);
     }
+}
+
+.carousel {
+    animation: slide 15s infinite;
 }
 
 /* Ürün kartları */
