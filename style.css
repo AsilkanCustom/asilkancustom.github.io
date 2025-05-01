@@ -1,0 +1,19 @@
+/* Arka plan ve renk düzenlemeleri */
+body {
+    background-color: #F4E1D2; /* Pastel bej */
+    color: #5C4C3B; /* Koyu kahverengi metin rengi */
+    font-family: "Times New Roman", serif; /* Yazı tipi */
+}
+
+/* Başlıklar ve paragraflar için yazı tipi */
+h1, h2, h3, p {
+    font-family: "Times New Roman", serif; /* Başlık ve paragraflarda da Time New Roman */
+}
+
+/* Header arka plan görseli */
+header {
+    background-image: url('https://path-to-your-image.jpg'); /* Instagram görseli URL'sini buraya yapıştırın */
+    background-size: cover;
+    background-position: center;
+    height: 100vh; /* Yüksekliği tam ekran yapar */
+}
