@@ -1,93 +1,57 @@
+/* Genel Stil */
 body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
     background-color: #f6f0e8;
 }
 
-/* Menü ve üst kısmı sabitle */
-nav {
-    position: sticky;
-    top: 0;
-    background-color: #3d2b1f;
-    padding: 15px 0;
-    z-index: 1000;
-}
-
-nav ul {
-    list-style: none;
-    text-align: center;
-    margin: 0;
-    padding: 0;
-}
-
-nav ul li {
-    display: inline-block;
-    margin: 0 20px;
-}
-
-nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 1.2rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    transition: all 0.3s ease;
-}
-
-nav ul li a:hover {
-    color: #a52a2a;
-}
-
-/* Ana sayfa başlığı ve görsel */
+/* Başlık ve Logo */
 header {
-    position: relative;
-    overflow: hidden;
-    background: #f8d7e3; /* Açık pembe renk */
-    color: #7a1e1e;
     text-align: center;
     padding: 100px 20px;
-}
-
-header h1 {
-    font-size: 3.5rem;
-    margin: 0;
-}
-
-header p {
-    font-size: 1.5rem;
-    max-width: 800px;
-    margin: 20px auto;
-    line-height: 1.6;
-    font-weight: 400;
+    background-color: #f8e1d4;
+    position: relative;
 }
 
 .logo-container {
+    text-align: center;
     margin-bottom: 20px;
 }
 
-.logo-container img {
-    width: 150px; /* Logo boyutunu uygun hale getirdik */
+.logo {
+    width: 200px;
     height: auto;
-    margin: 0 auto;
-    display: block;
 }
 
-/* Kaydırmalı görseller */
+.intro-text h1 {
+    font-size: 3rem;
+    color: #5a1c1c;
+    margin: 20px 0;
+}
+
+.intro-text p {
+    font-size: 1.2rem;
+    color: #4b3b2b;
+    max-width: 900px;
+    margin: 0 auto;
+    line-height: 1.5;
+}
+
+/* Kaydırmalı Görseller */
+.carousel-container {
+    max-width: 100%;
+    overflow: hidden;
+    margin-top: 30px;
+}
+
 .carousel {
     display: flex;
-    justify-content: center;
-    overflow: hidden;
-    position: relative;
+    animation: slide 20s infinite;
 }
 
-.carousel-item {
-    min-width: 100%;
-    transition: transform 0.5s ease;
-}
-
-.carousel img {
+.carousel-slide {
     width: 100%;
-    height: auto;
+    height: 400px;
     object-fit: cover;
 }
 
@@ -95,86 +59,57 @@ header p {
     0% {
         transform: translateX(0);
     }
-
-    25% {
+    20% {
         transform: translateX(-100%);
     }
-
-    50% {
+    40% {
         transform: translateX(-200%);
     }
-
-    75% {
+    60% {
         transform: translateX(-300%);
     }
-
+    80% {
+        transform: translateX(-400%);
+    }
     100% {
         transform: translateX(0);
     }
 }
 
-.carousel {
-    animation: slide 15s infinite;
-}
-
-/* Ürün kartları */
-.products {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    flex-wrap: wrap;
-    padding: 50px 20px;
-    background-color: #f2e7da;
-}
-
-.product-card {
-    background-color: #fffaf5;
-    border-radius: 16px;
-    overflow: hidden;
-    width: 300px;
-    box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease;
-}
-
-.product-card img {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-}
-
-.product-card:hover {
-    transform: scale(1.05);
-}
-
-.product-card h2 {
-    color: #5a1c1c;
-    font-size: 1.5rem;
-    padding: 10px;
-    margin: 0;
-    background-color: #a52a2a;
-    color: white;
-}
-
-.product-card p {
-    padding: 10px;
-    font-size: 1.1rem;
-    color: #4b3b2b;
-}
-
 /* Footer */
 footer {
-    background-color: #d7c2b0;
-    color: #3d2b1f;
+    background-color: #3d2b1f;
+    color: white;
     text-align: center;
-    padding: 20px;
+    padding: 20px 0;
 }
 
 footer a {
-    color: #7a1e1e;
+    color: #d7c2b0;
     text-decoration: none;
-    font-weight: 600;
+    font-weight: bold;
 }
 
 footer a:hover {
     text-decoration: underline;
+}
+
+/* Duyarlı Tasarım */
+@media (max-width: 768px) {
+    .logo {
+        width: 150px;
+    }
+
+    .intro-text h1 {
+        font-size: 2rem;
+    }
+
+    .intro-text p {
+        font-size: 1rem;
+        max-width: 90%;
+    }
+
+    .carousel-slide {
+        height: 300px;
+    }
 }
