@@ -1,22 +1,22 @@
-/* Body ve genel stil */
+/* Genel Ayarlar */
 body {
     font-family: "Times New Roman", serif;
     margin: 0;
     padding: 0;
-    background-color: #F4E1D2; /* Pastel bej */
+    background-color: #F4E1D2; /* Vintage Bej */
     color: #5C4C3B; /* Koyu kahverengi */
 }
 
-/* Header stili */
+/* Header Bölümü */
 header {
     text-align: center;
     padding: 50px 0;
-    background-color: #5C4C3B; /* Koyu kahverengi */
+    background-color: #A52A2A; /* Koyu Bordo */
     color: white;
 }
 
 h1 {
-    font-size: 3rem;
+    font-size: 3.5rem;
     margin: 0;
 }
 
@@ -34,26 +34,61 @@ p {
     margin-bottom: 20px;
 }
 
-/* Ürün galerisi */
-.product-gallery {
+/* Ürün Sayfası */
+.product {
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;
+    align-items: flex-start;
+    margin: 50px 0;
+    padding: 0 20px;
 }
 
-.product-gallery img {
-    margin: 10px;
+.product-image img {
+    width: 350px;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.product-details {
+    margin-left: 30px;
+    max-width: 400px;
+}
+
+.product-details h2 {
+    font-size: 2.5rem;
+    color: #A52A2A; /* Koyu Bordo */
+}
+
+.product-description {
+    font-size: 1.2rem;
+    margin-top: 10px;
+}
+
+.size-guide {
+    margin-top: 30px;
+    background-color: #E9D7B6; /* Açık vintage ton */
+    padding: 15px;
     border-radius: 10px;
-    transition: transform 0.3s ease;
 }
 
-.product-gallery img:hover {
-    transform: scale(1.05);
+.size-guide h3 {
+    font-size: 1.5rem;
+    color: #5C4C3B;
+}
+
+.size-guide ul {
+    list-style: none;
+    padding: 0;
+}
+
+.size-guide li {
+    font-size: 1.2rem;
 }
 
 /* Footer */
 footer {
-    background-color: #5C4C3B;
+    background-color: #A52A2A; /* Koyu Bordo */
     color: white;
     text-align: center;
     padding: 20px;
@@ -61,7 +96,7 @@ footer {
 }
 
 footer a {
-    color: #F4E1D2;
+    color: #F4E1D2; /* Pastel Bej */
     text-decoration: none;
 }
 
