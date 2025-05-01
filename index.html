@@ -5,97 +5,53 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Asilkan Custom</title>
-    <link rel="stylesheet" href="style.css" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css"> <!-- CSS dosyasını bağladık -->
 </head>
 
 <body>
-    <nav class="navbar">
-        <div class="logo">Asilkan Custom</div>
-        <div class="menu-toggle" id="mobile-menu">☰</div>
-        <ul class="nav-links">
+    <nav>
+        <ul>
             <li><a href="#">Ana Sayfa</a></li>
             <li><a href="#vintage">Vintage Giyim</a></li>
             <li><a href="#products">Ürünler</a></li>
             <li><a href="#contact">İletişim</a></li>
-            <li><a href="#" onclick="openLoginModal()">Giriş Yap</a></li>
-            <li><a href="#" onclick="toggleCart()">🛒 Sepet (<span id="cart-count">0</span>)</a></li>
+            <li><a href="#login">Giriş Yap</a></li>
         </ul>
     </nav>
 
     <header>
+        <div class="logo-container">
+            <img src="https://i.imgur.com/mKp7ZHK.jpeg" alt="Asilkan Custom Logo"> <!-- Logo resmi ekledik -->
+        </div>
         <h1>Asilkan Custom</h1>
         <p>Duvar halılarından özel ceketler: Geçmişin ruhunu, el emeğini ve sizin hikayenizi bir araya getiriyoruz. Giyilebilir sanatla tarzınızı yaşayın.</p>
         <div class="carousel">
-            <div class="carousel-inner">
-                <img src="https://i.imgur.com/xYyn2TZ.png" alt="Ürün 1">
-                <img src="https://i.imgur.com/NLe0LjK.png" alt="Ürün 2">
-                <img src="https://i.imgur.com/PqS1gLL.jpeg" alt="Ürün 3">
-            </div>
+            <img src="https://i.imgur.com/s4XkXqV.jpeg" alt="Halı 1">
+            <img src="https://i.imgur.com/Fvjt8yz.jpeg" alt="Halı 2">
+            <img src="https://i.imgur.com/BGECmbh.jpeg" alt="Halı 3">
+            <img src="https://i.imgur.com/QrExQJC.jpeg" alt="Halı 4">
+            <img src="https://i.imgur.com/k3SqxLh.jpeg" alt="Halı 5">
         </div>
     </header>
 
     <section id="products" class="products">
         <div class="product-card">
-            <img src="https://i.imgur.com/xYyn2TZ.png" alt="Ürün 1">
+            <img src="https://i.imgur.com/s4XkXqV.jpeg" alt="Ürün 1">
             <h2>Halılı Vintage Ceket</h2>
             <p>Türk halısından özel dikim, el emeği ile üretilmiştir.</p>
-            <button onclick="addToCart()">Sepete Ekle</button>
         </div>
         <div class="product-card">
-            <img src="https://i.imgur.com/NLe0LjK.png" alt="Ürün 2">
+            <img src="https://i.imgur.com/Fvjt8yz.jpeg" alt="Ürün 2">
             <h2>Renkli Desen Ceket</h2>
             <p>Benzersiz dokular ve klasik desenlerle modern bir tarz.</p>
-            <button onclick="addToCart()">Sepete Ekle</button>
         </div>
     </section>
-
-    <div id="cart" class="cart hidden">
-        <h3>Sepetiniz</h3>
-        <p id="cart-items">Henüz ürün yok.</p>
-    </div>
 
     <footer id="contact">
         <p>© 2025 Asilkan Custom | <a href="https://instagram.com/asilkancustom" target="_blank">Instagram</a></p>
     </footer>
 
-    <!-- Login Modal -->
-    <div id="loginModal" class="modal hidden">
-        <div class="modal-content">
-            <span class="close" onclick="closeLoginModal()">&times;</span>
-            <h2>Giriş Yap</h2>
-            <input type="text" placeholder="Kullanıcı Adı">
-            <input type="password" placeholder="Şifre">
-            <button>Giriş</button>
-        </div>
-    </div>
-
-    <script>
-        // Mobil menü
-        document.getElementById("mobile-menu").addEventListener("click", function () {
-            document.querySelector(".nav-links").classList.toggle("active");
-        });
-
-        // Login modal kontrolü
-        function openLoginModal() {
-            document.getElementById("loginModal").classList.remove("hidden");
-        }
-        function closeLoginModal() {
-            document.getElementById("loginModal").classList.add("hidden");
-        }
-
-        // Sepet sistemi
-        let cartCount = 0;
-        function addToCart() {
-            cartCount++;
-            document.getElementById("cart-count").innerText = cartCount;
-            document.getElementById("cart-items").innerText = `${cartCount} ürün sepette.`;
-        }
-
-        function toggleCart() {
-            document.getElementById("cart").classList.toggle("hidden");
-        }
-    </script>
 </body>
 
 </html>
