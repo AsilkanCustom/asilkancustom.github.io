@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Asilkan Custom</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fff;
+      color: #222;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: black;
+      color: white;
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+    h1 {
+      margin: 0;
+    }
+    section {
+      padding: 2rem;
+      max-width: 800px;
+      margin: auto;
+    }
+    footer {
+      background: #f0f0f0;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Asilkan Custom</h1>
+    <p>Vintage dokunuşlarla özgün tasarımlar</p>
+  </header>
+
+  <section>
+    <h2>Hakkımızda</h2>
+    <p>Türk halılarından ilham alan el yapımı ceket ve çanta koleksiyonumuzla tarzınıza değer katıyoruz.</p>
+  </section>
+
+  <section>
+    <h2>Ürünlerimiz</h2>
+    <p>Yeni koleksiyon yakında!</p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Asilkan Custom</p>
+  </footer>
+</body>
+</html>
