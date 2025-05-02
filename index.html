@@ -1,262 +1,369 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Asilkan Custom</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: 'Arial', sans-serif;
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #f6f0e8;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      background-color: #3d2b1f;
+      padding: 15px 0;
+      z-index: 1000;
+    }
+
+    nav ul {
+      list-style: none;
+      text-align: center;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
-      background-color: #f4f4f4;
     }
-    h1, h2, h3 {
+
+    nav ul li {
+      display: inline-block;
+      margin: 0 20px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      color: #a52a2a;
+    }
+
+    header {
       text-align: center;
+      padding: 100px 20px 50px;
+      background: #e8d8c3;
+      color: #7a1e1e;
     }
-    .product {
-      display: flex;
-      justify-content: space-between;
-      margin: 20px 0;
-      padding: 20px;
-      border: 1px solid #ddd;
-      background-color: #fff;
-    }
-    .product img {
-      width: 100px;
-      height: 100px;
-    }
-    .cart-summary {
-      margin-top: 20px;
-      padding: 10px;
-      border: 1px solid #ddd;
-      background-color: #fff;
-    }
-    .cart-summary h2 {
+
+    header h1 {
+      font-size: 4rem;
       margin: 0;
     }
-    .btn {
+
+    header p {
+      font-size: 1.5rem;
+      max-width: 800px;
+      margin: 20px auto;
+      line-height: 1.6;
+    }
+
+    .carousel {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      height: 500px;
+      margin-top: 40px;
+    }
+
+    .carousel-track {
+      display: flex;
+      width: calc(200%);
+      animation: scroll 40s linear infinite;
+    }
+
+    .carousel-track img {
+      width: 20%;
+      height: 500px;
+      object-fit: cover;
+    }
+
+    @keyframes scroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    .section {
+      padding: 60px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .section h2 {
+      text-align: center;
+      color: #3d2b1f;
+      font-size: 2rem;
+      margin-bottom: 30px;
+    }
+
+    .products {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .product-card {
+      background-color: #fffaf5;
+      border-radius: 16px;
+      overflow: hidden;
+      width: 300px;
+      box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .product-card:hover {
+      transform: scale(1.05);
+    }
+
+    .product-card h2 {
+      font-size: 1.5rem;
       padding: 10px;
-      background-color: #333;
+      margin: 0;
+      background-color: #a52a2a;
+      color: white;
+    }
+
+    .product-card p {
+      padding: 10px;
+      font-size: 1.1rem;
+      color: #4b3b2b;
+    }
+
+    .login-form {
+      max-width: 400px;
+      margin: auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .login-form input, .login-form button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 15px;
+      font-size: 1rem;
+    }
+
+    .login-form button {
+      background-color: #a52a2a;
       color: white;
       border: none;
       cursor: pointer;
+    }
+
+    .login-form button:hover {
+      background-color: #7a1e1e;
+    }
+
+    footer {
+      background-color: #d7c2b0;
+      color: #3d2b1f;
       text-align: center;
+      padding: 20px;
     }
-    .btn:hover {
-      background-color: #555;
-    }
-    .social-media-buttons {
-      margin-top: 20px;
-      text-align: center;
-    }
-    .social-media-buttons a {
-      margin: 0 10px;
+
+    footer a {
+      color: #7a1e1e;
       text-decoration: none;
+      font-weight: 600;
     }
-    #product-video {
-      width: 100%;
-      height: 400px;
-      background-color: #000;
+
+    footer a:hover {
+      text-decoration: underline;
     }
-    .comment-section {
-      margin-top: 30px;
-      background-color: #fff;
-      padding: 10px;
-      border: 1px solid #ddd;
+
+    @media (max-width: 768px) {
+      nav ul li {
+        display: block;
+        margin: 10px 0;
+      }
+
+      header h1 {
+        font-size: 2.5rem;
+      }
+
+      .carousel-track img {
+        height: 250px;
+      }
+
+      .products {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .product-card {
+        width: 90%;
+      }
     }
-    .comment-section h3 {
-      margin-bottom: 10px;
+
+    /* Additional styles for the added features */
+    .product-card .rating {
+      display: flex;
+      justify-content: center;
+      gap: 5px;
     }
-    .comment-section textarea {
-      width: 100%;
-      height: 100px;
-      margin-bottom: 10px;
+
+    .product-card .rating i {
+      color: gold;
     }
-    .rating {
-      margin-bottom: 10px;
-    }
-    .cart-item {
+
+    .product-card .customize {
+      margin-top: 10px;
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      margin-bottom: 10px;
     }
-    .cart-item button {
-      background-color: #f44336;
+
+    .customize select {
+      padding: 5px;
+      font-size: 1rem;
+    }
+
+    .cart-summary {
+      text-align: right;
+      margin-top: 30px;
+      padding: 20px;
+      background-color: #f1f1f1;
+      border-radius: 8px;
+    }
+
+    .cart-summary p {
+      font-size: 1.2rem;
+    }
+
+    .cart-summary button {
+      padding: 10px 20px;
+      background-color: #a52a2a;
       color: white;
       border: none;
-      padding: 5px;
       cursor: pointer;
     }
-    .cart-item button:hover {
-      background-color: #d32f2f;
+
+    .cart-summary button:hover {
+      background-color: #7a1e1e;
     }
   </style>
 </head>
 <body>
-  <h1>Asilkan Custom - Sepet</h1>
+  <nav>
+    <ul>
+      <li><a href="#home">Ana Sayfa</a></li>
+      <li><a href="#vintage">Vintage Giyim</a></li>
+      <li><a href="#products">Ürünler</a></li>
+      <li><a href="#contact">İletişim</a></li>
+      <li><a href="#login">Giriş Yap</a></li>
+    </ul>
+  </nav>
 
-  <!-- Ana sayfa video -->
-  <div>
-    <h2>Ürün Tanıtım Videosu</h2>
-    <video id="product-video" autoplay loop muted>
-      <source src="https://streamable.com/s/abcd1234/video.mp4" type="video/mp4">
-      Tarayıcınız video desteği sunmuyor.
-    </video>
-  </div>
-
-  <!-- Sepet Ürünleri -->
-  <div id="cart-items">
-    <!-- Sepet ürünleri burada dinamik olarak gösterilecek -->
-  </div>
-
-  <div class="cart-summary">
-    <h2>Sepet Özeti</h2>
-    <p id="total-items">Toplam Ürün Sayısı: 0</p>
-    <p id="total-price">Toplam Fiyat: 0₺</p>
-    <p id="shipping">Kargo Ücreti: 10₺</p>
-    <p id="final-total">Ödenecek Toplam: 0₺</p>
-  </div>
-
-  <button class="btn" onclick="checkout()">Ödeme Yap</button>
-
-  <div>
-    <!-- Sepete ekleme butonları -->
-    <button class="btn" onclick="addToCart(1, 'Vintage Ceket', 200)">Vintage Ceket Sepete Ekle</button>
-    <button class="btn" onclick="addToCart(2, 'Vintage Çanta', 150)">Vintage Çanta Sepete Ekle</button>
-  </div>
-
-  <!-- Yorum ve değerlendirme alanı -->
-  <div class="comment-section">
-    <h3>Yorum Yap</h3>
-    <div class="rating">
-      <label>Yıldız Puanı:</label>
-      <select id="rating">
-        <option value="1">1 Yıldız</option>
-        <option value="2">2 Yıldız</option>
-        <option value="3">3 Yıldız</option>
-        <option value="4">4 Yıldız</option>
-        <option value="5">5 Yıldız</option>
-      </select>
+  <header id="home">
+    <h1>Asilkan Custom</h1>
+    <p>Duvar halılarından özel ceketler: Geçmişin ruhunu, el emeğini ve sizin hikayenizi bir araya getiriyoruz. Giyilebilir sanatla tarzınızı yaşayın.</p>
+    <div class="carousel">
+      <div class="carousel-track">
+        <img src="https://i.imgur.com/s4XkXqV.jpeg" alt="Ürün 1">
+        <img src="https://i.imgur.com/Fvjt8yz.jpeg" alt="Ürün 2">
+        <img src="https://i.imgur.com/BGECmbh.jpeg" alt="Ürün 3">
+        <img src="https://i.imgur.com/QrExQJC.jpeg" alt="Ürün 4">
+        <img src="https://i.imgur.com/k3SqxLh.jpeg" alt="Ürün 5">
+        <img src="https://i.imgur.com/s4XkXqV.jpeg" alt="Ürün 1">
+        <img src="https://i.imgur.com/Fvjt8yz.jpeg" alt="Ürün 2">
+        <img src="https://i.imgur.com/BGECmbh.jpeg" alt="Ürün 3">
+        <img src="https://i.imgur.com/QrExQJC.jpeg" alt="Ürün 4">
+        <img src="https://i.imgur.com/k3SqxLh.jpeg" alt="Ürün 5">
+      </div>
     </div>
-    <textarea id="comment-text" placeholder="Yorumunuzu buraya yazın..."></textarea>
-    <button class="btn" onclick="submitComment()">Yorumu Gönder</button>
-  </div>
+  </header>
 
-  <!-- Sosyal medya butonları -->
-  <div class="social-media-buttons">
-    <a href="https://www.instagram.com/asilkancustom/" target="_blank" class="btn">Instagram'da Paylaş</a>
-    <a href="https://www.facebook.com/asilkancustom" target="_blank" class="btn">Facebook'ta Paylaş</a>
-  </div>
+  <section class="section" id="vintage">
+    <h2>Vintage Giyim</h2>
+    <p style="text-align:center;">Hikayesi olan kumaşlardan, eşsiz tasarımlara... Her parça geçmişten gelen bir hatırayı taşır.</p>
+  </section>
 
-  <!-- E-posta aboneliği -->
-  <div>
-    <h3>E-posta Aboneliği</h3>
-    <input type="email" id="email" placeholder="E-posta adresinizi girin...">
-    <button class="btn" onclick="subscribe()">Abone Ol</button>
-  </div>
+  <section class="section" id="products">
+    <h2>Ürünler</h2>
+    <div class="products">
+      <div class="product-card">
+        <img src="https://i.imgur.com/s4XkXqV.jpeg" alt="Ceket 1">
+        <h2>Halı Ceket 1</h2>
+        <p>El dokuması halıdan üretilmiş özel tasarım ceket.</p>
+        <div class="rating">
+          <i>★</i><i>★</i><i>★</i><i>★</i><i>☆</i>
+        </div>
+        <div class="customize">
+          <select>
+            <option>Renk: Kırmızı</option>
+            <option>Renk: Yeşil</option>
+          </select>
+          <select>
+            <option>Beden: M</option>
+            <option>Beden: L</option>
+          </select>
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="https://i.imgur.com/Fvjt8yz.jpeg" alt="Ceket 2">
+        <h2>Halı Ceket 2</h2>
+        <p>Vintage stil, güçlü duruş.</p>
+        <div class="rating">
+          <i>★</i><i>★</i><i>★</i><i>☆</i><i>☆</i>
+        </div>
+        <div class="customize">
+          <select>
+            <option>Renk: Siyah</option>
+            <option>Renk: Mavi</option>
+          </select>
+          <select>
+            <option>Beden: S</option>
+            <option>Beden: M</option>
+          </select>
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="https://i.imgur.com/QrExQJC.jpeg" alt="Çanta">
+        <h2>Halı Çanta</h2>
+        <p>Türk halısından elde yapılmış, şık ve dayanıklı çanta.</p>
+        <div class="rating">
+          <i>★</i><i>★</i><i>★</i><i>★</i><i>★</i>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <!-- Canlı Destek / Chat Bot -->
-  <div>
-    <button class="btn" onclick="openChat()">Canlı Destek</button>
-  </div>
+  <section class="section" id="login">
+    <h2>Giriş Yap</h2>
+    <div class="login-form">
+      <input type="text" placeholder="Kullanıcı Adı" />
+      <input type="password" placeholder="Şifre" />
+      <button>Giriş</button>
+    </div>
+  </section>
 
-  <script>
-    // Sepeti localStorage'dan al veya boş bir sepet başlat
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  <section class="cart-summary">
+    <p>Toplam Tutar: ₺250.00</p>
+    <p>Kargo Ücreti: ₺15.00</p>
+    <p>Ödenecek Tutar: ₺265.00</p>
+    <button>Ödeme Yap</button>
+  </section>
 
-    // Ürünleri sepete ekleme fonksiyonu
-    function addToCart(productId, productName, productPrice) {
-      const product = {
-        id: productId,
-        name: productName,
-        price: productPrice,
-        quantity: 1
-      };
-      cart.push(product);
-      updateCart();
-    }
-
-    // Sepeti güncelleme ve localStorage'a kaydetme
-    function updateCart() {
-      localStorage.setItem('cart', JSON.stringify(cart));
-      displayCartItems();
-      calculateSummary();
-    }
-
-    // Sepet öğelerini görüntüleme
-    function displayCartItems() {
-      const cartItemsContainer = document.getElementById('cart-items');
-      cartItemsContainer.innerHTML = ''; // Eski öğeleri temizle
-
-      cart.forEach(item => {
-        const productDiv = document.createElement('div');
-        productDiv.classList.add('cart-item');
-        productDiv.innerHTML = `
-          <div>${item.name} - ${item.price}₺ x ${item.quantity}</div>
-          <button onclick="removeFromCart(${item.id})">Kaldır</button>
-        `;
-        cartItemsContainer.appendChild(productDiv);
-      });
-    }
-
-    // Sepet toplamını hesaplama
-    function calculateSummary() {
-      let totalItems = 0;
-      let totalPrice = 0;
-      
-      cart.forEach(item => {
-        totalItems += item.quantity;
-        totalPrice += item.price * item.quantity;
-      });
-
-      const shippingFee = 10; // Sabit kargo ücreti
-      const finalTotal = totalPrice + shippingFee;
-
-      document.getElementById('total-items').innerText = `Toplam Ürün Sayısı: ${totalItems}`;
-      document.getElementById('total-price').innerText = `Toplam Fiyat: ${totalPrice}₺`;
-      document.getElementById('shipping').innerText = `Kargo Ücreti: ${shippingFee}₺`;
-      document.getElementById('final-total').innerText = `Ödenecek Toplam: ${finalTotal}₺`;
-    }
-
-    // Sepetten ürün kaldırma
-    function removeFromCart(productId) {
-      cart = cart.filter(item => item.id !== productId);
-      updateCart();
-    }
-
-    // Ödeme işlemi
-    function checkout() {
-      alert("Ödeme işlemi gerçekleşiyor...");
-      cart = []; // Sepeti temizle
-      updateCart(); // Sepet güncelle
-    }
-
-    // Yorum gönderme fonksiyonu
-    function submitComment() {
-      const rating = document.getElementById('rating').value;
-      const commentText = document.getElementById('comment-text').value;
-      alert(`Yorum Gönderildi!\nPuan: ${rating} Yıldız\nYorum: ${commentText}`);
-    }
-
-    // E-posta aboneliği fonksiyonu
-    function subscribe() {
-      const email = document.getElementById('email').value;
-      alert(`${email} adresine abone olundu!`);
-    }
-
-    // Canlı destek / Chat bot açma fonksiyonu
-    function openChat() {
-      alert("Canlı destek sohbeti başlatıldı!");
-    }
-
-    // Sayfa yüklendiğinde sepetteki ürünleri göster
-    window.onload = function() {
-      displayCartItems();
-      calculateSummary();
-    };
-  </script>
+  <footer id="contact">
+    <p>© 2025 Asilkan Custom | <a href="https://instagram.com/asilkancustom" target="_blank">Instagram</a></p>
+  </footer>
 </body>
 </html>
