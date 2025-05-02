@@ -224,6 +224,32 @@
         width: 90%;
       }
     }
+
+    #cart-section {
+      background-color: #fff;
+      padding: 20px;
+      margin-top: 30px;
+      border-radius: 12px;
+      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    #cart-section ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    #cart-section li {
+      margin: 15px 0;
+    }
+
+    #cart-section button {
+      margin-left: 10px;
+      padding: 5px 10px;
+      background-color: #a52a2a;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
@@ -233,7 +259,7 @@
       <li><a href="#home">Ana Sayfa</a></li>
       <li><a href="#vintage">Vintage Giyim</a></li>
       <li><a href="#products">Ürünler</a></li>
-      <li><a href="#contact">İletişim</a></li>
+      <li><a href="#cart-section">Sepet</a></li>
       <li><a href="#login">Giriş Yap</a></li>
     </ul>
   </nav>
@@ -241,7 +267,6 @@
   <header id="home">
     <h1>Asilkan Custom</h1>
     <p>Duvar halılarından özel ceketler: Geçmişin ruhunu, el emeğini ve sizin hikayenizi bir araya getiriyoruz. Giyilebilir sanatla tarzınızı yaşayın.</p>
-
     <div class="carousel">
       <div class="carousel-track">
         <img src="https://i.imgur.com/s4XkXqV.jpeg" alt="Ürün 1">
@@ -260,8 +285,6 @@
 
   <section class="section" id="products">
     <h2>Ürünler</h2>
-    
-    <!-- Filtreleme Kısmı -->
     <div class="filters">
       <select id="category-filter" onchange="filterProducts()">
         <option value="">Tüm Kategoriler</option>
@@ -270,10 +293,12 @@
         <option value="canta">Çantalar</option>
       </select>
     </div>
-    
-    <div class="products" id="product-list">
-      <!-- Ürünler Buraya Eklenecek -->
-    </div>
+    <div class="products" id="product-list"></div>
+  </section>
+
+  <section class="section" id="cart-section">
+    <h2>Sepet</h2>
+    <div id="cart-content"></div>
   </section>
 
   <section class="section" id="login">
@@ -281,47 +306,75 @@
     <div class="login-form">
       <input type="text" placeholder="Kullanıcı Adı" />
       <input type="password" placeholder="Şifre" />
-      <button>Giriş</button>
+      <button>Giriş Yap</button>
     </div>
   </section>
 
-  <footer id="contact">
-    <p>© 2025 Asilkan Custom | <a href="https://instagram.com/asilkancustom" target="_blank">Instagram</a></p>
+  <footer>
+    <p>&copy; 2025 Asilkan Custom. Tüm hakları saklıdır.</p>
+    <p><a href="#">Gizlilik Politikası</a> | <a href="#">İletişim</a></p>
   </footer>
 
   <script>
-    const products = [
-      { name: 'Halı Ceket 1', category: 'ceket', price: 500, image: 'https://i.imgur.com/s4XkXqV.jpeg' },
-      { name: 'Halı Ceket 2', category: 'ceket', price: 650, image: 'https://i.imgur.com/Fvjt8yz.jpeg' },
-      { name: 'Halı Pantolon 1', category: 'pantolon', price: 400, image: 'https://i.imgur.com/BGECmbh.jpeg' },
-      { name: 'Halı Pantolon 2', category: 'pantolon', price: 450, image: 'https://i.imgur.com/QrExQJC.jpeg' },
-      { name: 'Halı Çanta', category: 'canta', price: 300, image: 'https://i.imgur.com/k3SqxLh.jpeg' },
+    let cart = [];
+    const productList = [
+      { id: 1, name: 'Vintage Ceket', category: 'ceket', price: 450, image: 'https://i.imgur.com/s4XkXqV.jpeg' },
+      { id: 2, name: 'Desenli Pantolon', category: 'pantolon', price: 350, image: 'https://i.imgur.com/Fvjt8yz.jpeg' },
+      { id: 3, name: 'El Yapımı Çanta', category: 'canta', price: 200, image: 'https://i.imgur.com/k3SqxLh.jpeg' },
     ];
-
-    function displayProducts(productsToShow) {
-      const productList = document.getElementById('product-list');
-      productList.innerHTML = '';
-      productsToShow.forEach(product => {
-        const productCard = document.createElement('div');
-        productCard.classList.add('product-card');
-        productCard.innerHTML = `
-          <img src="${product.image}" alt="${product.name}">
-          <h2>${product.name}</h2>
-          <p>${product.price} TL</p>
-          <button onclick="addToCart('${product.name}', ${product.price})">Sepete Ekle</button>
-        `;
-        productList.appendChild(productCard);
-      });
-    }
 
     function filterProducts() {
       const category = document.getElementById('category-filter').value;
-      const filteredProducts = category ? products.filter(p => p.category === category) : products;
+      const filteredProducts = category
+        ? productList.filter(product => product.category === category)
+        : productList;
+      
       displayProducts(filteredProducts);
     }
 
-    // Sayfa yüklendiğinde tüm ürünleri göster
-    window.onload = () => displayProducts(products);
+    function displayProducts(products) {
+      const productContainer = document.getElementById('product-list');
+      productContainer.innerHTML = '';
+      products.forEach(product => {
+        const productCard = `
+          <div class="product-card">
+            <img src="${product.image}" alt="${product.name}" />
+            <h2>${product.name}</h2>
+            <p>${product.price}₺</p>
+            <button onclick="addToCart(${product.id})">Sepete Ekle</button>
+          </div>
+        `;
+        productContainer.innerHTML += productCard;
+      });
+    }
+
+    function addToCart(productId) {
+      const product = productList.find(product => product.id === productId);
+      cart.push(product);
+      updateCart();
+    }
+
+    function updateCart() {
+      const cartContent = document.getElementById('cart-content');
+      cartContent.innerHTML = '';
+      cart.forEach((product, index) => {
+        const cartItem = `
+          <li>
+            ${product.name} - ${product.price}₺
+            <button onclick="removeFromCart(${index})">Kaldır</button>
+          </li>
+        `;
+        cartContent.innerHTML += cartItem;
+      });
+    }
+
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      updateCart();
+    }
+
+    // Initialize page
+    displayProducts(productList);
   </script>
 </body>
 </html>
