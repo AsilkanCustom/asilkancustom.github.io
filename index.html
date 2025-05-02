@@ -250,6 +250,20 @@
       border: none;
       cursor: pointer;
     }
+
+    #payment-btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 1.2rem;
+    }
+
+    #payment-btn:hover {
+      background-color: #45a049;
+    }
   </style>
 </head>
 <body>
@@ -299,6 +313,7 @@
   <section class="section" id="cart-section">
     <h2>Sepet</h2>
     <div id="cart-content"></div>
+    <button id="payment-btn" onclick="goToPayment()">Ödeme Yap</button>
   </section>
 
   <section class="section" id="login">
@@ -356,25 +371,4 @@
 
     function updateCart() {
       const cartContent = document.getElementById('cart-content');
-      cartContent.innerHTML = '';
-      cart.forEach((product, index) => {
-        const cartItem = `
-          <li>
-            ${product.name} - ${product.price}₺
-            <button onclick="removeFromCart(${index})">Kaldır</button>
-          </li>
-        `;
-        cartContent.innerHTML += cartItem;
-      });
-    }
-
-    function removeFromCart(index) {
-      cart.splice(index, 1);
-      updateCart();
-    }
-
-    // Initialize page
-    displayProducts(productList);
-  </script>
-</body>
-</html>
+     
