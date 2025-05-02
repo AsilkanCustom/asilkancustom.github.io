@@ -106,6 +106,17 @@
       margin-bottom: 30px;
     }
 
+    .filters {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .filters select {
+      padding: 10px;
+      font-size: 1rem;
+    }
+
     .products {
       display: flex;
       justify-content: center;
@@ -238,11 +249,6 @@
         <img src="https://i.imgur.com/BGECmbh.jpeg" alt="Ürün 3">
         <img src="https://i.imgur.com/QrExQJC.jpeg" alt="Ürün 4">
         <img src="https://i.imgur.com/k3SqxLh.jpeg" alt="Ürün 5">
-        <img src="https://i.imgur.com/s4XkXqV.jpeg" alt="Ürün 1">
-        <img src="https://i.imgur.com/Fvjt8yz.jpeg" alt="Ürün 2">
-        <img src="https://i.imgur.com/BGECmbh.jpeg" alt="Ürün 3">
-        <img src="https://i.imgur.com/QrExQJC.jpeg" alt="Ürün 4">
-        <img src="https://i.imgur.com/k3SqxLh.jpeg" alt="Ürün 5">
       </div>
     </div>
   </header>
@@ -254,25 +260,19 @@
 
   <section class="section" id="products">
     <h2>Ürünler</h2>
-    <div class="products">
-      <div class="product-card">
-        <img src="https://i.imgur.com/s4XkXqV.jpeg" alt="Ceket 1">
-        <h2>Halı Ceket 1</h2>
-        <p>El dokuması halıdan üretilmiş özel tasarım ceket.</p>
-      </div>
-      <div class="product-card">
-        <img src="https://i.imgur.com/Fvjt8yz.jpeg" alt="Ceket 2">
-        <h2>Halı Ceket 2</h2>
-        <p>Vintage stil, güçlü duruş.</p>
-      </div>
-      <div class="product-card">
-        <video id="halicanta" width="100%" height="250" autoplay loop muted playsinline>
-          <source src="https://i.imgur.com/pALFNWT.mp4" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-        <h2>Halı Çanta</h2>
-        <p>Türk halısından elde yapılmış, şık ve dayanıklı çanta.</p>
-      </div>
+    
+    <!-- Filtreleme Kısmı -->
+    <div class="filters">
+      <select id="category-filter" onchange="filterProducts()">
+        <option value="">Tüm Kategoriler</option>
+        <option value="ceket">Ceketler</option>
+        <option value="pantolon">Pantolonlar</option>
+        <option value="canta">Çantalar</option>
+      </select>
+    </div>
+    
+    <div class="products" id="product-list">
+      <!-- Ürünler Buraya Eklenecek -->
     </div>
   </section>
 
@@ -290,8 +290,38 @@
   </footer>
 
   <script>
-    const video = document.getElementById('halicanta');
-    video.playbackRate = 0.5;
+    const products = [
+      { name: 'Halı Ceket 1', category: 'ceket', price: 500, image: 'https://i.imgur.com/s4XkXqV.jpeg' },
+      { name: 'Halı Ceket 2', category: 'ceket', price: 650, image: 'https://i.imgur.com/Fvjt8yz.jpeg' },
+      { name: 'Halı Pantolon 1', category: 'pantolon', price: 400, image: 'https://i.imgur.com/BGECmbh.jpeg' },
+      { name: 'Halı Pantolon 2', category: 'pantolon', price: 450, image: 'https://i.imgur.com/QrExQJC.jpeg' },
+      { name: 'Halı Çanta', category: 'canta', price: 300, image: 'https://i.imgur.com/k3SqxLh.jpeg' },
+    ];
+
+    function displayProducts(productsToShow) {
+      const productList = document.getElementById('product-list');
+      productList.innerHTML = '';
+      productsToShow.forEach(product => {
+        const productCard = document.createElement('div');
+        productCard.classList.add('product-card');
+        productCard.innerHTML = `
+          <img src="${product.image}" alt="${product.name}">
+          <h2>${product.name}</h2>
+          <p>${product.price} TL</p>
+          <button onclick="addToCart('${product.name}', ${product.price})">Sepete Ekle</button>
+        `;
+        productList.appendChild(productCard);
+      });
+    }
+
+    function filterProducts() {
+      const category = document.getElementById('category-filter').value;
+      const filteredProducts = category ? products.filter(p => p.category === category) : products;
+      displayProducts(filteredProducts);
+    }
+
+    // Sayfa yüklendiğinde tüm ürünleri göster
+    window.onload = () => displayProducts(products);
   </script>
 </body>
 </html>
