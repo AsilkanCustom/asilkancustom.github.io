@@ -262,6 +262,15 @@
     }
 
   </style>
+
+  <!-- Performance optimization: async loading of non-critical JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" async></script>
+
+  <!-- SSL Security recommendation: Ensure the website is loaded over HTTPS -->
+  <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains" />
+  
+  <!-- Adding caching header for better performance -->
+  <meta http-equiv="Cache-Control" content="public, max-age=31536000, immutable">
 </head>
 <body>
   <nav>
