@@ -45,6 +45,17 @@
       color: #a52a2a;
     }
 
+    /* Logo ekleme kısmı */
+    nav ul li:first-child {
+      margin-left: 0; /* Sağdan bir boşluk bırakır */
+    }
+
+    nav ul li img {
+      height: 50px;
+      width: 50px;
+      border-radius: 50%;
+    }
+
     header {
       text-align: center;
       padding: 100px 20px 50px;
@@ -74,12 +85,12 @@
 
     .carousel-track {
       display: flex;
-      width: 100%; /* Güncelleme */
+      width: calc(200%);
       animation: scroll 40s linear infinite;
     }
 
     .carousel-track img {
-      width: 100%; /* Güncelleme */
+      width: 20%;
       height: 500px;
       object-fit: cover;
     }
@@ -89,7 +100,7 @@
         transform: translateX(0);
       }
       100% {
-        transform: translateX(-100%);
+        transform: translateX(-50%);
       }
     }
 
@@ -213,12 +224,12 @@
         width: 90%;
       }
     }
-
   </style>
 </head>
 <body>
   <nav>
     <ul>
+      <li><a href="#home"><img src="https://i.imgur.com/TuZnOjq.png" alt="Asilkan Custom Logo"></a></li> <!-- Logo burada eklenmiş oldu -->
       <li><a href="#home">Ana Sayfa</a></li>
       <li><a href="#vintage">Vintage Giyim</a></li>
       <li><a href="#products">Ürünler</a></li>
@@ -233,6 +244,11 @@
 
     <div class="carousel">
       <div class="carousel-track">
+        <img src="https://i.imgur.com/s4XkXqV.jpeg" alt="Ürün 1">
+        <img src="https://i.imgur.com/Fvjt8yz.jpeg" alt="Ürün 2">
+        <img src="https://i.imgur.com/BGECmbh.jpeg" alt="Ürün 3">
+        <img src="https://i.imgur.com/QrExQJC.jpeg" alt="Ürün 4">
+        <img src="https://i.imgur.com/k3SqxLh.jpeg" alt="Ürün 5">
         <img src="https://i.imgur.com/s4XkXqV.jpeg" alt="Ürün 1">
         <img src="https://i.imgur.com/Fvjt8yz.jpeg" alt="Ürün 2">
         <img src="https://i.imgur.com/BGECmbh.jpeg" alt="Ürün 3">
@@ -273,32 +289,12 @@
     <div class="login-form">
       <input type="text" placeholder="Kullanıcı Adı" />
       <input type="password" placeholder="Şifre" />
-      <button onclick="login()">Giriş Yap</button>
+      <button>Giriş</button>
     </div>
-    <p>Henüz üye değil misiniz? <a href="#register">Kayıt Olun</a></p>
   </section>
 
   <footer id="contact">
     <p>© 2025 Asilkan Custom | <a href="https://instagram.com/asilkancustom" target="_blank">Instagram</a></p>
   </footer>
-
-  <script>
-    // Sepet fonksiyonu
-    let cart = [];
-
-    function addToCart(product) {
-      cart.push(product);
-      alert(`${product} sepete eklendi!`);
-    }
-
-    function showCart() {
-      alert('Sepetiniz: ' + cart.join(', '));
-    }
-
-    // Giriş ve Kayıt
-    function login() {
-      alert("Giriş yapıldı.");
-    }
-  </script>
 </body>
 </html>
