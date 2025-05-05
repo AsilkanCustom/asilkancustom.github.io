@@ -6,7 +6,6 @@
   <title>Asilkan Custom</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    /* Genel stil ayarları */
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
@@ -191,7 +190,7 @@
       text-decoration: underline;
     }
 
-    /* Mobil uyumluluk */
+    /* Mobile Responsiveness */
     @media (max-width: 768px) {
       nav ul li {
         display: block;
@@ -216,7 +215,28 @@
       }
     }
 
-    /* Sepet özeti için stil */
+    /* Additional styles for added features */
+    .product-card .rating {
+      display: flex;
+      justify-content: center;
+      gap: 5px;
+    }
+
+    .product-card .rating i {
+      color: gold;
+    }
+
+    .product-card .customize {
+      margin-top: 10px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .customize select {
+      padding: 5px;
+      font-size: 1rem;
+    }
+
     .cart-summary {
       text-align: right;
       margin-top: 30px;
@@ -242,6 +262,15 @@
     }
 
   </style>
+
+  <!-- Performance optimization: async loading of non-critical JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" async></script>
+
+  <!-- SSL Security recommendation: Ensure the website is loaded over HTTPS -->
+  <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains" />
+  
+  <!-- Adding caching header for better performance -->
+  <meta http-equiv="Cache-Control" content="public, max-age=31536000, immutable">
 </head>
 <body>
   <nav>
@@ -264,6 +293,11 @@
         <img src="https://i.imgur.com/BGECmbh.jpeg" alt="Ürün 3">
         <img src="https://i.imgur.com/QrExQJC.jpeg" alt="Ürün 4">
         <img src="https://i.imgur.com/k3SqxLh.jpeg" alt="Ürün 5">
+        <img src="https://i.imgur.com/s4XkXqV.jpeg" alt="Ürün 1">
+        <img src="https://i.imgur.com/Fvjt8yz.jpeg" alt="Ürün 2">
+        <img src="https://i.imgur.com/BGECmbh.jpeg" alt="Ürün 3">
+        <img src="https://i.imgur.com/QrExQJC.jpeg" alt="Ürün 4">
+        <img src="https://i.imgur.com/k3SqxLh.jpeg" alt="Ürün 5">
       </div>
     </div>
   </header>
@@ -276,11 +310,49 @@
   <section class="section" id="products">
     <h2>Ürünler</h2>
     <div class="products">
-      <!-- Ürün kartları -->
       <div class="product-card">
         <img src="https://i.imgur.com/s4XkXqV.jpeg" alt="Ceket 1">
         <h2>Halı Ceket 1</h2>
         <p>El dokuması halıdan üretilmiş özel tasarım ceket.</p>
+        <div class="rating">
+          <i>★</i><i>★</i><i>★</i><i>★</i><i>☆</i>
+        </div>
+        <div class="customize">
+          <select>
+            <option>Renk: Kırmızı</option>
+            <option>Renk: Yeşil</option>
+          </select>
+          <select>
+            <option>Beden: M</option>
+            <option>Beden: L</option>
+          </select>
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="https://i.imgur.com/Fvjt8yz.jpeg" alt="Ceket 2">
+        <h2>Halı Ceket 2</h2>
+        <p>Vintage stil, güçlü duruş.</p>
+        <div class="rating">
+          <i>★</i><i>★</i><i>★</i><i>☆</i><i>☆</i>
+        </div>
+        <div class="customize">
+          <select>
+            <option>Renk: Siyah</option>
+            <option>Renk: Mavi</option>
+          </select>
+          <select>
+            <option>Beden: S</option>
+            <option>Beden: M</option>
+          </select>
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="https://i.imgur.com/QrExQJC.jpeg" alt="Çanta">
+        <h2>Halı Çanta</h2>
+        <p>Türk halısından elde yapılmış, şık ve dayanıklı çanta.</p>
+        <div class="rating">
+          <i>★</i><i>★</i><i>★</i><i>★</i><i>★</i>
+        </div>
       </div>
     </div>
   </section>
@@ -294,8 +366,16 @@
     </div>
   </section>
 
-  <footer id="contact">
-    <p>© 2025 Asilkan Custom | <a href="https://instagram.com/asilkancustom" target="_blank">Instagram</a></p>
+  <section class="cart-summary">
+    <p>Toplam Tutar: ₺250.00</p>
+    <p>Kargo Ücreti: ₺15.00</p>
+    <p>Ödenecek Tutar: ₺265.00</p>
+    <button>Ödeme Yap</button>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Asilkan Custom. Tüm hakları saklıdır.</p>
+    <p><a href="#">İletişim</a></p>
   </footer>
 </body>
 </html>
