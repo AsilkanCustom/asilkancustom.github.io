@@ -339,24 +339,69 @@
     <div class="products">
       <div class="product-card">
         <img src="https://i.imgur.com/s4XkXqV.jpeg" alt="Çanta 1">
-        <p>Vintage halıdan yapılmış eşsiz çanta.</p>
+        <p>El yapımı vintage çanta.</p>
         <p>₺350.00</p>
         <button>Sepete Ekle</button>
       </div>
     </div>
   </section>
 
-  <section class="login-form" id="login">
-    <h2>Giriş Yap</h2>
-    <form action="#">
-      <input type="text" placeholder="Kullanıcı Adı" required />
-      <input type="password" placeholder="Şifre" required />
-      <button type="submit">Giriş Yap</button>
-    </form>
+  <section class="section" id="cart">
+    <h2>Sepet</h2>
+    <p>Sepetiniz boş.</p>
   </section>
 
-  <footer id="contact">
-    <p>&copy; 2025 Asilkan Custom | <a href="https://instagram.com/asilkancustom">Instagram</a></p>
+  <section id="login" class="section">
+    <h2>Giriş Yap</h2>
+    <div class="login-form">
+      <form>
+        <input type="text" placeholder="Kullanıcı Adı" required>
+        <input type="password" placeholder="Şifre" required>
+        <button type="submit">Giriş Yap</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <p>Asilkan Custom | <a href="#home">Ana Sayfa</a></p>
   </footer>
+
+  <script>
+    let cartItems = [];
+    const buttons = document.querySelectorAll('.product-card button');
+
+    buttons.forEach((btn, index) => {
+      btn.addEventListener('click', () => {
+        const card = btn.closest('.product-card');
+        const title = card.querySelector('img').alt;
+        const price = card.querySelectorAll('p')[1].textContent;
+
+        cartItems.push({ title, price });
+        updateCart();
+      });
+    });
+
+    function updateCart() {
+      const cartSection = document.getElementById('cart');
+      if (!cartSection) return;
+
+      cartSection.innerHTML = `<h2>Sepet</h2>`;
+      if (cartItems.length === 0) {
+        cartSection.innerHTML += `<p>Sepetiniz boş.</p>`;
+      } else {
+        let total = 0;
+        cartItems.forEach(item => {
+          cartSection.innerHTML += `<p>${item.title} - ${item.price}</p>`;
+          total += parseFloat(item.price.replace(/[^\d.]/g, ''));
+        });
+        cartSection.innerHTML += `<p><strong>Toplam: ₺${total.toFixed(2)}</strong></p>`;
+      }
+    }
+
+    document.querySelector('.login-form form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Giriş yapıldı (örnek)');
+    });
+  </script>
 </body>
 </html>
