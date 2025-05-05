@@ -74,7 +74,7 @@
 
     .carousel-track {
       display: flex;
-      width: calc(200%); 
+      width: calc(200%);
       animation: scroll 40s linear infinite;
     }
 
@@ -306,102 +306,94 @@
         <img src="https://i.imgur.com/JY50D7d.jpeg" alt="Ceket 1">
         <p>El dokuması halıdan üretilmiş özel tasarım ceket.</p>
         <p>₺500.00</p>
-        <button>Sepete Ekle</button>
+        <button onclick="addToCart('Ceket 1', 500)">Sepete Ekle</button>
       </div>
       <div class="product-card">
         <img src="https://i.imgur.com/UnZQvek.jpeg" alt="Ceket 2">
         <p>Vintage stil, güçlü duruş.</p>
         <p>₺550.00</p>
-        <button>Sepete Ekle</button>
+        <button onclick="addToCart('Ceket 2', 550)">Sepete Ekle</button>
       </div>
       <div class="product-card">
         <img src="https://i.imgur.com/DveyRWJ.jpeg" alt="Ceket 3">
         <p>Modern dokunuşlarla retro bir görünüm.</p>
         <p>₺600.00</p>
-        <button>Sepete Ekle</button>
+        <button onclick="addToCart('Ceket 3', 600)">Sepete Ekle</button>
       </div>
       <div class="product-card">
         <img src="https://i.imgur.com/iNFjIjV.jpeg" alt="Ceket 4">
         <p>Göz alıcı renkler ve dokular.</p>
         <p>₺650.00</p>
-        <button>Sepete Ekle</button>
+        <button onclick="addToCart('Ceket 4', 650)">Sepete Ekle</button>
       </div>
       <div class="product-card">
         <img src="https://i.imgur.com/tPG1v95.jpeg" alt="Ceket 5">
         <p>Klasik tasarım, modern kesim.</p>
         <p>₺550.00</p>
-        <button>Sepete Ekle</button>
+        <button onclick="addToCart('Ceket 5', 550)">Sepete Ekle</button>
       </div>
       <div class="product-card">
         <img src="https://i.imgur.com/Cfbm6Vq.jpeg" alt="Ceket 6">
         <p>Vibrant renklerde, her tarza uygun.</p>
         <p>₺700.00</p>
-        <button>Sepete Ekle</button>
+        <button onclick="addToCart('Ceket 6', 700)">Sepete Ekle</button>
       </div>
     </div>
 
-<h2>Çantalar</h2>
-<div class="products">
-  <div class="product-card">
-    <img src="https://i.imgur.com/EdojvaG.jpeg" alt="Çanta 1">
-    <p>Halılardan tasarlanmış şık bir çanta.</p>
-    <p>₺350.00</p>
-    <button>Sepete Ekle</button>
-  </div>
-  <div class="product-card">
-    <img src="https://i.imgur.com/QZ7hZ4W.jpeg" alt="Çanta 2">
-    <p>Geçmişin izlerini taşıyan tasarım.</p>
-    <p>₺370.00</p>
-    <button>Sepete Ekle</button>
-  </div>
-  <div class="product-card">
-    <img src="https://i.imgur.com/yAukquO.jpeg" alt="Çanta 3">
-    <p>El yapımı özgün tasarım.</p>
-    <p>₺400.00</p>
-    <button>Sepete Ekle</button>
-  </div>
-</div>
-
-  </section>
-
-      <section class="section" id="cart">
-    <h2>Sepet</h2>
-    <p>Sepetiniz boş.</p>
-  </section>
-
-  <section id="login" class="section">
-    <h2>Giriş Yap</h2>
-    <div class="login-form">
-      <form>
-        <input type="text" placeholder="Kullanıcı Adı" required>
-        <input type="password" placeholder="Şifre" required>
-        <button type="submit">Giriş Yap</button>
-      </form>
+    <h2>Çantalar</h2>
+    <div class="products">
+      <div class="product-card">
+        <img src="https://i.imgur.com/EdojvaG.jpeg" alt="Çanta 1">
+        <p>Halılardan tasarlanmış şık bir çanta.</p>
+        <p>₺350.00</p>
+        <button onclick="addToCart('Çanta 1', 350)">Sepete Ekle</button>
+      </div>
+      <div class="product-card">
+        <img src="https://i.imgur.com/QZ7hZ4W.jpeg" alt="Çanta 2">
+        <p>Geçmişin izlerini taşıyan tasarım.</p>
+        <p>₺370.00</p>
+        <button onclick="addToCart('Çanta 2', 370)">Sepete Ekle</button>
+      </div>
+      <div class="product-card">
+        <img src="https://i.imgur.com/W64rws3.jpeg" alt="Çanta 3">
+        <p>Doğal halı ipliklerinden yapılmış çanta.</p>
+        <p>₺320.00</p>
+        <button onclick="addToCart('Çanta 3', 320)">Sepete Ekle</button>
+      </div>
     </div>
   </section>
 
+  <div id="cart-summary" class="cart-summary">
+    <p>Toplam: ₺0.00</p>
+    <button onclick="goToCart()">Sepete Git</button>
+  </div>
+
   <footer>
-    <p>Asilkan Custom | <a href="#home">Ana Sayfa</a></p>
+    <p>&copy; 2025 Asilkan Custom | <a href="#contact">İletişim</a></p>
   </footer>
 
   <script>
-   function toggleMenu() {
-    document.getElementById("nav-links").classList.toggle("show");
-  }
+    let cart = [];
+    let total = 0;
 
-  // Giriş formu işlemi
-  document.querySelector('.login-form form').addEventListener('submit', (e) => {
-    e.preventDefault();
-    const username = document.querySelector('.login-form input[type="text"]').value;
-    const password = document.querySelector('.login-form input[type="password"]').value;
-
-    // Örnek doğrulama (gerçek uygulamada sunucu doğrulaması gerekir)
-    if (username === "admin" && password === "1234") {
-      alert("Giriş başarılı!");
-    } else {
-      alert("Kullanıcı adı veya şifre yanlış!");
+    function addToCart(productName, price) {
+      cart.push({ productName, price });
+      total += price;
+      updateCartSummary();
     }
-  });
+
+    function updateCartSummary() {
+      document.querySelector("#cart-summary p").textContent = `Toplam: ₺${total.toFixed(2)}`;
+    }
+
+    function goToCart() {
+      alert("Sepete yönlendiriliyorsunuz!");
+    }
+
+    function toggleMenu() {
+      const navLinks = document.getElementById('nav-links');
+      navLinks.classList.toggle('active');
+    }
   </script>
 </body>
 </html>
