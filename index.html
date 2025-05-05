@@ -1,381 +1,423 @@
 <!DOCTYPE html>
-<html lang="tr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Asilkan Custom</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background-color: #f6f0e8;
-    }
-
-    nav {
-      position: sticky;
-      top: 0;
-      background-color: #3d2b1f;
-      padding: 15px 0;
-      z-index: 1000;
-    }
-
-    nav ul {
-      list-style: none;
-      text-align: center;
-      margin: 0;
-      padding: 0;
-    }
-
-    nav ul li {
-      display: inline-block;
-      margin: 0 20px;
-    }
-
-    nav ul li a {
-      color: white;
-      text-decoration: none;
-      font-size: 1.2rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      transition: all 0.3s ease;
-    }
-
-    nav ul li a:hover {
-      color: #a52a2a;
-    }
-
-    header {
-      text-align: center;
-      padding: 100px 20px 50px;
-      background: #e8d8c3;
-      color: #7a1e1e;
-    }
-
-    header h1 {
-      font-size: 4rem;
-      margin: 0;
-    }
-
-    header p {
-      font-size: 1.5rem;
-      max-width: 800px;
-      margin: 20px auto;
-      line-height: 1.6;
-    }
-
-    .carousel {
-      position: relative;
-      width: 100%;
-      overflow: hidden;
-      height: 500px;
-      margin-top: 40px;
-    }
-
-    .carousel-track {
-      display: flex;
-      width: calc(200%); 
-      animation: scroll 40s linear infinite;
-    }
-
-    .carousel-track img {
-      width: 20%;
-      height: 500px;
-      object-fit: cover;
-    }
-
-    @keyframes scroll {
-      0% {
-        transform: translateX(0);
-      }
-      100% {
-        transform: translateX(-50%);
-      }
-    }
-
-    .section {
-      padding: 60px 20px;
-      max-width: 1000px;
-      margin: auto;
-    }
-
-    .section h2 {
-      text-align: center;
-      color: #3d2b1f;
-      font-size: 2rem;
-      margin-bottom: 30px;
-    }
-
-    .products {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      flex-wrap: wrap;
-    }
-
-    .product-card {
-      background-color: #fffaf5;
-      border-radius: 16px;
-      overflow: hidden;
-      width: 300px;
-      box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2);
-      transition: transform 0.3s ease;
-    }
-
-    .product-card img {
-      width: 100%;
-      height: 250px;
-      object-fit: cover;
-    }
-
-    .product-card:hover {
-      transform: scale(1.05);
-    }
-
-    .product-card h2 {
-      font-size: 1.5rem;
-      padding: 10px;
-      margin: 0;
-      background-color: #a52a2a;
-      color: white;
-    }
-
-    .product-card p {
-      padding: 10px;
-      font-size: 1.1rem;
-      color: #4b3b2b;
-    }
-
-    .login-form {
-      max-width: 400px;
-      margin: auto;
-      background: #fff;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
-    }
-
-    .login-form input, .login-form button {
-      width: 100%;
-      padding: 10px;
-      margin-top: 15px;
-      font-size: 1rem;
-    }
-
-    .login-form button {
-      background-color: #a52a2a;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
-
-    .login-form button:hover {
-      background-color: #7a1e1e;
-    }
-
-    footer {
-      background-color: #d7c2b0;
-      color: #3d2b1f;
-      text-align: center;
-      padding: 20px;
-    }
-
-    footer a {
-      color: #7a1e1e;
-      text-decoration: none;
-      font-weight: 600;
-    }
-
-    footer a:hover {
-      text-decoration: underline;
-    }
-
-    /* Mobile Responsiveness */
-    @media (max-width: 768px) {
-      nav ul li {
-        display: block;
-        margin: 10px 0;
-      }
-
-      header h1 {
-        font-size: 2.5rem;
-      }
-
-      .carousel-track img {
-        height: 250px;
-      }
-
-      .products {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .product-card {
-        width: 90%;
-      }
-    }
-
-    /* Additional styles for added features */
-    .product-card .rating {
-      display: flex;
-      justify-content: center;
-      gap: 5px;
-    }
-
-    .product-card .rating i {
-      color: gold;
-    }
-
-    .product-card .customize {
-      margin-top: 10px;
-      display: flex;
-      justify-content: space-between;
-    }
-
-    .customize select {
-      padding: 5px;
-      font-size: 1rem;
-    }
-
-    .cart-summary {
-      text-align: right;
-      margin-top: 30px;
-      padding: 20px;
-      background-color: #f1f1f1;
-      border-radius: 8px;
-    }
-
-    .cart-summary p {
-      font-size: 1.2rem;
-    }
-
-    .cart-summary button {
-      padding: 10px 20px;
-      background-color: #a52a2a;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
-
-    .cart-summary button:hover {
-      background-color: #7a1e1e;
-    }
-
-  </style>
-
-  <!-- Performance optimization: async loading of non-critical JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" async></script>
-
-  <!-- SSL Security recommendation: Ensure the website is loaded over HTTPS -->
-  <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains" />
-  
-  <!-- Adding caching header for better performance -->
-  <meta http-equiv="Cache-Control" content="public, max-age=31536000, immutable">
-</head>
-<body>
-  <nav>
-    <ul>
-      <li><a href="#home">Ana Sayfa</a></li>
-      <li><a href="#vintage">Vintage Giyim</a></li>
-      <li><a href="#products">Ürünler</a></li>
-      <li><a href="#contact">İletişim</a></li>
-      <li><a href="#login">Giriş Yap</a></li>
-    </ul>
-  </nav>
-
-  <header id="home">
-    <h1>Asilkan Custom</h1>
-    <p>Duvar halılarından özel ceketler: Geçmişin ruhunu, el emeğini ve sizin hikayenizi bir araya getiriyoruz. Giyilebilir sanatla tarzınızı yaşayın.</p>
-    <div class="carousel">
-      <div class="carousel-track">
-        <img src="https://i.imgur.com/s4XkXqV.jpeg" alt="Ürün 1">
-        <img src="https://i.imgur.com/Fvjt8yz.jpeg" alt="Ürün 2">
-        <img src="https://i.imgur.com/BGECmbh.jpeg" alt="Ürün 3">
-        <img src="https://i.imgur.com/QrExQJC.jpeg" alt="Ürün 4">
-        <img src="https://i.imgur.com/k3SqxLh.jpeg" alt="Ürün 5">
-        <img src="https://i.imgur.com/s4XkXqV.jpeg" alt="Ürün 1">
-        <img src="https://i.imgur.com/Fvjt8yz.jpeg" alt="Ürün 2">
-        <img src="https://i.imgur.com/BGECmbh.jpeg" alt="Ürün 3">
-        <img src="https://i.imgur.com/QrExQJC.jpeg" alt="Ürün 4">
-        <img src="https://i.imgur.com/k3SqxLh.jpeg" alt="Ürün 5">
-      </div>
-    </div>
-  </header>
-
-  <section class="section" id="vintage">
-    <h2>Vintage Giyim</h2>
-    <p style="text-align:center;">Hikayesi olan kumaşlardan, eşsiz tasarımlara... Her parça geçmişten gelen bir hatırayı taşır.</p>
-  </section>
-
-  <section class="section" id="products">
-    <h2>Ürünler</h2>
-    <div class="products">
-      <div class="product-card">
-        <img src="https://i.imgur.com/s4XkXqV.jpeg" alt="Ceket 1">
-        <h2>Halı Ceket 1</h2>
-        <p>El dokuması halıdan üretilmiş özel tasarım ceket.</p>
-        <div class="rating">
-          <i>★</i><i>★</i><i>★</i><i>★</i><i>☆</i>
-        </div>
-        <div class="customize">
-          <select>
-            <option>Renk: Kırmızı</option>
-            <option>Renk: Yeşil</option>
-          </select>
-          <select>
-            <option>Beden: M</option>
-            <option>Beden: L</option>
-          </select>
-        </div>
-      </div>
-      <div class="product-card">
-        <img src="https://i.imgur.com/Fvjt8yz.jpeg" alt="Ceket 2">
-        <h2>Halı Ceket 2</h2>
-        <p>Vintage stil, güçlü duruş.</p>
-        <div class="rating">
-          <i>★</i><i>★</i><i>★</i><i>☆</i><i>☆</i>
-        </div>
-        <div class="customize">
-          <select>
-            <option>Renk: Siyah</option>
-            <option>Renk: Mavi</option>
-          </select>
-          <select>
-            <option>Beden: S</option>
-            <option>Beden: M</option>
-          </select>
-        </div>
-      </div>
-      <div class="product-card">
-        <img src="https://i.imgur.com/QrExQJC.jpeg" alt="Çanta">
-        <h2>Halı Çanta</h2>
-        <p>Türk halısından elde yapılmış, şık ve dayanıklı çanta.</p>
-        <div class="rating">
-          <i>★</i><i>★</i><i>★</i><i>★</i><i>★</i>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="login">
-    <h2>Giriş Yap</h2>
-    <div class="login-form">
-      <input type="text" placeholder="Kullanıcı Adı" />
-      <input type="password" placeholder="Şifre" />
-      <button>Giriş</button>
-    </div>
-  </section>
-
-  <section class="cart-summary">
-    <p>Toplam Tutar: ₺250.00</p>
-    <p>Kargo Ücreti: ₺15.00</p>
-    <p>Ödenecek Tutar: ₺265.00</p>
-    <button>Ödeme Yap</button>
-  </section>
-
-  <footer>
-    <p>&copy; 2025 Asilkan Custom. Tüm hakları saklıdır.</p>
-    <p><a href="#">İletişim</a></p>
-  </footer>
-</body>
-</html>
+ <html lang="tr">
+ <head>
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <title>Asilkan Custom</title>
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+   <style>
+     body {
+       margin: 0;
+       font-family: 'Poppins', sans-serif;
+       background-color: #f6f0e8;
+     }
+ 
+     nav {
+       position: sticky;
+       top: 0;
+       background-color: #3d2b1f;
+       padding: 15px 0;
+       z-index: 1000;
+     }
+ 
+     nav ul {
+       list-style: none;
+       text-align: center;
+       margin: 0;
+       padding: 0;
+     }
+ 
+     nav ul li {
+       display: inline-block;
+       margin: 0 20px;
+     /* Sepet Özeti ve Sepet Yönetimi */
+     .cart-summary {
+       text-align: right;
+       margin-top: 30px;
+       padding: 20px;
+       background-color: #f1f1f1;
+       border-radius: 8px;
+     }
+ 
+     nav ul li a {
+       color: white;
+       text-decoration: none;
+     .cart-summary p {
+       font-size: 1.2rem;
+       font-weight: 600;
+       text-transform: uppercase;
+       transition: all 0.3s ease;
+     }
+ 
+     nav ul li a:hover {
+       color: #a52a2a;
+     }
+ 
+     header {
+       text-align: center;
+       padding: 100px 20px 50px;
+       background: #e8d8c3;
+       color: #7a1e1e;
+     }
+ 
+     header h1 {
+       font-size: 4rem;
+       margin: 0;
+     }
+ 
+     header p {
+       font-size: 1.5rem;
+       max-width: 800px;
+       margin: 20px auto;
+       line-height: 1.6;
+     }
+ 
+     .carousel {
+       position: relative;
+       width: 100%;
+       overflow: hidden;
+       height: 500px;
+       margin-top: 40px;
+     }
+ 
+     .carousel-track {
+       display: flex;
+       width: calc(200%);
+       animation: scroll 40s linear infinite;
+     }
+ 
+     .carousel-track img {
+       width: 20%;
+       height: 500px;
+       object-fit: cover;
+     }
+ 
+     @keyframes scroll {
+       0% {
+         transform: translateX(0);
+       }
+       100% {
+         transform: translateX(-50%);
+       }
+     }
+ 
+     .section {
+       padding: 60px 20px;
+       max-width: 1000px;
+       margin: auto;
+     .cart-summary button {
+       padding: 10px 20px;
+       background-color: #a52a2a;
+       color: white;
+       border: none;
+       cursor: pointer;
+     }
+ 
+     .section h2 {
+       text-align: center;
+       color: #3d2b1f;
+       font-size: 2rem;
+       margin-bottom: 30px;
+     .cart-summary button:hover {
+       background-color: #7a1e1e;
+     }
+ 
+     .products {
+     .cart-items {
+       display: flex;
+       justify-content: center;
+       gap: 30px;
+       flex-wrap: wrap;
+     }
+ 
+     .product-card {
+       background-color: #fffaf5;
+       border-radius: 16px;
+       overflow: hidden;
+       width: 300px;
+       box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2);
+       transition: transform 0.3s ease;
+     }
+ 
+     .product-card img {
+       width: 100%;
+       height: 250px;
+       object-fit: cover;
+       flex-direction: column;
+       gap: 10px;
+       margin-top: 20px;
+     }
+ 
+     .product-card:hover {
+       transform: scale(1.05);
+     }
+ 
+     .product-card h2 {
+       font-size: 1.5rem;
+       padding: 10px;
+       margin: 0;
+       background-color: #a52a2a;
+       color: white;
+     }
+ 
+     .product-card p {
+       padding: 10px;
+       font-size: 1.1rem;
+     .cart-items p {
+       font-size: 1rem;
+       color: #4b3b2b;
+     }
+ 
+     .login-form {
+       max-width: 400px;
+       margin: auto;
+       background: #fff;
+       padding: 30px;
+       border-radius: 12px;
+       box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+     }
+ 
+     .login-form input, .login-form button {
+       width: 100%;
+     .cart-item {
+       display: flex;
+       justify-content: space-between;
+       align-items: center;
+       background-color: #fff;
+       padding: 10px;
+       margin-top: 15px;
+       font-size: 1rem;
+       border-radius: 8px;
+       box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+     }
+ 
+     .login-form button {
+     .cart-item button {
+       background-color: #a52a2a;
+       color: white;
+       padding: 5px 10px;
+       border: none;
+       cursor: pointer;
+     }
+ 
+     .login-form button:hover {
+     .cart-item button:hover {
+       background-color: #7a1e1e;
+     }
+ 
+     footer {
+       background-color: #d7c2b0;
+       color: #3d2b1f;
+       text-align: center;
+       padding: 20px;
+     }
+ 
+     footer a {
+       color: #7a1e1e;
+       text-decoration: none;
+       font-weight: 600;
+     }
+ 
+     footer a:hover {
+       text-decoration: underline;
+     }
+ 
+     /* Mobile Responsiveness */
+     @media (max-width: 768px) {
+       nav ul li {
+         display: block;
+         margin: 10px 0;
+       }
+ 
+       header h1 {
+         font-size: 2.5rem;
+       }
+ 
+       .carousel-track img {
+         height: 250px;
+       }
+ 
+       .products {
+         flex-direction: column;
+         align-items: center;
+       }
+ 
+       .product-card {
+         width: 90%;
+       }
+     }
+ 
+     /* Additional styles for added features */
+     .product-card .rating {
+     .quantity-controls {
+       display: flex;
+       justify-content: center;
+       gap: 5px;
+     }
+ 
+     .product-card .rating i {
+       color: gold;
+     }
+ 
+     .product-card .customize {
+       margin-top: 10px;
+       display: flex;
+       justify-content: space-between;
+     }
+ 
+     .customize select {
+       padding: 5px;
+       font-size: 1rem;
+     }
+ 
+     .cart-summary {
+       text-align: right;
+       margin-top: 30px;
+       padding: 20px;
+       background-color: #f1f1f1;
+       border-radius: 8px;
+     }
+ 
+     .cart-summary p {
+       font-size: 1.2rem;
+       align-items: center;
+       gap: 10px;
+     }
+ 
+     .cart-summary button {
+       padding: 10px 20px;
+       background-color: #a52a2a;
+       color: white;
+       border: none;
+     .quantity-controls button {
+       background-color: #ddd;
+       padding: 5px 10px;
+       cursor: pointer;
+     }
+ 
+     .cart-summary button:hover {
+       background-color: #7a1e1e;
+     .quantity-controls input {
+       width: 40px;
+       text-align: center;
+       font-size: 1rem;
+       border: 1px solid #ccc;
+       border-radius: 5px;
+     }
+   </style>
+ </head>
+ @@ -327,7 +157,7 @@
+       </div>
+       <div class="product-card" data-product="Ceket 6">
+         <img src="https://i.imgur.com/Cfbm6Vq.jpeg" alt="Ceket 6">
+         <p>Vibrant renklerde, her tarza uygun.</p>
+         <p>Zamansız ve şık bir parça.</p>
+         <p>₺700.00</p>
+         <button onclick="addToCart('Ceket 6', 700)">Sepete Ekle</button>
+       </div>
+ @@ -336,21 +166,23 @@
+     <h2>Çantalar</h2>
+     <div class="products">
+       <div class="product-card" data-product="Çanta 1">
+         <img src="https://i.imgur.com/s4XkXqV.jpeg" alt="Çanta 1">
+         <p>Vintage halıdan yapılmış eşsiz çanta.</p>
+         <p>₺350.00</p>
+         <button onclick="addToCart('Çanta 1', 350)">Sepete Ekle</button>
+         <img src="https://i.imgur.com/UnZQvek.jpeg" alt="Çanta 1">
+         <p>El yapımı halıdan tasarlanmış çanta.</p>
+         <p>₺300.00</p>
+         <button onclick="addToCart('Çanta 1', 300)">Sepete Ekle</button>
+       </div>
+     </div>
+   </section>
+ 
+   <section class="login-form" id="login">
+     <h2>Giriş Yap</h2>
+     <form action="#">
+       <input type="text" placeholder="Kullanıcı Adı" required />
+       <input type="password" placeholder="Şifre" required />
+       <button type="submit">Giriş Yap</button>
+     </form>
+   <section class="cart-summary">
+     <h3>Sepetiniz</h3>
+     <p>Sepetteki Ürün Sayısı: 0</p>
+     <p>Toplam Fiyat: ₺0.00</p>
+     <button onclick="viewCart()">Sepeti Görüntüle</button>
+   </section>
+ 
+   <section class="cart-items">
+     <!-- Sepet Ürünleri Burada Görünecek -->
+   </section>
+ 
+   <footer id="contact">
+ @@ -361,20 +193,67 @@
+     let cart = [];
+ 
+     function addToCart(product, price) {
+       cart.push({ product, price });
+       let existingProduct = cart.find(item => item.product === product);
+       if (existingProduct) {
+         existingProduct.quantity++;
+       } else {
+         cart.push({ product, price, quantity: 1 });
+       }
+       alert(`${product} sepete eklendi!`);
+       updateCartSummary();
+     }
+ 
+     function removeItem(product) {
+       cart = cart.filter(item => item.product !== product);
+       updateCartSummary();
+       renderCartItems();
+     }
+ 
+     function updateQuantity(product, quantity) {
+       let item = cart.find(item => item.product === product);
+       if (item) {
+         item.quantity = quantity;
+         if (item.quantity <= 0) {
+           removeItem(product);
+         }
+       }
+       updateCartSummary();
+       renderCartItems();
+     }
+ 
+     function updateCartSummary() {
+       const cartSummary = document.querySelector('.cart-summary');
+       const total = cart.reduce((acc, item) => acc + item.price, 0);
+       const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
+       cartSummary.innerHTML = `
+         <h3>Sepetiniz</h3>
+         <p>Sepetteki Ürün Sayısı: ${cart.length}</p>
+         <p>Toplam Fiyat: ₺${total.toFixed(2)}</p>
+         <button>Sepeti Görüntüle</button>
+         <button onclick="viewCart()">Sepeti Görüntüle</button>
+       `;
+     }
+ 
+     function renderCartItems() {
+       const cartItemsContainer = document.querySelector('.cart-items');
+       cartItemsContainer.innerHTML = '';
+       cart.forEach(item => {
+         const itemElement = document.createElement('div');
+         itemElement.classList.add('cart-item');
+         itemElement.innerHTML = `
+           <p>${item.product} - ₺${item.price} x <span class="quantity">${item.quantity}</span></p>
+           <div class="quantity-controls">
+             <button onclick="updateQuantity('${item.product}', ${item.quantity - 1})">-</button>
+             <input type="number" value="${item.quantity}" onchange="updateQuantity('${item.product}', this.value)">
+             <button onclick="updateQuantity('${item.product}', ${item.quantity + 1})">+</button>
+           </div>
+           <button onclick="removeItem('${item.product}')">Sil</button>
+         `;
+         cartItemsContainer.appendChild(itemElement);
+       });
+     }
+ 
+     function viewCart() {
+       renderCartItems();
+     }
+   </script>
+ </body>
+ </html>
