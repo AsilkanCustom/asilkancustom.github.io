@@ -261,24 +261,23 @@
       background-color: #7a1e1e;
     }
   </style>
-
 </head>
 <body>
   <nav>
-  <div class="nav-container">
-    <div class="logo">
-      <a href="#home">Asilkan Custom</a>
+    <div class="nav-container">
+      <div class="logo">
+        <a href="#home">Asilkan Custom</a>
+      </div>
+      <div class="hamburger" onclick="toggleMenu()">☰</div>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#home">Ana Sayfa</a></li>
+        <li><a href="#vintage">Vintage Giyim</a></li>
+        <li><a href="#products">Ürünler</a></li>
+        <li><a href="#contact">İletişim</a></li>
+        <li><a href="#login" id="login-link">Giriş Yap</a></li>
+        <li><a href="#cart">🛒 Sepet</a></li>
+      </ul>
     </div>
-    <div class="hamburger" onclick="toggleMenu()">☰</div>
-    <ul class="nav-links" id="nav-links">
-      <li><a href="#home">Ana Sayfa</a></li>
-      <li><a href="#vintage">Vintage Giyim</a></li>
-      <li><a href="#products">Ürünler</a></li>
-      <li><a href="#contact">İletişim</a></li>
-      <li><a href="#login" id="login-link">Giriş Yap</a></li>
-      <li><a href="#cart">🛒 Sepet</a></li>
-    </ul>
-  </div>
   </nav>
 
   <header id="home">
@@ -340,31 +339,33 @@
         <button>Sepete Ekle</button>
       </div>
     </div>
-      <!-- Çanta Ürünleri Başlangıcı -->
-  <div class="product-card">
-    <img src="https://i.imgur.com/EdojvaG.jpeg" alt="Çanta 1">
-    <div class="product-info">
-      <h3>Vintage Çanta 1</h3>
-      <p>Halılardan tasarlanmış şık bir çanta.</p>
-    </div>
-  </div>
-  <div class="product-card">
-    <img src="https://i.imgur.com/QZ7hZ4W.jpeg" alt="Çanta 2">
-    <div class="product-info">
-      <h3>Vintage Çanta 2</h3>
-      <p>Geçmişin izlerini taşıyan tasarım.</p>
-    </div>
-  </div>
-  <div class="product-card">
-    <img src="https://i.imgur.com/yAukquO.jpeg" alt="Çanta 3">
-    <div class="product-info">
-      <h3>Vintage Çanta 3</h3>
-      <p>El y
+
+    <!-- Çanta Ürünleri Başlangıcı -->
+    <div class="product-card">
+      <img src="https://i.imgur.com/EdojvaG.jpeg" alt="Çanta 1">
+      <div class="product-info">
+        <h3>Vintage Çanta 1</h3>
+        <p>Halılardan tasarlanmış şık bir çanta.</p>
       </div>
     </div>
+    <div class="product-card">
+      <img src="https://i.imgur.com/QZ7hZ4W.jpeg" alt="Çanta 2">
+      <div class="product-info">
+        <h3>Vintage Çanta 2</h3>
+        <p>Geçmişin izlerini taşıyan tasarım.</p>
+      </div>
+    </div>
+    <div class="product-card">
+      <img src="https://i.imgur.com/yAukquO.jpeg" alt="Çanta 3">
+      <div class="product-info">
+        <h3>Vintage Çanta 3</h3>
+        <p>El yapımı özgün tasarım.</p>
+      </div>
+    </div>
+    <!-- Çanta Ürünleri Bitişi -->
   </section>
 
-  <section class="section" id="cart">
+      <section class="section" id="cart">
     <h2>Sepet</h2>
     <p>Sepetiniz boş.</p>
   </section>
