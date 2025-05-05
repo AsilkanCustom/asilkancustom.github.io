@@ -265,14 +265,20 @@
 </head>
 <body>
   <nav>
-    <ul>
+  <div class="nav-container">
+    <div class="logo">
+      <a href="#home">Asilkan Custom</a>
+    </div>
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+    <ul class="nav-links" id="nav-links">
       <li><a href="#home">Ana Sayfa</a></li>
       <li><a href="#vintage">Vintage Giyim</a></li>
       <li><a href="#products">Ürünler</a></li>
       <li><a href="#contact">İletişim</a></li>
-      <li><a href="#login">Giriş Yap</a></li>
-      <li><a href="#cart">Sepet</a></li>
+      <li><a href="#login" id="login-link">Giriş Yap</a></li>
+      <li><a href="#cart">🛒 Sepet</a></li>
     </ul>
+  </div>
   </nav>
 
   <header id="home">
@@ -367,41 +373,34 @@
   </footer>
 
   <script>
-    let cartItems = [];
-    const buttons = document.querySelectorAll('.product-card button');
+  function toggleMenu() {
+    document.getElementById("nav-links").classList.toggle("show");
+  }
 
-    buttons.forEach((btn, index) => {
-      btn.addEventListener('click', () => {
-        const card = btn.closest('.product-card');
-        const title = card.querySelector('img').alt;
-        const price = card.querySelectorAll('p')[1].textContent;
+  // Giriş formu işlemi
+  document.querySelector('.login-form form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const username = document.querySelector('.login-form input[type="text"]').value;
+    if (username.trim()) {
+      alert('Giriş yapıldı: ' + username);
 
-        cartItems.push({ title, price });
-        updateCart();
-      });
-    });
-
-    function updateCart() {
-      const cartSection = document.getElementById('cart');
-      if (!cartSection) return;
-
-      cartSection.innerHTML = `<h2>Sepet</h2>`;
-      if (cartItems.length === 0) {
-        cartSection.innerHTML += `<p>Sepetiniz boş.</p>`;
-      } else {
-        let total = 0;
-        cartItems.forEach(item => {
-          cartSection.innerHTML += `<p>${item.title} - ${item.price}</p>`;
-          total += parseFloat(item.price.replace(/[^\d.]/g, ''));
-        });
-        cartSection.innerHTML += `<p><strong>Toplam: ₺${total.toFixed(2)}</strong></p>`;
-      }
+      // Navbar'da giriş linki yerine hoş geldin mesajı
+      const loginLink = document.getElementById('login-link');
+      loginLink.innerHTML = `👤 ${username}`;
+      loginLink.href = "#"; // Bağlantıyı iptal et
+      showWelcomeMessage(username);
     }
+  });
 
-    document.querySelector('.login-form form').addEventListener('submit', (e) => {
-      e.preventDefault();
-      alert('Giriş yapıldı (örnek)');
-    });
+  function showWelcomeMessage(username) {
+    const section = document.getElementById('login');
+    const msg = document.createElement('div');
+    msg.className = 'welcome-message';
+    msg.textContent = `Hoş geldin, ${username}`;
+    section.appendChild(msg);
+  }
+</script>
+
   </script>
 </body>
 </html>
