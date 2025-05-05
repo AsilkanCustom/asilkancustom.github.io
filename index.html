@@ -260,17 +260,8 @@
     .cart-summary button:hover {
       background-color: #7a1e1e;
     }
-
   </style>
 
-  <!-- Performance optimization: async loading of non-critical JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" async></script>
-
-  <!-- SSL Security recommendation: Ensure the website is loaded over HTTPS -->
-  <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains" />
-  
-  <!-- Adding caching header for better performance -->
-  <meta http-equiv="Cache-Control" content="public, max-age=31536000, immutable">
 </head>
 <body>
   <nav>
@@ -293,11 +284,6 @@
         <img src="https://i.imgur.com/BGECmbh.jpeg" alt="Ürün 3">
         <img src="https://i.imgur.com/QrExQJC.jpeg" alt="Ürün 4">
         <img src="https://i.imgur.com/k3SqxLh.jpeg" alt="Ürün 5">
-        <img src="https://i.imgur.com/s4XkXqV.jpeg" alt="Ürün 1">
-        <img src="https://i.imgur.com/Fvjt8yz.jpeg" alt="Ürün 2">
-        <img src="https://i.imgur.com/BGECmbh.jpeg" alt="Ürün 3">
-        <img src="https://i.imgur.com/QrExQJC.jpeg" alt="Ürün 4">
-        <img src="https://i.imgur.com/k3SqxLh.jpeg" alt="Ürün 5">
       </div>
     </div>
   </header>
@@ -308,73 +294,68 @@
   </section>
 
   <section class="section" id="products">
-    <h2>Ürünler</h2>
+    <h2>Ceketler</h2>
     <div class="products">
       <div class="product-card">
-        <img src="https://i.imgur.com/s4XkXqV.jpeg" alt="Ceket 1">
-        <h2>Halı Ceket 1</h2>
+        <img src="https://i.imgur.com/JY50D7d.jpeg" alt="Ceket 1">
         <p>El dokuması halıdan üretilmiş özel tasarım ceket.</p>
-        <div class="rating">
-          <i>★</i><i>★</i><i>★</i><i>★</i><i>☆</i>
-        </div>
-        <div class="customize">
-          <select>
-            <option>Renk: Kırmızı</option>
-            <option>Renk: Yeşil</option>
-          </select>
-          <select>
-            <option>Beden: M</option>
-            <option>Beden: L</option>
-          </select>
-        </div>
+        <p>₺500.00</p>
+        <button>Sepete Ekle</button>
       </div>
       <div class="product-card">
-        <img src="https://i.imgur.com/Fvjt8yz.jpeg" alt="Ceket 2">
-        <h2>Halı Ceket 2</h2>
+        <img src="https://i.imgur.com/UnZQvek.jpeg" alt="Ceket 2">
         <p>Vintage stil, güçlü duruş.</p>
-        <div class="rating">
-          <i>★</i><i>★</i><i>★</i><i>☆</i><i>☆</i>
-        </div>
-        <div class="customize">
-          <select>
-            <option>Renk: Siyah</option>
-            <option>Renk: Mavi</option>
-          </select>
-          <select>
-            <option>Beden: S</option>
-            <option>Beden: M</option>
-          </select>
-        </div>
+        <p>₺550.00</p>
+        <button>Sepete Ekle</button>
       </div>
       <div class="product-card">
-        <img src="https://i.imgur.com/QrExQJC.jpeg" alt="Çanta">
-        <h2>Halı Çanta</h2>
-        <p>Türk halısından elde yapılmış, şık ve dayanıklı çanta.</p>
-        <div class="rating">
-          <i>★</i><i>★</i><i>★</i><i>★</i><i>★</i>
-        </div>
+        <img src="https://i.imgur.com/DveyRWJ.jpeg" alt="Ceket 3">
+        <p>Modern dokunuşlarla retro bir görünüm.</p>
+        <p>₺600.00</p>
+        <button>Sepete Ekle</button>
+      </div>
+      <div class="product-card">
+        <img src="https://i.imgur.com/iNFjIjV.jpeg" alt="Ceket 4">
+        <p>Göz alıcı renkler ve dokular.</p>
+        <p>₺650.00</p>
+        <button>Sepete Ekle</button>
+      </div>
+      <div class="product-card">
+        <img src="https://i.imgur.com/tPG1v95.jpeg" alt="Ceket 5">
+        <p>Klasik tasarım, modern kesim.</p>
+        <p>₺550.00</p>
+        <button>Sepete Ekle</button>
+      </div>
+      <div class="product-card">
+        <img src="https://i.imgur.com/Cfbm6Vq.jpeg" alt="Ceket 6">
+        <p>Vibrant renklerde, her tarza uygun.</p>
+        <p>₺700.00</p>
+        <button>Sepete Ekle</button>
+      </div>
+    </div>
+
+    <h2>Çantalar</h2>
+    <div class="products">
+      <div class="product-card">
+        <img src="https://i.imgur.com/s4XkXqV.jpeg" alt="Çanta 1">
+        <p>Vintage halıdan yapılmış eşsiz çanta.</p>
+        <p>₺350.00</p>
+        <button>Sepete Ekle</button>
       </div>
     </div>
   </section>
 
-  <section class="section" id="login">
+  <section class="login-form" id="login">
     <h2>Giriş Yap</h2>
-    <div class="login-form">
-      <input type="text" placeholder="Kullanıcı Adı" />
-      <input type="password" placeholder="Şifre" />
-      <button>Giriş</button>
-    </div>
-  </section>
-
-  <section class="cart-summary">
-    <p>Toplam Tutar: ₺250.00</p>
-    <p>Kargo Ücreti: ₺15.00</p>
-    <p>Ödenecek Tutar: ₺265.00</p>
-    <button>Ödeme Yap</button>
+    <form action="#">
+      <input type="text" placeholder="Kullanıcı Adı" required />
+      <input type="password" placeholder="Şifre" required />
+      <button type="submit">Giriş Yap</button>
+    </form>
   </section>
 
   <footer id="contact">
-    <p>© 2025 Asilkan Custom | <a href="https://instagram.com/asilkancustom" target="_blank">Instagram</a></p>
+    <p>&copy; 2025 Asilkan Custom | <a href="https://instagram.com/asilkancustom">Instagram</a></p>
   </footer>
 </body>
 </html>
