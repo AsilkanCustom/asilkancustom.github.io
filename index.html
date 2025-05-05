@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
@@ -13,270 +12,256 @@
       background-color: #f6f0e8;
     }
 
-```
-nav {
-  position: sticky;
-  top: 0;
-  background-color: #3d2b1f;
-  padding: 15px 0;
-  z-index: 1000;
-}
+    nav {
+      position: sticky;
+      top: 0;
+      background-color: #3d2b1f;
+      padding: 15px 0;
+      z-index: 1000;
+    }
 
-nav ul {
-  list-style: none;
-  text-align: center;
-  margin: 0;
-  padding: 0;
-}
+    nav ul {
+      list-style: none;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
 
-nav ul li {
-  display: inline-block;
-  margin: 0 20px;
-}
+    nav ul li {
+      display: inline-block;
+      margin: 0 20px;
+    }
 
-nav ul li a {
-  color: white;
-  text-decoration: none;
-  font-size: 1.2rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  transition: all 0.3s ease;
-}
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+    }
 
-nav ul li a:hover {
-  color: #a52a2a;
-}
+    nav ul li a:hover {
+      color: #a52a2a;
+    }
 
-header {
-  text-align: center;
-  padding: 100px 20px 50px;
-  background: #e8d8c3;
-  color: #7a1e1e;
-}
+    header {
+      text-align: center;
+      padding: 100px 20px 50px;
+      background: #e8d8c3;
+      color: #7a1e1e;
+    }
 
-header h1 {
-  font-size: 4rem;
-  margin: 0;
-}
+    header h1 {
+      font-size: 4rem;
+      margin: 0;
+    }
 
-header p {
-  font-size: 1.5rem;
-  max-width: 800px;
-  margin: 20px auto;
-  line-height: 1.6;
-}
+    header p {
+      font-size: 1.5rem;
+      max-width: 800px;
+      margin: 20px auto;
+      line-height: 1.6;
+    }
 
-.carousel {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  height: 500px;
-  margin-top: 40px;
-}
+    .carousel {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      height: 500px;
+      margin-top: 40px;
+    }
 
-.carousel-track {
-  display: flex;
-  width: calc(200%); 
-  animation: scroll 40s linear infinite;
-}
+    .carousel-track {
+      display: flex;
+      width: calc(200%); 
+      animation: scroll 40s linear infinite;
+    }
 
-.carousel-track img {
-  width: 20%;
-  height: 500px;
-  object-fit: cover;
-}
+    .carousel-track img {
+      width: 20%;
+      height: 500px;
+      object-fit: cover;
+    }
 
-@keyframes scroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
+    @keyframes scroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
 
-.section {
-  padding: 60px 20px;
-  max-width: 1000px;
-  margin: auto;
-}
+    .section {
+      padding: 60px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
 
-.section h2 {
-  text-align: center;
-  color: #3d2b1f;
-  font-size: 2rem;
-  margin-bottom: 30px;
-}
+    .section h2 {
+      text-align: center;
+      color: #3d2b1f;
+      font-size: 2rem;
+      margin-bottom: 30px;
+    }
 
-.products {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  flex-wrap: wrap;
-}
+    .products {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
 
-.product-card {
-  background-color: #fffaf5;
-  border-radius: 16px;
-  overflow: hidden;
-  width: 300px;
-  box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease;
-}
+    .product-card {
+      background-color: #fffaf5;
+      border-radius: 16px;
+      overflow: hidden;
+      width: 300px;
+      box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease;
+    }
 
-.product-card img {
-  width: 100%;
-  height: 250px;
-  object-fit: cover;
-}
+    .product-card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
 
-.product-card:hover {
-  transform: scale(1.05);
-}
+    .product-card:hover {
+      transform: scale(1.05);
+    }
 
-.product-card h2 {
-  font-size: 1.5rem;
-  padding: 10px;
-  margin: 0;
-  background-color: #a52a2a;
-  color: white;
-}
+    .product-card h2 {
+      font-size: 1.5rem;
+      padding: 10px;
+      margin: 0;
+      background-color: #a52a2a;
+      color: white;
+    }
 
-.product-card p {
-  padding: 10px;
-  font-size: 1.1rem;
-  color: #4b3b2b;
-}
+    .product-card p {
+      padding: 10px;
+      font-size: 1.1rem;
+      color: #4b3b2b;
+    }
 
-.login-form {
-  max-width: 400px;
-  margin: auto;
-  background: #fff;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
-}
+    .login-form {
+      max-width: 400px;
+      margin: auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    }
 
-.login-form input, .login-form button {
-  width: 100%;
-  padding: 10px;
-  margin-top: 15px;
-  font-size: 1rem;
-}
+    .login-form input, .login-form button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 15px;
+      font-size: 1rem;
+    }
 
-.login-form button {
-  background-color: #a52a2a;
-  color: white;
-  border: none;
-  cursor: pointer;
-}
+    .login-form button {
+      background-color: #a52a2a;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
 
-.login-form button:hover {
-  background-color: #7a1e1e;
-}
+    .login-form button:hover {
+      background-color: #7a1e1e;
+    }
 
-footer {
-  background-color: #d7c2b0;
-  color: #3d2b1f;
-  text-align: center;
-  padding: 20px;
-}
+    footer {
+      background-color: #d7c2b0;
+      color: #3d2b1f;
+      text-align: center;
+      padding: 20px;
+    }
 
-footer a {
-  color: #7a1e1e;
-  text-decoration: none;
-  font-weight: 600;
-}
+    footer a {
+      color: #7a1e1e;
+      text-decoration: none;
+      font-weight: 600;
+    }
 
-footer a:hover {
-  text-decoration: underline;
-}
+    footer a:hover {
+      text-decoration: underline;
+    }
 
-/* Mobile Responsiveness */
-@media (max-width: 768px) {
-  nav ul li {
-    display: block;
-    margin: 10px 0;
-  }
+    /* Mobile Responsiveness */
+    @media (max-width: 768px) {
+      nav ul li {
+        display: block;
+        margin: 10px 0;
+      }
 
-  header h1 {
-    font-size: 2.5rem;
-  }
+      header h1 {
+        font-size: 2.5rem;
+      }
 
-  .carousel-track img {
-    height: 250px;
-  }
+      .carousel-track img {
+        height: 250px;
+      }
 
-  .products {
-    flex-direction: column;
-    align-items: center;
-  }
+      .products {
+        flex-direction: column;
+        align-items: center;
+      }
 
-  .product-card {
-    width: 90%;
-  }
-}
+      .product-card {
+        width: 90%;
+      }
+    }
 
-/* Additional styles for added features */
-.product-card .rating {
-  display: flex;
-  justify-content: center;
-  gap: 5px;
-}
+    /* Additional styles for added features */
+    .product-card .rating {
+      display: flex;
+      justify-content: center;
+      gap: 5px;
+    }
 
-.product-card .rating i {
-  color: gold;
-}
+    .product-card .rating i {
+      color: gold;
+    }
 
-.product-card .customize {
-  margin-top: 10px;
-  display: flex;
-  justify-content: space-between;
-}
+    .product-card .customize {
+      margin-top: 10px;
+      display: flex;
+      justify-content: space-between;
+    }
 
-.customize select {
-  padding: 5px;
-  font-size: 1rem;
-}
+    .customize select {
+      padding: 5px;
+      font-size: 1rem;
+    }
 
-.cart-summary {
-  text-align: right;
-  margin-top: 30px;
-  padding: 20px;
-  background-color: #f1f1f1;
-  border-radius: 8px;
-}
+    .cart-summary {
+      text-align: right;
+      margin-top: 30px;
+      padding: 20px;
+      background-color: #f1f1f1;
+      border-radius: 8px;
+    }
 
-.cart-summary p {
-  font-size: 1.2rem;
-}
+    .cart-summary p {
+      font-size: 1.2rem;
+    }
 
-.cart-summary button {
-  padding: 10px 20px;
-  background-color: #a52a2a;
-  color: white;
-  border: none;
-  cursor: pointer;
-}
+    .cart-summary button {
+      padding: 10px 20px;
+      background-color: #a52a2a;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
 
-.cart-summary button:hover {
-  background-color: #7a1e1e;
-}
-```
-
+    .cart-summary button:hover {
+      background-color: #7a1e1e;
+    }
   </style>
 
-  <!-- Performance optimization: async loading of non-critical JS -->
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" async></script>
-
-  <!-- SSL Security recommendation: Ensure the website is loaded over HTTPS -->
-
-  <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains" />
-
-  <!-- Adding caching header for better performance -->
-
-  <meta http-equiv="Cache-Control" content="public, max-age=31536000, immutable">
 </head>
 <body>
   <nav>
@@ -299,11 +284,6 @@ footer a:hover {
         <img src="https://i.imgur.com/BGECmbh.jpeg" alt="Ürün 3">
         <img src="https://i.imgur.com/QrExQJC.jpeg" alt="Ürün 4">
         <img src="https://i.imgur.com/k3SqxLh.jpeg" alt="Ürün 5">
-        <img src="https://i.imgur.com/s4XkXqV.jpeg" alt="Ürün 1">
-        <img src="https://i.imgur.com/Fvjt8yz.jpeg" alt="Ürün 2">
-        <img src="https://i.imgur.com/BGECmbh.jpeg" alt="Ürün 3">
-        <img src="https://i.imgur.com/QrExQJC.jpeg" alt="Ürün 4">
-        <img src="https://i.imgur.com/k3SqxLh.jpeg" alt="Ürün 5">
       </div>
     </div>
   </header>
@@ -314,73 +294,68 @@ footer a:hover {
   </section>
 
   <section class="section" id="products">
-    <h2>Ürünler</h2>
+    <h2>Ceketler</h2>
     <div class="products">
       <div class="product-card">
-        <img src="https://i.imgur.com/s4XkXqV.jpeg" alt="Ceket 1">
-        <h2>Halı Ceket 1</h2>
+        <img src="https://i.imgur.com/JY50D7d.jpeg" alt="Ceket 1">
         <p>El dokuması halıdan üretilmiş özel tasarım ceket.</p>
-        <div class="rating">
-          <i>★</i><i>★</i><i>★</i><i>★</i><i>☆</i>
-        </div>
-        <div class="customize">
-          <select>
-            <option>Renk: Kırmızı</option>
-            <option>Renk: Yeşil</option>
-          </select>
-          <select>
-            <option>Beden: M</option>
-            <option>Beden: L</option>
-          </select>
-        </div>
+        <p>₺500.00</p>
+        <button>Sepete Ekle</button>
       </div>
       <div class="product-card">
-        <img src="https://i.imgur.com/Fvjt8yz.jpeg" alt="Ceket 2">
-        <h2>Halı Ceket 2</h2>
+        <img src="https://i.imgur.com/UnZQvek.jpeg" alt="Ceket 2">
         <p>Vintage stil, güçlü duruş.</p>
-        <div class="rating">
-          <i>★</i><i>★</i><i>★</i><i>☆</i><i>☆</i>
-        </div>
-        <div class="customize">
-          <select>
-            <option>Renk: Siyah</option>
-            <option>Renk: Mavi</option>
-          </select>
-          <select>
-            <option>Beden: S</option>
-            <option>Beden: M</option>
-          </select>
-        </div>
+        <p>₺550.00</p>
+        <button>Sepete Ekle</button>
       </div>
       <div class="product-card">
-        <img src="https://i.imgur.com/QrExQJC.jpeg" alt="Çanta">
-        <h2>Halı Çanta</h2>
-        <p>Türk halısından elde yapılmış, şık ve dayanıklı çanta.</p>
-        <div class="rating">
-          <i>★</i><i>★</i><i>★</i><i>★</i><i>★</i>
-        </div>
+        <img src="https://i.imgur.com/DveyRWJ.jpeg" alt="Ceket 3">
+        <p>Modern dokunuşlarla retro bir görünüm.</p>
+        <p>₺600.00</p>
+        <button>Sepete Ekle</button>
+      </div>
+      <div class="product-card">
+        <img src="https://i.imgur.com/iNFjIjV.jpeg" alt="Ceket 4">
+        <p>Göz alıcı renkler ve dokular.</p>
+        <p>₺650.00</p>
+        <button>Sepete Ekle</button>
+      </div>
+      <div class="product-card">
+        <img src="https://i.imgur.com/tPG1v95.jpeg" alt="Ceket 5">
+        <p>Klasik tasarım, modern kesim.</p>
+        <p>₺550.00</p>
+        <button>Sepete Ekle</button>
+      </div>
+      <div class="product-card">
+        <img src="https://i.imgur.com/Cfbm6Vq.jpeg" alt="Ceket 6">
+        <p>Vibrant renklerde, her tarza uygun.</p>
+        <p>₺700.00</p>
+        <button>Sepete Ekle</button>
+      </div>
+    </div>
+
+    <h2>Çantalar</h2>
+    <div class="products">
+      <div class="product-card">
+        <img src="https://i.imgur.com/s4XkXqV.jpeg" alt="Çanta 1">
+        <p>Vintage halıdan yapılmış eşsiz çanta.</p>
+        <p>₺350.00</p>
+        <button>Sepete Ekle</button>
       </div>
     </div>
   </section>
 
-  <section class="section" id="login">
+  <section class="login-form" id="login">
     <h2>Giriş Yap</h2>
-    <div class="login-form">
-      <input type="text" placeholder="Kullanıcı Adı" />
-      <input type="password" placeholder="Şifre" />
-      <button>Giriş</button>
-    </div>
-  </section>
-
-  <section class="cart-summary">
-    <p>Toplam Tutar: ₺250.00</p>
-    <p>Kargo Ücreti: ₺15.00</p>
-    <p>Ödenecek Tutar: ₺265.00</p>
-    <button>Ödeme Yap</button>
+    <form action="#">
+      <input type="text" placeholder="Kullanıcı Adı" required />
+      <input type="password" placeholder="Şifre" required />
+      <button type="submit">Giriş Yap</button>
+    </form>
   </section>
 
   <footer id="contact">
-    <p>© 2025 Asilkan Custom | <a href="https://instagram.com/asilkancustom" target="_blank">Instagram</a></p>
+    <p>&copy; 2025 Asilkan Custom | <a href="https://instagram.com/asilkancustom">Instagram</a></p>
   </footer>
 </body>
 </html>
