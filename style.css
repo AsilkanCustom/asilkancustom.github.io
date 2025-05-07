@@ -102,15 +102,15 @@ img {
 
 .carousel-track {
   display: flex;
-  width: 500%;
+  width: auto; /* Genişliği otomatik olarak ayarlarız */
   animation: scroll 20s linear infinite;
 }
 
 .carousel-track img {
-  width: 20%;
+  width: 20%; /* Fotoğrafların her biri ekranın %20'sini kapsayacak */
   height: 400px;
   object-fit: cover;
-  margin-right: 10px;  /* Aralarına boşluk eklemek için */
+  margin-right: 10px; /* Fotoğraflar arasında boşluk */
 }
 
 @keyframes scroll {
@@ -244,5 +244,10 @@ footer {
 
   .product-grid {
     grid-template-columns: 1fr;
+  }
+
+  /* Carousel Yalnızca Mobilde */
+  .carousel-track img {
+    width: 100%; /* Mobilde tam genişlik */
   }
 }
