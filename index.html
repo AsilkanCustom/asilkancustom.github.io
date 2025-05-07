@@ -353,3 +353,148 @@
       border-radius: 5px;
     }
   </style>
+ <header>
+    <h1>Asilkan Custom</h1>
+    <p>Geçmişin ruhunu, el emeğini ve sizin hikayenizi bir araya getiriyoruz.</p>
+
+    <div class="carousel">
+      <div class="carousel-track">
+        <img src="https://i.imgur.com/s4XkXqV.jpeg" alt="Ürün 1">
+        <img src="https://i.imgur.com/Fvjt8yz.jpeg" alt="Ürün 2">
+        <img src="https://i.imgur.com/BGECmbh.jpeg" alt="Ürün 3">
+        <img src="https://i.imgur.com/QrExQJC.jpeg" alt="Ürün 4">
+        <img src="https://i.imgur.com/k3SqxLh.jpeg" alt="Ürün 5">
+      </div>
+    </div>
+  </header>
+
+  <section class="section" id="vintage">
+    <h2>Vintage Giyim</h2>
+    <p style="text-align:center;">Hikayesi olan kumaşlardan, eşsiz tasarımlara... Her parça geçmişten gelen bir hatırayı taşır.</p>
+  </section>
+
+  <section class="section" id="products">
+    <h2>Ceketler</h2>
+    <div class="products">
+      <div class="product-card">
+        <img src="https://i.imgur.com/JY50D7d.jpeg" alt="Ceket 1">
+        <p>El dokuması halıdan üretilmiş özel tasarım ceket.</p>
+        <p>₺500.00</p>
+        <button onclick="addToCart({id: 1, name: 'Ceket 1', price: 500, image: 'https://i.imgur.com/JY50D7d.jpeg'})">Sepete Ekle</button>
+      </div>
+      <div class="product-card">
+        <img src="https://i.imgur.com/UnZQvek.jpeg" alt="Ceket 2">
+        <p>Vintage stil, güçlü duruş.</p>
+        <p>₺550.00</p>
+        <button onclick="addToCart({id: 2, name: 'Ceket 2', price: 550, image: 'https://i.imgur.com/UnZQvek.jpeg'})">Sepete Ekle</button>
+      </div>
+      <div class="product-card">
+        <img src="https://i.imgur.com/DveyRWJ.jpeg" alt="Ceket 3">
+        <p>Modern dokunuşlarla retro bir görünüm.</p>
+        <p>₺600.00</p>
+        <button onclick="addToCart({id: 3, name: 'Ceket 3', price: 600, image: 'https://i.imgur.com/DveyRWJ.jpeg'})">Sepete Ekle</button>
+      </div>
+      <div class="product-card">
+        <img src="https://i.imgur.com/iNFjIjV.jpeg" alt="Ceket 4">
+        <p>Göz alıcı renkler ve dokular.</p>
+        <p>₺650.00</p>
+        <button onclick="addToCart({id: 4, name: 'Ceket 4', price: 650, image: 'https://i.imgur.com/iNFjIjV.jpeg'})">Sepete Ekle</button>
+      </div>
+      <div class="product-card">
+        <img src="https://i.imgur.com/tPG1v95.jpeg" alt="Ceket 5">
+        <p>Klasik tasarım, modern kesim.</p>
+        <p>₺550.00</p>
+        <button onclick="addToCart({id: 5, name: 'Ceket 5', price: 550, image: 'https://i.imgur.com/tPG1v95.jpeg'})">Sepete Ekle</button>
+      </div>
+      <div class="product-card">
+        <img src="https://i.imgur.com/Cfbm6Vq.jpeg" alt="Ceket 6">
+        <p>Vibrant renklerde, her tarza uygun.</p>
+        <p>₺700.00</p>
+        <button onclick="addToCart({id: 6, name: 'Ceket 6', price: 700, image: 'https://i.imgur.com/Cfbm6Vq.jpeg'})">Sepete Ekle</button>
+      </div>
+    </div>
+
+    <h2>Çantalar</h2>
+    <div class="products">
+      <div class="product-card">
+        <img src="https://i.imgur.com/EdojvaG.jpeg" alt="Çanta 1">
+        <p>Halılardan tasarlanmış şık bir çanta.</p>
+        <p>₺350.00</p>
+        <button onclick="addToCart({id: 7, name: 'Çanta 1', price: 350, image: 'https://i.imgur.com/EdojvaG.jpeg'})">Sepete Ekle</button>
+      </div>
+      <div class="product-card">
+        <img src="https://i.imgur.com/QZ7hZ4W.jpeg" alt="Çanta 2">
+        <p>Geçmişin izlerini taşıyan tasarım.</p>
+        <p>₺370.00</p>
+        <button onclick="addToCart({id: 8, name: 'Çanta 2', price: 370, image: 'https://i.imgur.com/QZ7hZ4W.jpeg'})">Sepete Ekle</button>
+      </div>
+      <div class="product-card">
+        <img src="https://i.imgur.com/yAukquO.jpeg" alt="Çanta 3">
+        <p>El yapımı özgün tasarım.</p>
+        <p>₺400.00</p>
+        <button onclick="addToCart({id: 9, name: 'Çanta 3', price: 400, image: 'https://i.imgur.com/yAukquO.jpeg'})">Sepete Ekle</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="cart">
+    <h2>Your Cart</h2>
+    <div class="cart-items">
+      <!-- Sepetteki ürünler burada listelenecek -->
+    </div>
+    <div class="cart-summary">
+      <p>Total: ₺0.00</p>
+      <button class="checkout">Checkout</button>
+    </div>
+  </section>
+
+  <script>
+    let cart = [];
+
+    // Ürünleri sepete ekleme fonksiyonu
+    function addToCart(product) {
+      const productIndex = cart.findIndex(item => item.id === product.id);
+
+      if (productIndex === -1) {
+        cart.push({ ...product, quantity: 1 });
+      } else {
+        cart[productIndex].quantity += 1;
+      }
+
+      updateCart();
+    }
+
+    // Sepeti güncelleme fonksiyonu
+    function updateCart() {
+      const cartItemsContainer = document.querySelector(".cart-items");
+      cartItemsContainer.innerHTML = "";
+      let total = 0;
+
+      cart.forEach(item => {
+        total += item.price * item.quantity;
+
+        const cartItem = document.createElement("div");
+        cartItem.classList.add("cart-item");
+
+        cartItem.innerHTML = `
+          <img src="${item.image}" alt="${item.name}">
+          <div>
+            <h3>${item.name}</h3>
+            <p>Price: ₺${item.price}</p>
+            <p>Quantity: ${item.quantity}</p>
+          </div>
+        `;
+
+        cartItemsContainer.appendChild(cartItem);
+      });
+
+      const cartSummary = document.querySelector(".cart-summary");
+      cartSummary.innerHTML = `
+        <p>Total: ₺${total.toFixed(2)}</p>
+        <button class="checkout">Checkout</button>
+      `;
+    }
+  </script>
+
+</body>
+</html>
