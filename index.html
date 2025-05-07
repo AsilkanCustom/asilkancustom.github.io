@@ -2,89 +2,49 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>AsilkanCustom</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AsilkanCustom | Giyilebilir Sanat</title>
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet" />
 </head>
 <body>
-
-  <header class="navbar">
-    <div class="logo">AsilkanCustom</div>
-    <nav>
+  <header>
+    <nav class="navbar">
+      <div class="logo">AsilkanCustom</div>
       <ul class="nav-links">
-        <li><a href="#home">Ana Sayfa</a></li>
-        <li><a href="#vintage">Vintage Giyim</a></li>
-        <li><a href="#login">Giriş Yap</a></li>
-        <li><a href="cart.html">Sepet</a></li>
+        <li><a href="#">Vintage Giyim</a></li>
+        <li><a href="#">Sepet</a></li>
+        <li><a href="#">Giriş</a></li>
       </ul>
     </nav>
   </header>
 
-  <!-- Carousel Section -->
-  <section class="carousel-section">
-    <div class="carousel">
-      <div class="carousel-track">
-        <img src="https://i.imgur.com/s4XkXqV.jpeg" alt="Ürün 1">
-        <img src="https://i.imgur.com/Fvjt8yz.jpeg" alt="Ürün 2">
-        <img src="https://i.imgur.com/BGECmbh.jpeg" alt="Ürün 3">
-        <img src="https://i.imgur.com/QrExQJC.jpeg" alt="Ürün 4">
-        <img src="https://i.imgur.com/k3SqxLh.jpeg" alt="Ürün 5">
-      </div>
-    </div>
-  </section>
-
-  <!-- Hero Section -->
-  <section id="home" class="hero-section">
-    <div class="video-wrapper">
-      <iframe src="https://streamable.com/e/yourvideo" frameborder="0" allowfullscreen></iframe>
-    </div>
+  <section class="hero">
+    <video autoplay muted loop class="hero-video">
+      <source src="https://streamable.com/e/abc123" type="video/mp4" />
+      Tarayıcınız video etiketini desteklemiyor.
+    </video>
     <div class="hero-text">
-      <h1>Giyilebilir Sanat</h1>
-      <p>Duvar halılarından özel ceketler: Geçmişin ruhunu, el emeğini ve sizin hikayenizi bir araya getiriyoruz.</p>
+      <h1>Giyilebilir Sanatla Tarzını Yaşa</h1>
+      <p>Geçmişin ruhu ve el emeğiyle tasarlanmış özel ürünler</p>
     </div>
   </section>
 
-  <!-- Product Section -->
-  <section id="vintage" class="product-section">
+  <section class="categories">
     <h2>Vintage Giyim</h2>
-    <div class="product-grid">
-      <div class="product-card">
-        <img src="https://i.imgur.com/s4XkXqV.jpeg" alt="Ceket">
-        <h3>Ceket</h3>
-        <p>₺1200</p>
-        <button onclick="addToCart('Ceket', 1200)">Sepete Ekle</button>
-      </div>
-      <div class="product-card">
-        <img src="https://i.imgur.com/Fvjt8yz.jpeg" alt="Pantolon">
-        <h3>Pantolon</h3>
-        <p>₺800</p>
-        <button onclick="addToCart('Pantolon', 800)">Sepete Ekle</button>
-      </div>
-      <div class="product-card">
-        <img src="https://i.imgur.com/k3SqxLh.jpeg" alt="Çanta">
-        <h3>Çanta</h3>
-        <p>₺600</p>
-        <button onclick="addToCart('Çanta', 600)">Sepete Ekle</button>
-      </div>
+    <div class="category-cards">
+      <div class="card">Ceket</div>
+      <div class="card">Pantolon</div>
+      <div class="card">Çanta</div>
     </div>
   </section>
 
-  <!-- Login Section -->
-  <section id="login" class="login-section">
-    <h2>Giriş Yap</h2>
-    <form>
-      <input type="text" placeholder="Kullanıcı adı" required />
-      <input type="password" placeholder="Şifre" required />
-      <button type="submit">Giriş</button>
-    </form>
+  <section class="about">
+    <p>“Duvar halılarından özel ceketler: Geçmişin ruhunu, el emeğini ve sizin hikayenizi bir araya getiriyoruz. Giyilebilir sanatla tarzınızı yaşayın.”</p>
   </section>
 
-  <!-- Footer -->
   <footer>
-    <p>© 2025 AsilkanCustom – Tüm hakları saklıdır.</p>
+    <p>&copy; 2025 AsilkanCustom. Tüm hakları saklıdır.</p>
   </footer>
-
-  <script src="script.js"></script>
 </body>
 </html>
