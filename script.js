@@ -1,23 +1,35 @@
-function addToCart(name, price) {
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
-  cart.push({ name, price });
-  localStorage.setItem("cart", JSON.stringify(cart));
-  alert(`${name} sepete eklendi!`);
+// Navbar menüsü açma/kapama fonksiyonu
+function toggleMenu() {
+  document.getElementById("nav-links").classList.toggle("show");
 }
 
-// Sepete ürün ekleme
-document.addEventListener("DOMContentLoaded", function () {
-  const buttons = document.querySelectorAll(".product-card button");
+// Giriş formu işlemi
+document.querySelector('.login-form form').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const username = document.querySelector('.login-form input[type="text"]').value;
+  if (username.trim()) {
+    alert('Giriş yapıldı: ' + username);
+    const password = document.querySelector('.login-form input[type="password"]').value;
 
-  buttons.forEach((button) => {
-    button.addEventListener("click", () => {
-      // Ürün adını ve fiyatını buton üzerinden alıyoruz
-      const productCard = button.parentElement;
-      const productName = productCard.querySelector("h3").textContent;
-      const productPrice = parseFloat(productCard.querySelector("p").textContent.replace("₺", "").trim());
+    // Navbar'da giriş linki yerine hoş geldin mesajı
+    const loginLink = document.getElementById('login-link');
+    loginLink.innerHTML = `👤 ${username}`;
+    loginLink.href = "#"; // Bağlantıyı iptal et
+    showWelcomeMessage(username);
 
-      // Sepete ekliyoruz
-      addToCart(productName, productPrice);
-    });
-  });
+    // Örnek doğrulama (gerçek uygulamada sunucu doğrulaması gerekir)
+    if (username === "admin" && password === "1234") {
+      alert("Giriş başarılı!");
+    } else {
+      alert("Kullanıcı adı veya şifre yanlış!");
+    }
+  }
 });
+
+function showWelcomeMessage(username) {
+  const section = document.getElementById('login');
+  const msg = document.createElement('div');
+  msg.className = 'welcome-message';
+  msg.textContent = `Hoş geldin, ${username}`;
+  section.appendChild(msg);
+}
