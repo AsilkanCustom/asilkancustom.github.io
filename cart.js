@@ -1,30 +1,21 @@
-const cartItems = document.getElementById("cart-items");
-const totalElement = document.getElementById("total");
-
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-function renderCart() {
-  cartItems.innerHTML = "";
-  let total = 0;
-
-  cart.forEach((item, index) => {
-    const div = document.createElement("div");
-    div.className = "cart-item";
-    div.innerHTML = `
-      <p>${item.name} - ₺${item.price}</p>
-      <button onclick="removeItem(${index})">Kaldır</button>
-    `;
-    cartItems.appendChild(div);
-    total += item.price;
-  });
-
-  totalElement.textContent = `Toplam: ₺${total}`;
-}
-
-function removeItem(index) {
-  cart.splice(index, 1);
-  localStorage.setItem("cart", JSON.stringify(cart));
-  renderCart();
-}
-
-renderCart();
+document.addEventListener("DOMContentLoaded", function () {
+  const cartItemsContainer = document.getElementById("cart-items");
+  const totalPriceElement = document.getElementById("total");
+  
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  
+  if (cart.length === 0) {
+    cartItemsContainer.innerHTML = "<p>Sepetinizde ürün bulunmamaktadır.</p>";
+  } else {
+    let total = 0;
+    cart.forEach(item => {
+      const itemElement = document.createElement("div");
+      itemElement.classList.add("cart-item");
+      itemElement.innerHTML = `<p>${item.name} - ₺${item.price}</p>`;
+      cartItemsContainer.appendChild(itemElement);
+      total += item.price;
+    });
+    
+    totalPriceElement.querySelector("span").textContent = total.toFixed(2);
+  }
+});
