@@ -1,17 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <title>Sepetim - AsilkanCustom</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sepet - AsilkanCustom</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="cart-section">
+
+  <header class="navbar">
+    <div class="logo">AsilkanCustom</div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html">Ana Sayfa</a></li>
+        <li><a href="index.html#vintage">Vintage Giyim</a></li>
+        <li><a href="#login">Giriş Yap</a></li>
+        <li><a href="cart.html">Sepet</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="cart" class="cart-section">
     <h2>Sepetiniz</h2>
     <div id="cart-items"></div>
-    <h3 id="total"></h3>
-    <a href="index.html">Alışverişe Dön</a>
-  </div>
+    <div id="total-price">
+      <p>Toplam: ₺<span id="total">0</span></p>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 AsilkanCustom – Tüm hakları saklıdır.</p>
+  </footer>
 
   <script src="cart.js"></script>
 </body>
