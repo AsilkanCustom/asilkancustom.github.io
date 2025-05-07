@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Sepet boşsa mesaj gösteriyoruz
   if (cart.length === 0) {
     cartItemsContainer.innerHTML = "<p>Sepetinizde ürün bulunmamaktadır.</p>";
+    totalPriceElement.querySelector("span").textContent = "₺0.00"; // Toplam fiyatı sıfır olarak göster
   } else {
     renderCart();
   }
@@ -30,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // Toplam fiyatı güncelle
-    totalPriceElement.querySelector("span").textContent = total.toFixed(2);
+    totalPriceElement.querySelector("span").textContent = `₺${total.toFixed(2)}`;
   }
 
   // Sepetten ürün kaldırma fonksiyonu
