@@ -1,424 +1,70 @@
 <!DOCTYPE html>
- <html lang="tr">
- <head>
-   <meta charset="UTF-8" />
-   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-   <title>Asilkan Custom</title>
-   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-   <style>
-     body {
-       margin: 0;
-       font-family: 'Poppins', sans-serif;
-       background-color: #f6f0e8;
-     }
- 
-     nav {
-       position: sticky;
-       top: 0;
-       background-color: #3d2b1f;
-       padding: 15px 0;
-       z-index: 1000;
-     }
- 
-     nav ul {
-       list-style: none;
-       text-align: center;
-       margin: 0;
-       padding: 0;
-     }
- 
-     nav ul li {
-       display: inline-block;
-       margin: 0 20px;
-     }
- 
-     nav ul li a {
-       color: white;
-       text-decoration: none;
-       font-size: 1.2rem;
-       font-weight: 600;
-       text-transform: uppercase;
-       transition: all 0.3s ease;
-     }
- 
-     nav ul li a:hover {
-       color: #a52a2a;
-     }
- 
-     header {
-       text-align: center;
-       padding: 100px 20px 50px;
-       background: #e8d8c3;
-       color: #7a1e1e;
-     }
- 
-     header h1 {
-       font-size: 4rem;
-       margin: 0;
-     }
- 
-     header p {
-       font-size: 1.5rem;
-       max-width: 800px;
-       margin: 20px auto;
-       line-height: 1.6;
-     }
- 
-     .carousel {
-       position: relative;
-       width: 100%;
-       overflow: hidden;
-       height: 500px;
-       margin-top: 40px;
-     }
- 
-     .carousel-track {
-       display: flex;
-       width: calc(200%); 
-       animation: scroll 40s linear infinite;
-     }
- 
-     .carousel-track img {
-       width: 20%;
-       height: 500px;
-       object-fit: cover;
-     }
- 
-     @keyframes scroll {
-       0% {
-         transform: translateX(0);
-       }
-       100% {
-         transform: translateX(-50%);
-       }
-     }
- 
-     .section {
-       padding: 60px 20px;
-       max-width: 1000px;
-       margin: auto;
-     }
- 
-     .section h2 {
-       text-align: center;
-       color: #3d2b1f;
-       font-size: 2rem;
-       margin-bottom: 30px;
-     }
- 
-     .products {
-       display: flex;
-       justify-content: center;
-       gap: 30px;
-       flex-wrap: wrap;
-     }
- 
-     .product-card {
-       background-color: #fffaf5;
-       border-radius: 16px;
-       overflow: hidden;
-       width: 300px;
-       box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2);
-       transition: transform 0.3s ease;
-     }
- 
-     .product-card img {
-       width: 100%;
-       height: 250px;
-       object-fit: cover;
-     }
- 
-     .product-card:hover {
-       transform: scale(1.05);
-     }
- 
-     .product-card h2 {
-       font-size: 1.5rem;
-       padding: 10px;
-       margin: 0;
-       background-color: #a52a2a;
-       color: white;
-     }
- 
-     .product-card p {
-       padding: 10px;
-       font-size: 1.1rem;
-       color: #4b3b2b;
-     }
- 
-     .login-form {
-       max-width: 400px;
-       margin: auto;
-       background: #fff;
-       padding: 30px;
-       border-radius: 12px;
-       box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
-     }
- 
-     .login-form input, .login-form button {
-       width: 100%;
-       padding: 10px;
-       margin-top: 15px;
-       font-size: 1rem;
-     }
- 
-     .login-form button {
-       background-color: #a52a2a;
-       color: white;
-       border: none;
-       cursor: pointer;
-     }
- 
-     .login-form button:hover {
-       background-color: #7a1e1e;
-     }
- 
-     footer {
-       background-color: #d7c2b0;
-       color: #3d2b1f;
-       text-align: center;
-       padding: 20px;
-     }
- 
-     footer a {
-       color: #7a1e1e;
-       text-decoration: none;
-       font-weight: 600;
-     }
- 
-     footer a:hover {
-       text-decoration: underline;
-     }
- 
-     /* Mobile Responsiveness */
-     @media (max-width: 768px) {
-       nav ul li {
-         display: block;
-         margin: 10px 0;
-       }
- 
-       header h1 {
-         font-size: 2.5rem;
-       }
- 
-       .carousel-track img {
-         height: 250px;
-       }
- 
-       .products {
-         flex-direction: column;
-         align-items: center;
-       }
- 
-       .product-card {
-         width: 90%;
-       }
-     }
- 
-     /* Additional styles for added features */
-     .product-card .rating {
-       display: flex;
-       justify-content: center;
-       gap: 5px;
-     }
- 
-     .product-card .rating i {
-       color: gold;
-     }
- 
-     .product-card .customize {
-       margin-top: 10px;
-       display: flex;
-       justify-content: space-between;
-     }
- 
-     .customize select {
-       padding: 5px;
-       font-size: 1rem;
-     }
- 
-     .cart-summary {
-       text-align: right;
-       margin-top: 30px;
-       padding: 20px;
-       background-color: #f1f1f1;
-       border-radius: 8px;
-     }
- 
-     .cart-summary p {
-       font-size: 1.2rem;
-     }
- 
-     .cart-summary button {
-       padding: 10px 20px;
-       background-color: #a52a2a;
-       color: white;
-       border: none;
-       cursor: pointer;
-     }
- 
-     .cart-summary button:hover {
-       background-color: #7a1e1e;
-     }
-   </style>
- </head>
- <body>
-   <nav>
-  <div class="nav-container">
-    <a href="#home" class="logo">
-      <img src="https://i.imgur.com/NHEj7Ve.jpeg" alt="Asilkan Logo">
-    </a>
-    <ul class="nav-links" id="nav-links">
-      <li><a href="#home">Ana Sayfa</a></li>
-      <li><a href="#vintage">Vintage Giyim</a></li>
-      <li><a href="#products">Ürünler</a></li>
-      <li><a href="#contact">İletişim</a></li>
-      <li><a href="#login" id="login-link">Giriş Yap</a></li>
-      <li><a href="#cart">🛒 Sepet</a></li>
-    </ul>
-  </div>
-   </nav>
- 
-   <header id="home">
-     <h1>Asilkan Custom</h1>
-     <p>Duvar halılarından özel ceketler: Geçmişin ruhunu, el emeğini ve sizin hikayenizi bir araya getiriyoruz. Giyilebilir sanatla tarzınızı yaşayın.</p>
-     <div class="carousel">
-       <div class="carousel-track">
-         <img src="https://i.imgur.com/s4XkXqV.jpeg" alt="Ürün 1">
-         <img src="https://i.imgur.com/Fvjt8yz.jpeg" alt="Ürün 2">
-         <img src="https://i.imgur.com/BGECmbh.jpeg" alt="Ürün 3">
-         <img src="https://i.imgur.com/QrExQJC.jpeg" alt="Ürün 4">
-         <img src="https://i.imgur.com/k3SqxLh.jpeg" alt="Ürün 5">
-       </div>
-     </div>
-   </header>
- 
-   <section class="section" id="vintage">
-     <h2>Vintage Giyim</h2>
-     <p style="text-align:center;">Hikayesi olan kumaşlardan, eşsiz tasarımlara... Her parça geçmişten gelen bir hatırayı taşır.</p>
-   </section>
- 
-   <section class="section" id="products">
-     <h2>Ceketler</h2>
-     <div class="products">
-       <div class="product-card">
-         <img src="https://i.imgur.com/JY50D7d.jpeg" alt="Ceket 1">
-         <p>El dokuması halıdan üretilmiş özel tasarım ceket.</p>
-         <p>₺500.00</p>
-         <button>Sepete Ekle</button>
-       </div>
-       <div class="product-card">
-         <img src="https://i.imgur.com/UnZQvek.jpeg" alt="Ceket 2">
-         <p>Vintage stil, güçlü duruş.</p>
-         <p>₺550.00</p>
-         <button>Sepete Ekle</button>
-       </div>
-       <div class="product-card">
-         <img src="https://i.imgur.com/DveyRWJ.jpeg" alt="Ceket 3">
-         <p>Modern dokunuşlarla retro bir görünüm.</p>
-         <p>₺600.00</p>
-         <button>Sepete Ekle</button>
-       </div>
-       <div class="product-card">
-         <img src="https://i.imgur.com/iNFjIjV.jpeg" alt="Ceket 4">
-         <p>Göz alıcı renkler ve dokular.</p>
-         <p>₺650.00</p>
-         <button>Sepete Ekle</button>
-       </div>
-       <div class="product-card">
-         <img src="https://i.imgur.com/tPG1v95.jpeg" alt="Ceket 5">
-         <p>Klasik tasarım, modern kesim.</p>
-         <p>₺550.00</p>
-         <button>Sepete Ekle</button>
-       </div>
-       <div class="product-card">
-         <img src="https://i.imgur.com/Cfbm6Vq.jpeg" alt="Ceket 6">
-         <p>Vibrant renklerde, her tarza uygun.</p>
-         <p>₺700.00</p>
-         <button>Sepete Ekle</button>
-       </div>
-     </div>
- 
- <h2>Çantalar</h2>
- <div class="products">
-   <div class="product-card">
-     <img src="https://i.imgur.com/EdojvaG.jpeg" alt="Çanta 1">
-     <p>Halılardan tasarlanmış şık bir çanta.</p>
-     <p>₺350.00</p>
-     <button>Sepete Ekle</button>
-   </div>
-   <div class="product-card">
-     <img src="https://i.imgur.com/QZ7hZ4W.jpeg" alt="Çanta 2">
-     <p>Geçmişin izlerini taşıyan tasarım.</p>
-     <p>₺370.00</p>
-     <button>Sepete Ekle</button>
-   </div>
-   <div class="product-card">
-     <img src="https://i.imgur.com/yAukquO.jpeg" alt="Çanta 3">
-     <p>El yapımı özgün tasarım.</p>
-     <p>₺400.00</p>
-     <button>Sepete Ekle</button>
-   </div>
- </div>
- 
-   </section>
- 
-       <section class="section" id="cart">
-     <h2>Sepet</h2>
-     <p>Sepetiniz boş.</p>
-   </section>
- 
-   <section id="login" class="section">
-     <h2>Giriş Yap</h2>
-     <div class="login-form">
-       <form>
-         <input type="text" placeholder="Kullanıcı Adı" required>
-         <input type="password" placeholder="Şifre" required>
-         <button type="submit">Giriş Yap</button>
-       </form>
-     </div>
-   </section>
- 
-   <footer>
-     <p>Asilkan Custom | <a href="#home">Ana Sayfa</a></p>
-   </footer>
- 
-   <script>
-   function toggleMenu() {
-    function toggleMenu() {
-     document.getElementById("nav-links").classList.toggle("show");
-   }
- 
-   // Giriş formu işlemi
-   document.querySelector('.login-form form').addEventListener('submit', (e) => {
-     e.preventDefault();
-     const username = document.querySelector('.login-form input[type="text"]').value;
-     if (username.trim()) {
-       alert('Giriş yapıldı: ' + username);
-     const password = document.querySelector('.login-form input[type="password"]').value;
- 
-       // Navbar'da giriş linki yerine hoş geldin mesajı
-       const loginLink = document.getElementById('login-link');
-       loginLink.innerHTML = `👤 ${username}`;
-       loginLink.href = "#"; // Bağlantıyı iptal et
-       showWelcomeMessage(username);
-     // Örnek doğrulama (gerçek uygulamada sunucu doğrulaması gerekir)
-     if (username === "admin" && password === "1234") {
-       alert("Giriş başarılı!");
-     } else {
-       alert("Kullanıcı adı veya şifre yanlış!");
-     }
-   });
- 
-   function showWelcomeMessage(username) {
-     const section = document.getElementById('login');
-     const msg = document.createElement('div');
-     msg.className = 'welcome-message';
-     msg.textContent = `Hoş geldin, ${username}`;
-     section.appendChild(msg);
-   }
- </script>
- 
-   </script>
- </body>
- </html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AsilkanCustom</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="logo">AsilkanCustom</div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#home">Ana Sayfa</a></li>
+        <li><a href="#vintage">Vintage Giyim</a></li>
+        <li><a href="#login">Giriş Yap</a></li>
+        <li><a href="#cart">Sepet</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="home" class="hero-section">
+    <div class="video-wrapper">
+      <iframe src="https://streamable.com/e/yourvideo" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div class="hero-text">
+      <h1>Giyilebilir Sanat</h1>
+      <p>Duvar halılarından özel ceketler: Geçmişin ruhunu, el emeğini ve sizin hikayenizi bir araya getiriyoruz.</p>
+    </div>
+  </section>
+
+  <section id="vintage" class="product-section">
+    <h2>Vintage Giyim</h2>
+    <div class="product-grid">
+      <div class="product-card">
+        <img src="https://i.imgur.com/s4XkXqV.jpeg" alt="Ceket">
+        <h3>Ceket</h3>
+        <button>Sepete Ekle</button>
+      </div>
+      <div class="product-card">
+        <img src="https://i.imgur.com/Fvjt8yz.jpeg" alt="Pantolon">
+        <h3>Pantolon</h3>
+        <button>Sepete Ekle</button>
+      </div>
+      <div class="product-card">
+        <img src="https://i.imgur.com/k3SqxLh.jpeg" alt="Çanta">
+        <h3>Çanta</h3>
+        <button>Sepete Ekle</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="login" class="login-section">
+    <h2>Giriş Yap</h2>
+    <form>
+      <input type="text" placeholder="Kullanıcı adı" required />
+      <input type="password" placeholder="Şifre" required />
+      <button type="submit">Giriş</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>© 2025 AsilkanCustom – Tüm hakları saklıdır.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
