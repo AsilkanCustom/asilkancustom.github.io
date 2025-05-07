@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Asilkan Custom</title>
   <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
   <nav>
@@ -12,86 +13,36 @@
       <a href="index.html" class="logo">
         <img src="https://i.imgur.com/NHEj7Ve.jpeg" alt="Asilkan Logo">
       </a>
-      <ul class="nav-links" id="nav-links">
+      <ul class="nav-links">
         <li><a href="index.html">Ana Sayfa</a></li>
         <li><a href="#vintage">Vintage Giyim</a></li>
         <li><a href="#products">Ürünler</a></li>
-        <li><a href="#contact">İletişim</a></li>
-        <li><a href="#login" id="login-link">Giriş Yap</a></li>
-        <li><a href="cart.html">🛒 Sepet</a></li>
+        <li><a href="cart.html" class="cart-link">🛒 Sepet</a></li>
+        <li><a href="login.html" id="login-link">Giriş Yap</a></li>
       </ul>
     </div>
   </nav>
 
-  <header id="home">
+  <header>
     <h1>Asilkan Custom</h1>
     <p>Duvar halılarından özel ceketler: Geçmişin ruhunu, el emeğini ve sizin hikayenizi bir araya getiriyoruz. Giyilebilir sanatla tarzınızı yaşayın.</p>
-    <div class="carousel">
-      <div class="carousel-track">
-        <img src="https://i.imgur.com/s4XkXqV.jpeg" alt="Ürün 1">
-        <img src="https://i.imgur.com/Fvjt8yz.jpeg" alt="Ürün 2">
-        <img src="https://i.imgur.com/BGECmbh.jpeg" alt="Ürün 3">
-        <img src="https://i.imgur.com/QrExQJC.jpeg" alt="Ürün 4">
-        <img src="https://i.imgur.com/k3SqxLh.jpeg" alt="Ürün 5">
-      </div>
-    </div>
   </header>
 
-  <section class="section" id="vintage">
-    <h2>Vintage Giyim</h2>
-    <p style="text-align:center;">Hikayesi olan kumaşlardan, eşsiz tasarımlara... Her parça geçmişten gelen bir hatırayı taşır.</p>
-  </section>
-
-  <section class="section" id="products">
-    <h2>Ceketler</h2>
-    <div class="products">
+  <section class="products-section" id="products">
+    <h2>Ürünler</h2>
+    <div class="product-cards">
       <div class="product-card">
         <img src="https://i.imgur.com/JY50D7d.jpeg" alt="Ceket 1">
         <p>El dokuması halıdan üretilmiş özel tasarım ceket.</p>
         <p>₺500.00</p>
-        <button onclick="addToCart('Ceket 1')">Sepete Ekle</button>
+        <button onclick="addToCart({name: 'Ceket 1', price: 500})">Sepete Ekle</button>
       </div>
-      <div class="product-card">
-        <img src="https://i.imgur.com/UnZQvek.jpeg" alt="Ceket 2">
-        <p>Vintage stil, güçlü duruş.</p>
-        <p>₺550.00</p>
-        <button onclick="addToCart('Ceket 2')">Sepete Ekle</button>
-      </div>
-      <div class="product-card">
-        <img src="https://i.imgur.com/DveyRWJ.jpeg" alt="Ceket 3">
-        <p>Modern dokunuşlarla retro bir görünüm.</p>
-        <p>₺600.00</p>
-        <button onclick="addToCart('Ceket 3')">Sepete Ekle</button>
-      </div>
-    </div>
-
-    <h2>Çantalar</h2>
-    <div class="products">
-      <div class="product-card">
-        <img src="https://i.imgur.com/EdojvaG.jpeg" alt="Çanta 1">
-        <p>Halılardan tasarlanmış şık bir çanta.</p>
-        <p>₺350.00</p>
-        <button onclick="addToCart('Çanta 1')">Sepete Ekle</button>
-      </div>
-      <div class="product-card">
-        <img src="https://i.imgur.com/QZ7hZ4W.jpeg" alt="Çanta 2">
-        <p>Geçmişin izlerini taşıyan tasarım.</p>
-        <p>₺370.00</p>
-        <button onclick="addToCart('Çanta 2')">Sepete Ekle</button>
-      </div>
-      <div class="product-card">
-        <img src="https://i.imgur.com/yAukquO.jpeg" alt="Çanta 3">
-        <p>El yapımı özgün tasarım.</p>
-        <p>₺400.00</p>
-        <button onclick="addToCart('Çanta 3')">Sepete Ekle</button>
-      </div>
+      <!-- Diğer ürünler burada olacak -->
     </div>
   </section>
 
   <footer>
     <p>Asilkan Custom | <a href="index.html">Ana Sayfa</a></p>
   </footer>
-
-  <script src="script.js"></script>
 </body>
 </html>
