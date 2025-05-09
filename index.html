@@ -53,7 +53,7 @@
     }
 
     header h1 {
-      font-size: 4rem;
+      font-size: 3rem;
       margin: 0;
     }
 
@@ -65,9 +65,9 @@
     }
 
     .logo {
-      width: 200px;  /* Logo boyutunu koru */
+      width: 200px;
       height: auto;
-      margin: 0 auto 20px; /* Başlık ile logo arasına boşluk ekle */
+      margin: 0 auto 20px;
     }
 
     .carousel {
@@ -192,20 +192,29 @@
       font-weight: 600;
     }
 
-<head>
-  <style>
     footer a:hover {
       text-decoration: underline;
     }
 
-    @media (max-width: 200px) {
-      h1 {
-        font-size: 22px;
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2rem;
+      }
+
+      header p {
+        font-size: 1.1rem;
+      }
+
+      .carousel {
+        height: 250px;
+      }
+
+      .carousel-track img {
+        height: 250px;
       }
     }
   </style>
 </head>
-
 <body>
   <nav>
     <div class="nav-container">
