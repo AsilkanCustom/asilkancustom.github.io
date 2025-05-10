@@ -15,7 +15,14 @@
 
     gtag('config', 'G-BL879TEEGW');
   </script>
-  
+  <script>
+  // Hamburger menüsünü açma/kapama işlevi
+  function toggleMenu() {
+    const navLinks = document.getElementById('nav-links');
+    navLinks.classList.toggle('show');
+  }
+</script>
+
   <style>
     body {
       margin: 0;
@@ -224,22 +231,69 @@
         height: 250px;
       }
     }
+    /* Hamburger Menü */
+.hamburger-menu {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.hamburger-menu .bar {
+  width: 25px;
+  height: 3px;
+  margin: 4px 0;
+  background-color: white;
+  transition: 0.4s;
+}
+
+/* Mobil cihazlarda hamburger menü simgesi görünsün */
+@media (max-width: 768px) {
+  .hamburger-menu {
+    display: flex;
+  }
+
+  .nav-links {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    text-align: center;
+    background-color: #3d2b1f;
+    position: absolute;
+    top: 60px;
+    left: 0;
+  }
+
+  .nav-links li {
+    padding: 15px 0;
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+}
   </style>
 </head>
 <body>
-  <nav>
-    <div class="nav-container">
-      <a href="#home" class="logo"></a>
-      <ul class="nav-links" id="nav-links">
-        <li><a href="#home">Ana Sayfa</a></li>
-        <li><a href="#vintage">Güncel Halılar</a></li>
-        <li><a href="#products">Ürünler</a></li>
-        <li><a href="#about">Hakkımızda</a></li>
-        <li><a href="https://wa.me/c/905454388096" target="_blank">İletişim</a></li> <!-- İletişim butonuna WhatsApp linki eklendi -->
-        <li><a href="#cart">Beden Bilgisi</a></li>
-      </ul>
+<nav>
+  <div class="nav-container">
+    <a href="#home" class="logo"></a>
+    <!-- Hamburger Menü Butonu -->
+    <div class="hamburger-menu" id="hamburger-menu" onclick="toggleMenu()">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
     </div>
-  </nav>
+
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#home">Ana Sayfa</a></li>
+      <li><a href="#vintage">Güncel Halılar</a></li>
+      <li><a href="#products">Ürünler</a></li>
+      <li><a href="#about">Hakkımızda</a></li>
+      <li><a href="https://wa.me/c/905454388096" target="_blank">İletişim</a></li>
+      <li><a href="#cart">Beden Bilgisi</a></li>
+    </ul>
+  </div>
+</nav>
 
   <header id="home">
     <img src="https://i.imgur.com/M3K4S71.jpeg" alt="Asilkan Custom Logo" class="logo">
