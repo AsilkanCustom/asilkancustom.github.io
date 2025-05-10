@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ASİLKAN Custom</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap" rel="stylesheet">
-
+  
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-BL879TEEGW"></script>
   <script>
@@ -124,7 +124,7 @@
 
     .carousel-track {
       display: flex;
-      width: calc(200%);
+      width: calc(200%); 
       animation: scroll 40s linear infinite;
     }
 
@@ -315,13 +315,16 @@
   </style>
 </head>
 <body>
-  <!-- Hamburger Menü Butonu -->
-  <div class="hamburger-menu" onclick="toggleMenu()">
-    <div class="bar"></div>
-    <div class="bar"></div>
-    <div class="bar"></div>
-  </div>
-  
+<nav>
+  <div class="nav-container">
+    <a href="#home" class="logo"></a>
+    <!-- Hamburger Menü Butonu -->
+    <div class="hamburger-menu" id="hamburger-menu" onclick="toggleMenu()">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </div>
+
     <ul class="nav-links" id="nav-links">
       <li><a href="#home">Ana Sayfa</a></li>
       <li><a href="#vintage">Güncel Halılar</a></li>
