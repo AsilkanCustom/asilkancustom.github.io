@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ASİLKAN Custom</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap" rel="stylesheet">
-
+  
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-BL879TEEGW"></script>
   <script>
@@ -28,23 +28,14 @@
       const navMenu = document.querySelector('.nav-menu');
       const navLinks = document.querySelectorAll('.nav-menu a');
 
-      // Hamburger menüsünü açma/kapama işlemi
       menuToggle.addEventListener('click', function () {
         navMenu.classList.toggle('active');
       });
 
-      // Menüdeki her bir linke tıklanınca menüyü kapatma
       navLinks.forEach(function (link) {
         link.addEventListener('click', function () {
-          navMenu.classList.remove('active'); // Menü kapanır
-        });
-      });
-
-      // Menü dışına tıklanınca menüyü kapatma
-      document.addEventListener('click', function(event) {
-        if (!navMenu.contains(event.target) && !menuToggle.contains(event.target)) {
           navMenu.classList.remove('active');
-        }
+        });
       });
     });
   </script>
@@ -257,23 +248,22 @@
         height: 250px;
       }
     }
-
     /* Hamburger Menü */
-    .hamburger-menu {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-    }
+.hamburger-menu {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
 
-    .hamburger-menu .bar {
-      width: 25px;
-      height: 3px;
-      margin: 4px 0;
-      background-color: white;
-      transition: 0.4s;
-    }
+.hamburger-menu .bar {
+  width: 25px;
+  height: 3px;
+  margin: 4px 0;
+  background-color: white;
+  transition: 0.4s;
+}
 
-    /* Mobil cihazlarda hamburger menü simgesi görünsün */
+/* Mobil cihazlarda hamburger menü simgesi görünsün */
     @media (max-width: 768px) {
       .hamburger-menu {
         display: flex;
