@@ -264,30 +264,44 @@
 }
 
 /* Mobil cihazlarda hamburger menü simgesi görünsün */
-@media (max-width: 768px) {
-  .hamburger-menu {
-    display: flex;
-  }
+    @media (max-width: 768px) {
+      .hamburger-menu {
+        display: flex;
+      }
 
-  .nav-links {
-    display: none;
-    width: 100%;
-    flex-direction: column;
-    text-align: center;
-    background-color: #3d2b1f;
-    position: absolute;
-    top: 60px;
-    left: 0;
-  }
+      .nav-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        text-align: center;
+        background-color: #3d2b1f;
+        position: absolute;
+        top: 60px;
+        left: 0;
+      }
 
-  .nav-links li {
-    padding: 15px 0;
-  }
+      .nav-links li {
+        padding: 15px 0;
+      }
 
-  .nav-links.show {
-    display: flex;
-  }
-}
+      .nav-links.show {
+        display: flex;
+      }
+    }
+
+    /* 769px ve daha büyük ekranlar için medya sorgusu */
+    @media (min-width: 769px) {
+      .nav-links {
+        display: flex !important;
+        position: static;
+        flex-direction: row;
+        justify-content: center;
+      }
+
+      .hamburger-menu {
+        display: none;
+      }
+    }
   </style>
 </head>
 <body>
