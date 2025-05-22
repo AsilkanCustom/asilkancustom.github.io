@@ -311,6 +311,36 @@ background: url('https://i.imgur.com/RDZIPps.jpeg') repeat;
         display: none;
       }
     }
+  
+  #lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+#lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border: 4px solid white;
+  border-radius: 10px;
+}
+
+#close-btn {
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  font-size: 40px;
+  color: white;
+  cursor: pointer;
+  z-index: 10000;
+}
   </style
 
 <head>
@@ -368,56 +398,56 @@ background: url('https://i.imgur.com/RDZIPps.jpeg') repeat;
     <h2>Ceketler</h2>
     <div class="products">
       <div class="product-card">
-        <img src="https://i.imgur.com/LVY3ldC.jpeg" alt="Ceket 1">
+        <img src="https://i.imgur.com/LVY3ldC.jpeg" alt="Ceket 1" class="clickable-image">
         <p>El dokuması halıdan üretilmiş özel tasarım ceket.</p>
       </div>
       <div class="product-card">
-        <img src="https://i.imgur.com/UeNPAfo.jpeg" alt="Ceket 2">
+        <img src="https://i.imgur.com/UeNPAfo.jpeg" alt="Ceket 2" class="clickable-image">
         <p>Vintage stil, güçlü duruş.</p>
       </div>
       <div class="product-card">
-        <img src="https://i.imgur.com/aMvlSQH.jpeg" alt="Ceket 3">
+        <img src="https://i.imgur.com/aMvlSQH.jpeg" alt="Ceket 3" class="clickable-image">
         <p>Modern dokunuşlarla retro bir görünüm.</p>
       </div>
       <div class="product-card">
-        <img src="https://i.imgur.com/f5CLYLX.jpeg" alt="Ceket 4">
+        <img src="https://i.imgur.com/f5CLYLX.jpeg" alt="Ceket 4" class="clickable-image">
         <p>Klasik tasarım, modern kesim.</p>
       </div>
       <div class="product-card">
-        <img src="https://i.imgur.com/iNFjIjV.jpeg" alt="Ceket 5">
+        <img src="https://i.imgur.com/iNFjIjV.jpeg" alt="Ceket 5" class="clickable-image">
         <p>Göz alıcı renkler ve dokular.</p>
       </div>      
       <div class="product-card">
-        <img src="https://i.imgur.com/0cdcVoa.jpeg" alt="Ceket 6">
+        <img src="https://i.imgur.com/0cdcVoa.jpeg" alt="Ceket 6" class="clickable-image">
         <p>Klasik tasarım, modern kesim.</p>
       </div>
       <div class="product-card">
-        <img src="https://i.imgur.com/ccYityH.jpeg" alt="Ceket 7">
+        <img src="https://i.imgur.com/ccYityH.jpeg" alt="Ceket 7" class="clickable-image">
         <p>Göz alıcı renkler ve dokular.</p>
       </div>
       <div class="product-card">
-        <img src="https://i.imgur.com/N4IG9cw.jpeg" alt="Ceket 8">
+        <img src="https://i.imgur.com/N4IG9cw.jpeg" alt="Ceket 8" class="clickable-image">
         <p>Vibrant renklerde, her tarza uygun.</p>
       </div>
       <div class="product-card">
-        <img src="https://i.imgur.com/moqKXuB.jpeg" alt="Ceket 9">
+        <img src="https://i.imgur.com/moqKXuB.jpeg" alt="Ceket 9" class="clickable-image">
         <p>El yapımı özgün tasarım.</p>
       </div>
       <div class="product-card">
-        <img src="https://i.imgur.com/KxNz4k7.jpeg" alt="Ceket 10">
+        <img src="https://i.imgur.com/KxNz4k7.jpeg" alt="Ceket 10" class="clickable-image">
         <p>Vintage stil, güçlü duruş.</p>
       </div>      
       <div class="product-card">
-        <img src="https://i.imgur.com/DhjUoed.jpeg" alt="Ceket 11">
+        <img src="https://i.imgur.com/DhjUoed.jpeg" alt="Ceket 11" class="clickable-image">
         <p>El dokuması halıdan üretilmiş özel tasarım ceket.</p>
       </div>
       <div class="product-card">
-        <img src="https://i.imgur.com/p3rY7rD.jpeg" alt="Ceket 12">
+        <img src="https://i.imgur.com/p3rY7rD.jpeg" alt="Ceket 12" class="clickable-image">
         <p>Modern dokunuşlarla retro bir görünüm.</p>
       </div>
           <div class="products">
       <div class="product-card">
-        <img src="https://i.imgur.com/JY50D7d.jpeg" alt="Ceket 13">
+        <img src="https://i.imgur.com/JY50D7d.jpeg" alt="Ceket 13" class="clickable-image">
         <p>Geçmişin izlerini taşıyan tasarım.</p>
       </div>
      </div>
@@ -440,19 +470,19 @@ background: url('https://i.imgur.com/RDZIPps.jpeg') repeat;
     <h2>Çantalar</h2>
     <div class="products">
       <div class="product-card">
-        <img src="https://i.imgur.com/EdojvaG.jpeg" alt="Çanta 1">
+        <img src="https://i.imgur.com/EdojvaG.jpeg" alt="Çanta 1" class="clickable-image">
         <p>Halılardan tasarlanmış şık bir çanta.</p>
       </div>
       <div class="product-card">
-        <img src="https://i.imgur.com/QZ7hZ4W.jpeg" alt="Çanta 2">
+        <img src="https://i.imgur.com/QZ7hZ4W.jpeg" alt="Çanta 2" class="clickable-image">
         <p>Geçmişin izlerini taşıyan tasarım.</p>
       </div>
       <div class="product-card">
-        <img src="https://i.imgur.com/yAukquO.jpeg" alt="Çanta 3">
+        <img src="https://i.imgur.com/yAukquO.jpeg" alt="Çanta 3" class="clickable-image">
         <p>El yapımı özgün tasarım.</p>
       </div>   
       <div class="product-card">
-        <img src="https://i.imgur.com/ykwtfHk.jpeg" alt="Yeni Sezonun Trendi">
+        <img src="https://i.imgur.com/ykwtfHk.jpeg" alt="Yeni Sezonun Trendi" class="clickable-image">
         <p>Hem şıklığı hem de rahatlığı bir arada sunarak yaz aylarında özgün bir stil.</p>
       </div>         
     </div>
@@ -517,6 +547,37 @@ background: url('https://i.imgur.com/RDZIPps.jpeg') repeat;
     <p>İletişim:</p>
     <p><a href="https://wa.me/c/905454388096" target="_blank">WhatsApp</a> | <a href="https://www.instagram.com/asilkancustom/" target="_blank">Instagram</a> | <a href="mailto:asilkan.customwears@gmail.com">Email</a></p>
   </footer>
+  
+<div id="lightbox" style="display: none;">
+  <span id="close-btn">&times;</span>
+  <img id="lightbox-img" src="">
+</div>
 
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const images = document.querySelectorAll('.clickable-image');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const closeBtn = document.getElementById('close-btn');
+
+    images.forEach(img => {
+      img.addEventListener('click', () => {
+        lightbox.style.display = 'flex';
+        lightboxImg.src = img.src;
+      });
+    });
+
+    closeBtn.addEventListener('click', () => {
+      lightbox.style.display = 'none';
+    });
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) {
+        lightbox.style.display = 'none';
+      }
+    });
+  });
+</script>
+  
 </body>
 </html>
