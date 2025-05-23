@@ -48,20 +48,33 @@
   
   <!-- Tüm CSS burada -->
 <style>
- body { 
-  header p {
-  font-size: 1.5rem;
-  max-width: 800px;
-  margin: 20px auto;
-  line-height: 1.6;
+/* Genel Ayarlar */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #fdf8f2;
+  color: #3d2b1f;
 }
 
+/* Logo */
 .logo {
   width: 200px;
   height: auto;
   margin: 0 auto 20px;
+  display: block;
 }
 
+/* Header */
+header p {
+  font-size: 1.5rem;
+  max-width: 800px;
+  margin: 20px auto;
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* Carousel */
 .carousel {
   position: relative;
   width: 100%;
@@ -91,6 +104,7 @@
   }
 }
 
+/* Bölümler */
 .section {
   padding: 60px 20px;
   max-width: 1000px;
@@ -104,6 +118,7 @@
   margin-bottom: 30px;
 }
 
+/* Ürün Kartları */
 .products {
   display: flex;
   justify-content: center;
@@ -144,6 +159,7 @@
   color: #4b3b2b;
 }
 
+/* Login Form */
 .login-form {
   max-width: 400px;
   margin: auto;
@@ -172,6 +188,7 @@
   background-color: #7a1e1e;
 }
 
+/* Footer */
 footer {
   background-color: #d7c2b0;
   color: #3d2b1f;
@@ -187,82 +204,6 @@ footer a {
 
 footer a:hover {
   text-decoration: underline;
-}
-
-@media (max-width: 600px) {
-  header h1 {
-    font-size: 2rem;
-  }
-
-  header p {
-    font-size: 1.1rem;
-  }
-
-  .carousel {
-    height: 250px;
-  }
-
-  .carousel-track img {
-    height: 250px;
-  }
-}
-
-/* Hamburger Menü */
-.hamburger-menu {
-  display: none;
-  flex-direction: column;
-  cursor: pointer;
-}
-
-.hamburger-menu .bar {
-  width: 25px;
-  height: 3px;
-  margin: 4px 0;
-  background-color: white;
-  transition: 0.4s;
-}
-
-/* Mobil cihazlarda hamburger menü */
-@media (max-width: 768px) {
-  .hamburger-menu {
-    display: flex;
-  }
-
-  .nav-links {
-    display: none;
-    width: 100%;
-    flex-direction: column;
-    text-align: center;
-    background-color: #3d2b1f;
-    position: absolute;
-    top: 60px;
-    left: 0;
-  }
-
-  .nav-links.show {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .nav-links li {
-    padding: 15px 0;
-    width: 100%;
-  }
-}
-
-/* 769px ve daha büyük ekranlar */
-@media (min-width: 769px) {
-  .nav-links {
-    display: flex !important;
-    position: static;
-    flex-direction: row;
-    justify-content: center;
-  }
-
-  .hamburger-menu {
-    display: none;
-  }
 }
 
 /* Lightbox */
@@ -296,7 +237,48 @@ footer a:hover {
   z-index: 10000;
 }
 
-/* Dropdown menü */
+/* Hamburger Menü */
+.hamburger-menu {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.hamburger-menu .bar {
+  width: 25px;
+  height: 3px;
+  margin: 4px 0;
+  background-color: white;
+  transition: 0.4s;
+}
+
+/* Navigasyon Menüsü */
+.nav-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.nav-links li {
+  display: inline-block;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  padding: 10px 15px;
+}
+
+.nav-links a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+}
+
+/* Dropdown Menü */
 .dropdown {
   position: relative;
 }
@@ -329,7 +311,7 @@ footer a:hover {
   display: block;
 }
 
-/* Hamburger menü kontrolü */
+/* Hamburger Menü - JS destekli açılma */
 #nav-links {
   display: none;
 }
@@ -338,8 +320,53 @@ footer a:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: #3d2b1f;
+  width: 100%;
+  position: absolute;
+  top: 60px;
+  left: 0;
 }
-</style>  
+
+/* Responsive Tasarım */
+@media (max-width: 768px) {
+  .hamburger-menu {
+    display: flex;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    background-color: #3d2b1f;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    display: none;
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+
+  .nav-links li {
+    padding: 15px 0;
+    width: 100%;
+  }
+}
+
+@media (min-width: 769px) {
+  .hamburger-menu {
+    display: none;
+  }
+
+  .nav-links {
+    display: flex !important;
+    position: static;
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+</style>
 </head>
   
 <body>
