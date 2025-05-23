@@ -391,24 +391,24 @@ background: url('https://i.imgur.com/RDZIPps.jpeg') repeat;
       <span class="bar"></span>
     </div>
 
-    <ul class="nav-links" id="nav-links">
-      <li><a href="#home">Ana Sayfa</a></li>
+<nav>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#home">Ana Sayfa</a></li>
 
-        <!-- Ürünler Menüsü -->
-      <li class="dropdown">
-        <a href="#products" onclick="toggleDropdown(event)">Ürünler</a>
-        <ul class="dropdown-menu" id="dropdown-menu">
-          <li><a href="Ceketler">Ceketler</a></li>
-          <li><a href="Çantalar">Çantalar</a></li>
-          <li><a href="Yaz Sezonunun Trendleri">Yaz Sezonunun Trendleri</a></li>
-        </ul>
-      </li>
+    <!-- Ürünler Menüsü -->
+    <li class="dropdown">
+      <a href="#" onclick="toggleDropdown(event)">Ürünler</a>
+      <ul class="dropdown-menu" id="dropdown-menu">
+        <li><a href="#ceketler">Ceketler</a></li>
+        <li><a href="#cantalar">Çantalar</a></li>
+        <li><a href="#trendler">Yaz Sezonunun Trendleri</a></li>
+      </ul>
+    </li>
 
-      <li><a href="#about">Hakkımızda</a></li>
-      <li><a href="https://wa.me/c/905454388096" target="_blank">İletişim</a></li>
-      <li><a href="#cart">Beden Bilgisi</a></li>
-    </ul>
-  </div>
+    <li><a href="#about">Hakkımızda</a></li>
+    <li><a href="https://wa.me/c/905454388096" target="_blank">İletişim</a></li>
+    <li><a href="#cart">Beden Bilgisi</a></li>
+  </ul>
 </nav>
 
 <header id="home" style="text-align: center; padding:5px;">
@@ -421,22 +421,23 @@ background: url('https://i.imgur.com/RDZIPps.jpeg') repeat;
   <h1 style="font-family:'Aptos', serif; font-size: 40px;color: #4B0000; margin:5px 0;">
     AsilkanCustom
   </h1>
-<p style="font-family:'Aptos', serif; font-size: 15px; color: #4B0000; font-weight: bold;">
-  (Geçmişin ruhunu, el emeğini ve sizin hikayenizi bir araya getiriyoruz.)
-</p>
+  <p style="font-family:'Aptos', serif; font-size: 15px; color: #4B0000; font-weight: bold;">
+    (Geçmişin ruhunu, el emeğini ve sizin hikayenizi bir araya getiriyoruz.)
+  </p>
 
-    <div class="carousel">
-      <div class="carousel-track"> 
-        <img src="https://i.imgur.com/WzlSfVi.jpeg" alt="Ürün 1">
-        <img src="https://i.imgur.com/txFwYJn.jpeg" alt="Ürün 2">
-        <img src="https://i.imgur.com/BGECmbh.jpeg" alt="Ürün 3">
-        <img src="https://i.imgur.com/QrExQJC.jpeg" alt="Ürün 4">
-        <img src="https://i.imgur.com/uERTE2A.jpeg" alt="Ürün 5">
-        <img src="https://i.imgur.com/4cjlU1w.jpeg" alt="Ürün 6">  
-      </div>
+  <div class="carousel">
+    <div class="carousel-track"> 
+      <img src="https://i.imgur.com/WzlSfVi.jpeg" alt="Ürün 1">
+      <img src="https://i.imgur.com/txFwYJn.jpeg" alt="Ürün 2">
+      <img src="https://i.imgur.com/BGECmbh.jpeg" alt="Ürün 3">
+      <img src="https://i.imgur.com/QrExQJC.jpeg" alt="Ürün 4">
+      <img src="https://i.imgur.com/uERTE2A.jpeg" alt="Ürün 5">
+      <img src="https://i.imgur.com/4cjlU1w.jpeg" alt="Ürün 6">  
     </div>
-  </header>
+  </div>
+</header>
 
+<!-- CEKETLER BÖLÜMÜ -->
 <section class="section" id="ceketler">
   <h2>Ceketler</h2>
   <div class="products">
@@ -509,38 +510,37 @@ background: url('https://i.imgur.com/RDZIPps.jpeg') repeat;
     </div>
  </section>
 
-  <section class="section" id="Çantalar">
-    <h2>Çantalar</h2>
-    <div class="products">
-      <div class="product-card">  
-        <img src="https://i.imgur.com/EdojvaG.jpeg" alt="Çanta 1" class="clickable-image">
-        <p>Halılardan tasarlanmış şık bir çanta.</p>
-      </div>
-      <div class="product-card">
-        <img src="https://i.imgur.com/QZ7hZ4W.jpeg" alt="Çanta 2" class="clickable-image">
-        <p>Geçmişin izlerini taşıyan tasarım.</p>
-      </div>
-      <div class="product-card">
-        <img src="https://i.imgur.com/yAukquO.jpeg" alt="Çanta 3" class="clickable-image">
-        <p>El yapımı özgün tasarım.</p>
-      </div>
-      </div>  
+<section class="section" id="cantalar">
+  <h2>Çantalar</h2>
+  <div class="products">
+    <div class="product-card">  
+      <img src="https://i.imgur.com/EdojvaG.jpeg" alt="Çanta 1" class="clickable-image">
+      <p>Halılardan tasarlanmış şık bir çanta.</p>
     </div>
- </section>
+    <div class="product-card">
+      <img src="https://i.imgur.com/QZ7hZ4W.jpeg" alt="Çanta 2" class="clickable-image">
+      <p>Geçmişin izlerini taşıyan tasarım.</p>
+    </div>
+    <div class="product-card">
+      <img src="https://i.imgur.com/yAukquO.jpeg" alt="Çanta 3" class="clickable-image">
+      <p>El yapımı özgün tasarım.</p>
+    </div>
+  </div>  
+</section>
 
-  <section class="section" id="Yaz Sezonunun Trendi">
-    <h2>Yaz Sezonunun Trendi</h2>
-    <div class="products">
-      <div class="product-card">  
-        <img src="https://i.imgur.com/mJo5QjJ.jpeg" alt="Yaz Sezonunun Trendi" class="clickable-image">
-        <p>Hem şıklığı hem de rahatlığı bir arada sunarak yaz aylarında özgün bir stil.</p>
-      </div>           
-      <div class="product-card">
-        <img src="https://i.imgur.com/ykwtfHk.jpeg" alt="Yaz Sezonunun Trendi" class="clickable-image">
-        <p>Geçmişin dokusuyla geleceğin tarzı.</p>
-      </div>         
-    </div>
-  </section>
+<section class="section" id="yaz-sezonunun-trendi">
+  <h2>Yaz Sezonunun Trendi</h2>
+  <div class="products">
+    <div class="product-card">  
+      <img src="https://i.imgur.com/mJo5QjJ.jpeg" alt="Yaz Sezonunun Trendi 1" class="clickable-image">
+      <p>Hem şıklığı hem de rahatlığı bir arada sunarak yaz aylarında özgün bir stil.</p>
+    </div>           
+    <div class="product-card">
+      <img src="https://i.imgur.com/ykwtfHk.jpeg" alt="Yaz Sezonunun Trendi 2" class="clickable-image">
+      <p>Geçmişin dokusuyla geleceğin tarzı.</p>
+    </div>         
+  </div>
+</section>
 
     <section class="section" id="about">
   <h3>1. Biz Kimiz?</h3>
