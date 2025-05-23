@@ -341,6 +341,39 @@ background: url('https://i.imgur.com/RDZIPps.jpeg') repeat;
   cursor: pointer;
   z-index: 10000;
 }
+
+/* Dropdown menü başlangıçta gizli */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: white;
+  list-style-type: none;
+  margin: 0;
+  padding: 10px 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  top: 100%;
+  left: 0;
+  z-index: 1001;
+}
+
+.dropdown-menu li {
+  padding: 5px 20px;
+}
+
+.dropdown-menu li a {
+  color: #333;
+  text-decoration: none;
+  font-size: 1rem;
+  white-space: nowrap;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}  
   </style
 
 <head>
