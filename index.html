@@ -47,276 +47,231 @@
 </script>
   
   <!-- Tüm CSS burada -->
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Arial', sans-serif;
-      background: url('https://i.imgur.com/RDZIPps.jpeg') repeat;
-    }
+<style>
+  header p {
+  font-size: 1.5rem;
+  max-width: 800px;
+  margin: 20px auto;
+  line-height: 1.6;
+}
 
-    nav {
-      position: sticky;
-      top: 0;
-      background-color: #3d2b1f;
-      padding: 15px 0;
-      z-index: 1000;
-    }
+.logo {
+  width: 200px;
+  height: auto;
+  margin: 0 auto 20px;
+}
 
-    nav ul {
-      list-style: none;
-      text-align: center;
-      margin: 0;
-      padding: 0;
-    }
+.carousel {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  height: 500px;
+  margin-top: 40px;
+}
 
-    nav ul li {
-      display: inline-block;
-      margin: 0 20px;
-    }
+.carousel-track {
+  display: flex;
+  width: calc(200%);
+  animation: scroll 40s linear infinite;
+}
 
-    nav ul li a {
-      color: white;
-      text-decoration: none;
-      font-size: 1.2rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      transition: all 0.3s ease;
-    }
-    nav ul li a:hover {
-      color: #a52a2a;
-    }
+.carousel-track img {
+  width: 20%;
+  height: 500px;
+  object-fit: cover;
+}
 
-    header {
-      text-align: center;
-      padding: 100px 20px 50px;
-      background: url('https://i.imgur.com/RDZIPps.jpeg') repeat;
-      color: #7a1e1e;
-    }
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
 
-    header h1 {
-      font-size: 3rem;
-      margin: 0;
-    }
+.section {
+  padding: 60px 20px;
+  max-width: 1000px;
+  margin: auto;
+}
 
-    header p {
-      font-size: 1.5rem;
-      max-width: 800px;
-      margin: 20px auto;
-      line-height: 1.6;
-    }
+.section h2 {
+  text-align: center;
+  color: #3d2b1f;
+  font-size: 2rem;
+  margin-bottom: 30px;
+}
 
-    .logo {
-      width: 200px;
-      height: auto;
-      margin: 0 auto 20px;
-    }
+.products {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
 
-    .carousel {
-      position: relative;
-      width: 100%;
-      overflow: hidden;
-      height: 500px;
-      margin-top: 40px;
-    }
+.product-card {
+  background-color: #fffaf5;
+  border-radius: 16px;
+  overflow: hidden;
+  width: 300px;
+  box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
 
-    .carousel-track {
-      display: flex;
-      width: calc(200%); 
-      animation: scroll 40s linear infinite;
-    }
+.product-card img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
 
-    .carousel-track img {
-      width: 20%;
-      height: 500px;
-      object-fit: cover;
-    }
+.product-card:hover {
+  transform: scale(1.05);
+}
 
-    @keyframes scroll {
-      0% {
-        transform: translateX(0);
-      }
-      100% {
-        transform: translateX(-50%);
-      }
-    }
+.product-card h2 {
+  font-size: 1.5rem;
+  padding: 10px;
+  margin: 0;
+  background-color: #a52a2a;
+  color: white;
+}
 
-    .section {
-      padding: 60px 20px;
-      max-width: 1000px;
-      margin: auto;
-    }
+.product-card p {
+  padding: 10px;
+  font-size: 1.1rem;
+  color: #4b3b2b;
+}
 
-    .section h2 {
-      text-align: center;
-      color: #3d2b1f;
-      font-size: 2rem;
-      margin-bottom: 30px;
-    }
+.login-form {
+  max-width: 400px;
+  margin: auto;
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
 
-    .products {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      flex-wrap: wrap;
-    }
+.login-form input,
+.login-form button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 15px;
+  font-size: 1rem;
+}
 
-    .product-card {
-      background-color: #fffaf5;
-      border-radius: 16px;
-      overflow: hidden;
-      width: 300px;
-      box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2);
-      transition: transform 0.3s ease;
-    }
+.login-form button {
+  background-color: #a52a2a;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
 
-    .product-card img {
-      width: 100%;
-      height: 250px;
-      object-fit: cover;
-    }
+.login-form button:hover {
+  background-color: #7a1e1e;
+}
 
-    .product-card:hover {
-      transform: scale(1.05);
-    }
+footer {
+  background-color: #d7c2b0;
+  color: #3d2b1f;
+  text-align: center;
+  padding: 20px;
+}
 
-    .product-card h2 {
-      font-size: 1.5rem;
-      padding: 10px;
-      margin: 0;
-      background-color: #a52a2a;
-      color: white;
-    }
+footer a {
+  color: #7a1e1e;
+  text-decoration: none;
+  font-weight: 600;
+}
 
-    .product-card p {
-      padding: 10px;
-      font-size: 1.1rem;
-      color: #4b3b2b;
-    }
+footer a:hover {
+  text-decoration: underline;
+}
 
-    .login-form {
-      max-width: 400px;
-      margin: auto;
-      background: #fff;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
-    }
+@media (max-width: 600px) {
+  header h1 {
+    font-size: 2rem;
+  }
 
-    .login-form input, .login-form button {
-      width: 100%;
-      padding: 10px;
-      margin-top: 15px;
-      font-size: 1rem;
-    }
+  header p {
+    font-size: 1.1rem;
+  }
 
-    .login-form button {
-      background-color: #a52a2a;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
+  .carousel {
+    height: 250px;
+  }
 
-    .login-form button:hover {
-      background-color: #7a1e1e;
-    }
+  .carousel-track img {
+    height: 250px;
+  }
+}
 
-    footer {
-      background-color: #d7c2b0;
-      color: #3d2b1f;
-      text-align: center;
-      padding: 20px;
-    }
+/* Hamburger Menü */
+.hamburger-menu {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
 
-    footer a {
-      color: #7a1e1e;
-      text-decoration: none;
-      font-weight: 600;
-    }
+.hamburger-menu .bar {
+  width: 25px;
+  height: 3px;
+  margin: 4px 0;
+  background-color: white;
+  transition: 0.4s;
+}
 
-    footer a:hover {
-      text-decoration: underline;
-    }
+/* Mobil cihazlarda hamburger menü */
+@media (max-width: 768px) {
+  .hamburger-menu {
+    display: flex;
+  }
 
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 2rem;
-      }
+  .nav-links {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    text-align: center;
+    background-color: #3d2b1f;
+    position: absolute;
+    top: 60px;
+    left: 0;
+  }
 
-      header p {
-        font-size: 1.1rem;
-      }
+  .nav-links.show {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
-      .carousel {
-        height: 250px;
-      }
+  .nav-links li {
+    padding: 15px 0;
+    width: 100%;
+  }
+}
 
-      .carousel-track img {
-        height: 250px;
-      }
-    }
+/* 769px ve daha büyük ekranlar */
+@media (min-width: 769px) {
+  .nav-links {
+    display: flex !important;
+    position: static;
+    flex-direction: row;
+    justify-content: center;
+  }
 
-    /* Hamburger Menü */
-    .hamburger-menu {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-    }
+  .hamburger-menu {
+    display: none;
+  }
+}
 
-    .hamburger-menu .bar {
-      width: 25px;
-      height: 3px;
-      margin: 4px 0;
-      background-color: white;
-      transition: 0.4s;
-    }
-
-    /* Mobil cihazlarda hamburger menü simgesi görünsün */
-    @media (max-width: 768px) {
-      .hamburger-menu {
-        display: flex;
-      }
-
-      .nav-links {
-        display: none;
-        width: 100%;
-        flex-direction: column;
-        text-align: center;
-        background-color: #3d2b1f;
-        position: absolute;
-        top: 60px;
-        left: 0;
-      }
-
-      .nav-links li {
-        padding: 15px 0;
-      }
-
-      .nav-links.show {
-        display: flex;
-      }
-    }
-
-    /* 769px ve daha büyük ekranlar için medya sorgusu */
-    @media (min-width: 769px) {
-      .nav-links {
-        display: flex !important;
-        position: static;
-        flex-direction: row;
-        justify-content: center;
-      }
-
-      .hamburger-menu {
-        display: none;
-      }
-    }
-  
-  #lightbox {
+/* Lightbox */
+#lightbox {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0,0,0,0.8);
+  background: rgba(0, 0, 0, 0.8);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -340,7 +295,7 @@
   z-index: 10000;
 }
 
-/* Dropdown menü başlangıçta gizli */
+/* Dropdown menü */
 .dropdown {
   position: relative;
 }
@@ -371,16 +326,19 @@
 
 .dropdown:hover .dropdown-menu {
   display: block;
-}  
+}
 
+/* Hamburger menü kontrolü */
 #nav-links {
-  display: none; /* Menü başlangıçta gizli */
+  display: none;
 }
 
 #nav-links.show {
-  display: block; /* Menü açıkken göster */
-}    
-  </style>    
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+</style>  
 </head>
   
 <body>
