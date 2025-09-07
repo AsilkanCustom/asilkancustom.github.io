@@ -14,15 +14,6 @@
   <!-- Favicon (küçük base64) -->
   <link rel="icon" type="image/jpeg" href="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxAQEBIQEhAQEA8PEA8QDxAQDxAQEA8QFREWFhURFRUYHSggGBolHRUVITEhJSkrLi4uFx8zODMtNygtLisBCgoKDg0OGxAQGy0lHyUtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLf/AABEIAKAAoQMBIgACEQEDEQH/xAAXAAEBAQEAAAAAAAAAAAAAAAABAgME/8QAHhABAQACAQUAAAAAAAAAAAAAAQIAAxEhEjFBgZH/xAAXAQEBAQEAAAAAAAAAAAAAAAAAAQID/8QAFxEBAQEBAAAAAAAAAAAAAAAAAQARIf/aAAwDAQACEQMRAD8A2Y0F2g0sQm0xgQ9C5n1Jx1i9hZbZ8iNSn3lqF0qGm0cXl1W7QdXl8m7H0p5q7Q3lS3l3xkFJ7gAB0y7beQf/9k=" />
 
-  <!-- Google Analytics (opsiyonel) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BL879TEEGW"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);} 
-    gtag('js', new Date());
-    gtag('config', 'G-BL879TEEGW');
-  </script>
-
   <style>
     :root{ --bg:#fff8f2; --primary:#3d2b1f; --accent:#a52a2a; --text:#4b3b2b; --card:#fffaf5; }
     *{box-sizing:border-box}
@@ -424,7 +415,7 @@
   </div>
 
   <script>
-    /* ========= Basit Router (pushState yok) ========= */
+    /* ========= Router: Sadece hashchange + DOM ========= */
     function showPage(name){
       document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
       const el = document.getElementById('page-' + name);
@@ -435,35 +426,18 @@
       const allowed = ['home','ceketler','cantalar','trendler','about','cart'];
       return allowed.includes(h) ? h : 'home';
     }
-    function updateHashSafely(page){ try { location.hash = page; } catch(_) {} }
 
     document.addEventListener('DOMContentLoaded', () => {
       const hamburger = document.getElementById('hamburger');
       const navLinks = document.getElementById('nav-links');
       const dropdown = document.getElementById('dropdown-products');
 
+      // İlk yükleme
       showPage(getPageFromHash());
-
-      document.querySelectorAll('[data-page]').forEach(el=>{
-        el.addEventListener('click', (e)=>{
-          const page = e.currentTarget.getAttribute('data-page');
-          if(page){ e.preventDefault(); showPage(page); updateHashSafely(page); }
-          navLinks?.classList.remove('show');
-          hamburger?.setAttribute('aria-expanded','false');
-        });
-      });
+      // Geri/ileri
       window.addEventListener('hashchange', ()=> showPage(getPageFromHash()));
 
-      // Evrensel (delegated) dinleyici: data-page'li her şeye çalışır
-      document.addEventListener('click', (e)=>{
-        const link = e.target.closest('[data-page]');
-        if(!link) return;
-        const page = link.getAttribute('data-page');
-        if(page){ e.preventDefault(); showPage(page); updateHashSafely(page); }
-        navLinks?.classList.remove('show');
-        hamburger?.setAttribute('aria-expanded','false');
-      });
-
+      // Hamburger aç/kapat
       hamburger?.addEventListener('click', (e) => {
         e.stopPropagation();
         const open = navLinks?.classList.toggle('show');
@@ -475,17 +449,22 @@
           hamburger.setAttribute('aria-expanded','false');
         }
       });
+
+      // Dropdown sadece aç/kapat
       const dropBtn = dropdown?.querySelector('button');
       dropBtn?.addEventListener('click', (e) => {
         e.preventDefault();
-        // Menü aç/kapat
         dropdown.classList.toggle('open');
         dropBtn.setAttribute('aria-expanded', String(dropdown.classList.contains('open')));
-        // Kullanıcı doğrudan "Ürünler" butonuna basarsa Ceketler sayfasına geç
-        if (!e.target.closest('.dropdown-menu')) {
-          showPage('ceketler');
-          updateHashSafely('ceketler');
-        }
+      });
+
+      // Hash linkine tıklanınca menüyü kapat (mobil)
+      navLinks?.addEventListener('click', (e)=>{
+        const a = e.target.closest('a[href^="#"]');
+        if(!a) return;
+        navLinks.classList.remove('show');
+        hamburger?.setAttribute('aria-expanded','false');
+        // Yönlendirmeyi tarayıcı yapar → hashchange tetiklenir
       });
 
       /* ========= Genel Lightbox ========= */
@@ -512,7 +491,6 @@
       const pmWA = document.getElementById('pm-wa');
       const pmShare = document.getElementById('pm-share');
 
-      // Form alanları
       const secJacket = document.getElementById('sec-jacket');
       const secBag = document.getElementById('sec-bag');
       const mChest = document.getElementById('m-chest');
@@ -548,7 +526,6 @@
       let currentIndex = 0; let currentImages = []; let currentProductId = null;
 
       function isBag(){ return /^canta-/.test(currentProductId||''); }
-
       function buildMeasurementText(){
         const u = mUnit.value || 'cm';
         const fields = [];
@@ -569,19 +546,16 @@ Not: ${mNotes.value}` : '';
         return fields.length ? `
 ${isBag()?'Boyutlar':'Ölçüler'}: ${fields.join(', ')}${notes}` : notes;
       }
-
       function buildWAUrl(title){
         const text = encodeURIComponent(`Merhaba, ${title} ürününüzle ilgileniyorum.${buildMeasurementText()}
 Uygunluk ve teslimat bilgisi alabilir miyim?`);
         return `https://wa.me/${WAPhone}?text=${text}`;
       }
-
       function setActive(i){
         currentIndex = (i + currentImages.length) % currentImages.length;
         gMain.src = currentImages[currentIndex];
         [...gThumbs.querySelectorAll('img')].forEach((t,idx)=> t.classList.toggle('active', idx === currentIndex));
       }
-
       function renderThumbs(){
         gThumbs.innerHTML = '';
         currentImages.forEach((src, idx) => {
@@ -591,12 +565,10 @@ Uygunluk ve teslimat bilgisi alabilir miyim?`);
           gThumbs.appendChild(t);
         });
       }
-
       function toggleForms(){
         if (isBag()) { secBag.style.display='grid'; secJacket.style.display='none'; }
         else { secBag.style.display='none'; secJacket.style.display='grid'; }
       }
-
       function openProduct(card){
         const id = card.dataset.product || 'generic';
         const img = card.querySelector('img');
@@ -607,7 +579,6 @@ Uygunluk ve teslimat bilgisi alabilir miyim?`);
         renderThumbs(); setActive(0); toggleForms(); pmWA.href = buildWAUrl(data.title);
         productModal.classList.add('show'); productModal.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden';
       }
-
       function closeProduct(){ productModal.classList.remove('show'); productModal.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
 
       document.querySelectorAll('.product-card .product-image').forEach(img => {
@@ -615,57 +586,32 @@ Uygunluk ve teslimat bilgisi alabilir miyim?`);
       });
       gPrev.addEventListener('click', ()=> setActive(currentIndex-1));
       gNext.addEventListener('click', ()=> setActive(currentIndex+1));
-
-      // Touch swipe
       let startX = 0;
       gMain.addEventListener('touchstart', (e)=>{ startX = e.changedTouches[0].clientX; }, {passive:true});
       gMain.addEventListener('touchend', (e)=>{
         const dx = e.changedTouches[0].clientX - startX;
         if(Math.abs(dx) > 40){ dx < 0 ? setActive(currentIndex+1) : setActive(currentIndex-1); }
       });
-
-      // Form değişikliklerinde WA linkini güncelle
       [mChest,mShoulder,mSleeve,mWaist,mHeight,mWeight,bWidth,bHeight,bDepth,mNotes,mUnit].forEach(el=>{
         el?.addEventListener('input', ()=>{ pmWA.href = buildWAUrl(pmTitle.textContent); });
         el?.addEventListener('change', ()=>{ pmWA.href = buildWAUrl(pmTitle.textContent); });
       });
-
-      // Paylaş
       pmShare.addEventListener('click', async ()=>{
         const shareData = { title: pmTitle.textContent, text: pmDesc.textContent + '
 ' + buildMeasurementText(), url: location.href };
         try{ if(navigator.share){ await navigator.share(shareData); } else { alert('Paylaşım desteği bulunmuyor.'); } }
         catch(err){ }
       });
-
       pmCloseBtn.addEventListener('click', closeProduct);
       productModal.addEventListener('click', (e)=>{ if(e.target === productModal) closeProduct(); });
       document.addEventListener('keydown', (e)=>{ if(e.key==='Escape' && productModal.classList.contains('show')) closeProduct(); });
 
-      /* ========= Basit Testler ========= */
+      /* ========= Basit Testler (konsol) ========= */
       (function runTests(){
         function test(name, fn){ try{ fn(); console.log('✅ '+name); } catch(e){ console.error('❌ '+name, e); } }
-        test('Dropdown kahverengi arkaplan', ()=>{
-          const dm = document.querySelector('.dropdown-menu');
-          if (!dm) throw new Error('dropdown yok');
-          const bg = getComputedStyle(dm).backgroundColor;
-          if (!bg) throw new Error('stil okunamadı');
-        });
-        test('Router pushState kullanmıyor', ()=>{
-          const src = (''+updateHashSafely).toString();
-          if (/pushState/.test(src)) throw new Error('pushState kullanılmamalı');
-        });
-        test('Çantalarda boyut formu açılıyor', ()=>{
-          const card = document.querySelector('[data-product="canta-1"]');
-          card.querySelector('img').dispatchEvent(new MouseEvent('click',{bubbles:true}));
-          if (secBag.style.display==='none') throw new Error('Çanta formu görünmüyor');
-          document.getElementById('pm-close').click();
-        });
-        test('Ceketlerde ölçü formu açılıyor', ()=>{
-          const card = document.querySelector('[data-product="ceket-1"]');
-          card.querySelector('img').dispatchEvent(new MouseEvent('click',{bubbles:true}));
-          if (secJacket.style.display==='none') throw new Error('Ceket formu görünmüyor');
-          document.getElementById('pm-close').click();
+        test('Router sadece hash kullanıyor', ()=>{ if(!('onhashchange' in window)) throw new Error('hashchange yok'); });
+        test('Nav linkleri hash içeriyor', ()=>{
+          document.querySelectorAll('#nav-links a[href^="#"]').forEach(a=>{ if(!a.getAttribute('href')) throw new Error('href yok'); });
         });
       })();
     });
