@@ -53,7 +53,8 @@
 
     /* SAYFALAR */
     .page{ display:none }
-    .page.active{ display:block }
+    .page:target{ display:block }
+    .page#home{ display:block }
 
     header{ text-align:center; padding:60px 16px 30px; color:#7a1e1e; background:url('https://i.imgur.com/RDZIPps.jpeg') repeat }
     header .logo{ height:100px; width:auto }
@@ -148,8 +149,8 @@
   </nav>
 
   <!-- HOME -->
-  <div class="page active" id="page-home">
-    <header id="home">
+  <div class="page active" id="home">
+    <header id="home-hero">
       <img class="logo" src="https://i.imgur.com/14VgsWh.png" alt="Asilkan Custom Logo" />
       <h1>AsilkanCustom</h1>
       <p style="font-weight:700;color:#4B0000">Geçmişin ruhunu, el emeğini ve sizin hikayenizi bir araya getiriyoruz.</p>
@@ -182,8 +183,8 @@
   </div>
 
   <!-- CEKETLER -->
-  <div class="page" id="page-ceketler">
-    <section class="section" id="ceketler">
+  <div class="page" id="ceketler">
+    <section class="section" id="ceketler-sec">
       <h2>Ceketler</h2>
       <div class="products">
         <div class="product-card" data-product="ceket-1">
@@ -247,8 +248,8 @@
   </div>
 
   <!-- ÇANTALAR -->
-  <div class="page" id="page-cantalar">
-    <section class="section" id="cantalar">
+  <div class="page" id="cantalar">
+    <section class="section" id="cantalar-sec">
       <h2>Çantalar</h2>
       <div class="products">
         <div class="product-card" data-product="canta-1">
@@ -268,8 +269,8 @@
   </div>
 
   <!-- TRENDLER -->
-  <div class="page" id="page-trendler">
-    <section class="section" id="trendler">
+  <div class="page" id="trendler">
+    <section class="section" id="trendler-sec">
       <h2>Yaz Sezonunun Trendi</h2>
       <div class="products">
         <div class="product-card" data-product="trend-1">
@@ -293,8 +294,8 @@
   </div>
 
   <!-- HAKKIMIZDA -->
-  <div class="page" id="page-about">
-    <section class="section" id="about">
+  <div class="page" id="about">
+    <section class="section" id="about-sec">
       <h2>Hakkımızda</h2>
       <h3>1. Biz Kimiz?</h3>
       <h4>Asilkan Custom – Her Parça Bir Miras</h4>
@@ -330,8 +331,8 @@
   </div>
 
   <!-- BEDEN BİLGİSİ -->
-  <div class="page" id="page-cart">
-    <section class="section" id="cart">
+  <div class="page" id="cart">
+    <section class="section" id="cart-sec">
       <h2>Beden Bilgisi</h2>
       <div class="products">
         <div class="product-card"><img src="https://i.imgur.com/4ieGN8D.jpeg" alt="Beden ölçü şeması 1" class="clickable-image" loading="lazy"></div>
@@ -415,205 +416,198 @@
   </div>
 
   <script>
-    /* ========= Router: Sadece hashchange + DOM ========= */
-    function showPage(name){
-      document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-      const el = document.getElementById('page-' + name);
-      if(el){ el.classList.add('active'); window.scrollTo({top:0, behavior:'smooth'}); }
-    }
-    function getPageFromHash(){
-      const h = (location.hash || '#home').replace('#','');
-      const allowed = ['home','ceketler','cantalar','trendler','about','cart'];
-      return allowed.includes(h) ? h : 'home';
-    }
+    // Yardımcı: güvenli selector
+    function $(sel, ctx){ return (ctx||document).querySelector(sel); }
+    function $all(sel, ctx){ return Array.prototype.slice.call((ctx||document).querySelectorAll(sel)); }
 
-    document.addEventListener('DOMContentLoaded', () => {
-      const hamburger = document.getElementById('hamburger');
-      const navLinks = document.getElementById('nav-links');
-      const dropdown = document.getElementById('dropdown-products');
+    document.addEventListener('DOMContentLoaded', function(){
+      try{
+        var hamburger = document.getElementById('hamburger');
+        var navLinks  = document.getElementById('nav-links');
+        var dropdown  = document.getElementById('dropdown-products');
+        var dropBtn   = dropdown ? dropdown.querySelector('button') : null;
 
-      // İlk yükleme
-      showPage(getPageFromHash());
-      // Geri/ileri
-      window.addEventListener('hashchange', ()=> showPage(getPageFromHash()));
-
-      // Hamburger aç/kapat
-      hamburger?.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const open = navLinks?.classList.toggle('show');
-        hamburger.setAttribute('aria-expanded', String(!!open));
-      });
-      document.addEventListener('click', (e) => {
-        if (navLinks && hamburger && !navLinks.contains(e.target) && !hamburger.contains(e.target)) {
-          navLinks.classList.remove('show');
-          hamburger.setAttribute('aria-expanded','false');
+        // Hamburger aç/kapat
+        if(hamburger){
+          hamburger.addEventListener('click', function(e){
+            e.stopPropagation();
+            if(navLinks){
+              var open = navLinks.classList.toggle('show');
+              hamburger.setAttribute('aria-expanded', String(!!open));
+            }
+          });
         }
-      });
-
-      // Dropdown sadece aç/kapat
-      const dropBtn = dropdown?.querySelector('button');
-      dropBtn?.addEventListener('click', (e) => {
-        e.preventDefault();
-        dropdown.classList.toggle('open');
-        dropBtn.setAttribute('aria-expanded', String(dropdown.classList.contains('open')));
-      });
-
-      // Hash linkine tıklanınca menüyü kapat (mobil)
-      navLinks?.addEventListener('click', (e)=>{
-        const a = e.target.closest('a[href^="#"]');
-        if(!a) return;
-        navLinks.classList.remove('show');
-        hamburger?.setAttribute('aria-expanded','false');
-        // Yönlendirmeyi tarayıcı yapar → hashchange tetiklenir
-      });
-
-      /* ========= Genel Lightbox ========= */
-      const glImages = document.querySelectorAll('.clickable-image');
-      const lightbox = document.getElementById('lightbox');
-      const lightboxImg = document.getElementById('lightbox-img');
-      const closeBtn = document.getElementById('close-btn');
-      function closeLightbox(){ lightbox.classList.remove('show'); lightbox.setAttribute('aria-hidden','true'); lightboxImg.src=''; }
-      glImages.forEach(img => img.addEventListener('click', () => { lightbox.classList.add('show'); lightbox.setAttribute('aria-hidden','false'); lightboxImg.src=img.src; lightboxImg.alt=img.alt||'Büyük görüntü'; }));
-      closeBtn.addEventListener('click', closeLightbox);
-      lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
-      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
-
-      /* ========= Ürün Modal + Galeri + Ölçü/Boyut ========= */
-      const productModal = document.getElementById('product-modal');
-      const pmCloseBtn = document.getElementById('pm-close');
-      const gMain = document.getElementById('g-main');
-      const gThumbs = document.getElementById('g-thumbs');
-      const gPrev = document.getElementById('g-prev');
-      const gNext = document.getElementById('g-next');
-      const pmTitle = document.getElementById('pm-title');
-      const pmPrice = document.getElementById('pm-price');
-      const pmDesc = document.getElementById('pm-desc');
-      const pmWA = document.getElementById('pm-wa');
-      const pmShare = document.getElementById('pm-share');
-
-      const secJacket = document.getElementById('sec-jacket');
-      const secBag = document.getElementById('sec-bag');
-      const mChest = document.getElementById('m-chest');
-      const mShoulder = document.getElementById('m-shoulder');
-      const mSleeve = document.getElementById('m-sleeve');
-      const mWaist = document.getElementById('m-waist');
-      const mHeight = document.getElementById('m-height');
-      const mWeight = document.getElementById('m-weight');
-      const bWidth = document.getElementById('b-width');
-      const bHeight = document.getElementById('b-height');
-      const bDepth = document.getElementById('b-depth');
-      const mNotes = document.getElementById('m-notes');
-      const mUnit = document.getElementById('m-unit');
-
-      const WAPhone = '905454388096';
-      const PRODUCTS = {
-        'ceket-1': { title:'Boho Halı Ceket', price:'₺4.250', desc:'El dokuması halıdan, özel kalıp ve astarla hazırlanmıştır.', images:[
-          'https://i.imgur.com/LVY3ldC.jpeg','https://i.imgur.com/aMvlSQH.jpeg','https://i.imgur.com/k2v6g6w.jpeg']},
-        'ceket-2': { title:'Anadolu Motif Ceket', price:'₺4.050', desc:'Geleneksel motif, modern kesim.', images:[
-          'https://i.imgur.com/k2v6g6w.jpeg','https://i.imgur.com/UeNPAfo.jpeg','https://i.imgur.com/f5CLYLX.jpeg']},
-        'ceket-3': { title:'Vintage Ruh', price:'₺4.600', desc:'Vintage stil, güçlü duruş.', images:[
-          'https://i.imgur.com/UeNPAfo.jpeg','https://i.imgur.com/JY50D7d.jpeg','https://i.imgur.com/DhjUoed.jpeg']},
-        'canta-1': { title:'Halı Dokulu Çanta', price:'₺1.950', desc:'Elde taşınabilir, astarlı iç bölme.', images:[
-          'https://i.imgur.com/EdojvaG.jpeg','https://i.imgur.com/M0CV5gC.jpeg']},
-        'canta-2': { title:'Mini Tote', price:'₺1.750', desc:'Günlük kullanım için ideal.', images:[
-          'https://i.imgur.com/M0CV5gC.jpeg','https://i.imgur.com/yAukquO.jpeg']},
-        'canta-3': { title:'Klasik Halı Çanta', price:'₺2.150', desc:'Uzun omuz askısı, fermuarlı cep.', images:[
-          'https://i.imgur.com/yAukquO.jpeg','https://i.imgur.com/M0CV5gC.jpeg']},
-        'trend-1': { title:'Yaz Trendi Ceket', price:'₺4.300', desc:'Nefes alan iç astar, rahat kalıp.', images:[
-          'https://i.imgur.com/mJo5QjJ.jpeg','https://i.imgur.com/ZVjvWjm.jpeg']}
-      };
-
-      let currentIndex = 0; let currentImages = []; let currentProductId = null;
-
-      function isBag(){ return /^canta-/.test(currentProductId||''); }
-      function buildMeasurementText(){
-        const u = mUnit.value || 'cm';
-        const fields = [];
-        if (isBag()){
-          if (bWidth.value) fields.push(`En: ${bWidth.value}${u}`);
-          if (bHeight.value) fields.push(`Boy: ${bHeight.value}${u}`);
-          if (bDepth.value) fields.push(`Derinlik: ${bDepth.value}${u}`);
-        } else {
-          if (mChest.value) fields.push(`Göğüs: ${mChest.value}${u}`);
-          if (mShoulder.value) fields.push(`Omuz: ${mShoulder.value}${u}`);
-          if (mSleeve.value) fields.push(`Kol: ${mSleeve.value}${u}`);
-          if (mWaist.value) fields.push(`Bel: ${mWaist.value}${u}`);
-          if (mHeight.value) fields.push(`Boy: ${mHeight.value}${u==='cm'?'':' (inç)'}${u==='cm'?'':' '}`);
-          if (mWeight.value) fields.push(`Kilo: ${mWeight.value}kg`);
-        }
-        const notes = mNotes.value ? `
-Not: ${mNotes.value}` : '';
-        return fields.length ? `
-${isBag()?'Boyutlar':'Ölçüler'}: ${fields.join(', ')}${notes}` : notes;
-      }
-      function buildWAUrl(title){
-        const text = encodeURIComponent(`Merhaba, ${title} ürününüzle ilgileniyorum.${buildMeasurementText()}
-Uygunluk ve teslimat bilgisi alabilir miyim?`);
-        return `https://wa.me/${WAPhone}?text=${text}`;
-      }
-      function setActive(i){
-        currentIndex = (i + currentImages.length) % currentImages.length;
-        gMain.src = currentImages[currentIndex];
-        [...gThumbs.querySelectorAll('img')].forEach((t,idx)=> t.classList.toggle('active', idx === currentIndex));
-      }
-      function renderThumbs(){
-        gThumbs.innerHTML = '';
-        currentImages.forEach((src, idx) => {
-          const t = new Image(); t.src = src; t.alt = 'Küçük görsel'; t.loading='lazy';
-          if(idx===0) t.classList.add('active');
-          t.addEventListener('click', ()=> setActive(idx));
-          gThumbs.appendChild(t);
+        document.addEventListener('click', function(e){
+          if(!navLinks || !hamburger) return;
+          if (!navLinks.contains(e.target) && !hamburger.contains(e.target)){
+            navLinks.classList.remove('show');
+            hamburger.setAttribute('aria-expanded','false');
+          }
         });
-      }
-      function toggleForms(){
-        if (isBag()) { secBag.style.display='grid'; secJacket.style.display='none'; }
-        else { secBag.style.display='none'; secJacket.style.display='grid'; }
-      }
-      function openProduct(card){
-        const id = card.dataset.product || 'generic';
-        const img = card.querySelector('img');
-        const fallback = { title: 'Özel Tasarım', price: 'Fiyat sorunuz', desc: 'Kişiye özel üretilir.', images: [img?.src].filter(Boolean) };
-        const data = PRODUCTS[id] || fallback;
-        currentProductId = id; currentImages = data.images.length ? data.images : [img?.src].filter(Boolean);
-        pmTitle.textContent = data.title; pmPrice.textContent = data.price; pmDesc.textContent = data.desc;
-        renderThumbs(); setActive(0); toggleForms(); pmWA.href = buildWAUrl(data.title);
-        productModal.classList.add('show'); productModal.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden';
-      }
-      function closeProduct(){ productModal.classList.remove('show'); productModal.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
 
-      document.querySelectorAll('.product-card .product-image').forEach(img => {
-        img.addEventListener('click', (e) => openProduct(e.currentTarget.closest('.product-card')));
-      });
-      gPrev.addEventListener('click', ()=> setActive(currentIndex-1));
-      gNext.addEventListener('click', ()=> setActive(currentIndex+1));
-      let startX = 0;
-      gMain.addEventListener('touchstart', (e)=>{ startX = e.changedTouches[0].clientX; }, {passive:true});
-      gMain.addEventListener('touchend', (e)=>{
-        const dx = e.changedTouches[0].clientX - startX;
-        if(Math.abs(dx) > 40){ dx < 0 ? setActive(currentIndex+1) : setActive(currentIndex-1); }
-      });
-      [mChest,mShoulder,mSleeve,mWaist,mHeight,mWeight,bWidth,bHeight,bDepth,mNotes,mUnit].forEach(el=>{
-        el?.addEventListener('input', ()=>{ pmWA.href = buildWAUrl(pmTitle.textContent); });
-        el?.addEventListener('change', ()=>{ pmWA.href = buildWAUrl(pmTitle.textContent); });
-      });
-      pmShare.addEventListener('click', async ()=>{
-        const shareData = { title: pmTitle.textContent, text: pmDesc.textContent + '
+        // Dropdown aç/kapat
+        if(dropBtn && dropdown){
+          dropBtn.addEventListener('click', function(e){
+            e.preventDefault();
+            dropdown.classList.toggle('open');
+            dropBtn.setAttribute('aria-expanded', String(dropdown.classList.contains('open')));
+          });
+        }
+
+        /* ========= Genel Lightbox ========= */
+        var glImages = $all('.clickable-image');
+        var lightbox = document.getElementById('lightbox');
+        var lightboxImg = document.getElementById('lightbox-img');
+        var closeBtn = document.getElementById('close-btn');
+        function closeLightbox(){ if(lightbox && lightboxImg){ lightbox.classList.remove('show'); lightbox.setAttribute('aria-hidden','true'); lightboxImg.src=''; } }
+        glImages.forEach(function(img){
+          img.addEventListener('click', function(){
+            if(!lightbox || !lightboxImg) return;
+            lightbox.classList.add('show');
+            lightbox.setAttribute('aria-hidden','false');
+            lightboxImg.src = img.src; lightboxImg.alt = img.alt || 'Büyük görüntü';
+          });
+        });
+        if(closeBtn){ closeBtn.addEventListener('click', closeLightbox); }
+        if(lightbox){ lightbox.addEventListener('click', function(e){ if (e.target === lightbox) closeLightbox(); }); }
+        document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeLightbox(); });
+
+        /* ========= Ürün Modal + Galeri + Ölçü/Boyut ========= */
+        var productModal = document.getElementById('product-modal');
+        var pmCloseBtn = document.getElementById('pm-close');
+        var gMain = document.getElementById('g-main');
+        var gThumbs = document.getElementById('g-thumbs');
+        var gPrev = document.getElementById('g-prev');
+        var gNext = document.getElementById('g-next');
+        var pmTitle = document.getElementById('pm-title');
+        var pmPrice = document.getElementById('pm-price');
+        var pmDesc  = document.getElementById('pm-desc');
+        var pmWA    = document.getElementById('pm-wa');
+        var pmShare = document.getElementById('pm-share');
+
+        var secJacket = document.getElementById('sec-jacket');
+        var secBag = document.getElementById('sec-bag');
+        var mChest = document.getElementById('m-chest');
+        var mShoulder = document.getElementById('m-shoulder');
+        var mSleeve = document.getElementById('m-sleeve');
+        var mWaist = document.getElementById('m-waist');
+        var mHeight = document.getElementById('m-height');
+        var mWeight = document.getElementById('m-weight');
+        var bWidth = document.getElementById('b-width');
+        var bHeight = document.getElementById('b-height');
+        var bDepth = document.getElementById('b-depth');
+        var mNotes = document.getElementById('m-notes');
+        var mUnit = document.getElementById('m-unit');
+
+        var WAPhone = '905454388096';
+        var PRODUCTS = {
+          'ceket-1': { title:'Boho Halı Ceket', price:'₺4.250', desc:'El dokuması halıdan, özel kalıp ve astarla hazırlanmıştır.', images:[
+            'https://i.imgur.com/LVY3ldC.jpeg','https://i.imgur.com/aMvlSQH.jpeg','https://i.imgur.com/k2v6g6w.jpeg']},
+          'ceket-2': { title:'Anadolu Motif Ceket', price:'₺4.050', desc:'Geleneksel motif, modern kesim.', images:[
+            'https://i.imgur.com/k2v6g6w.jpeg','https://i.imgur.com/UeNPAfo.jpeg','https://i.imgur.com/f5CLYLX.jpeg']},
+          'ceket-3': { title:'Vintage Ruh', price:'₺4.600', desc:'Vintage stil, güçlü duruş.', images:[
+            'https://i.imgur.com/UeNPAfo.jpeg','https://i.imgur.com/JY50D7d.jpeg','https://i.imgur.com/DhjUoed.jpeg']},
+          'canta-1': { title:'Halı Dokulu Çanta', price:'₺1.950', desc:'Elde taşınabilir, astarlı iç bölme.', images:[
+            'https://i.imgur.com/EdojvaG.jpeg','https://i.imgur.com/M0CV5gC.jpeg']},
+          'canta-2': { title:'Mini Tote', price:'₺1.750', desc:'Günlük kullanım için ideal.', images:[
+            'https://i.imgur.com/M0CV5gC.jpeg','https://i.imgur.com/yAukquO.jpeg']},
+          'canta-3': { title:'Klasik Halı Çanta', price:'₺2.150', desc:'Uzun omuz askısı, fermuarlı cep.', images:[
+            'https://i.imgur.com/yAukquO.jpeg','https://i.imgur.com/M0CV5gC.jpeg']},
+          'trend-1': { title:'Yaz Trendi Ceket', price:'₺4.300', desc:'Nefes alan iç astar, rahat kalıp.', images:[
+            'https://i.imgur.com/mJo5QjJ.jpeg','https://i.imgur.com/ZVjvWjm.jpeg']}
+        };
+
+        var currentIndex = 0; var currentImages = []; var currentProductId = null;
+        function isBag(){ return /^canta-/.test(currentProductId||''); }
+        function buildMeasurementText(){
+          var u = (mUnit && mUnit.value) || 'cm';
+          var fields = [];
+          if (isBag()){
+            if (bWidth && bWidth.value)   fields.push('En: ' + bWidth.value + u);
+            if (bHeight && bHeight.value) fields.push('Boy: ' + bHeight.value + u);
+            if (bDepth && bDepth.value)   fields.push('Derinlik: ' + bDepth.value + u);
+          } else {
+            if (mChest && mChest.value)     fields.push('Göğüs: ' + mChest.value + u);
+            if (mShoulder && mShoulder.value) fields.push('Omuz: ' + mShoulder.value + u);
+            if (mSleeve && mSleeve.value)   fields.push('Kol: ' + mSleeve.value + u);
+            if (mWaist && mWaist.value)     fields.push('Bel: ' + mWaist.value + u);
+            if (mHeight && mHeight.value)   fields.push('Boy: ' + mHeight.value + (u==='cm'?'':' (inç)'));
+            if (mWeight && mWeight.value)   fields.push('Kilo: ' + mWeight.value + 'kg');
+          }
+          var notes = (mNotes && mNotes.value) ? '
+Not: ' + mNotes.value : '';
+          return fields.length ? '
+' + (isBag()?'Boyutlar':'Ölçüler') + ': ' + fields.join(', ') + notes : notes;
+        }
+        function buildWAUrl(title){
+          var text = encodeURIComponent('Merhaba, ' + title + ' ürününüzle ilgileniyorum.' + buildMeasurementText() + '
+Uygunluk ve teslimat bilgisi alabilir miyim?');
+          return 'https://wa.me/' + WAPhone + '?text=' + text;
+        }
+        function setActive(i){
+          if(!currentImages.length) return;
+          currentIndex = (i + currentImages.length) % currentImages.length;
+          if(gMain) gMain.src = currentImages[currentIndex];
+          $all('#g-thumbs img').forEach(function(t,idx){ t.classList.toggle('active', idx === currentIndex); });
+        }
+        function renderThumbs(){
+          if(!gThumbs) return;
+          gThumbs.innerHTML = '';
+          currentImages.forEach(function(src, idx){
+            var t = new Image(); t.src = src; t.alt = 'Küçük görsel'; t.loading='lazy';
+            if(idx===0) t.classList.add('active');
+            t.addEventListener('click', function(){ setActive(idx); });
+            gThumbs.appendChild(t);
+          });
+        }
+        function toggleForms(){
+          if(!secJacket || !secBag) return;
+          if (isBag()) { secBag.style.display='grid'; secJacket.style.display='none'; }
+          else { secBag.style.display='none'; secJacket.style.display='grid'; }
+        }
+        function openProduct(card){
+          var id = card ? card.getAttribute('data-product') : 'generic';
+          var img = card ? card.querySelector('img') : null;
+          var fallback = { title: 'Özel Tasarım', price: 'Fiyat sorunuz', desc: 'Kişiye özel üretilir.', images: img && img.src ? [img.src] : [] };
+          var data = (PRODUCTS[id] || fallback);
+          currentProductId = id; currentImages = data.images && data.images.length ? data.images : (img && img.src ? [img.src] : []);
+          if(pmTitle) pmTitle.textContent = data.title; if(pmPrice) pmPrice.textContent = data.price; if(pmDesc) pmDesc.textContent = data.desc;
+          renderThumbs(); setActive(0); toggleForms(); if(pmWA) pmWA.href = buildWAUrl(data.title);
+          if(productModal){ productModal.classList.add('show'); productModal.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; }
+        }
+        function closeProduct(){ if(productModal){ productModal.classList.remove('show'); productModal.setAttribute('aria-hidden','true'); document.body.style.overflow=''; } }
+
+        $all('.product-card .product-image').forEach(function(img){
+          img.addEventListener('click', function(e){ openProduct(e.currentTarget.closest('.product-card')); });
+        });
+        if(gPrev) gPrev.addEventListener('click', function(){ setActive(currentIndex-1); });
+        if(gNext) gNext.addEventListener('click', function(){ setActive(currentIndex+1); });
+        if(gMain){
+          var startX = 0;
+          gMain.addEventListener('touchstart', function(e){ startX = e.changedTouches[0].clientX; }, {passive:true});
+          gMain.addEventListener('touchend', function(e){
+            var dx = e.changedTouches[0].clientX - startX;
+            if(Math.abs(dx) > 40){ if(dx < 0) setActive(currentIndex+1); else setActive(currentIndex-1); }
+          });
+        }
+        [mChest,mShoulder,mSleeve,mWaist,mHeight,mWeight,bWidth,bHeight,bDepth,mNotes,mUnit].forEach(function(el){
+          if(!el) return;
+          el.addEventListener('input', function(){ if(pmWA) pmWA.href = buildWAUrl(pmTitle ? pmTitle.textContent : 'Ürün'); });
+          el.addEventListener('change', function(){ if(pmWA) pmWA.href = buildWAUrl(pmTitle ? pmTitle.textContent : 'Ürün'); });
+        });
+        if(pmShare){ pmShare.addEventListener('click', function(){
+          var shareData = { title: pmTitle ? pmTitle.textContent : '', text: (pmDesc?pmDesc.textContent:'') + '
 ' + buildMeasurementText(), url: location.href };
-        try{ if(navigator.share){ await navigator.share(shareData); } else { alert('Paylaşım desteği bulunmuyor.'); } }
-        catch(err){ }
-      });
-      pmCloseBtn.addEventListener('click', closeProduct);
-      productModal.addEventListener('click', (e)=>{ if(e.target === productModal) closeProduct(); });
-      document.addEventListener('keydown', (e)=>{ if(e.key==='Escape' && productModal.classList.contains('show')) closeProduct(); });
+          if(navigator.share){ navigator.share(shareData).catch(function(){}); } else { alert('Paylaşım desteği bulunmuyor.'); }
+        }); }
+        if(pmCloseBtn){ pmCloseBtn.addEventListener('click', closeProduct); }
+        if(productModal){ productModal.addEventListener('click', function(e){ if(e.target === productModal) closeProduct(); }); }
+        document.addEventListener('keydown', function(e){ if(e.key==='Escape' && productModal && productModal.classList.contains('show')) closeProduct(); });
 
-      /* ========= Basit Testler (konsol) ========= */
-      (function runTests(){
-        function test(name, fn){ try{ fn(); console.log('✅ '+name); } catch(e){ console.error('❌ '+name, e); } }
-        test('Router sadece hash kullanıyor', ()=>{ if(!('onhashchange' in window)) throw new Error('hashchange yok'); });
-        test('Nav linkleri hash içeriyor', ()=>{
-          document.querySelectorAll('#nav-links a[href^="#"]').forEach(a=>{ if(!a.getAttribute('href')) throw new Error('href yok'); });
-        });
-      })();
+        console.log('[AsilkanCustom] Init OK');
+      }catch(err){
+        console.error('Init hata:', err);
+      }
     });
   </script>
 </body>
