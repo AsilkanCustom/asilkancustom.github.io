@@ -42,10 +42,10 @@
 
     /* Dropdown */
     .dropdown{ position:relative }
-    .dropdown > button{ }
-    .dropdown-menu{ display:none; position:absolute; top:120%; left:0; min-width:220px; background:#fff; color:#333; list-style:none; margin:0; padding:8px 0; border-radius:10px; box-shadow:0 6px 20px rgba(0,0,0,.18); z-index:1001 }
+    .dropdown-menu{ display:none; position:absolute; top:120%; left:0; min-width:220px; background:var(--primary); color:#fff; list-style:none; margin:0; padding:8px 0; border-radius:10px; box-shadow:0 6px 20px rgba(0,0,0,.18); z-index:1001 }
     .dropdown-menu li{ padding:6px 14px }
-    .dropdown-menu a{ color:#333; text-decoration:none; font-weight:500 }
+    .dropdown-menu a{ color:#fff; text-decoration:none; font-weight:600 }
+    .dropdown-menu a:hover{ background-color: var(--accent); color:#fff }
     .dropdown.open .dropdown-menu{ display:block }
 
     /* Hamburger */
@@ -113,11 +113,18 @@
     .pm-title{ margin:6px 0 6px; font-size:1.6rem; color:#1d1d1d }
     .pm-price{ font-weight:700; color:var(--accent); font-size:1.25rem; margin:8px 0 }
     .pm-desc{ line-height:1.6; color:#444 }
-    .pm-actions{ display:flex; gap:10px; margin-top:14px; flex-wrap:wrap }
+    .pm-actions{ display:flex; gap:10px; margin-top:14px; flex-wrap:wrap; align-items:center }
     .btn{ padding:10px 14px; border-radius:10px; border:1px solid #ddd; background:#fff; cursor:pointer }
     .btn.primary{ background:var(--accent); color:#fff; border-color:var(--accent) }
     .pm-close{ position:sticky; top:0; text-align:right; padding:8px 12px }
     .pm-close button{ background:none; border:0; font-size:28px; cursor:pointer }
+
+    /* Ölçü Formu */
+    .measure-form{ display:grid; grid-template-columns:1fr 1fr; gap:10px; width:100%; margin-top:8px }
+    .measure-form label{ font-size:.9rem; color:#333 }
+    .measure-form input, .measure-form textarea, .measure-form select{ width:100%; padding:10px; border:1px solid #ddd; border-radius:10px; font:inherit }
+    .measure-form textarea{ grid-column:1/-1; min-height:80px }
+    @media(max-width:600px){ .measure-form{ grid-template-columns:1fr } }
   </style>
 </head>
 <body>
@@ -378,14 +385,47 @@
           <h3 id="pm-title" class="pm-title">Ürün Başlığı</h3>
           <div id="pm-price" class="pm-price">—</div>
           <p id="pm-desc" class="pm-desc">—</p>
+
+          <!-- Ölçü Formu -->
+          <div class="measure-form" id="measure-form">
+            <label>
+              Göğüs çevresi
+              <input type="number" id="m-chest" min="0" step="0.1" placeholder="örn. 96">
+            </label>
+            <label>
+              Omuz genişliği
+              <input type="number" id="m-shoulder" min="0" step="0.1" placeholder="örn. 44">
+            </label>
+            <label>
+              Kol uzunluğu
+              <input type="number" id="m-sleeve" min="0" step="0.1" placeholder="örn. 62">
+            </label>
+            <label>
+              Bel çevresi (opsiyonel)
+              <input type="number" id="m-waist" min="0" step="0.1" placeholder="örn. 82">
+            </label>
+            <label>
+              Boy (opsiyonel)
+              <input type="number" id="m-height" min="0" step="0.1" placeholder="örn. 178">
+            </label>
+            <label>
+              Kilo (opsiyonel)
+              <input type="number" id="m-weight" min="0" step="0.1" placeholder="örn. 76">
+            </label>
+            <label style="grid-column:1/-1">
+              Not / İstek (opsiyonel)
+              <textarea id="m-notes" placeholder="Örn. Omuzlar geniş, fit kesim istiyorum."></textarea>
+            </label>
+            <label>
+              Birim
+              <select id="m-unit">
+                <option value="cm" selected>cm</option>
+                <option value="in">inç</option>
+              </select>
+            </label>
+          </div>
+
           <div class="pm-actions">
-            <select id="pm-size" class="btn" aria-label="Beden seçiniz">
-              <option value="XS">XS</option>
-              <option value="S">S</option>
-              <option value="M" selected>M</option>
-              <option value="L">L</option>
-              <option value="XL">XL</option>
-            </select>
             <a id="pm-wa" class="btn primary" target="_blank" rel="noopener">WhatsApp’tan Sipariş Ver</a>
             <button class="btn" id="pm-share">Paylaş</button>
           </div>
@@ -408,22 +448,26 @@
       return allowed.includes(h) ? h : 'home';
     }
 
+    function updateHashSafely(page){
+      try { location.hash = page; } catch(_) { }
+    }
+
     // NAV: hamburger & dropdown & router
     document.addEventListener('DOMContentLoaded', () => {
       const hamburger = document.getElementById('hamburger');
       const navLinks = document.getElementById('nav-links');
       const dropdown = document.getElementById('dropdown-products');
 
-      // İlk yüklemede sadece home
+      // İlk yüklemede sadece home (veya hash)
       showPage(getPageFromHash());
 
       // Menü linkleri tıklaması -> sayfa göster
       document.querySelectorAll('[data-page]').forEach(el=>{
         el.addEventListener('click', (e)=>{
           const page = e.currentTarget.getAttribute('data-page');
-          if(page){ e.preventDefault(); history.pushState(null,'','#'+page); showPage(page); }
-          navLinks.classList.remove('show');
-          hamburger.setAttribute('aria-expanded','false');
+          if(page){ e.preventDefault(); showPage(page); updateHashSafely(page); }
+          if(navLinks){ navLinks.classList.remove('show'); }
+          if(hamburger){ hamburger.setAttribute('aria-expanded','false'); }
         });
       });
 
@@ -431,28 +475,32 @@
       window.addEventListener('hashchange', ()=> showPage(getPageFromHash()));
 
       // Hamburger aç/kapat
-      hamburger?.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const open = navLinks.classList.toggle('show');
-        hamburger.setAttribute('aria-expanded', String(open));
-      });
+      if(hamburger){
+        hamburger.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const open = navLinks && navLinks.classList.toggle('show');
+          hamburger.setAttribute('aria-expanded', String(!!open));
+        });
+      }
 
       // Dışarı tıkla kapat
       document.addEventListener('click', (e) => {
-        if (!navLinks.contains(e.target) && !hamburger.contains(e.target)) {
+        if (navLinks && hamburger && !navLinks.contains(e.target) && !hamburger.contains(e.target)) {
           navLinks.classList.remove('show');
           hamburger.setAttribute('aria-expanded','false');
         }
       });
 
       // Dropdown aç/kapat
-      const dropBtn = dropdown.querySelector('button');
-      dropBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        dropdown.classList.toggle('open');
-        const expanded = dropdown.classList.contains('open');
-        dropBtn.setAttribute('aria-expanded', String(expanded));
-      });
+      const dropBtn = dropdown ? dropdown.querySelector('button') : null;
+      if(dropBtn){
+        dropBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          dropdown.classList.toggle('open');
+          const expanded = dropdown.classList.contains('open');
+          dropBtn.setAttribute('aria-expanded', String(expanded));
+        });
+      }
 
       /* =====================
          GENEL LIGHTBOX
@@ -480,7 +528,7 @@
       document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
 
       /* =====================
-         ÜRÜN DETAY MODAL + GALERİ
+         ÜRÜN DETAY MODAL + GALERİ + ÖLÇÜ FORMU
       ======================*/
       const productModal = document.getElementById('product-modal');
       const pmCloseBtn = document.getElementById('pm-close');
@@ -491,9 +539,18 @@
       const pmTitle = document.getElementById('pm-title');
       const pmPrice = document.getElementById('pm-price');
       const pmDesc = document.getElementById('pm-desc');
-      const pmSize = document.getElementById('pm-size');
       const pmWA = document.getElementById('pm-wa');
       const pmShare = document.getElementById('pm-share');
+
+      // Ölçü alanları
+      const mChest = document.getElementById('m-chest');
+      const mShoulder = document.getElementById('m-shoulder');
+      const mSleeve = document.getElementById('m-sleeve');
+      const mWaist = document.getElementById('m-waist');
+      const mHeight = document.getElementById('m-height');
+      const mWeight = document.getElementById('m-weight');
+      const mNotes = document.getElementById('m-notes');
+      const mUnit = document.getElementById('m-unit');
 
       const WAPhone = '905454388096';
       const PRODUCTS = {
@@ -513,9 +570,21 @@
 
       let currentIndex = 0; let currentImages = []; let currentProductId = null;
 
+      function buildMeasurementText(){
+        const u = mUnit.value || 'cm';
+        const fields = [];
+        if (mChest.value) fields.push(`Göğüs: ${mChest.value}${u}`);
+        if (mShoulder.value) fields.push(`Omuz: ${mShoulder.value}${u}`);
+        if (mSleeve.value) fields.push(`Kol: ${mSleeve.value}${u}`);
+        if (mWaist.value) fields.push(`Bel: ${mWaist.value}${u}`);
+        if (mHeight.value) fields.push(`Boy: ${mHeight.value}${u==='cm'?'':' (inç)'}${u==='cm'?'':' '}`);
+        if (mWeight.value) fields.push(`Kilo: ${mWeight.value}kg`);
+        const notes = mNotes.value ? `\nNot: ${mNotes.value}` : '';
+        return fields.length ? `\nÖlçüler: ${fields.join(', ')}${notes}` : notes;
+      }
+
       function buildWAUrl(title){
-        const size = pmSize.value;
-        const text = encodeURIComponent(`Merhaba, ${title} ürününüzle ilgileniyorum. Beden: ${size}. Uygunluk bilgisi alabilir miyim?`);
+        const text = encodeURIComponent(`Merhaba, ${title} ürününüzle ilgileniyorum.${buildMeasurementText()}\nUygunluk ve teslimat bilgisi alabilir miyim?`);
         return `https://wa.me/${WAPhone}?text=${text}`;
       }
 
@@ -565,12 +634,15 @@
         if(Math.abs(dx) > 40){ dx < 0 ? setActive(currentIndex+1) : setActive(currentIndex-1); }
       });
 
-      // Beden değişince WA linkini güncelle
-      pmSize.addEventListener('change', ()=>{ pmWA.href = buildWAUrl(pmTitle.textContent); });
+      // Ölçü alanları değiştikçe WhatsApp linki güncellensin
+      [mChest,mShoulder,mSleeve,mWaist,mHeight,mWeight,mNotes,mUnit].forEach(el=>{
+        el.addEventListener('input', ()=>{ pmWA.href = buildWAUrl(pmTitle.textContent); });
+        el.addEventListener('change', ()=>{ pmWA.href = buildWAUrl(pmTitle.textContent); });
+      });
 
       // Paylaş
       pmShare.addEventListener('click', async ()=>{
-        const shareData = { title: pmTitle.textContent, text: pmDesc.textContent, url: location.href };
+        const shareData = { title: pmTitle.textContent, text: pmDesc.textContent + '\n' + buildMeasurementText(), url: location.href };
         try{ if(navigator.share){ await navigator.share(shareData); } else { alert('Paylaşım desteği bulunmuyor.'); } }
         catch(err){ }
       });
@@ -578,6 +650,23 @@
       pmCloseBtn.addEventListener('click', closeProduct);
       productModal.addEventListener('click', (e)=>{ if(e.target === productModal) closeProduct(); });
       document.addEventListener('keydown', (e)=>{ if(e.key==='Escape' && productModal.classList.contains('show')) closeProduct(); });
+
+      /* =====================
+         Basit Testler (console)
+      ======================*/
+      (function runTests(){
+        function test(name, fn){ try{ fn(); console.log('✅ '+name); } catch(e){ console.error('❌ '+name, e); } }
+        test('Dropdown arka planı kahverengi', ()=>{
+          const dm = document.querySelector('.dropdown-menu');
+          const bg = getComputedStyle(dm).backgroundColor; // kahverengi ton
+          if (!bg) throw new Error('stil okunamadı');
+        });
+        test('WA linki ölçü ekler', ()=>{
+          mChest.value = '100'; mShoulder.value = '45'; mUnit.value='cm';
+          pmWA.href = buildWAUrl('Test Ürün');
+          if (!decodeURIComponent(pmWA.href).includes('Göğüs: 100cm')) throw new Error('Göğüs ölçüsü linke eklenmedi');
+        });
+      })();
     });
   </script>
 </body>
