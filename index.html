@@ -1,654 +1,406 @@
 <!DOCTYPE html>
 <html lang="tr">
-<head>  
+<head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Asilkan Custom – El dokuması halılardan kişiye özel ceket ve çanta tasarımları" />
   <title>ASİLKAN Custom</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap" rel="stylesheet">
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/jpeg" href="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/4QAiRXhpZgAATU0AKgAAAAgAAQESAAMAAAABAAEAAAAAAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAgACADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD6nV0cnawbHofw/oadXneueGdbh+1GxvJpIJflCwthgncFe/U9P6VyR8Y+L9A066hntZ702+Ckk3yHPXDOw6EA9efegaVz3GmvIiEB2Vc9Mn3A/mR+deJN4r8X+ILO1toLe4shN/rHh+cs2MkB1HQcdB35rrtC8M6zI9s+oXkyQRjaVlbLFewA6AfWgR3WoXcdhY3F3PnyYI2lfHUKoyf0Fef+J9b0DXrVI7y0mLAKf3kiRMAyO4HU5+4evHvXo5AIweRTTGjDDIpHTBFBrTlCPxxv8zzzwr4g8P6LZG30+yvEfazSDKNgIoJ+YsBjHI/Gu8028j1DT7a8hVljnjWVQ2MgEZGcEj9ajl0u0kleXy3jkkOXaGVo95wBk7SMnAAyfQelWoYkhiSOJQqKMADtQFSVN/BG3zP/2Q==">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+  <!-- Favicon (base64 örnek) -->
+  <link rel="icon" type="image/jpeg" href="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/4QAiRXhpZgAATU0AKgAAAAgAAQESAAMAAAABAAEAAAAAAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAgACADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD6nV0cnawbHofw/oadXneueGdbh+1GxvJpIJflCwthgncFe/U9P6VyR8Y+L9A066hntZ702+Ckk3yHPXDOw6EA9efegaVz3GmvIiEB2Vc9Mn3A/mR+deJN4r8X+ILO1toLe4shN/rHh+cs2MkB1HQcdB35rrtC8M6zI9s+oXkyQRjaVlbLFewA6AfWgR3WoXcdhY3F3PnyYI2lfHUKoyf0Fef+J9b0DXrVI7y0mLAKf3kiRMAyO4HU5+4evHvXo5AIweRTTGjDDIpHTBFBrTlCPxxv8zzzwr4g8P6LZG30+yvEfazSDKNgIoJ+YsBjHI/Gu8028j1DT7a8hVljnjWVQ2MgEZGcEj9ajl0u0kleXy3jkkOXaGVo95wBk7SMnAAyfQelWoYkhiSOJQqKMADtQFSVN/BG3zP/2Q==" />
 
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-BL879TEEGW"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag(){dataLayer.push(arguments);} 
     gtag('js', new Date());
     gtag('config', 'G-BL879TEEGW');
   </script>
 
-  <!-- Hamburger Menü JS -->
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const menuToggle = document.getElementById('hamburger-menu');
-    const navLinks = document.getElementById('nav-links');
-    const navLinkItems = navLinks.querySelectorAll('a');
-
-    // Hamburger menüsünü aç/kapa
-    menuToggle.addEventListener('click', function () {
-      navLinks.classList.toggle('show');
-    });
-
-    // Menüdeki her linke tıklanınca menüyü kapat
-    navLinkItems.forEach(link => {
-      link.addEventListener('click', () => {
-        navLinks.classList.remove('show');
-      });
-    });
-
-    // Menü dışına tıklanınca menüyü kapat
-    document.addEventListener('click', function(event) {
-      if (!navLinks.contains(event.target) && !menuToggle.contains(event.target)) {
-        navLinks.classList.remove('show');
-      }
-    });
-  });
-</script>
-  
-  <!-- Tüm CSS burada -->
   <style>
-    body {
-      margin: 0;
-      font-family: 'Arial', sans-serif;
-      background: url('https://i.imgur.com/RDZIPps.jpeg') repeat;
+    :root{
+      --bg:#fff8f2;
+      --primary:#3d2b1f;
+      --accent:#a52a2a;
+      --text:#4b3b2b;
+      --card:#fffaf5;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{
+      font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:url('https://i.imgur.com/RDZIPps.jpeg') repeat;
+      color:var(--text);
     }
 
-    nav {
-      position: sticky;
-      top: 0;
-      background-color: #3d2b1f;
-      padding: 15px 0;
-      z-index: 1000;
+    /* NAV */
+    nav{
+      position:sticky;top:0;z-index:1000;
+      background:var(--primary);color:#fff;
+      box-shadow:0 2px 10px rgba(0,0,0,.15);
+    }
+    .nav-container{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 16px}
+    .brand{display:flex;align-items:center;gap:10px;color:#fff;text-decoration:none}
+    .brand img{height:40px;width:auto}
+    .brand span{font-weight:700;letter-spacing:.5px}
+
+    .nav-links{display:flex;gap:22px;align-items:center;list-style:none;margin:0;padding:0}
+    .nav-links a{color:#fff;text-decoration:none;font-weight:600;text-transform:uppercase;font-size:.95rem;transition:opacity .2s}
+    .nav-links a:hover{opacity:.8;color:#ffd7d7}
+
+    /* Dropdown */
+    .dropdown{position:relative}
+    .dropdown > button{background:none;border:0;color:#fff;font-weight:600;text-transform:uppercase;cursor:pointer}
+    .dropdown-menu{display:none;position:absolute;top:120%;left:0;min-width:220px;background:#fff;color:#333;list-style:none;margin:0;padding:8px 0;border-radius:10px;box-shadow:0 6px 20px rgba(0,0,0,.18);z-index:1001}
+    .dropdown-menu li{padding:6px 14px}
+    .dropdown-menu a{color:#333;text-decoration:none;font-weight:500}
+    .dropdown.open .dropdown-menu{display:block}
+
+    /* Hamburger */
+    .hamburger{display:none;flex-direction:column;gap:4px;cursor:pointer}
+    .hamburger span{display:block;width:26px;height:3px;background:#fff;border-radius:2px}
+
+    @media (max-width: 768px){
+      .hamburger{display:flex}
+      .nav-links{position:absolute;inset:64px 0 auto 0;background:var(--primary);flex-direction:column;gap:0;display:none}
+      .nav-links.show{display:flex}
+      .nav-links li{width:100%;text-align:center;padding:12px 0;border-top:1px solid rgba(255,255,255,.08)}
+      .dropdown-menu{position:static;box-shadow:none;border-radius:0}
     }
 
-    nav ul {
-      list-style: none;
-      text-align: center;
-      margin: 0;
-      padding: 0;
+    header{
+      text-align:center;padding:60px 16px 30px;color:#7a1e1e;
+      background:url('https://i.imgur.com/RDZIPps.jpeg') repeat;
     }
+    header .logo{height:100px;width:auto}
+    header h1{font-size:40px;margin:8px 0 2px;color:#4B0000}
+    header p{max-width:820px;margin:6px auto;line-height:1.6}
 
-    nav ul li {
-      display: inline-block;
-      margin: 0 20px;
-    }
+    /* Carousel */
+    .carousel{position:relative;width:100%;overflow:hidden;height:500px;margin-top:22px}
+    .carousel-track{display:flex;width:200%;animation:scroll 38s linear infinite}
+    .carousel-track img{width:20%;height:500px;object-fit:cover}
+    @keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+    @media (max-width:600px){.carousel{height:250px}.carousel-track img{height:250px}}
 
-    nav ul li a {
-      color: white;
-      text-decoration: none;
-      font-size: 1.2rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      transition: all 0.3s ease;
-    }
-    nav ul li a:hover {
-      color: #a52a2a;
-    }
+    .section{padding:60px 16px;max-width:1100px;margin:auto}
+    .section h2{text-align:center;color:var(--primary);font-size:2rem;margin-bottom:28px}
 
-    header {
-      text-align: center;
-      padding: 100px 20px 50px;
-      background: url('https://i.imgur.com/RDZIPps.jpeg') repeat;
-      color: #7a1e1e;
-    }
+    .products{display:flex;justify-content:center;gap:26px;flex-wrap:wrap}
+    .product-card{background:var(--card);border-radius:16px;overflow:hidden;width:300px;box-shadow:4px 4px 15px rgba(0,0,0,.2);transition:transform .25s}
+    .product-card:hover{transform:translateY(-3px)}
+    .product-card img{width:100%;height:250px;object-fit:cover;display:block}
+    .product-card h3{font-size:1.1rem;margin:0;padding:10px;background:var(--accent);color:#fff}
+    .product-card p{padding:10px;font-size:1.05rem;color:var(--text)}
 
-    header h1 {
-      font-size: 3rem;
-      margin: 0;
-    }
+    .login-form{max-width:400px;margin:auto;background:#fff;padding:30px;border-radius:12px;box-shadow:2px 2px 10px rgba(0,0,0,.2)}
+    .login-form input,.login-form button{width:100%;padding:10px;margin-top:12px;font-size:1rem}
+    .login-form button{background:var(--accent);color:#fff;border:0;cursor:pointer}
+    .login-form button:hover{filter:brightness(.95)}
 
-    header p {
-      font-size: 1.5rem;
-      max-width: 800px;
-      margin: 20px auto;
-      line-height: 1.6;
-    }
+    footer{background:#d7c2b0;color:var(--primary);text-align:center;padding:24px}
+    footer a{color:#7a1e1e;text-decoration:none;font-weight:600}
+    footer a:hover{text-decoration:underline}
 
-    .logo {
-      width: 200px;
-      height: auto;
-      margin: 0 auto 20px;
-    }
-
-    .carousel {
-      position: relative;
-      width: 100%;
-      overflow: hidden;
-      height: 500px;
-      margin-top: 40px;
-    }
-
-    .carousel-track {
-      display: flex;
-      width: calc(200%); 
-      animation: scroll 40s linear infinite;
-    }
-
-    .carousel-track img {
-      width: 20%;
-      height: 500px;
-      object-fit: cover;
-    }
-
-    @keyframes scroll {
-      0% {
-        transform: translateX(0);
-      }
-      100% {
-        transform: translateX(-50%);
-      }
-    }
-
-    .section {
-      padding: 60px 20px;
-      max-width: 1000px;
-      margin: auto;
-    }
-
-    .section h2 {
-      text-align: center;
-      color: #3d2b1f;
-      font-size: 2rem;
-      margin-bottom: 30px;
-    }
-
-    .products {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      flex-wrap: wrap;
-    }
-
-    .product-card {
-      background-color: #fffaf5;
-      border-radius: 16px;
-      overflow: hidden;
-      width: 300px;
-      box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2);
-      transition: transform 0.3s ease;
-    }
-
-    .product-card img {
-      width: 100%;
-      height: 250px;
-      object-fit: cover;
-    }
-
-    .product-card:hover {
-      transform: scale(1.05);
-    }
-
-    .product-card h2 {
-      font-size: 1.5rem;
-      padding: 10px;
-      margin: 0;
-      background-color: #a52a2a;
-      color: white;
-    }
-
-    .product-card p {
-      padding: 10px;
-      font-size: 1.1rem;
-      color: #4b3b2b;
-    }
-
-    .login-form {
-      max-width: 400px;
-      margin: auto;
-      background: #fff;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
-    }
-
-    .login-form input, .login-form button {
-      width: 100%;
-      padding: 10px;
-      margin-top: 15px;
-      font-size: 1rem;
-    }
-
-    .login-form button {
-      background-color: #a52a2a;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
-
-    .login-form button:hover {
-      background-color: #7a1e1e;
-    }
-
-    footer {
-      background-color: #d7c2b0;
-      color: #3d2b1f;
-      text-align: center;
-      padding: 20px;
-    }
-
-    footer a {
-      color: #7a1e1e;
-      text-decoration: none;
-      font-weight: 600;
-    }
-
-    footer a:hover {
-      text-decoration: underline;
-    }
-
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 2rem;
-      }
-
-      header p {
-        font-size: 1.1rem;
-      }
-
-      .carousel {
-        height: 250px;
-      }
-
-      .carousel-track img {
-        height: 250px;
-      }
-    }
-
-    /* Hamburger Menü */
-    .hamburger-menu {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-    }
-
-    .hamburger-menu .bar {
-      width: 25px;
-      height: 3px;
-      margin: 4px 0;
-      background-color: white;
-      transition: 0.4s;
-    }
-
-    /* Mobil cihazlarda hamburger menü simgesi görünsün */
-    @media (max-width: 768px) {
-      .hamburger-menu {
-        display: flex;
-      }
-
-      .nav-links {
-        display: none;
-        width: 100%;
-        flex-direction: column !important;
-        text-align: center;
-        background-color: #3d2b1f;
-        position: absolute;
-        top: 60px;
-        left: 0;
-      }
-
-      .nav-links li {
-        padding: 15px 0;
-      }
-
-      .nav-links.show {
-        display: flex !important;
-      }
-    }
-
-    /* 769px ve daha büyük ekranlar için medya sorgusu */
-    @media (min-width: 769px) {
-      .nav-links {
-        display: flex !important;
-        position: static;
-        flex-direction: row;
-        justify-content: center;
-      }
-
-      .hamburger-menu {
-        display: none;
-      }
-    }
-  
-  #lightbox {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0,0,0,0.8);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-}
-
-#lightbox img {
-  max-width: 90%;
-  max-height: 90%;
-  border: 4px solid white;
-  border-radius: 10px;
-}
-
-#close-btn {
-  position: absolute;
-  top: 30px;
-  right: 40px;
-  font-size: 40px;
-  color: white;
-  cursor: pointer;
-  z-index: 10000;
-}
-
-/* Dropdown menü başlangıçta gizli */
-.dropdown {
-  position: relative;
-}
-
-.dropdown-menu {
-  display: none;
-  position: absolute;
-  background-color: white;
-  list-style-type: none;
-  margin: 0;
-  padding: 10px 0;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  top: 100%;
-  left: 0;
-  z-index: 1001;
-}
-
-.dropdown-menu li {
-  padding: 5px 20px;
-}
-
-.dropdown-menu li a {
-  color: #333;
-  text-decoration: none;
-  font-size: 1rem;
-  white-space: nowrap;
-}
-
-.dropdown:hover .dropdown-menu {
-  display: block;
-}  
-
-#nav-links {
-  display: none; /* Menü başlangıçta gizli */
-}
-
-#nav-links.show {
-  display: block; /* Menü açıkken göster */
-}    
-  </style>    
+    /* Lightbox */
+    #lightbox{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;justify-content:center;align-items:center;z-index:9999}
+    #lightbox.show{display:flex}
+    #lightbox img{max-width:90vw;max-height:90vh;border:4px solid #fff;border-radius:10px}
+    #close-btn{position:absolute;top:24px;right:34px;font-size:40px;color:#fff;cursor:pointer;z-index:10000}
+  </style>
 </head>
-  
 <body>
-<nav>
-  <div class="nav-container">
-    <a href="#home" class="logo"></a>
-    <!-- Hamburger Menü Butonu -->
-    <div class="hamburger-menu" id="hamburger-menu" onclick="toggleMenu()">
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
-    </div>
+  <nav>
+    <div class="nav-container">
+      <a class="brand" href="#home" aria-label="Asilkan Custom ana sayfa">
+        <img src="https://i.imgur.com/14VgsWh.png" alt="Asilkan Custom Logo" loading="eager" />
+        <span>AsilkanCustom</span>
+      </a>
 
-<ul>
-  <ul class="nav-links" id="nav-links">
-    <li><a href="#home">Ana Sayfa</a></li>
+      <button class="hamburger" id="hamburger" aria-label="Menüyü aç/kapat" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span><span></span>
+      </button>
 
-    <!-- Ürünler Menüsü -->
-    <li class="dropdown">
-      <a href="#" onclick="toggleDropdown(event)">Ürünler</a>
-      <ul class="dropdown-menu" id="dropdown-menu">
-        <li><a href="#ceketler">Ceketler</a></li>
-        <li><a href="#cantalar">Çantalar</a></li>
-        <li><a href="#trendler">Yaz Sezonunun Trendleri</a></li>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#home">Ana Sayfa</a></li>
+        <li class="dropdown" id="dropdown-products">
+          <button type="button" aria-haspopup="true" aria-expanded="false">Ürünler</button>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#ceketler">Ceketler</a></li>
+            <li><a href="#cantalar">Çantalar</a></li>
+            <li><a href="#trendler">Yaz Sezonunun Trendleri</a></li>
+          </ul>
+        </li>
+        <li><a href="#about">Hakkımızda</a></li>
+        <li><a href="https://wa.me/c/905454388096" target="_blank" rel="noopener">İletişim</a></li>
+        <li><a href="#cart">Beden Bilgisi</a></li>
       </ul>
-    </li>
+    </div>
+  </nav>
 
-    <li><a href="#about">Hakkımızda</a></li>
-    <li><a href="https://wa.me/c/905454388096" target="_blank">İletişim</a></li>
-    <li><a href="#cart">Beden Bilgisi</a></li>
-  </ul>
-</nav>
+  <header id="home">
+    <img class="logo" src="https://i.imgur.com/14VgsWh.png" alt="Asilkan Custom Logo" />
+    <h1>AsilkanCustom</h1>
+    <p style="font-weight:700;color:#4B0000">Geçmişin ruhunu, el emeğini ve sizin hikayenizi bir araya getiriyoruz.</p>
+    <p style="font-size:13px;color:#4B0000;font-weight:600">“If you love Turkish carpet motifs, you're in the right place. These designs are for those who want to reflect the spirit of the past in their style...”</p>
 
-<header id="home" style="text-align: center; padding:5px;">
-  <img 
-    src="https://i.imgur.com/14VgsWh.png" 
-    alt="Asilkan Custom Logo" 
-    class="logo"
-    style="height: 100px; width: auto;" 
-  />
-  <h1 style="font-family:'Aptos', serif; font-size: 40px;color: #4B0000; margin:5px 0;">
-    AsilkanCustom
-  </h1>
-  <p style="font-family:'Aptos', serif; font-size: 15px; color: #4B0000; font-weight: bold;">
-    (Geçmişin ruhunu, el emeğini ve sizin hikayenizi bir araya getiriyoruz.)
-  </p>
-  <p style="font-family:'Aptos', serif; font-size: 10px; color: #4B0000; font-weight: bold;">
-    ("If you love Turkish carpet motifs, you're in the right place. These designs are for those who want to reflect the spirit of the past in their style...")
-  </p>  
-
-  <div class="carousel">
-    <div class="carousel-track"> 
-      <img src="https://i.imgur.com/WzlSfVi.jpeg" alt="Ürün 1">
-      <img src="https://i.imgur.com/txFwYJn.jpeg" alt="Ürün 2">
-      <img src="https://i.imgur.com/BGECmbh.jpeg" alt="Ürün 3">
-      <img src="https://i.imgur.com/QrExQJC.jpeg" alt="Ürün 4">
-      <img src="https://i.imgur.com/uERTE2A.jpeg" alt="Ürün 5">
-      <img src="https://i.imgur.com/4cjlU1w.jpeg" alt="Ürün 6">  
-    </div>
-  </div>
-</header>
-
-<!-- CEKETLER BÖLÜMÜ -->
-<section class="section" id="ceketler">
-  <h2>Ceketler</h2>
-  <div class="products">
-    <div class="product-card">
-      <img src="https://i.imgur.com/LVY3ldC.jpeg" alt="Ceket 1" class="clickable-image">
-      <p>El dokuması halıdan üretilmiş özel tasarım ceket.</p>
-    </div>
-    <div class="product-card">
-      <img src="https://i.imgur.com/k2v6g6w.jpeg" alt="Ceket 2" class="clickable-image">
-      <p>Geçmişin izlerini taşıyan tasarım.</p>
-    </div>
-    <div class="product-card">
-      <img src="https://i.imgur.com/UeNPAfo.jpeg" alt="Ceket 3" class="clickable-image">
-      <p>Vintage stil, güçlü duruş.</p>
-    </div>    
-    <div class="product-card">
-      <img src="https://i.imgur.com/aMvlSQH.jpeg" alt="Ceket 4" class="clickable-image">
-      <p>Modern dokunuşlarla retro bir görünüm.</p>
-    </div>
-    <div class="product-card">
-      <img src="https://i.imgur.com/f5CLYLX.jpeg" alt="Ceket 5" class="clickable-image">
-      <p>Klasik tasarım, modern kesim.</p>
-    </div>
-    <div class="product-card">
-      <img src="https://i.imgur.com/iNFjIjV.jpeg" alt="Ceket 6" class="clickable-image">
-      <p>Göz alıcı renkler ve dokular.</p>
-    </div>
-    <div class="product-card">
-      <img src="https://i.imgur.com/0cdcVoa.jpeg" alt="Ceket 7" class="clickable-image">
-      <p>Klasik tasarım, modern kesim.</p>
-    </div>
-    <div class="product-card">
-      <img src="https://i.imgur.com/ccYityH.jpeg" alt="Ceket 8" class="clickable-image">
-      <p>Göz alıcı renkler ve dokular.</p>
-    </div>
-    <div class="product-card">
-      <img src="https://i.imgur.com/N4IG9cw.jpeg" alt="Ceket 9" class="clickable-image">
-      <p>Vibrant renklerde, her tarza uygun.</p>
-    </div>
-    <div class="product-card">
-      <img src="https://i.imgur.com/moqKXuB.jpeg" alt="Ceket 10" class="clickable-image">
-      <p>El yapımı özgün tasarım.</p>
-    </div>
-    <div class="product-card">
-      <img src="https://i.imgur.com/KxNz4k7.jpeg" alt="Ceket 11" class="clickable-image">
-      <p>Vintage stil, güçlü duruş.</p>
-    </div>
-    <div class="product-card">
-      <img src="https://i.imgur.com/DhjUoed.jpeg" alt="Ceket 12" class="clickable-image">
-      <p>El dokuması halıdan üretilmiş özel tasarım ceket.</p>
-    </div>
-    <div class="product-card">
-      <img src="https://i.imgur.com/p3rY7rD.jpeg" alt="Ceket 13" class="clickable-image">
-      <p>Modern dokunuşlarla retro bir görünüm.</p>
-    </div>
-    <div class="product-card">
-      <img src="https://i.imgur.com/JY50D7d.jpeg" alt="Ceket 14" class="clickable-image">
-      <p>Geçmişin izlerini taşıyan tasarım.</p>
-    </div>
-  </div>
-</section>
-  
-    <div class="carousel">
-      <div class="carousel-track"> 
-        <img src="https://i.imgur.com/mJo5QjJ.jpeg" alt="Ürün 1"  class="clickable-image">
-        <img src="https://i.imgur.com/ZVjvWjm.jpeg" alt="Ürün 2"  class="clickable-image">
-        <img src="https://i.imgur.com/v2dc54S.jpeg" alt="Ürün 3"  class="clickable-image">        
-        <img src="https://i.imgur.com/XHRI1Ud.jpeg" alt="Ürün 4"  class="clickable-image">
-        <img src="https://i.imgur.com/Z4CDTIf.jpeg" alt="Ürün 5"  class="clickable-image">
-        <img src="https://i.imgur.com/5T3wvZG.jpeg" alt="Ürün 6"  class="clickable-image">
-        <img src="https://i.imgur.com/vkQnNb3.jpeg" alt="Ürün 7"  class="clickable-image">
-        <img src="https://i.imgur.com/7N6azdr.jpeg" alt="Ürün 8"  class="clickable-image"> 
+    <div class="carousel" aria-label="Öne çıkan ürünler">
+      <div class="carousel-track">
+        <img src="https://i.imgur.com/WzlSfVi.jpeg" alt="Ürün 1" loading="lazy">
+        <img src="https://i.imgur.com/txFwYJn.jpeg" alt="Ürün 2" loading="lazy">
+        <img src="https://i.imgur.com/BGECmbh.jpeg" alt="Ürün 3" loading="lazy">
+        <img src="https://i.imgur.com/QrExQJC.jpeg" alt="Ürün 4" loading="lazy">
+        <img src="https://i.imgur.com/uERTE2A.jpeg" alt="Ürün 5" loading="lazy">
+        <img src="https://i.imgur.com/4cjlU1w.jpeg" alt="Ürün 6" loading="lazy">
       </div>
-    </div>  
+    </div>
+  </header>
 
-<section class="section" id="cantalar">
-  <h2>Çantalar</h2>
-  <div class="products">
-    <div class="product-card">  
-      <img src="https://i.imgur.com/EdojvaG.jpeg" alt="Çanta 1" class="clickable-image">
-      <p>Halılardan tasarlanmış şık bir çanta.</p>
+  <!-- CEKETLER BÖLÜMÜ -->
+  <section class="section" id="ceketler">
+    <h2>Ceketler</h2>
+    <div class="products">
+      <div class="product-card">
+        <img src="https://i.imgur.com/LVY3ldC.jpeg" alt="El dokuması halıdan özel tasarım ceket" class="clickable-image" loading="lazy">
+        <p>El dokuması halıdan üretilmiş özel tasarım ceket.</p>
+      </div>
+      <div class="product-card">
+        <img src="https://i.imgur.com/k2v6g6w.jpeg" alt="Geçmişin izlerini taşıyan ceket" class="clickable-image" loading="lazy">
+        <p>Geçmişin izlerini taşıyan tasarım.</p>
+      </div>
+      <div class="product-card">
+        <img src="https://i.imgur.com/UeNPAfo.jpeg" alt="Vintage stil güçlü duruş" class="clickable-image" loading="lazy">
+        <p>Vintage stil, güçlü duruş.</p>
+      </div>
+      <div class="product-card">
+        <img src="https://i.imgur.com/aMvlSQH.jpeg" alt="Modern dokunuşlarla retro görünüm" class="clickable-image" loading="lazy">
+        <p>Modern dokunuşlarla retro bir görünüm.</p>
+      </div>
+      <div class="product-card">
+        <img src="https://i.imgur.com/f5CLYLX.jpeg" alt="Klasik tasarım modern kesim" class="clickable-image" loading="lazy">
+        <p>Klasik tasarım, modern kesim.</p>
+      </div>
+      <div class="product-card">
+        <img src="https://i.imgur.com/iNFjIjV.jpeg" alt="Göz alıcı renkler ve dokular" class="clickable-image" loading="lazy">
+        <p>Göz alıcı renkler ve dokular.</p>
+      </div>
+      <div class="product-card">
+        <img src="https://i.imgur.com/0cdcVoa.jpeg" alt="Klasik tasarım modern kesim 2" class="clickable-image" loading="lazy">
+        <p>Klasik tasarım, modern kesim.</p>
+      </div>
+      <div class="product-card">
+        <img src="https://i.imgur.com/ccYityH.jpeg" alt="Göz alıcı renkler ve dokular 2" class="clickable-image" loading="lazy">
+        <p>Göz alıcı renkler ve dokular.</p>
+      </div>
+      <div class="product-card">
+        <img src="https://i.imgur.com/N4IG9cw.jpeg" alt="Vibrant renklerde her tarza uygun" class="clickable-image" loading="lazy">
+        <p>Vibrant renklerde, her tarza uygun.</p>
+      </div>
+      <div class="product-card">
+        <img src="https://i.imgur.com/moqKXuB.jpeg" alt="El yapımı özgün tasarım 2" class="clickable-image" loading="lazy">
+        <p>El yapımı özgün tasarım.</p>
+      </div>
+      <div class="product-card">
+        <img src="https://i.imgur.com/KxNz4k7.jpeg" alt="Vintage stil güçlü duruş 2" class="clickable-image" loading="lazy">
+        <p>Vintage stil, güçlü duruş.</p>
+      </div>
+      <div class="product-card">
+        <img src="https://i.imgur.com/DhjUoed.jpeg" alt="El dokuması halıdan özel tasarım ceket 2" class="clickable-image" loading="lazy">
+        <p>El dokuması halıdan üretilmiş özel tasarım ceket.</p>
+      </div>
+      <div class="product-card">
+        <img src="https://i.imgur.com/p3rY7rD.jpeg" alt="Modern dokunuşlarla retro bir görünüm 2" class="clickable-image" loading="lazy">
+        <p>Modern dokunuşlarla retro bir görünüm.</p>
+      </div>
+      <div class="product-card">
+        <img src="https://i.imgur.com/JY50D7d.jpeg" alt="Geçmişin izlerini taşıyan tasarım 2" class="clickable-image" loading="lazy">
+        <p>Geçmişin izlerini taşıyan tasarım.</p>
+      </div>
     </div>
-    <div class="product-card">  
-      <img src="https://i.imgur.com/M0CV5gC.jpeg" alt="Çanta 2" class="clickable-image">
-      <p>Özgün bir stil.</p>
-    </div> 
-    <div class="product-card">
-      <img src="https://i.imgur.com/yAukquO.jpeg" alt="Çanta 3" class="clickable-image">
-      <p>El yapımı özgün tasarım.</p>
-    </div>
-  </div>  
-</section>
+  </section>
 
-<section class="section" id="trendler">
-  <h2>Yaz Sezonunun Trendi</h2>
-  <div class="products">
-    <div class="product-card">  
-      <img src="https://i.imgur.com/mJo5QjJ.jpeg" alt="Yaz Sezonunun Trendi 1" class="clickable-image">
-      <p>Hem şıklığı hem de rahatlığı bir arada sunarak yaz aylarında özgün bir stil.</p>
-    </div>           
-    <div class="product-card">
-      <img src="https://i.imgur.com/ykwtfHk.jpeg" alt="Yaz Sezonunun Trendi 2" class="clickable-image">
-      <p>Geçmişin dokusuyla geleceğin tarzı.</p>
+  <div class="carousel" aria-label="Galeriden seçkiler">
+    <div class="carousel-track">
+      <img src="https://i.imgur.com/mJo5QjJ.jpeg" alt="Ürün 1" class="clickable-image" loading="lazy">
+      <img src="https://i.imgur.com/ZVjvWjm.jpeg" alt="Ürün 2" class="clickable-image" loading="lazy">
+      <img src="https://i.imgur.com/v2dc54S.jpeg" alt="Ürün 3" class="clickable-image" loading="lazy">
+      <img src="https://i.imgur.com/XHRI1Ud.jpeg" alt="Ürün 4" class="clickable-image" loading="lazy">
+      <img src="https://i.imgur.com/Z4CDTIf.jpeg" alt="Ürün 5" class="clickable-image" loading="lazy">
+      <img src="https://i.imgur.com/5T3wvZG.jpeg" alt="Ürün 6" class="clickable-image" loading="lazy">
+      <img src="https://i.imgur.com/vkQnNb3.jpeg" alt="Ürün 7" class="clickable-image" loading="lazy">
+      <img src="https://i.imgur.com/7N6azdr.jpeg" alt="Ürün 8" class="clickable-image" loading="lazy">
     </div>
-    <div class="product-card">
-      <img src="https://i.imgur.com/m7RrEd5.jpeg" alt="Yaz Sezonunun Trendi 3" class="clickable-image">
-      <p>Vintage stil, güçlü duruş.</p>
-    </div>
-    <div class="product-card">
-      <img src="https://i.imgur.com/IbgcRlw.jpeg" alt="Yaz Sezonunun Trendi 4" class="clickable-image">
-      <p>Geçmişin izlerini taşıyan tasarım.</p>
-    </div>      
   </div>
-</section>
 
-    <section class="section" id="about">
-  <h3>1. Biz Kimiz?</h3>
-  <h4>Asilkan Custom – Her Parça Bir Miras</h4>
-  <p>Asilkan Custom, geleneksel duvar halılarını modern tasarımlarla buluşturarak kişiye özel ceketler üreten bir tasarım atölyesidir.<br>
-  Her parça; özenle seçilmiş kumaşlar, detaylara duyulan saygı ve işimize olan tutkumuzla hayat bulur.<br>
-  Amacımız yalnızca giyilebilir bir ürün sunmak değil; geçmişin ruhunu taşıyan, zamansız ve anlamlı parçalar yaratmaktır.</p>
+  <section class="section" id="cantalar">
+    <h2>Çantalar</h2>
+    <div class="products">
+      <div class="product-card">
+        <img src="https://i.imgur.com/EdojvaG.jpeg" alt="Halılardan tasarlanmış şık çanta" class="clickable-image" loading="lazy">
+        <p>Halılardan tasarlanmış şık bir çanta.</p>
+      </div>
+      <div class="product-card">
+        <img src="https://i.imgur.com/M0CV5gC.jpeg" alt="Özgün stil çanta" class="clickable-image" loading="lazy">
+        <p>Özgün bir stil.</p>
+      </div>
+      <div class="product-card">
+        <img src="https://i.imgur.com/yAukquO.jpeg" alt="El yapımı özgün tasarım çanta" class="clickable-image" loading="lazy">
+        <p>El yapımı özgün tasarım.</p>
+      </div>
+    </div>
+  </section>
 
-  <hr>
+  <section class="section" id="trendler">
+    <h2>Yaz Sezonunun Trendi</h2>
+    <div class="products">
+      <div class="product-card">
+        <img src="https://i.imgur.com/mJo5QjJ.jpeg" alt="Yaz sezonunun trendi 1" class="clickable-image" loading="lazy">
+        <p>Hem şıklığı hem de rahatlığı bir arada sunarak yaz aylarında özgün bir stil.</p>
+      </div>
+      <div class="product-card">
+        <img src="https://i.imgur.com/ykwtfHk.jpeg" alt="Yaz sezonunun trendi 2" class="clickable-image" loading="lazy">
+        <p>Geçmişin dokusuyla geleceğin tarzı.</p>
+      </div>
+      <div class="product-card">
+        <img src="https://i.imgur.com/m7RrEd5.jpeg" alt="Yaz sezonunun trendi 3" class="clickable-image" loading="lazy">
+        <p>Vintage stil, güçlü duruş.</p>
+      </div>
+      <div class="product-card">
+        <img src="https://i.imgur.com/IbgcRlw.jpeg" alt="Yaz sezonunun trendi 4" class="clickable-image" loading="lazy">
+        <p>Geçmişin izlerini taşıyan tasarım.</p>
+      </div>
+    </div>
+  </section>
 
-  <h3>2. Neden Asilkan?</h3>
-  <p><strong>Çünkü siz sıradan değilsiniz.</strong></p>
-  <ul>
-  <li>%100 el işçiliğiyle hazırlanır.</li>
-  <li>Sadece size özel olarak tasarlanır, tekrar edilmez.</li>
-  <li>Sanatla zanaatin, stil ile kültürün kesişim noktasında yer alır.</li>
-  <li>Hem güçlü bir stil ifadesi hem de bir hikâyenin taşıyıcısıdır.</li>
-  </ul>
-  <p><em>İnandığımız şey şu: Giysi değil, karakter giyersiniz.</em></p>
+  <section class="section" id="about">
+    <h2>Hakkımızda</h2>
+    <h3>1. Biz Kimiz?</h3>
+    <h4>Asilkan Custom – Her Parça Bir Miras</h4>
+    <p>Asilkan Custom, geleneksel duvar halılarını modern tasarımlarla buluşturarak kişiye özel ceketler üreten bir tasarım atölyesidir.<br>
+    Her parça; özenle seçilmiş kumaşlar, detaylara duyulan saygı ve işimize olan tutkumuzla hayat bulur.<br>
+    Amacımız yalnızca giyilebilir bir ürün sunmak değil; geçmişin ruhunu taşıyan, zamansız ve anlamlı parçalar yaratmaktır.</p>
+    <hr>
 
-  <hr>
+    <h3>2. Neden Asilkan?</h3>
+    <p><strong>Çünkü siz sıradan değilsiniz.</strong></p>
+    <ul>
+      <li>%100 el işçiliğiyle hazırlanır.</li>
+      <li>Sadece size özel olarak tasarlanır, tekrar edilmez.</li>
+      <li>Sanatla zanaatin, stil ile kültürün kesişim noktasında yer alır.</li>
+      <li>Hem güçlü bir stil ifadesi hem de bir hikâyenin taşıyıcısıdır.</li>
+    </ul>
+    <p><em>İnandığımız şey şu: Giysi değil, karakter giyersiniz.</em></p>
+    <hr>
 
-  <h3>3. Sipariş Süreci</h3>
-  <p><strong>Hayal edin, birlikte tasarlayalım.</strong></p>
-  <ol>
-    <li><strong>İletişime geçin:</strong> Öncelikle bizimle iletişime geçin, sizi ve tarzınızı tanıyalım.</li>
-    <li><strong>Desen seçimi:</strong> Halı koleksiyonumuzdan size hitap eden desenleri paylaşalım.</li>
-    <li><strong>Tasarım & Dikiş:</strong> Beğendiğiniz desen doğrultusunda, bedeninize ve kullanım tercihlerinize uygun bir tasarım süreci başlatılır.</li>
-    <li><strong>Son dokunuşlar:</strong> Her detayda onayınız alınarak tasarım tamamlanır ve size özel paketlemenizle gönderilir.</li>
-  </ol>
-  <p>Bu süreç boyunca her adımda sizinle iletişimde kalıyor, sorularınızı memnuniyetle yanıtlıyoruz.<br>
-  Çünkü sizin için üretiyoruz. Sizin için düşünüyor, tasarlıyor ve dikiyoruz.</p>
+    <h3>3. Sipariş Süreci</h3>
+    <p><strong>Hayal edin, birlikte tasarlayalım.</strong></p>
+    <ol>
+      <li><strong>İletişime geçin:</strong> Öncelikle bizimle iletişime geçin, sizi ve tarzınızı tanıyalım.</li>
+      <li><strong>Desen seçimi:</strong> Halı koleksiyonumuzdan size hitap eden desenleri paylaşalım.</li>
+      <li><strong>Tasarım & Dikiş:</strong> Beğendiğiniz desen doğrultusunda, bedeninize ve kullanım tercihlerinize uygun bir tasarım süreci başlatılır.</li>
+      <li><strong>Son dokunuşlar:</strong> Her detayda onayınız alınarak tasarım tamamlanır ve size özel paketlemenizle gönderilir.</li>
+    </ol>
+    <p>Bu süreç boyunca her adımda sizinle iletişimde kalıyor, sorularınızı memnuniyetle yanıtlıyoruz.<br>
+    Çünkü sizin için üretiyoruz. Sizin için düşünüyor, tasarlıyor ve dikiyoruz.</p>
+    <p><strong>Tarzınızı yansıtan, size özel tasarım ceket modelleri ve daha fazlası için bizimle iletişime geçin.</strong></p>
+    <h4>Asilkan Custom – Eşsiz Olmak İsteyenler İçin.</h4>
+  </section>
 
-  <p><strong>"Tarzınızı yansıtan, size özel tasarım ceket modelleri ve daha fazlası için bizimle iletişime geçin."</strong></p>
-  <h4>Asilkan Custom – Eşsiz Olmak İsteyenler İçin.</h4>
-</section>
-
-  <!-- Beden Bilgisi Bölümü -->
   <section class="section" id="cart">
     <h2>Beden Bilgisi</h2>
     <div class="products">
-      <div class="product-card">
-        <img src="https://i.imgur.com/4ieGN8D.jpeg" alt="Beden 1">
-      </div>
-      <div class="product-card">
-        <img src="https://i.imgur.com/XakBSnF.jpeg" alt="Beden 2">
-      </div>
-      <div class="product-card">
-        <img src="https://i.imgur.com/2EbmagT.jpeg" alt="Beden 3">
-      </div>
-      <div class="product-card">
-        <img src="https://i.imgur.com/I1UPRUa.jpeg" alt="Beden 4">
- </div>
-</div>
+      <div class="product-card"><img src="https://i.imgur.com/4ieGN8D.jpeg" alt="Beden ölçü şeması 1" loading="lazy"></div>
+      <div class="product-card"><img src="https://i.imgur.com/XakBSnF.jpeg" alt="Beden ölçü şeması 2" loading="lazy"></div>
+      <div class="product-card"><img src="https://i.imgur.com/2EbmagT.jpeg" alt="Beden ölçü şeması 3" loading="lazy"></div>
+      <div class="product-card"><img src="https://i.imgur.com/I1UPRUa.jpeg" alt="Beden ölçü şeması 4" loading="lazy"></div>
+    </div>
   </section>
 
   <footer>
     <p>İletişim:</p>
-    <p><a href="https://wa.me/c/905454388096" target="_blank">WhatsApp</a> | <a href="https://www.instagram.com/asilkancustom/" target="_blank">Instagram</a> | <a href="mailto:asilkan.customwears@gmail.com">Email</a></p>
+    <p>
+      <a href="https://wa.me/c/905454388096" target="_blank" rel="noopener">WhatsApp</a> |
+      <a href="https://www.instagram.com/asilkancustom/" target="_blank" rel="noopener">Instagram</a> |
+      <a href="mailto:asilkan.customwears@gmail.com">Email</a>
+    </p>
   </footer>
-  
-<div id="lightbox" style="display: none;">
-  <span id="close-btn">&times;</span>
-  <img id="lightbox-img" src="">
-</div>
 
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const images = document.querySelectorAll('.clickable-image');
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
-    const closeBtn = document.getElementById('close-btn');
+  <!-- Lightbox -->
+  <div id="lightbox" aria-hidden="true">
+    <span id="close-btn" aria-label="Kapat">&times;</span>
+    <img id="lightbox-img" src="" alt="Büyük görüntü">
+  </div>
 
-    images.forEach(img => {
-      img.addEventListener('click', () => {
-        lightbox.style.display = 'flex';
-        lightboxImg.src = img.src;
+  <script>
+    // NAV: hamburger & dropdown
+    document.addEventListener('DOMContentLoaded', () => {
+      const hamburger = document.getElementById('hamburger');
+      const navLinks = document.getElementById('nav-links');
+      const dropdown = document.getElementById('dropdown-products');
+
+      // Hamburger aç/kapat
+      hamburger?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const open = navLinks.classList.toggle('show');
+        hamburger.setAttribute('aria-expanded', String(open));
       });
-    });
 
-    closeBtn.addEventListener('click', () => {
-      lightbox.style.display = 'none';
-    });
+      // Linke tıklanınca menüyü kapat (mobil)
+      navLinks?.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
+          navLinks.classList.remove('show');
+          hamburger.setAttribute('aria-expanded','false');
+        });
+      });
 
-    lightbox.addEventListener('click', (e) => {
-      if (e.target === lightbox) {
-        lightbox.style.display = 'none';
+      // Dışarı tıkla kapat
+      document.addEventListener('click', (e) => {
+        if (!navLinks.contains(e.target) && !hamburger.contains(e.target)) {
+          navLinks.classList.remove('show');
+          hamburger.setAttribute('aria-expanded','false');
+        }
+      });
+
+      // Dropdown aç/kapat (klavye & tık)
+      const dropBtn = dropdown.querySelector('button');
+      dropBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        dropdown.classList.toggle('open');
+        const expanded = dropdown.classList.contains('open');
+        dropBtn.setAttribute('aria-expanded', String(expanded));
+      });
+
+      // Lightbox
+      const images = document.querySelectorAll('.clickable-image');
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      const closeBtn = document.getElementById('close-btn');
+
+      function closeLightbox(){
+        lightbox.classList.remove('show');
+        lightbox.setAttribute('aria-hidden','true');
+        lightboxImg.src = '';
       }
+
+      images.forEach(img => {
+        img.addEventListener('click', () => {
+          lightbox.classList.add('show');
+          lightbox.setAttribute('aria-hidden','false');
+          lightboxImg.src = img.src;
+          lightboxImg.alt = img.alt || 'Büyük görüntü';
+        });
+      });
+
+      closeBtn.addEventListener('click', closeLightbox);
+      lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
     });
-  });
-</script>
-  
+  </script>
 </body>
 </html>
