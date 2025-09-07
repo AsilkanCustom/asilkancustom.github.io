@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Asilkan Custom – El dokuması halılardan kişiye özel ceket ve çanta tasarımları" />
   <title>ASİLKAN Custom</title>
+  <meta name="description" content="Asilkan Custom – El dokuması halılardan kişiye özel ceket ve çanta tasarımları" />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,25 +22,25 @@
 
     /* NAV */
     nav{ position:sticky; top:0; z-index:1000; background:var(--primary); color:#fff; box-shadow:0 2px 10px rgba(0,0,0,.15); }
-    .nav-container{ max-width:1100px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:12px 16px }
+    .nav-container{ max-width:1100px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:12px 16px; position:relative }
     .brand{ display:flex; align-items:center; gap:10px; color:#fff; text-decoration:none }
     .brand img{ height:40px; width:auto }
     .brand span{ font-weight:700; letter-spacing:.5px }
 
-    .nav-links{ display:flex; gap:22px; align-items:center; list-style:none; margin:0; padding:0 }
+    .nav-links{ display:flex; gap:22px; align-items:center; list-style:none; margin:0; padding:0; z-index:1001 }
     .nav-links a, .nav-links button{ color:#fff; text-decoration:none; font-weight:600; text-transform:uppercase; font-size:.95rem; transition:opacity .2s; background:none; border:0; cursor:pointer }
-    .nav-links a:hover, .nav-links button:hover{ opacity:.8; color:#ffd7d7 }
+    .nav-links a:hover, .nav-links button:hover{ opacity:.85; color:#ffd7d7 }
 
     /* Dropdown */
     .dropdown{ position:relative }
-    .dropdown-menu{ display:none; position:absolute; top:120%; left:0; min-width:220px; background:var(--primary); color:#fff; list-style:none; margin:0; padding:8px 0; border-radius:10px; box-shadow:0 6px 20px rgba(0,0,0,.18); z-index:1001 }
+    .dropdown-menu{ display:none; position:absolute; top:120%; left:0; min-width:220px; background:var(--primary); color:#fff; list-style:none; margin:0; padding:8px 0; border-radius:10px; box-shadow:0 6px 20px rgba(0,0,0,.18); z-index:1100 }
     .dropdown-menu li{ padding:0 }
     .dropdown-menu a{ color:#fff; text-decoration:none; font-weight:600; display:block; padding:10px 14px }
     .dropdown-menu a:hover{ background-color: var(--accent); color:#fff }
     .dropdown.open .dropdown-menu{ display:block }
 
     /* Hamburger */
-    .hamburger{ display:none; flex-direction:column; gap:4px; cursor:pointer }
+    .hamburger{ display:none; flex-direction:column; gap:4px; cursor:pointer; position:relative; z-index:1101 }
     .hamburger span{ display:block; width:26px; height:3px; background:#fff; border-radius:2px }
 
     @media (max-width: 768px){
@@ -54,7 +54,8 @@
     /* SAYFALAR */
     .page{ display:none }
     .page:target{ display:block }
-    .page#home{ display:block }
+    .page#home{ display:block }                 /* varsayılan */
+    body:has(.page:target) .page#home{ display:none } /* başka sayfa seçilince home gizlensin */
 
     header{ text-align:center; padding:60px 16px 30px; color:#7a1e1e; background:url('https://i.imgur.com/RDZIPps.jpeg') repeat }
     header .logo{ height:100px; width:auto }
@@ -122,7 +123,7 @@
 <body>
   <nav>
     <div class="nav-container">
-      <a class="brand" href="#home" data-page="home" aria-label="Asilkan Custom ana sayfa">
+      <a class="brand" href="#home" aria-label="Asilkan Custom ana sayfa">
         <img src="https://i.imgur.com/14VgsWh.png" alt="Asilkan Custom Logo" loading="eager" />
         <span>AsilkanCustom</span>
       </a>
@@ -132,24 +133,24 @@
       </button>
 
       <ul class="nav-links" id="nav-links">
-        <li><a href="#home" data-page="home">Ana Sayfa</a></li>
+        <li><a href="#home">Ana Sayfa</a></li>
         <li class="dropdown" id="dropdown-products">
-          <button type="button" aria-haspopup="true" aria-expanded="false">Ürünler</button>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#ceketler" data-page="ceketler">Ceketler</a></li>
-            <li><a href="#cantalar" data-page="cantalar">Çantalar</a></li>
-            <li><a href="#trendler" data-page="trendler">Yaz Trendleri</a></li>
+          <button type="button" id="products-btn" aria-expanded="false" aria-controls="products-menu" style="cursor:pointer">Ürünler</button>
+          <ul class="dropdown-menu" id="products-menu" role="menu">
+            <li><a href="#ceketler">Ceketler</a></li>
+            <li><a href="#cantalar">Çantalar</a></li>
+            <li><a href="#trendler">Yaz Trendleri</a></li>
           </ul>
         </li>
-        <li><a href="#about" data-page="about">Hakkımızda</a></li>
+        <li><a href="#about">Hakkımızda</a></li>
         <li><a href="https://wa.me/c/905454388096" target="_blank" rel="noopener">İletişim</a></li>
-        <li><a href="#cart" data-page="cart">Beden Bilgisi</a></li>
+        <li><a href="#cart">Beden Bilgisi</a></li>
       </ul>
     </div>
   </nav>
 
   <!-- HOME -->
-  <div class="page active" id="home">
+  <div class="page" id="home">
     <header id="home-hero">
       <img class="logo" src="https://i.imgur.com/14VgsWh.png" alt="Asilkan Custom Logo" />
       <h1>AsilkanCustom</h1>
@@ -416,16 +417,22 @@
   </div>
 
   <script>
-    // Yardımcı: güvenli selector
+    // Basit yardımcılar
     function $(sel, ctx){ return (ctx||document).querySelector(sel); }
     function $all(sel, ctx){ return Array.prototype.slice.call((ctx||document).querySelectorAll(sel)); }
 
     document.addEventListener('DOMContentLoaded', function(){
       try{
-        var hamburger = document.getElementById('hamburger');
-        var navLinks  = document.getElementById('nav-links');
-        var dropdown  = document.getElementById('dropdown-products');
-        var dropBtn   = dropdown ? dropdown.querySelector('button') : null;
+        var hamburger = $('#hamburger');
+        var navLinks  = $('#nav-links');
+        var dropdown  = $('#dropdown-products');
+        var dropBtn   = $('#products-btn');
+        var dropMenu  = $('#products-menu');
+
+        // Hash yoksa #home göster
+        if(!location.hash){
+          try{ location.hash = '#home'; }catch(_){ /* ignore */ }
+        }
 
         // Hamburger aç/kapat
         if(hamburger){
@@ -448,17 +455,34 @@
         // Dropdown aç/kapat
         if(dropBtn && dropdown){
           dropBtn.addEventListener('click', function(e){
-            e.preventDefault();
+            e.stopPropagation();
             dropdown.classList.toggle('open');
             dropBtn.setAttribute('aria-expanded', String(dropdown.classList.contains('open')));
+          });
+          // Menü linkine tıklanınca kapat
+          if(dropMenu){
+            dropMenu.addEventListener('click', function(e){
+              var a = e.target.closest('a');
+              if(!a) return;
+              dropdown.classList.remove('open');
+              if(navLinks){ navLinks.classList.remove('show'); }
+              if(hamburger){ hamburger.setAttribute('aria-expanded','false'); }
+            });
+          }
+          // Dış tıklama ile kapat
+          document.addEventListener('click', function(e){
+            if(!dropdown.contains(e.target)){
+              dropdown.classList.remove('open');
+              dropBtn.setAttribute('aria-expanded','false');
+            }
           });
         }
 
         /* ========= Genel Lightbox ========= */
         var glImages = $all('.clickable-image');
-        var lightbox = document.getElementById('lightbox');
-        var lightboxImg = document.getElementById('lightbox-img');
-        var closeBtn = document.getElementById('close-btn');
+        var lightbox = $('#lightbox');
+        var lightboxImg = $('#lightbox-img');
+        var closeBtn = $('#close-btn');
         function closeLightbox(){ if(lightbox && lightboxImg){ lightbox.classList.remove('show'); lightbox.setAttribute('aria-hidden','true'); lightboxImg.src=''; } }
         glImages.forEach(function(img){
           img.addEventListener('click', function(){
@@ -473,31 +497,31 @@
         document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeLightbox(); });
 
         /* ========= Ürün Modal + Galeri + Ölçü/Boyut ========= */
-        var productModal = document.getElementById('product-modal');
-        var pmCloseBtn = document.getElementById('pm-close');
-        var gMain = document.getElementById('g-main');
-        var gThumbs = document.getElementById('g-thumbs');
-        var gPrev = document.getElementById('g-prev');
-        var gNext = document.getElementById('g-next');
-        var pmTitle = document.getElementById('pm-title');
-        var pmPrice = document.getElementById('pm-price');
-        var pmDesc  = document.getElementById('pm-desc');
-        var pmWA    = document.getElementById('pm-wa');
-        var pmShare = document.getElementById('pm-share');
+        var productModal = $('#product-modal');
+        var pmCloseBtn = $('#pm-close');
+        var gMain = $('#g-main');
+        var gThumbs = $('#g-thumbs');
+        var gPrev = $('#g-prev');
+        var gNext = $('#g-next');
+        var pmTitle = $('#pm-title');
+        var pmPrice = $('#pm-price');
+        var pmDesc  = $('#pm-desc');
+        var pmWA    = $('#pm-wa');
+        var pmShare = $('#pm-share');
 
-        var secJacket = document.getElementById('sec-jacket');
-        var secBag = document.getElementById('sec-bag');
-        var mChest = document.getElementById('m-chest');
-        var mShoulder = document.getElementById('m-shoulder');
-        var mSleeve = document.getElementById('m-sleeve');
-        var mWaist = document.getElementById('m-waist');
-        var mHeight = document.getElementById('m-height');
-        var mWeight = document.getElementById('m-weight');
-        var bWidth = document.getElementById('b-width');
-        var bHeight = document.getElementById('b-height');
-        var bDepth = document.getElementById('b-depth');
-        var mNotes = document.getElementById('m-notes');
-        var mUnit = document.getElementById('m-unit');
+        var secJacket = $('#sec-jacket');
+        var secBag = $('#sec-bag');
+        var mChest = $('#m-chest');
+        var mShoulder = $('#m-shoulder');
+        var mSleeve = $('#m-sleeve');
+        var mWaist = $('#m-waist');
+        var mHeight = $('#m-height');
+        var mWeight = $('#m-weight');
+        var bWidth = $('#b-width');
+        var bHeight = $('#b-height');
+        var bDepth = $('#b-depth');
+        var mNotes = $('#m-notes');
+        var mUnit = $('#m-unit');
 
         var WAPhone = '905454388096';
         var PRODUCTS = {
@@ -577,9 +601,15 @@ Uygunluk ve teslimat bilgisi alabilir miyim?');
         }
         function closeProduct(){ if(productModal){ productModal.classList.remove('show'); productModal.setAttribute('aria-hidden','true'); document.body.style.overflow=''; } }
 
-        $all('.product-card .product-image').forEach(function(img){
-          img.addEventListener('click', function(e){ openProduct(e.currentTarget.closest('.product-card')); });
+        // Delegated: ürün görseli tıklanınca modal aç
+        document.addEventListener('click', function(e){
+          var img = e.target.closest ? e.target.closest('.product-card .product-image') : null;
+          if(img){
+            var card = img.closest('.product-card');
+            if(card){ openProduct(card); }
+          }
         });
+
         if(gPrev) gPrev.addEventListener('click', function(){ setActive(currentIndex-1); });
         if(gNext) gNext.addEventListener('click', function(){ setActive(currentIndex+1); });
         if(gMain){
