@@ -11,10 +11,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
-  <!-- Favicon (küçük base64) -->
-  <link rel="icon" type="image/jpeg" href="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxAQEBIQEhAQEA8PEA8QDxAQDxAQEA8QFREWFhURFRUYHSggGBolHRUVITEhJSkrLi4uFx8zODMtNygtLisBCgoKDg0OGxAQGy0lHyUtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLf/AABEIAKAAoQMBIgACEQEDEQH/xAAXAAEBAQEAAAAAAAAAAAAAAAABAgME/8QAHhABAQACAQUAAAAAAAAAAAAAAQIAAxEhEjFBgZH/xAAXAQEBAQEAAAAAAAAAAAAAAAAAAQID/8QAFxEBAQEBAAAAAAAAAAAAAAAAAQARIf/aAAwDAQACEQMRAD8A2Y0F2g0sQm0xgQ9C5n1Jx1i9hZbZ8iNSn3lqF0qGm0cXl1W7QdXl8m7H0p5q7Q3lS3l3xkFJ7gAB0y7beQf/9k=" />
+  <!-- Favicon (base64 örnek) -->
+  <link rel="icon" type="image/jpeg" href="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/4QAiRXhpZgAATU0AKgAAAAgAAQESAAMAAAABAAEAAAAAAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAgACADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD6nV0cnawbHofw/oadXneueGdbh+1GxvJpIJflCwthgncFe/U9P6VyR8Y+L9A066hntZ702+Ckk3yHPXDOw6EA9efegaVz3GmvIiEB2Vc9Mn3A/mR+deJN4r8X+ILO1toLe4shN/rHh+cs2MkB1HQcdB35rrtC8M6zI9s+oXkyQRjaVlbLFewA6AfWgR3WoXcdhY3F3PnyYI2lfHUKoyf0Fef+J9b0DXrVI7y0mLAKf3kiRMAyO4HU5+4evHvXo5AIweRTTGjDDIpHTBFBrTlCPxxv8zzzwr4g8P6LZG30+yvEfazSDKNgIoJ+YsBjHI/Gu8028j1DT7a8hVljnjWVQ2MgEZGcEj9ajl0u0kleXy3jkkOXaGVo95wBk7SMnAAyfQelWoYkhiSOJQqKMADtQFSVN/BG3zP/2Q==" />
 
-  <!-- Google Analytics (opsiyonel) -->
+  <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-BL879TEEGW"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -43,8 +43,8 @@
     /* Dropdown */
     .dropdown{ position:relative }
     .dropdown-menu{ display:none; position:absolute; top:120%; left:0; min-width:220px; background:var(--primary); color:#fff; list-style:none; margin:0; padding:8px 0; border-radius:10px; box-shadow:0 6px 20px rgba(0,0,0,.18); z-index:1001 }
-    .dropdown-menu li{ padding:0 }
-    .dropdown-menu a{ color:#fff; text-decoration:none; font-weight:600; display:block; padding:10px 14px }
+    .dropdown-menu li{ padding:6px 14px }
+    .dropdown-menu a{ color:#fff; text-decoration:none; font-weight:600 }
     .dropdown-menu a:hover{ background-color: var(--accent); color:#fff }
     .dropdown.open .dropdown-menu{ display:block }
 
@@ -119,7 +119,7 @@
     .pm-close{ position:sticky; top:0; text-align:right; padding:8px 12px }
     .pm-close button{ background:none; border:0; font-size:28px; cursor:pointer }
 
-    /* Ölçü Formu (ceket) ve Boyut Formu (çanta) */
+    /* Ölçü Formu */
     .measure-form{ display:grid; grid-template-columns:1fr 1fr; gap:10px; width:100%; margin-top:8px }
     .measure-form label{ font-size:.9rem; color:#333 }
     .measure-form input, .measure-form textarea, .measure-form select{ width:100%; padding:10px; border:1px solid #ddd; border-radius:10px; font:inherit }
@@ -386,27 +386,38 @@
           <div id="pm-price" class="pm-price">—</div>
           <p id="pm-desc" class="pm-desc">—</p>
 
-          <!-- Ölçü (ceket) / Boyut (çanta) Formu -->
+          <!-- Ölçü Formu -->
           <div class="measure-form" id="measure-form">
-            <!-- Ceket Alanları -->
-            <div id="sec-jacket">
-              <label>Göğüs çevresi <input type="number" id="m-chest" min="0" step="0.1" placeholder="örn. 96"></label>
-              <label>Omuz genişliği <input type="number" id="m-shoulder" min="0" step="0.1" placeholder="örn. 44"></label>
-              <label>Kol uzunluğu <input type="number" id="m-sleeve" min="0" step="0.1" placeholder="örn. 62"></label>
-              <label>Bel çevresi (opsiyonel) <input type="number" id="m-waist" min="0" step="0.1" placeholder="örn. 82"></label>
-              <label>Boy (opsiyonel) <input type="number" id="m-height" min="0" step="0.1" placeholder="örn. 178"></label>
-              <label>Kilo (opsiyonel) <input type="number" id="m-weight" min="0" step="0.1" placeholder="örn. 76"></label>
-            </div>
-            <!-- Çanta Alanları -->
-            <div id="sec-bag" style="display:none">
-              <label>En <input type="number" id="b-width" min="0" step="0.1" placeholder="örn. 28"></label>
-              <label>Boy <input type="number" id="b-height" min="0" step="0.1" placeholder="örn. 22"></label>
-              <label>Derinlik (opsiyonel) <input type="number" id="b-depth" min="0" step="0.1" placeholder="örn. 8"></label>
-            </div>
-            <label style="grid-column:1/-1">Not / İstek (opsiyonel)
-              <textarea id="m-notes" placeholder="Örn. zincir askı istiyorum / fit kalıp vb."></textarea>
+            <label>
+              Göğüs çevresi
+              <input type="number" id="m-chest" min="0" step="0.1" placeholder="örn. 96">
             </label>
-            <label>Birim
+            <label>
+              Omuz genişliği
+              <input type="number" id="m-shoulder" min="0" step="0.1" placeholder="örn. 44">
+            </label>
+            <label>
+              Kol uzunluğu
+              <input type="number" id="m-sleeve" min="0" step="0.1" placeholder="örn. 62">
+            </label>
+            <label>
+              Bel çevresi (opsiyonel)
+              <input type="number" id="m-waist" min="0" step="0.1" placeholder="örn. 82">
+            </label>
+            <label>
+              Boy (opsiyonel)
+              <input type="number" id="m-height" min="0" step="0.1" placeholder="örn. 178">
+            </label>
+            <label>
+              Kilo (opsiyonel)
+              <input type="number" id="m-weight" min="0" step="0.1" placeholder="örn. 76">
+            </label>
+            <label style="grid-column:1/-1">
+              Not / İstek (opsiyonel)
+              <textarea id="m-notes" placeholder="Örn. Omuzlar geniş, fit kesim istiyorum."></textarea>
+            </label>
+            <label>
+              Birim
               <select id="m-unit">
                 <option value="cm" selected>cm</option>
                 <option value="in">inç</option>
@@ -424,65 +435,101 @@
   </div>
 
   <script>
-    /* ========= Basit Router (pushState yok) ========= */
+    // Basit sayfa yönlendirme (SPA benzeri): sadece istenen sayfayı göster
     function showPage(name){
       document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
       const el = document.getElementById('page-' + name);
       if(el){ el.classList.add('active'); window.scrollTo({top:0, behavior:'smooth'}); }
     }
+
     function getPageFromHash(){
       const h = (location.hash || '#home').replace('#','');
       const allowed = ['home','ceketler','cantalar','trendler','about','cart'];
       return allowed.includes(h) ? h : 'home';
     }
-    function updateHashSafely(page){ try { location.hash = page; } catch(_) {} }
 
+    function updateHashSafely(page){
+      try { location.hash = page; } catch(_) { }
+    }
+
+    // NAV: hamburger & dropdown & router
     document.addEventListener('DOMContentLoaded', () => {
       const hamburger = document.getElementById('hamburger');
       const navLinks = document.getElementById('nav-links');
       const dropdown = document.getElementById('dropdown-products');
 
+      // İlk yüklemede sadece home (veya hash)
       showPage(getPageFromHash());
 
+      // Menü linkleri tıklaması -> sayfa göster
       document.querySelectorAll('[data-page]').forEach(el=>{
         el.addEventListener('click', (e)=>{
           const page = e.currentTarget.getAttribute('data-page');
           if(page){ e.preventDefault(); showPage(page); updateHashSafely(page); }
-          navLinks?.classList.remove('show');
-          hamburger?.setAttribute('aria-expanded','false');
+          if(navLinks){ navLinks.classList.remove('show'); }
+          if(hamburger){ hamburger.setAttribute('aria-expanded','false'); }
         });
       });
+
+      // Hash geri/ileri
       window.addEventListener('hashchange', ()=> showPage(getPageFromHash()));
 
-      hamburger?.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const open = navLinks?.classList.toggle('show');
-        hamburger.setAttribute('aria-expanded', String(!!open));
-      });
+      // Hamburger aç/kapat
+      if(hamburger){
+        hamburger.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const open = navLinks && navLinks.classList.toggle('show');
+          hamburger.setAttribute('aria-expanded', String(!!open));
+        });
+      }
+
+      // Dışarı tıkla kapat
       document.addEventListener('click', (e) => {
         if (navLinks && hamburger && !navLinks.contains(e.target) && !hamburger.contains(e.target)) {
           navLinks.classList.remove('show');
           hamburger.setAttribute('aria-expanded','false');
         }
       });
-      const dropBtn = dropdown?.querySelector('button');
-      dropBtn?.addEventListener('click', (e) => {
-        e.preventDefault(); dropdown.classList.toggle('open');
-        dropBtn.setAttribute('aria-expanded', String(dropdown.classList.contains('open')));
-      });
 
-      /* ========= Genel Lightbox ========= */
+      // Dropdown aç/kapat
+      const dropBtn = dropdown ? dropdown.querySelector('button') : null;
+      if(dropBtn){
+        dropBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          dropdown.classList.toggle('open');
+          const expanded = dropdown.classList.contains('open');
+          dropBtn.setAttribute('aria-expanded', String(expanded));
+        });
+      }
+
+      /* =====================
+         GENEL LIGHTBOX
+      ======================*/
       const glImages = document.querySelectorAll('.clickable-image');
       const lightbox = document.getElementById('lightbox');
       const lightboxImg = document.getElementById('lightbox-img');
       const closeBtn = document.getElementById('close-btn');
-      function closeLightbox(){ lightbox.classList.remove('show'); lightbox.setAttribute('aria-hidden','true'); lightboxImg.src=''; }
-      glImages.forEach(img => img.addEventListener('click', () => { lightbox.classList.add('show'); lightbox.setAttribute('aria-hidden','false'); lightboxImg.src=img.src; lightboxImg.alt=img.alt||'Büyük görüntü'; }));
+
+      function closeLightbox(){
+        lightbox.classList.remove('show');
+        lightbox.setAttribute('aria-hidden','true');
+        lightboxImg.src = '';
+      }
+      glImages.forEach(img => {
+        img.addEventListener('click', () => {
+          lightbox.classList.add('show');
+          lightbox.setAttribute('aria-hidden','false');
+          lightboxImg.src = img.src;
+          lightboxImg.alt = img.alt || 'Büyük görüntü';
+        });
+      });
       closeBtn.addEventListener('click', closeLightbox);
       lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
       document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
 
-      /* ========= Ürün Modal + Galeri + Ölçü/Boyut ========= */
+      /* =====================
+         ÜRÜN DETAY MODAL + GALERİ + ÖLÇÜ FORMU
+      ======================*/
       const productModal = document.getElementById('product-modal');
       const pmCloseBtn = document.getElementById('pm-close');
       const gMain = document.getElementById('g-main');
@@ -495,18 +542,13 @@
       const pmWA = document.getElementById('pm-wa');
       const pmShare = document.getElementById('pm-share');
 
-      // Form alanları
-      const secJacket = document.getElementById('sec-jacket');
-      const secBag = document.getElementById('sec-bag');
+      // Ölçü alanları
       const mChest = document.getElementById('m-chest');
       const mShoulder = document.getElementById('m-shoulder');
       const mSleeve = document.getElementById('m-sleeve');
       const mWaist = document.getElementById('m-waist');
       const mHeight = document.getElementById('m-height');
       const mWeight = document.getElementById('m-weight');
-      const bWidth = document.getElementById('b-width');
-      const bHeight = document.getElementById('b-height');
-      const bDepth = document.getElementById('b-depth');
       const mNotes = document.getElementById('m-notes');
       const mUnit = document.getElementById('m-unit');
 
@@ -522,40 +564,27 @@
           'https://i.imgur.com/EdojvaG.jpeg','https://i.imgur.com/M0CV5gC.jpeg']},
         'canta-2': { title:'Mini Tote', price:'₺1.750', desc:'Günlük kullanım için ideal.', images:[
           'https://i.imgur.com/M0CV5gC.jpeg','https://i.imgur.com/yAukquO.jpeg']},
-        'canta-3': { title:'Klasik Halı Çanta', price:'₺2.150', desc:'Uzun omuz askısı, fermuarlı cep.', images:[
-          'https://i.imgur.com/yAukquO.jpeg','https://i.imgur.com/M0CV5gC.jpeg']},
         'trend-1': { title:'Yaz Trendi Ceket', price:'₺4.300', desc:'Nefes alan iç astar, rahat kalıp.', images:[
           'https://i.imgur.com/mJo5QjJ.jpeg','https://i.imgur.com/ZVjvWjm.jpeg']}
       };
 
       let currentIndex = 0; let currentImages = []; let currentProductId = null;
 
-      function isBag(){ return /^canta-/.test(currentProductId||''); }
-
       function buildMeasurementText(){
         const u = mUnit.value || 'cm';
         const fields = [];
-        if (isBag()){
-          if (bWidth.value) fields.push(`En: ${bWidth.value}${u}`);
-          if (bHeight.value) fields.push(`Boy: ${bHeight.value}${u}`);
-          if (bDepth.value) fields.push(`Derinlik: ${bDepth.value}${u}`);
-        } else {
-          if (mChest.value) fields.push(`Göğüs: ${mChest.value}${u}`);
-          if (mShoulder.value) fields.push(`Omuz: ${mShoulder.value}${u}`);
-          if (mSleeve.value) fields.push(`Kol: ${mSleeve.value}${u}`);
-          if (mWaist.value) fields.push(`Bel: ${mWaist.value}${u}`);
-          if (mHeight.value) fields.push(`Boy: ${mHeight.value}${u==='cm'?'':' (inç)'}${u==='cm'?'':' '}`);
-          if (mWeight.value) fields.push(`Kilo: ${mWeight.value}kg`);
-        }
-        const notes = mNotes.value ? `
-Not: ${mNotes.value}` : '';
-        return fields.length ? `
-${isBag()?'Boyutlar':'Ölçüler'}: ${fields.join(', ')}${notes}` : notes;
+        if (mChest.value) fields.push(`Göğüs: ${mChest.value}${u}`);
+        if (mShoulder.value) fields.push(`Omuz: ${mShoulder.value}${u}`);
+        if (mSleeve.value) fields.push(`Kol: ${mSleeve.value}${u}`);
+        if (mWaist.value) fields.push(`Bel: ${mWaist.value}${u}`);
+        if (mHeight.value) fields.push(`Boy: ${mHeight.value}${u==='cm'?'':' (inç)'}${u==='cm'?'':' '}`);
+        if (mWeight.value) fields.push(`Kilo: ${mWeight.value}kg`);
+        const notes = mNotes.value ? `\nNot: ${mNotes.value}` : '';
+        return fields.length ? `\nÖlçüler: ${fields.join(', ')}${notes}` : notes;
       }
 
       function buildWAUrl(title){
-        const text = encodeURIComponent(`Merhaba, ${title} ürününüzle ilgileniyorum.${buildMeasurementText()}
-Uygunluk ve teslimat bilgisi alabilir miyim?`);
+        const text = encodeURIComponent(`Merhaba, ${title} ürününüzle ilgileniyorum.${buildMeasurementText()}\nUygunluk ve teslimat bilgisi alabilir miyim?`);
         return `https://wa.me/${WAPhone}?text=${text}`;
       }
 
@@ -575,11 +604,6 @@ Uygunluk ve teslimat bilgisi alabilir miyim?`);
         });
       }
 
-      function toggleForms(){
-        if (isBag()) { secBag.style.display='grid'; secJacket.style.display='none'; }
-        else { secBag.style.display='none'; secJacket.style.display='grid'; }
-      }
-
       function openProduct(card){
         const id = card.dataset.product || 'generic';
         const img = card.querySelector('img');
@@ -587,15 +611,18 @@ Uygunluk ve teslimat bilgisi alabilir miyim?`);
         const data = PRODUCTS[id] || fallback;
         currentProductId = id; currentImages = data.images.length ? data.images : [img?.src].filter(Boolean);
         pmTitle.textContent = data.title; pmPrice.textContent = data.price; pmDesc.textContent = data.desc;
-        renderThumbs(); setActive(0); toggleForms(); pmWA.href = buildWAUrl(data.title);
+        renderThumbs(); setActive(0); pmWA.href = buildWAUrl(data.title);
         productModal.classList.add('show'); productModal.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden';
       }
 
       function closeProduct(){ productModal.classList.remove('show'); productModal.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
 
+      // Kartlara tıklama
       document.querySelectorAll('.product-card .product-image').forEach(img => {
         img.addEventListener('click', (e) => openProduct(e.currentTarget.closest('.product-card')));
       });
+
+      // Galeri ileri/geri
       gPrev.addEventListener('click', ()=> setActive(currentIndex-1));
       gNext.addEventListener('click', ()=> setActive(currentIndex+1));
 
@@ -607,16 +634,15 @@ Uygunluk ve teslimat bilgisi alabilir miyim?`);
         if(Math.abs(dx) > 40){ dx < 0 ? setActive(currentIndex+1) : setActive(currentIndex-1); }
       });
 
-      // Form değişikliklerinde WA linkini güncelle
-      [mChest,mShoulder,mSleeve,mWaist,mHeight,mWeight,bWidth,bHeight,bDepth,mNotes,mUnit].forEach(el=>{
-        el?.addEventListener('input', ()=>{ pmWA.href = buildWAUrl(pmTitle.textContent); });
-        el?.addEventListener('change', ()=>{ pmWA.href = buildWAUrl(pmTitle.textContent); });
+      // Ölçü alanları değiştikçe WhatsApp linki güncellensin
+      [mChest,mShoulder,mSleeve,mWaist,mHeight,mWeight,mNotes,mUnit].forEach(el=>{
+        el.addEventListener('input', ()=>{ pmWA.href = buildWAUrl(pmTitle.textContent); });
+        el.addEventListener('change', ()=>{ pmWA.href = buildWAUrl(pmTitle.textContent); });
       });
 
       // Paylaş
       pmShare.addEventListener('click', async ()=>{
-        const shareData = { title: pmTitle.textContent, text: pmDesc.textContent + '
-' + buildMeasurementText(), url: location.href };
+        const shareData = { title: pmTitle.textContent, text: pmDesc.textContent + '\n' + buildMeasurementText(), url: location.href };
         try{ if(navigator.share){ await navigator.share(shareData); } else { alert('Paylaşım desteği bulunmuyor.'); } }
         catch(err){ }
       });
@@ -625,30 +651,20 @@ Uygunluk ve teslimat bilgisi alabilir miyim?`);
       productModal.addEventListener('click', (e)=>{ if(e.target === productModal) closeProduct(); });
       document.addEventListener('keydown', (e)=>{ if(e.key==='Escape' && productModal.classList.contains('show')) closeProduct(); });
 
-      /* ========= Basit Testler ========= */
+      /* =====================
+         Basit Testler (console)
+      ======================*/
       (function runTests(){
         function test(name, fn){ try{ fn(); console.log('✅ '+name); } catch(e){ console.error('❌ '+name, e); } }
-        test('Dropdown kahverengi arkaplan', ()=>{
+        test('Dropdown arka planı kahverengi', ()=>{
           const dm = document.querySelector('.dropdown-menu');
-          if (!dm) throw new Error('dropdown yok');
-          const bg = getComputedStyle(dm).backgroundColor;
+          const bg = getComputedStyle(dm).backgroundColor; // kahverengi ton
           if (!bg) throw new Error('stil okunamadı');
         });
-        test('Router pushState kullanmıyor', ()=>{
-          const src = (''+updateHashSafely).toString();
-          if (/pushState/.test(src)) throw new Error('pushState kullanılmamalı');
-        });
-        test('Çantalarda boyut formu açılıyor', ()=>{
-          const card = document.querySelector('[data-product="canta-1"]');
-          card.querySelector('img').dispatchEvent(new MouseEvent('click',{bubbles:true}));
-          if (secBag.style.display==='none') throw new Error('Çanta formu görünmüyor');
-          document.getElementById('pm-close').click();
-        });
-        test('Ceketlerde ölçü formu açılıyor', ()=>{
-          const card = document.querySelector('[data-product="ceket-1"]');
-          card.querySelector('img').dispatchEvent(new MouseEvent('click',{bubbles:true}));
-          if (secJacket.style.display==='none') throw new Error('Ceket formu görünmüyor');
-          document.getElementById('pm-close').click();
+        test('WA linki ölçü ekler', ()=>{
+          mChest.value = '100'; mShoulder.value = '45'; mUnit.value='cm';
+          pmWA.href = buildWAUrl('Test Ürün');
+          if (!decodeURIComponent(pmWA.href).includes('Göğüs: 100cm')) throw new Error('Göğüs ölçüsü linke eklenmedi');
         });
       })();
     });
