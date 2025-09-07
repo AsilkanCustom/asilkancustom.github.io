@@ -454,6 +454,16 @@
       });
       window.addEventListener('hashchange', ()=> showPage(getPageFromHash()));
 
+      // Evrensel (delegated) dinleyici: data-page'li her şeye çalışır
+      document.addEventListener('click', (e)=>{
+        const link = e.target.closest('[data-page]');
+        if(!link) return;
+        const page = link.getAttribute('data-page');
+        if(page){ e.preventDefault(); showPage(page); updateHashSafely(page); }
+        navLinks?.classList.remove('show');
+        hamburger?.setAttribute('aria-expanded','false');
+      });
+
       hamburger?.addEventListener('click', (e) => {
         e.stopPropagation();
         const open = navLinks?.classList.toggle('show');
@@ -467,8 +477,15 @@
       });
       const dropBtn = dropdown?.querySelector('button');
       dropBtn?.addEventListener('click', (e) => {
-        e.preventDefault(); dropdown.classList.toggle('open');
+        e.preventDefault();
+        // Menü aç/kapat
+        dropdown.classList.toggle('open');
         dropBtn.setAttribute('aria-expanded', String(dropdown.classList.contains('open')));
+        // Kullanıcı doğrudan "Ürünler" butonuna basarsa Ceketler sayfasına geç
+        if (!e.target.closest('.dropdown-menu')) {
+          showPage('ceketler');
+          updateHashSafely('ceketler');
+        }
       });
 
       /* ========= Genel Lightbox ========= */
