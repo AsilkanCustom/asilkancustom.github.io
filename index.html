@@ -199,6 +199,23 @@
 
     /* Focus ring */
     :where(a,button,input,select,textarea):focus{ outline:2px solid #8b5e3c55; outline-offset:2px }
+/* Masaüstü: hero fotoğrafını biraz aşağı kaydır */
+@media (min-width: 901px){
+  header{
+    /* merkezden +24px aşağı; istersen 16–32px arası oynat */
+    background-position: 50% calc(50% + 24px);
+  }
+}
+
+/* Telefon: logoyu biraz yukarı al */
+@media (max-width: 600px){
+  header .logo{
+    position: relative;
+    top: -12px;          /* -8 ~ -18px arası deneyebilirsin */
+  }
+  /* (İsteğe bağlı) başlık çok yapışmasın dersen küçük bir boşluk ekle */
+  header h1{ margin-top: 12px; }
+}    
   </style>
 </head>
 <body>
@@ -787,4 +804,5 @@
   </script>
 </body>
 </html>
+
 
