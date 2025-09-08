@@ -83,7 +83,7 @@
       padding:14px 20px;
     }
     .brand{ display:flex; align-items:center; gap:10px; color:var(--primary); text-decoration:none }
-    .brand img{height:42px}
+    .brand img{height:42px; filter: drop-shadow(0 1px 2px rgba(0,0,0,.25));}
     .brand span{ font-weight:600; letter-spacing:.06em; text-transform:uppercase; font-size:.92rem }
 
     .nav-links{ display:flex; gap:22px; align-items:center; list-style:none; margin:0; padding:0 }
@@ -127,12 +127,33 @@
     .page{ display:none }
     .page.active{ display:block }
 
+    /* ===== HERO (anasayfa header) arkaplan görselli ===== */
     header{
-      text-align:center; padding:80px 20px 36px;
-      background:linear-gradient(180deg,#ffffff 0%, #fffdfa 100%);
+      position:relative;
+      text-align:center;
+      padding:96px 20px 42px;
+      color:#fff;
+      /* Görsel arka plan */
+      background-image: url('https://i.imgur.com/hAPeeeA.jpeg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
     }
-    header .logo{ height:100px; width:auto }
-    header p{ max-width:820px; margin:8px auto 0; line-height:1.7 }
+    /* Mobilde fixed kaldır (performans) */
+    @media (max-width: 768px){
+      header{ background-attachment: scroll; }
+    }
+    /* Koyulaştırma katmanı */
+    header::before{
+      content:"";
+      position:absolute; inset:0;
+      background:linear-gradient(180deg, rgba(0,0,0,.45), rgba(0,0,0,.35));
+      z-index:0;
+    }
+    header .hero-inner{ position:relative; z-index:1; max-width: 920px; margin: 0 auto; }
+    header h1, header p, header .eyebrow{ color:#fff; text-shadow:0 1px 2px rgba(0,0,0,.4); }
+    header .logo{ height:100px; width:auto; filter: drop-shadow(0 2px 3px rgba(0,0,0,.45)); }
 
     /* Carousel */
     .carousel{ position:relative; width:100%; overflow:hidden; height:var(--track-h); margin-top:22px }
@@ -234,19 +255,21 @@
   <!-- HOME -->
   <div class="page active" id="page-home">
     <header id="home">
-      <div class="eyebrow">Asilkan Custom</div>
-      <img class="logo" src="https://i.imgur.com/14VgsWh.png" alt="Asilkan Custom Logo" decoding="async"/>
-      <h1>Geçmişin ruhu ve modern stilin birleşim noktası...</h1>
-      <p>If you love Turkish carpet motifs, you are in the right place.</p>
+      <div class="hero-inner">
+        <div class="eyebrow">Asilkan Custom</div>
+        <img class="logo" src="https://i.imgur.com/14VgsWh.png" alt="Asilkan Custom Logo" decoding="async"/>
+        <h1>Geçmişin ruhu ve modern stilin birleşim noktası...</h1>
+        <p>If you love Turkish carpet motifs, you are in the right place.</p>
 
-      <div class="carousel" aria-label="Öne çıkan ürünler">
-        <div class="carousel-track">
-          <img src="https://i.imgur.com/WzlSfVi.jpeg" alt="Ürün 1" loading="lazy" decoding="async">
-          <img src="https://i.imgur.com/txFwYJn.jpeg" alt="Ürün 2" loading="lazy" decoding="async">
-          <img src="https://i.imgur.com/BGECmbh.jpeg" alt="Ürün 3" loading="lazy" decoding="async">
-          <img src="https://i.imgur.com/QrExQJC.jpeg" alt="Ürün 4" loading="lazy" decoding="async">
-          <img src="https://i.imgur.com/uERTE2A.jpeg" alt="Ürün 5" loading="lazy" decoding="async">
-          <img src="https://i.imgur.com/4cjlU1w.jpeg" alt="Ürün 6" loading="lazy" decoding="async">
+        <div class="carousel" aria-label="Öne çıkan ürünler">
+          <div class="carousel-track">
+            <img src="https://i.imgur.com/WzlSfVi.jpeg" alt="Ürün 1" loading="lazy" decoding="async">
+            <img src="https://i.imgur.com/txFwYJn.jpeg" alt="Ürün 2" loading="lazy" decoding="async">
+            <img src="https://i.imgur.com/BGECmbh.jpeg" alt="Ürün 3" loading="lazy" decoding="async">
+            <img src="https://i.imgur.com/QrExQJC.jpeg" alt="Ürün 4" loading="lazy" decoding="async">
+            <img src="https://i.imgur.com/uERTE2A.jpeg" alt="Ürün 5" loading="lazy" decoding="async">
+            <img src="https://i.imgur.com/4cjlU1w.jpeg" alt="Ürün 6" loading="lazy" decoding="async">
+          </div>
         </div>
       </div>
     </header>
@@ -300,7 +323,7 @@
       </div>
     </section>
 
-    <!-- Atölyeden Seçkiler (Ceketler sayfasının en altında) -->
+    <!-- Atölyeden Seçkiler -->
     <section class="section" aria-label="Atölyeden Seçkiler">
       <h2>Atölyeden Seçkiler</h2>
       <div class="carousel" aria-label="Galeriden seçkiler">
@@ -559,7 +582,6 @@
           'https://i.imgur.com/FlNkiBA.jpeg','https://i.imgur.com/zxkpMU1.jpeg','https://i.imgur.com/5Os2e7H.jpeg']},
         'ceket-3': { title:'Vintage Ruh', price:'₺4.600', desc:'Vintage stil, güçlü duruş.', images:[
           'https://i.imgur.com/a0asIvM.jpeg','https://i.imgur.com/1RuIggc.jpeg','https://i.imgur.com/3QVVaAQ.jpeg']},
-        /* FIXED ↓↓↓ (kapanış tırnağı ve köşeli parantez) */
         'ceket-4': { title:'Boho Halı Ceket', price:'₺7.000', desc:'Modern dokunuşlarla retro görünüm', images:[
           'https://i.imgur.com/jSAeqRV.jpeg','https://i.imgur.com/L8muGf4.jpeg']},
         'ceket-5': { title:'Anadolu Motif Ceket', price:'₺4.050', desc:'Klasik tasarım modern kesim', images:[
@@ -601,7 +623,7 @@
           { id:'m-jacket-length', label:'Ceket boyu' },
           { id:'m-height',  label:'Boy (opsiyonel)' },
           { id:'m-weight',  label:'Kilo (opsiyonel)', suffix:'kg' },
-          { id:'m-notes', label:'Not / İstek (opsiyonel)', type:'textarea', full:true,placeholder:'İç cep veya dış cep veya gizli cep' }
+          { id:'m-notes', label:'Not / İstek (opsiyonel)', type:'textarea', full:true }
         ],
         trousers: [
           { id:'m-waist2',  label:'Bel çevresi' },
@@ -780,10 +802,3 @@
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
