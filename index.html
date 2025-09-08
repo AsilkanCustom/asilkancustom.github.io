@@ -18,7 +18,7 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-BL879TEEGW"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag(){dataLayer.push(arguments);} 
     gtag('js', new Date());
     gtag('config', 'G-BL879TEEGW');
   </script>
@@ -36,7 +36,6 @@
       --shadow:0 12px 30px rgba(0,0,0,.08);
       --transition:200ms ease;
       --container:1160px;
-      --track-h:520px;
     }
 
     *{box-sizing:border-box}
@@ -72,7 +71,7 @@
     .nav-container{
       max-width:var(--container); margin:0 auto;
       display:flex; align-items:center; justify-content:space-between;
-      padding:14px 20px;
+      padding:14px 20px; position:relative;
     }
     .brand{ display:flex; align-items:center; gap:10px; color:var(--primary); text-decoration:none }
     .brand img{height:42px}
@@ -84,6 +83,17 @@
       text-transform:uppercase; letter-spacing:.08em; transition:opacity var(--transition), color var(--transition)
     }
     .nav-links a:hover, .nav-links button:hover{ opacity:.7; color:var(--accent) }
+
+    /* Mobile menu */
+    .hamburger{ display:none; width:40px; height:36px; padding:8px; border-radius:10px; border:1px solid var(--border); background:#fff; cursor:pointer }
+    .hamburger span{ display:block; height:2px; margin:5px 0; background:var(--primary) }
+
+    @media (max-width:900px){
+      .hamburger{ display:block }
+      .nav-links{ position:absolute; right:20px; top:62px; background:#fff; border:1px solid var(--border); border-radius:12px; box-shadow:var(--shadow); padding:10px; flex-direction:column; align-items:stretch; gap:8px; display:none }
+      .nav-links.show{ display:flex }
+      .nav-links a, .nav-links button{ text-align:left; padding:8px 10px }
+    }
 
     /* Dropdown */
     .dropdown{ position:relative }
@@ -101,13 +111,11 @@
     .page{ display:none }
     .page.active{ display:block }
 
-    /* HEADER – arka plan görseli tüm sayfayı kaplar */
+    /* HEADER */
     header{
       position:relative;
       display:flex; flex-direction:column; align-items:center; justify-content:center;
-      height:100vh;
-      width:100%;
-      padding:0 20px;
+      height:100vh; width:100%; padding:0 20px;
       background-image:url('https://i.imgur.com/hAPeeeA.jpeg');
       background-size:cover; background-position:center; background-repeat:no-repeat;
       color:#fff; text-align:center;
@@ -122,10 +130,9 @@
     .carousel-track img{ width:20%; object-fit:cover; filter:saturate(0.96) contrast(1.02) }
     @keyframes scroll{ 0%{ transform:translateX(0) } 100%{ transform:translateX(-50%) } }
 
-    /* Küçük carousel ve araya boşluk */
     .carousel-small{ height:200px; }
     .carousel-small .carousel-track img{ height:200px; }
-    .home-carousel{ margin-top:32px; } /* <<< HEADER’DAN SONRA BOŞLUK */
+    .home-carousel{ margin-top:32px; }
     @media (max-width:600px){
       .carousel-small{ height:180px }
       .carousel-small .carousel-track img{ height:180px }
@@ -183,12 +190,15 @@
 
     /* Ölçü Formu */
     .measure-form{ display:grid; grid-template-columns:1fr 1fr; gap:10px; width:100%; margin-top:8px }
-    .measure-form label{ font-size:.9rem; color:#333 }
+    .measure-form label{ font-size:.9rem; color:#333; display:block }
     .measure-form input, .measure-form textarea, .measure-form select{
       width:100%; padding:10px; border:1px solid var(--border); border-radius:12px; font:inherit; background:#fff
     }
     .measure-form textarea{ grid-column:1/-1; min-height:84px }
     @media(max-width:600px){ .measure-form{ grid-template-columns:1fr } }
+
+    /* Focus ring */
+    :where(a,button,input,select,textarea):focus{ outline:2px solid #8b5e3c55; outline-offset:2px }
   </style>
 </head>
 <body>
@@ -229,7 +239,7 @@
       <p>If you love Turkish carpet motifs, you are in the right place.</p>
     </header>
 
-    <!-- KÜÇÜK CAROUSEL: header’dan SONRA ve BOŞLUKLA -->
+    <!-- KÜÇÜK CAROUSEL -->
     <div class="carousel carousel-small home-carousel" aria-label="Öne çıkan ürünler">
       <div class="carousel-track">
         <img src="https://i.imgur.com/WzlSfVi.jpeg" alt="Ürün 1" loading="lazy" decoding="async">
@@ -293,7 +303,7 @@
     <!-- Atölyeden Seçkiler -->
     <section class="section" aria-label="Atölyeden Seçkiler">
       <h2>Atölyeden Seçkiler</h2>
-      <div class="carousel" aria-label="Galeriden seçkiler" style="--track-h:360px">
+      <div class="carousel" aria-label="Galeriden seçkiler">
         <div class="carousel-track">
           <img src="https://i.imgur.com/mJo5QjJ.jpeg" alt="Ürün 1" class="clickable-image" loading="lazy" decoding="async" style="height:360px">
           <img src="https://i.imgur.com/ZVjvWjm.jpeg" alt="Ürün 2" class="clickable-image" loading="lazy" decoding="async" style="height:360px">
@@ -474,6 +484,9 @@
           if(page){ e.preventDefault(); showPage(page); updateHashSafely(page); }
           if(navLinks){ navLinks.classList.remove('show'); }
           if(hamburger){ hamburger.setAttribute('aria-expanded','false'); }
+          // dropdown'u da kapat
+          dropdown?.classList.remove('open');
+          dropdown?.querySelector('button')?.setAttribute('aria-expanded','false');
         });
       });
       window.addEventListener('hashchange', ()=> showPage(getPageFromHash()));
@@ -485,10 +498,15 @@
           hamburger.setAttribute('aria-expanded', String(!!open));
         });
       }
+      // Dışarı tıklayınca mobil menü ve dropdown kapanır
       document.addEventListener('click', (e) => {
         if (navLinks && hamburger && !navLinks.contains(e.target) && !hamburger.contains(e.target)) {
           navLinks.classList.remove('show');
           hamburger.setAttribute('aria-expanded','false');
+        }
+        if (dropdown && !dropdown.contains(e.target)) {
+          dropdown.classList.remove('open');
+          dropdown.querySelector('button')?.setAttribute('aria-expanded','false');
         }
       });
 
@@ -500,6 +518,9 @@
           const expanded = dropdown.classList.contains('open');
           dropBtn.setAttribute('aria-expanded', String(expanded));
         });
+        dropBtn.addEventListener('keydown', (e)=>{
+          if(e.key === 'Escape'){ dropdown.classList.remove('open'); dropBtn.setAttribute('aria-expanded','false'); dropBtn.blur(); }
+        })
       }
 
       /* Lightbox */
@@ -512,6 +533,7 @@
         lightbox.classList.remove('show');
         lightbox.setAttribute('aria-hidden','true');
         lightboxImg.src = '';
+        document.body.style.overflow='';
       }
       glImages.forEach(img => {
         img.addEventListener('click', () => {
@@ -519,6 +541,7 @@
           lightbox.setAttribute('aria-hidden','false');
           lightboxImg.src = img.src;
           lightboxImg.alt = img.alt || 'Büyük görüntü';
+          document.body.style.overflow='hidden';
         });
       });
       closeBtn.addEventListener('click', closeLightbox);
@@ -542,9 +565,8 @@
       const pmDesc = document.getElementById('pm-desc');
       const pmWA = document.getElementById('pm-wa');
       const pmShare = document.getElementById('pm-share');
-      const measureForm = document.getElementById('measure-form');
 
-      const WAPhone = '905454388096';
+      const WAPhone = '905454388096'; // wa.me formatında + işareti olmadan
       const PRODUCTS = {
         'ceket-1': { title:'Boho Halı Ceket', price:'₺7.000', desc:'El dokuması halıdan, özel kalıp ve astarla hazırlanmıştır.', images:[
           'https://i.imgur.com/vJCJwvC.jpeg','https://i.imgur.com/tFgr8Vs.jpeg','https://i.imgur.com/Wqch8Ne.jpeg']},
@@ -587,6 +609,7 @@
       const SCHEMAS = {
         default: [
           { id:'m-chest',   label:'Göğüs çevresi' },
+          { id:'m-shoulder',label:'Omuz genişliği' },
           { id:'m-waist',   label:'Bel çevresi' },
           { id:'m-sleeve',  label:'Kol boyu' },
           { id:'m-jacket-length', label:'Ceket boyu' },
@@ -667,7 +690,8 @@
           const waist = grabVal('m-waist2'); if(waist) rows.push(`Bel: ${waist}${u}`);
           const hip   = grabVal('m-hip');    if(hip)   rows.push(`Basen: ${hip}${u}`);
           const len   = grabVal('m-length'); if(len)   rows.push(`Uzunluk: ${len}${u}`);
-          const hem   = grabVal('m-hem');    if(hem)   rows.push(`Paça eni: ${hem}${u}`);
+          const inseam= grabVal('m-inseam'); if(inseam)rows.push(`İç bacak: ${inseam}${u}`);
+          const hem   = grabVal('m-hem');    if(hem)   rows.push(`Paça: ${hem}${u}`);
           const notes = grabVal('m-notes');  return (rows.length?`\nÖlçüler: ${rows.join(', ')}`:'') + (notes?`\nNot: ${notes}`:'');
         } else if(currentSchemaKey === 'bag'){
           const h = grabVal('m-bag-h'); if(h) rows.push(`İstenilen boy: ${h}${u}`);
@@ -678,6 +702,7 @@
           const shoulder = grabVal('m-shoulder'); if(shoulder) rows.push(`Omuz: ${shoulder}${u}`);
           const sleeve   = grabVal('m-sleeve');   if(sleeve) rows.push(`Kol: ${sleeve}${u}`);
           const waist    = grabVal('m-waist');    if(waist) rows.push(`Bel: ${waist}${u}`);
+          const jlen     = grabVal('m-jacket-length'); if(jlen) rows.push(`Ceket boyu: ${jlen}${u}`);
           const height   = grabVal('m-height');   if(height) rows.push(`Boy: ${height}${u}`);
           const weightEl = measureForm.querySelector('#m-weight');
           if(weightEl && weightEl.value) rows.push(`Kilo: ${weightEl.value}kg`);
@@ -691,13 +716,11 @@
       }
 
       function setActive(i){
-        const gThumbs = document.getElementById('g-thumbs');
         currentIndex = (i + currentImages.length) % currentImages.length;
         document.getElementById('g-main').src = currentImages[currentIndex];
-        [...gThumbs.querySelectorAll('img')].forEach((t,idx)=> t.classList.toggle('active', idx === currentIndex));
+        [...document.getElementById('g-thumbs').querySelectorAll('img')].forEach((t,idx)=> t.classList.toggle('active', idx === currentIndex));
       }
       function renderThumbs(){
-        const gThumbs = document.getElementById('g-thumbs');
         gThumbs.innerHTML = '';
         currentImages.forEach((src, idx) => {
           const t = new Image(); t.src = src; t.alt = 'Küçük görsel'; t.loading='lazy'; t.decoding='async';
@@ -716,15 +739,15 @@
         currentProductId = id;
         currentImages = data.images.length ? data.images : [img?.src].filter(Boolean);
 
-        document.getElementById('pm-title').textContent = data.title;
-        document.getElementById('pm-price').textContent = data.price;
-        document.getElementById('pm-desc').textContent = data.desc;
+        pmTitle.textContent = data.title;
+        pmPrice.textContent = data.price;
+        pmDesc.textContent = data.desc;
 
         currentSchemaKey = schemaForProduct(id);
         renderMeasureForm(currentSchemaKey);
         renderThumbs();
         setActive(0);
-        document.getElementById('pm-wa').href = buildWAUrl(data.title);
+        pmWA.href = buildWAUrl(data.title);
 
         productModal.classList.add('show');
         productModal.setAttribute('aria-hidden','false');
@@ -752,7 +775,7 @@
       });
 
       pmShare.addEventListener('click', async ()=>{
-        const shareData = { title: document.getElementById('pm-title').textContent, text: document.getElementById('pm-desc').textContent + '\n' + buildMeasurementText(), url: location.href };
+        const shareData = { title: pmTitle.textContent, text: pmDesc.textContent + '\n' + buildMeasurementText(), url: location.href };
         try{ if(navigator.share){ await navigator.share(shareData); } else { alert('Paylaşım desteği bulunmuyor.'); } }
         catch(err){ }
       });
