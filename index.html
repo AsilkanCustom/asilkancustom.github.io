@@ -221,6 +221,14 @@
   }
   /* Performans için kartları kendi boyama konteynerine al */
   .product-card{ contain: paint }
+  /* Override: Masaüstünde hero fotoğrafını DAHA AŞAĞI taşı */
+  @media (min-width: 901px){
+    header{ background-position: 50% calc(50% + 60px); }
+  }
+  /* Override: Telefonda hero fotoğrafını YUKARI taşı */
+  @media (max-width: 600px){
+    header{ background-position: 50% calc(50% - 28px); }
+  }
 </style>
 </head>
 <body>
@@ -277,7 +285,6 @@
           <img src="https://i.imgur.com/4cjlU1w.jpeg" alt="Ürün 6" loading="lazy" decoding="async">
         </div>
       </div>
-      
       <h2>Ceketler</h2>
       <div class="products">
         <div class="product-card" data-product="ceket-1">
@@ -810,4 +817,3 @@
   </script>
 </body>
 </html>
-
