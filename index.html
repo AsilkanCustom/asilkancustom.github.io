@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
 
-  <!-- Favicon (base64 örnek) -->
+  <!-- Favicon (base64) -->
   <link rel="icon" type="image/jpeg" href="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/4QAiRXhpZgAATU0AKgAAAAgAAQESAAMAAAABAAEAAAAAAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAgACADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD6nV0cnawbHofw/oadXneueGdbh+1GxvJpIJflCwthgncFe/U9P6VyR8Y+L9A066hntZ702+Ckk3yHPXDOw6EA9efegaVz3GmvIiEB2Vc9Mn3A/mR+deJN4r8X+ILO1toLe4shN/rHh+cs2MkB1HQcdB35rrtC8M6zI9s+oXkyQRjaVlbLFewA6AfWgR3WoXcdhY3F3PnyYI2lfHUKoyf0Fef+J9b0DXrVI7y0mLAKf3kiRMAyO4HU5+4evHvXo5AIweRTTGjDDIpHTBFBrTlCPxxv8zzzwr4g8P6LZG30+yvEfazSDKNgIoJ+YsBjHI/Gu8028j1DT7a8hVljnjWVQ2MgEZGcEj9ajl0u0kleXy3jkkOXaGVo95wBk7SMnAAyfQelWoYkhiSOJQqKMADtQFSVN/BG3zP/2Q==" />
 
   <!-- Google Analytics -->
@@ -41,7 +41,6 @@
 
     *{box-sizing:border-box}
     html,body{margin:0;padding:0}
-
     body{
       font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
       background:var(--bg);
@@ -52,23 +51,15 @@
     }
     h1,h2,h3,h4{
       font-family:'Cormorant Garamond', Georgia, 'Times New Roman', serif;
-      font-weight:500;
-      letter-spacing:-.01em;
-      color:var(--primary);
-      margin:0 0 .4em;
+      font-weight:500; letter-spacing:-.01em; color:var(--primary); margin:0 0 .4em;
     }
     h1{font-size:clamp(36px,5vw,56px)}
     h2{font-size:clamp(28px,3.6vw,34px)}
     h3{font-size:clamp(20px,2.4vw,24px)}
     p,li{color:var(--text)}
     .eyebrow{
-      font-family:'Poppins',sans-serif;
-      text-transform:uppercase;
-      letter-spacing:.12em;
-      font-weight:500;
-      color:var(--muted);
-      font-size:.78rem;
-      text-shadow:0 1px 2px rgba(0,0,0,.35);
+      font-family:'Poppins',sans-serif; text-transform:uppercase; letter-spacing:.12em; font-weight:500;
+      color:#fff; font-size:.78rem; text-shadow:0 1px 2px rgba(0,0,0,.35);
     }
 
     /* NAV */
@@ -89,10 +80,8 @@
 
     .nav-links{ display:flex; gap:22px; align-items:center; list-style:none; margin:0; padding:0 }
     .nav-links a, .nav-links button{
-      color:var(--primary); text-decoration:none; font-weight:500;
-      font-size:.95rem; background:none; border:0; cursor:pointer;
-      text-transform:uppercase; letter-spacing:.08em;
-      transition:opacity var(--transition), color var(--transition)
+      color:var(--primary); text-decoration:none; font-weight:500; font-size:.95rem; background:none; border:0; cursor:pointer;
+      text-transform:uppercase; letter-spacing:.08em; transition:opacity var(--transition), color var(--transition)
     }
     .nav-links a:hover, .nav-links button:hover{ opacity:.7; color:var(--accent) }
 
@@ -100,64 +89,43 @@
     .dropdown{ position:relative }
     .dropdown-menu{
       display:none; position:absolute; top:120%; left:0; min-width:220px;
-      background:#fff; border:1px solid var(--border);
-      list-style:none; margin:0; padding:8px 0; border-radius:12px;
+      background:#fff; border:1px solid var(--border); list-style:none; margin:0; padding:8px 0; border-radius:12px;
       box-shadow:var(--shadow); z-index:1001
     }
-    .dropdown-menu li{ padding:0 }
+    .dropdown.open .dropdown-menu{ display:block }
     .dropdown-menu a{ display:block; padding:10px 14px; color:var(--primary); font-weight:500 }
     .dropdown-menu a:hover{ background-color:var(--card) }
-    .dropdown.open .dropdown-menu{ display:block }
-
-    /* Hamburger */
-    .hamburger{ display:none; flex-direction:column; gap:4px; cursor:pointer }
-    .hamburger span{ display:block; width:26px; height:2px; background:var(--primary); border-radius:2px }
-
-    @media (max-width: 768px){
-      .hamburger{ display:flex }
-      .nav-links{
-        position:absolute; inset:64px 0 auto 0; background:#fff; flex-direction:column; gap:0; display:none;
-        border-bottom:1px solid var(--border)
-      }
-      .nav-links.show{ display:flex }
-      .nav-links li{ width:100%; text-align:center; padding:12px 0; border-top:1px solid var(--border) }
-      .dropdown-menu{ position:static; box-shadow:none; border:0; border-radius:0 }
-    }
 
     /* SAYFA YAPISI */
     .page{ display:none }
     .page.active{ display:block }
 
-    /* HEADER: Arka plan görseli doğal renklerle */
+    /* HEADER – fotoğraf tüm sayfayı kapsar */
     header{
-      text-align:center;
-      padding:80px 20px 36px;
-      background-image:url('https://i.imgur.com/hAPeeeA.jpeg');
-      background-size:cover;
-      background-position:center;
-      background-repeat:no-repeat;
-      color:#fff;
       position:relative;
-      min-height:60vh;
       display:flex; flex-direction:column; align-items:center; justify-content:center;
+      height:100vh;      /* TÜM GÖRÜNÜM YÜKSEKLİĞİ */
+      width:100%;
+      padding:0 20px;    /* yana nefes */
+      background-image:url('https://i.imgur.com/hAPeeeA.jpeg');
+      background-size:cover; background-position:center; background-repeat:no-repeat;
+      color:#fff; text-align:center;
     }
     header .logo{ height:100px; width:auto }
     header h1, header p { color:#fff; text-shadow:0 2px 8px rgba(0,0,0,.45); }
     header p{ max-width:820px; margin:8px auto 0; line-height:1.7 }
 
-    /* Carousel (genel) */
-    .carousel{ position:relative; width:100%; overflow:hidden; height:var(--track-h); margin-top:22px }
+    /* Küçük carousel (header’ın ALTINDA) */
+    .carousel{ position:relative; width:100%; overflow:hidden }
     .carousel-track{ display:flex; width:200%; animation:scroll 42s linear infinite }
-    .carousel-track img{ width:20%; height:var(--track-h); object-fit:cover; filter:saturate(0.96) contrast(1.02) }
+    .carousel-track img{ width:20%; object-fit:cover; filter:saturate(0.96) contrast(1.02) }
     @keyframes scroll{ 0%{ transform:translateX(0) } 100%{ transform:translateX(-50%) } }
 
-    /* Küçük carousel */
-    .carousel-small{ height:260px; margin-top:0; }
-    .carousel-small .carousel-track img{ height:260px; }
+    .carousel-small{ height:200px; }
+    .carousel-small .carousel-track img{ height:200px; }
     @media (max-width:600px){
-      :root{ --track-h:260px }
-      .carousel-small{ height:200px }
-      .carousel-small .carousel-track img{ height:200px }
+      .carousel-small{ height:180px }
+      .carousel-small .carousel-track img{ height:180px }
     }
 
     .section{ padding:72px 20px; max-width:var(--container); margin:auto }
@@ -186,13 +154,12 @@
     #lightbox img{ max-width:90vw; max-height:90vh; border:4px solid #fff; border-radius:12px }
     #close-btn{ position:absolute; top:24px; right:34px; font-size:40px; color:#fff; cursor:pointer; z-index:10000 }
 
-    /* ÜRÜN DETAY MODAL + GALERİ */
+    /* Ürün Modal */
     #product-modal{ position:fixed; inset:0; background:rgba(0,0,0,.55); display:none; align-items:center; justify-content:center; z-index:10000; padding:20px }
     #product-modal.show{ display:flex }
     .pm-dialog{ background:#fff; width:min(1000px,95vw); max-height:90vh; overflow:auto; border-radius:var(--radius); box-shadow:0 24px 60px rgba(0,0,0,.25); border:1px solid var(--border) }
     .pm-grid{ display:grid; grid-template-columns:1.2fr 1fr; gap:22px; padding:20px }
     @media (max-width:900px){ .pm-grid{ grid-template-columns:1fr } }
-
     .gallery{ position:relative }
     .gallery-main{ width:100%; height:460px; object-fit:cover; border-radius:12px }
     .g-nav{ position:absolute; top:50%; transform:translateY(-50%); display:flex; justify-content:space-between; width:100% }
@@ -200,7 +167,6 @@
     .thumbs{ display:flex; gap:10px; margin-top:10px; overflow:auto }
     .thumbs img{ width:80px; height:80px; object-fit:cover; border-radius:10px; opacity:.75; cursor:pointer; border:1px solid var(--border); transition:opacity var(--transition), transform var(--transition), border-color var(--transition) }
     .thumbs img.active{ opacity:1; border-color:var(--accent); transform:translateY(-2px) }
-
     .pm-title{ margin:6px 0 6px; font-size:1.7rem; color:#1d1d1d }
     .pm-price{ font-weight:600; color:var(--accent); font-size:1.15rem; margin:8px 0 }
     .pm-desc{ line-height:1.65; color:#444 }
@@ -259,7 +225,7 @@
       <p>If you love Turkish carpet motifs, you are in the right place.</p>
     </header>
 
-    <!-- Carousel artık header’ın DIŞINDA ve küçük boyutta -->
+    <!-- KÜÇÜK CAROUSEL: header BİTTİKTEN SONRA -->
     <div class="carousel carousel-small" aria-label="Öne çıkan ürünler">
       <div class="carousel-track">
         <img src="https://i.imgur.com/WzlSfVi.jpeg" alt="Ürün 1" loading="lazy" decoding="async">
@@ -323,16 +289,16 @@
     <!-- Atölyeden Seçkiler -->
     <section class="section" aria-label="Atölyeden Seçkiler">
       <h2>Atölyeden Seçkiler</h2>
-      <div class="carousel" aria-label="Galeriden seçkiler">
+      <div class="carousel" aria-label="Galeriden seçkiler" style="--track-h:360px">
         <div class="carousel-track">
-          <img src="https://i.imgur.com/mJo5QjJ.jpeg" alt="Ürün 1" class="clickable-image" loading="lazy" decoding="async">
-          <img src="https://i.imgur.com/ZVjvWjm.jpeg" alt="Ürün 2" class="clickable-image" loading="lazy" decoding="async">
-          <img src="https://i.imgur.com/v2dc54S.jpeg" alt="Ürün 3" class="clickable-image" loading="lazy" decoding="async">
-          <img src="https://i.imgur.com/XHRI1Ud.jpeg" alt="Ürün 4" class="clickable-image" loading="lazy" decoding="async">
-          <img src="https://i.imgur.com/Z4CDTIf.jpeg" alt="Ürün 5" class="clickable-image" loading="lazy" decoding="async">
-          <img src="https://i.imgur.com/5T3wvZG.jpeg" alt="Ürün 6" class="clickable-image" loading="lazy" decoding="async">
-          <img src="https://i.imgur.com/vkQnNb3.jpeg" alt="Ürün 7" class="clickable-image" loading="lazy" decoding="async">
-          <img src="https://i.imgur.com/7N6azdr.jpeg" alt="Ürün 8" class="clickable-image" loading="lazy" decoding="async">
+          <img src="https://i.imgur.com/mJo5QjJ.jpeg" alt="Ürün 1" class="clickable-image" loading="lazy" decoding="async" style="height:360px">
+          <img src="https://i.imgur.com/ZVjvWjm.jpeg" alt="Ürün 2" class="clickable-image" loading="lazy" decoding="async" style="height:360px">
+          <img src="https://i.imgur.com/v2dc54S.jpeg" alt="Ürün 3" class="clickable-image" loading="lazy" decoding="async" style="height:360px">
+          <img src="https://i.imgur.com/XHRI1Ud.jpeg" alt="Ürün 4" class="clickable-image" loading="lazy" decoding="async" style="height:360px">
+          <img src="https://i.imgur.com/Z4CDTIf.jpeg" alt="Ürün 5" class="clickable-image" loading="lazy" decoding="async" style="height:360px">
+          <img src="https://i.imgur.com/5T3wvZG.jpeg" alt="Ürün 6" class="clickable-image" loading="lazy" decoding="async" style="height:360px">
+          <img src="https://i.imgur.com/vkQnNb3.jpeg" alt="Ürün 7" class="clickable-image" loading="lazy" decoding="async" style="height:360px">
+          <img src="https://i.imgur.com/7N6azdr.jpeg" alt="Ürün 8" class="clickable-image" loading="lazy" decoding="async" style="height:360px">
         </div>
       </div>
     </section>
@@ -394,7 +360,6 @@
       Her parça; özenle seçilmiş kumaşlar, detaylara duyulan saygı ve işimize olan tutkumuzla hayat bulur.<br>
       Amacımız yalnızca giyilebilir bir ürün sunmak değil; geçmişin ruhunu taşıyan, zamansız ve anlamlı parçalar yaratmaktır.</p>
       <hr>
-
       <h3>2. Neden Asilkan?</h3>
       <p><strong>Çünkü siz sıradan değilsiniz.</strong></p>
       <ul>
@@ -405,7 +370,6 @@
       </ul>
       <p><em>İnandığımız şey şu: Giysi değil, karakter giyersiniz.</em></p>
       <hr>
-
       <h3>3. Sipariş Süreci</h3>
       <p><strong>Hayal edin, birlikte tasarlayalım.</strong></p>
       <ol>
@@ -482,6 +446,7 @@
   </div>
 
   <script>
+    /* Basit sayfa gösterimi */
     function showPage(name){
       document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
       const el = document.getElementById('page-' + name);
@@ -676,18 +641,18 @@
           </label>
         `;
 
-        measureForm.innerHTML = inputsHtml + unitHtml;
+        document.getElementById('measure-form').innerHTML = inputsHtml + unitHtml;
 
-        measureForm.querySelectorAll('input, textarea, select').forEach(el=>{
-          el.addEventListener('input', ()=>{ pmWA.href = buildWAUrl(pmTitle.textContent); });
-          el.addEventListener('change', ()=>{ pmWA.href = buildWAUrl(pmTitle.textContent); });
+        document.querySelectorAll('#measure-form input, #measure-form textarea, #measure-form select').forEach(el=>{
+          el.addEventListener('input', ()=>{ document.getElementById('pm-wa').href = buildWAUrl(document.getElementById('pm-title').textContent); });
+          el.addEventListener('change', ()=>{ document.getElementById('pm-wa').href = buildWAUrl(document.getElementById('pm-title').textContent); });
         });
       }
 
       function buildMeasurementText(){
+        const measureForm = document.getElementById('measure-form');
         const u = measureForm.querySelector('#m-unit')?.value || 'cm';
         const rows = [];
-
         const grabVal = id => {
           const el = measureForm.querySelector('#'+id);
           if(!el) return '';
@@ -710,7 +675,7 @@
           const sleeve   = grabVal('m-sleeve');   if(sleeve) rows.push(`Kol: ${sleeve}${u}`);
           const waist    = grabVal('m-waist');    if(waist) rows.push(`Bel: ${waist}${u}`);
           const height   = grabVal('m-height');   if(height) rows.push(`Boy: ${height}${u}`);
-          const weightEl = measureForm.querySelector('#m-weight');
+          const weightEl = document.getElementById('measure-form').querySelector('#m-weight');
           if(weightEl && weightEl.value) rows.push(`Kilo: ${weightEl.value}kg`);
           const notes = grabVal('m-notes');  return (rows.length?`\nÖlçüler: ${rows.join(', ')}`:'') + (notes?`\nNot: ${notes}`:'');
         }
@@ -722,11 +687,13 @@
       }
 
       function setActive(i){
+        const gThumbs = document.getElementById('g-thumbs');
         currentIndex = (i + currentImages.length) % currentImages.length;
-        gMain.src = currentImages[currentIndex];
+        document.getElementById('g-main').src = currentImages[currentIndex];
         [...gThumbs.querySelectorAll('img')].forEach((t,idx)=> t.classList.toggle('active', idx === currentIndex));
       }
       function renderThumbs(){
+        const gThumbs = document.getElementById('g-thumbs');
         gThumbs.innerHTML = '';
         currentImages.forEach((src, idx) => {
           const t = new Image(); t.src = src; t.alt = 'Küçük görsel'; t.loading='lazy'; t.decoding='async';
@@ -745,24 +712,23 @@
         currentProductId = id;
         currentImages = data.images.length ? data.images : [img?.src].filter(Boolean);
 
-        pmTitle.textContent = data.title;
-        pmPrice.textContent = data.price;
-        pmDesc.textContent = data.desc;
+        document.getElementById('pm-title').textContent = data.title;
+        document.getElementById('pm-price').textContent = data.price;
+        document.getElementById('pm-desc').textContent = data.desc;
 
         renderMeasureForm(schemaForProduct(id));
-
         renderThumbs();
         setActive(0);
-        pmWA.href = buildWAUrl(data.title);
+        document.getElementById('pm-wa').href = buildWAUrl(data.title);
 
-        productModal.classList.add('show');
-        productModal.setAttribute('aria-hidden','false');
+        document.getElementById('product-modal').classList.add('show');
+        document.getElementById('product-modal').setAttribute('aria-hidden','false');
         document.body.style.overflow='hidden';
       }
 
       function closeProduct(){
-        productModal.classList.remove('show');
-        productModal.setAttribute('aria-hidden','true');
+        document.getElementById('product-modal').classList.remove('show');
+        document.getElementById('product-modal').setAttribute('aria-hidden','true');
         document.body.style.overflow='';
       }
 
@@ -770,31 +736,25 @@
         img.addEventListener('click', (e) => openProduct(e.currentTarget.closest('.product-card')));
       });
 
-      gPrev.addEventListener('click', ()=> setActive(currentIndex-1));
-      gNext.addEventListener('click', ()=> setActive(currentIndex+1));
+      document.getElementById('g-prev').addEventListener('click', ()=> setActive(currentIndex-1));
+      document.getElementById('g-next').addEventListener('click', ()=> setActive(currentIndex+1));
 
       let startX = 0;
-      gMain.addEventListener('touchstart', (e)=>{ startX = e.changedTouches[0].clientX; }, {passive:true});
-      gMain.addEventListener('touchend', (e)=>{
+      document.getElementById('g-main').addEventListener('touchstart', (e)=>{ startX = e.changedTouches[0].clientX; }, {passive:true});
+      document.getElementById('g-main').addEventListener('touchend', (e)=>{
         const dx = e.changedTouches[0].clientX - startX;
         if(Math.abs(dx) > 40){ dx < 0 ? setActive(currentIndex+1) : setActive(currentIndex-1); }
       });
 
-      pmShare.addEventListener('click', async ()=>{
-        const shareData = { title: pmTitle.textContent, text: pmDesc.textContent + '\n' + buildMeasurementText(), url: location.href };
+      document.getElementById('pm-share').addEventListener('click', async ()=>{
+        const shareData = { title: document.getElementById('pm-title').textContent, text: document.getElementById('pm-desc').textContent + '\n' + buildMeasurementText(), url: location.href };
         try{ if(navigator.share){ await navigator.share(shareData); } else { alert('Paylaşım desteği bulunmuyor.'); } }
-        catch(err){ /* sessiz geç */ }
+        catch(err){ }
       });
 
-      pmCloseBtn.addEventListener('click', closeProduct);
-      productModal.addEventListener('click', (e)=>{ if(e.target === productModal) closeProduct(); });
-      document.addEventListener('keydown', (e)=>{ if(e.key==='Escape' && productModal.classList.contains('show')) closeProduct(); });
-
-      (function runTests(){
-        function test(name, fn){ try{ fn(); console.log('✅ '+name); } catch(e){ console.error('❌ '+name, e); } }
-        test('Şema: trend-2 → trousers', ()=>{ if(schemaForProduct('trend-2')!=='trousers') throw new Error('yanlış şema'); });
-        test('Şema: canta-1 → bag', ()=>{ if(schemaForProduct('canta-1')!=='bag') throw new Error('yanlış şema'); });
-      })();
+      document.getElementById('pm-close').addEventListener('click', closeProduct);
+      document.getElementById('product-modal').addEventListener('click', (e)=>{ if(e.target === document.getElementById('product-modal')) closeProduct(); });
+      document.addEventListener('keydown', (e)=>{ if(e.key==='Escape' && document.getElementById('product-modal').classList.contains('show')) closeProduct(); });
     });
   </script>
 </body>
