@@ -186,7 +186,7 @@
     #lightbox{ position:fixed; inset:0; background:rgba(0,0,0,.85); display:none; justify-content:center; align-items:center; z-index:9999 }
     #lightbox.show{ display:flex }
     #lightbox img{ max-width:90vw; max-height:90vh; border:4px solid #fff; border-radius:12px }
-    #close-btn{ position:absolute; top:24px; right:34px; font-size:40px; color:#fff; cursor:pointer; z-index:10000 }
+    #close-btn{ position:absolute; top:24px; right:34px; font-size:40px; color:#fff; cursor:pointer; z-index:10000; background:none; border:0 }
 
     /* ===== Ürün Modal – iki sütun (fiyat yok) ===== */
     #product-modal{
@@ -237,16 +237,14 @@
     .btn.primary{ background:#8b5e3c; color:#fff; border-color:#8b5e3c }
     .btn.primary:hover{ filter:brightness(.95) }
 
-    /* Accordion */
+    /* Accordion (Details tabanlı) */
     .accordion{ border-top:1px solid var(--border); margin-top:12px }
     .acc-item{ border-bottom:1px solid var(--border) }
-    .acc-btn{
-      width:100%; text-align:left; padding:14px 4px; background:none; border:0; font:inherit; cursor:pointer;
-      display:flex; align-items:center; justify-content:space-between;
-    }
+    .acc-btn{ list-style:none; width:100%; text-align:left; padding:14px 4px; background:none; border:0; font:inherit; cursor:pointer;
+      display:flex; align-items:center; justify-content:space-between; }
+    .acc-btn::-webkit-details-marker{ display:none }
     .acc-btn span{ font-weight:600; color:#222 }
-    .acc-panel{ display:none; padding:0 4px 14px; color:#444; line-height:1.6 }
-    .acc-item[open] .acc-panel{ display:block }
+    .acc-panel{ padding:0 4px 14px; color:#444; line-height:1.6 }
 
     /* Ölçü formu */
     .measure-form{ display:grid; grid-template-columns:1fr 1fr; gap:10px; width:100%; margin-top:6px }
@@ -309,8 +307,8 @@
       <ul class="nav-links" id="nav-links" aria-hidden="true">
         <li><a href="#home" data-page="home">Ana Sayfa</a></li>
         <li class="dropdown" id="dropdown-products">
-          <button type="button" aria-haspopup="true" aria-expanded="false">Ürünler</button>
-          <ul class="dropdown-menu" role="menu">
+          <button id="products-button" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="products-menu">Ürünler</button>
+          <ul class="dropdown-menu" id="products-menu">
             <li><a href="#ceketler" data-page="ceketler">Ceketler</a></li>
             <li><a href="#cantalar" data-page="cantalar">Çantalar</a></li>
             <li><a href="#trendler" data-page="trendler">Yaz Trendleri</a></li>
@@ -540,7 +538,7 @@
 
   <!-- Lightbox -->
   <div id="lightbox" aria-hidden="true">
-    <span id="close-btn" aria-label="Kapat">&times;</span>
+    <button id="close-btn" type="button" aria-label="Kapat">&times;</button>
     <img id="lightbox-img" src="" alt="Büyük görüntü">
   </div>
 
@@ -576,28 +574,28 @@
 
           <div class="pm-actions">
             <a id="pm-wa" class="btn primary" target="_blank" rel="noopener" href="https://wa.me/905454388096">WhatsApp’tan Sipariş Ver</a>
-            <button class="btn" id="pm-share">Paylaş</button>
+            <button class="btn" id="pm-share" type="button">Paylaş</button>
           </div>
 
           <div class="accordion" id="acc">
-            <div class="acc-item" open>
-              <button class="acc-btn" type="button" aria-expanded="true"><span>Ürün Detayı</span><strong>+</strong></button>
+            <details class="acc-item" open>
+              <summary class="acc-btn"><span>Ürün Detayı</span><strong>+</strong></summary>
               <div class="acc-panel">
                 <div id="pm-desc" class="pm-desc">El dokuması halı, astarlı iç yapı, özel kalıp.</div>
               </div>
-            </div>
-            <div class="acc-item">
-              <button class="acc-btn" type="button" aria-expanded="false"><span>Kargo &amp; İade</span><strong>+</strong></button>
+            </details>
+            <details class="acc-item">
+              <summary class="acc-btn"><span>Kargo &amp; İade</span><strong>+</strong></summary>
               <div class="acc-panel">
                 3–7 iş günü üretim; kişiye özel ürünlerde iade koşulları farklılık gösterebilir.
               </div>
-            </div>
-            <div class="acc-item">
-              <button class="acc-btn" type="button" aria-expanded="false"><span>Bakım</span><strong>+</strong></button>
+            </details>
+            <details class="acc-item">
+              <summary class="acc-btn"><span>Bakım</span><strong>+</strong></summary>
               <div class="acc-panel">
                 Kuru temizleme önerilir; direkt güneş ve yüksek ısıdan sakınınız.
               </div>
-            </div>
+            </details>
           </div>
         </div>
       </div><!-- /.pm-grid -->
@@ -657,9 +655,15 @@
         }
       });
       window.addEventListener('resize', () => {
-        if (window.innerWidth > 900 && navLinks){
+        if (!navLinks) return;
+        if (window.innerWidth > 900){
           navLinks.classList.remove('show');
           navLinks.setAttribute('aria-hidden','false');
+          hamburger?.setAttribute('aria-expanded','false');
+        } else {
+          // Küçük ekranda başlangıç durumu kapalı + gizli
+          navLinks.classList.remove('show');
+          navLinks.setAttribute('aria-hidden','true');
           hamburger?.setAttribute('aria-expanded','false');
         }
       });
@@ -694,6 +698,7 @@
         lightbox.setAttribute('aria-hidden','true');
         lightboxImg.src = '';
         document.body.style.overflow='';
+        closeBtn.blur();
       }
       glImages.forEach(img => {
         img.addEventListener('click', () => {
@@ -702,6 +707,7 @@
           lightboxImg.src = img.src;
           lightboxImg.alt = img.alt || 'Büyük görüntü';
           document.body.style.overflow='hidden';
+          closeBtn.focus();
         });
       });
       closeBtn.addEventListener('click', closeLightbox);
@@ -815,7 +821,6 @@
                   </label>`;
         }).join('');
 
-        /* “Birim” ALANI KALDIRILDI -> unitHtml yok */
         measureForm.innerHTML = inputsHtml;
 
         // WA linkini alanlar değişince güncelle
@@ -918,6 +923,22 @@
       pmCloseBtn.addEventListener('click', closeProduct);
       productModal.addEventListener('click', (e)=>{ if(e.target === productModal) closeProduct(); });
       document.addEventListener('keydown', (e)=>{ if(e.key==='Escape' && productModal.classList.contains('show')) closeProduct(); });
+
+      // Paylaş düğmesi
+      pmShare.addEventListener('click', async ()=>{
+        const url = location.origin + location.pathname + `#urun/${currentProductId || ''}`;
+        const shareData = { title: pmTitle.textContent, text: pmDesc.textContent, url };
+        try{
+          if(navigator.share){
+            await navigator.share(shareData);
+          } else {
+            await navigator.clipboard.writeText(url);
+            alert('Ürün bağlantısı panoya kopyalandı');
+          }
+        }catch(err){
+          console.warn('Paylaşım iptal/başarısız:', err);
+        }
+      });
 
       // Swipe
       let startX = 0;
