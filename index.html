@@ -127,7 +127,12 @@
     /* Carousel */
     .carousel{ position:relative; width:100%; overflow:hidden }
     .carousel-track{ display:flex; width:200%; animation:scroll 42s linear infinite }
-    .carousel-track img{ width:20%; object-fit:cover; filter:saturate(0.96) contrast(1.02) }
+
+    /* Sadece atölye dışındaki carousellerde genişlik %20 olsun */
+    .carousel:not(.atelier-carousel) .carousel-track img{
+      width:20%; object-fit:cover; filter:saturate(0.96) contrast(1.02)
+    }
+
     @keyframes scroll{ 0%{ transform:translateX(0) } 100%{ transform:translateX(-50%) } }
 
     .carousel-small{ height:200px; }
@@ -200,36 +205,55 @@
     /* Focus ring */
     :where(a,button,input,select,textarea):focus{ outline:2px solid #8b5e3c55; outline-offset:2px }
     .category-carousel{ margin-bottom:28px }
-  /* Mobilde Atölyeden Seçkiler aralığı/art-direction */
-  @media (max-width: 600px){
-    .atelier-carousel{ overflow-x:auto; -webkit-overflow-scrolling:touch; scroll-snap-type:x mandatory; }
-    .atelier-carousel .carousel-track{ width:max-content; animation:none; gap:12px; padding:0 12px; }
-    .atelier-carousel .carousel-track img{
-      flex:0 0 78%; width:auto; height:200px !important; border-radius:12px; scroll-snap-align:center;
+
+    /* ===== Atölyeden Seçkiler – oran koruma ve mobil scroll ===== */
+    /* Masaüstü dahil: global davranışı özelleştir */
+    .atelier-carousel .carousel-track{
+      display:flex;
+      width:max-content;
+      animation:none;         /* otomatik kaydırma yok */
+      gap:12px;
+      padding:0 12px;
     }
-  }
-  /* Mobilde CEKETLER bölümünde 2 sütun grid */
-  @media (max-width: 600px){
-    #page-ceketler .products{ display:grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap:12px; justify-content:initial }
-    #page-ceketler .product-card{ width:100% }
-    #page-ceketler .product-card img{ aspect-ratio:3 / 4; height:auto }
-  }
-  /* Daha profesyonel görünüm: hover efektleri sadece mouse olan cihazlarda */
-  @media (hover:none){
-    .product-card:hover{ transform:none; box-shadow:var(--shadow); border-color:var(--border) }
-    .product-card:hover img{ transform:none; opacity:1 }
-  }
-  /* Performans için kartları kendi boyama konteynerine al */
-  .product-card{ contain: paint }
-  /* Override: Masaüstünde hero fotoğrafını DAHA AŞAĞI taşı */
-  @media (min-width: 901px){
-    header{ background-position: 50% calc(50% + 70px); }
-  }
-  /* Override: Telefonda hero fotoğrafını YUKARI taşı */
-  @media (max-width: 600px){
-    header{ background-position: 50% calc(50% - 50px); }
-  }
-</style>
+    .atelier-carousel .carousel-track img{
+      width:auto;             /* global % genişlik uygulanmasın */
+      height:auto;
+      aspect-ratio: 3 / 4;    /* dikey oran sabit */
+      object-fit: cover;      /* istersen contain yapabilirsin */
+      border-radius:12px;
+      background:#f3f0ec;
+    }
+
+    /* Mobilde yatay scroll + snap */
+    @media (max-width: 600px){
+      .atelier-carousel{
+        overflow-x:auto;
+        -webkit-overflow-scrolling:touch;
+        scroll-snap-type:x mandatory;
+      }
+      .atelier-carousel .carousel-track{
+        width:max-content;
+        animation:none;
+        gap:12px;
+        padding:0 12px;
+      }
+      .atelier-carousel .carousel-track img{
+        flex:0 0 78%;
+        scroll-snap-align:center;
+      }
+    }
+
+    /* Performans için kartları kendi boyama konteynerine al */
+    .product-card{ contain: paint }
+
+    /* ===== Hero görselini sağa kaydır (yazı mankenin üstüne binmesin) ===== */
+    @media (min-width: 901px){
+      header{ background-position: 65% calc(50% + 70px); }
+    }
+    @media (max-width: 600px){
+      header{ background-position: 60% calc(50% - 50px); }
+    }
+  </style>
 </head>
 <body>
   <nav>
@@ -268,8 +292,6 @@
       <h1>Geçmişin ruhu ve modern stilin birleşim noktası...</h1>
       <p>If you love Turkish carpet motifs, you are in the right place.</p>
     </header>
-
-    
   </div>
 
   <!-- CEKETLER -->
@@ -335,14 +357,14 @@
       <h2>Atölyeden Seçkiler</h2>
       <div class="carousel atelier-carousel" aria-label="Galeriden seçkiler">
         <div class="carousel-track">
-          <img src="https://i.imgur.com/mJo5QjJ.jpeg" alt="Ürün 1" class="clickable-image" loading="lazy" decoding="async" style="height:360px">
-          <img src="https://i.imgur.com/ZVjvWjm.jpeg" alt="Ürün 2" class="clickable-image" loading="lazy" decoding="async" style="height:360px">
-          <img src="https://i.imgur.com/v2dc54S.jpeg" alt="Ürün 3" class="clickable-image" loading="lazy" decoding="async" style="height:360px">
-          <img src="https://i.imgur.com/XHRI1Ud.jpeg" alt="Ürün 4" class="clickable-image" loading="lazy" decoding="async" style="height:360px">
-          <img src="https://i.imgur.com/Z4CDTIf.jpeg" alt="Ürün 5" class="clickable-image" loading="lazy" decoding="async" style="height:360px">
-          <img src="https://i.imgur.com/5T3wvZG.jpeg" alt="Ürün 6" class="clickable-image" loading="lazy" decoding="async" style="height:360px">
-          <img src="https://i.imgur.com/vkQnNb3.jpeg" alt="Ürün 7" class="clickable-image" loading="lazy" decoding="async" style="height:360px">
-          <img src="https://i.imgur.com/7N6azdr.jpeg" alt="Ürün 8" class="clickable-image" loading="lazy" decoding="async" style="height:360px">
+          <img src="https://i.imgur.com/mJo5QjJ.jpeg" alt="Ürün 1" class="clickable-image" loading="lazy" decoding="async">
+          <img src="https://i.imgur.com/ZVjvWjm.jpeg" alt="Ürün 2" class="clickable-image" loading="lazy" decoding="async">
+          <img src="https://i.imgur.com/v2dc54S.jpeg" alt="Ürün 3" class="clickable-image" loading="lazy" decoding="async">
+          <img src="https://i.imgur.com/XHRI1Ud.jpeg" alt="Ürün 4" class="clickable-image" loading="lazy" decoding="async">
+          <img src="https://i.imgur.com/Z4CDTIf.jpeg" alt="Ürün 5" class="clickable-image" loading="lazy" decoding="async">
+          <img src="https://i.imgur.com/5T3wvZG.jpeg" alt="Ürün 6" class="clickable-image" loading="lazy" decoding="async">
+          <img src="https://i.imgur.com/vkQnNb3.jpeg" alt="Ürün 7" class="clickable-image" loading="lazy" decoding="async">
+          <img src="https://i.imgur.com/7N6azdr.jpeg" alt="Ürün 8" class="clickable-image" loading="lazy" decoding="async">
         </div>
       </div>
     </section>
@@ -742,7 +764,7 @@
 
       function buildWAUrl(title){
         const text = encodeURIComponent(`Merhaba, ${title} ürününüzle ilgileniyorum.${buildMeasurementText()}\nUygunluk ve teslimat bilgisi alabilir miyim?`);
-        return `https://wa.me/${WAPhone}?text=${text}`;
+        return `https://wa.me/905454388096?text=${text}`;
       }
 
       function setActive(i){
@@ -817,5 +839,3 @@
   </script>
 </body>
 </html>
-
-
