@@ -9,8 +9,8 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- Başlık: Italiana, Gövde: Poppins (Cormorant yedekli) -->
-  <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+  <!-- Marka: Italiana (tek weight) + Cormorant Garamond 500/600/700 fallback -->
+  <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
 
   <!-- Preload hero image -->
   <link rel="preload" as="image" href="https://i.imgur.com/hAPeeeA.jpeg">
@@ -28,14 +28,15 @@
   </script>
 
   <style>
+    /* ====== THEME & TOK TİPOGRAFİ ====== */
     :root{
       --bg:#ffffff;
-      --primary:#1f1a16;        /* espresso */
-      --text:#27231f;
-      --accent:#8a5a3b;         /* sıcak taba */
-      --accent-2:#b08a63;
+      --primary:#181310;    /* başlıklar için koyu espresso */
+      --text:#1d1713;       /* gövde yazısı */
+      --accent:#8a5a3b;     /* sıcak taba */
+      --accent-2:#b08a63;   /* yumuşak alt vurgu */
       --card:#faf8f6;
-      --border:#e6dfd6;         /* krem sınır */
+      --border:#e6dfd6;     /* krem sınır */
       --radius:16px;
       --shadow:0 12px 30px rgba(0,0,0,.08);
       --transition:200ms ease;
@@ -44,34 +45,38 @@
 
     *{box-sizing:border-box}
     html,body{margin:0;padding:0}
-    body{
-      font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    html, body{
+      font-family:'Italiana','Cormorant Garamond', serif;
+      font-weight:600;               /* tüm site tok */
+      font-synthesis: weight;        /* Italiana tek weight -> sentetik bold */
       background:var(--bg);
       color:var(--text);
-      line-height:1.6;
+      line-height:1.55;
       -webkit-font-smoothing:antialiased;
       text-rendering:optimizeLegibility;
-      letter-spacing:0.005em;
+      letter-spacing:0.01em;
     }
     h1,h2,h3,h4{
-      font-family:'Italiana','Cormorant Garamond', Georgia, 'Times New Roman', serif;
-      font-weight:400; letter-spacing:0.01em; color:var(--primary); margin:0 0 .45em;
+      font-family:'Italiana','Cormorant Garamond', serif;
+      font-weight:700;
+      letter-spacing:0.005em;
+      color:var(--primary);
+      margin:0 0 .45em;
     }
-    h1{font-size:clamp(40px,5.4vw,64px); line-height:1.05}
-    h2{font-size:clamp(30px,3.8vw,40px); line-height:1.1; position:relative; display:inline-block}
+    h1{font-size:clamp(40px,5.3vw,64px); line-height:1.05}
+    h2{font-size:clamp(30px,3.7vw,40px); line-height:1.1; position:relative; display:inline-block}
     h3{font-size:clamp(22px,2.6vw,26px); line-height:1.15}
     h4{font-size:clamp(18px,2.2vw,22px); line-height:1.2}
-    /* h2 alt çizgi – ince, lüks dokunuş */
+    p,li{color:var(--text);}
+
     .section h2::after{
       content:""; display:block; width:48px; height:2px;
       background:linear-gradient(90deg,var(--accent),var(--accent-2));
-      margin:10px auto 0; border-radius:2px; opacity:.9;
+      margin:10px auto 0; border-radius:2px;
     }
-    p,li{color:var(--text); font-weight:400}
-
     .eyebrow{
-      font-family:'Poppins',sans-serif; text-transform:uppercase; letter-spacing:.12em; font-weight:500;
-      color:#fff; font-size:.78rem; text-shadow:0 2px 6px rgba(0,0,0,.35);
+      text-transform:uppercase; letter-spacing:.12em; color:#fff; font-size:.8rem;
+      text-shadow:0 2px 6px rgba(0,0,0,.35);
     }
 
     /* NAV */
@@ -89,28 +94,24 @@
     .brand{ display:flex; align-items:center; gap:10px; color:var(--primary); text-decoration:none }
     .brand img{height:42px}
     .brand span{
-      font-family:'Italiana','Cormorant Garamond', serif;
-      font-weight:400; letter-spacing:.12em; text-transform:uppercase; font-size:.98rem
+      letter-spacing:.12em; text-transform:uppercase; font-size:.98rem
     }
-
     .nav-links{ display:flex; gap:22px; align-items:center; list-style:none; margin:0; padding:0 }
     .nav-links a, .nav-links button{
-      color:var(--primary); text-decoration:none; font-weight:400; font-size:.95rem; background:none; border:0; cursor:pointer;
-      text-transform:uppercase; letter-spacing:.16em; transition:opacity var(--transition), color var(--transition)
+      color:var(--primary); text-decoration:none; background:none; border:0; cursor:pointer;
+      text-transform:uppercase; letter-spacing:.08em; transition:opacity var(--transition), color var(--transition)
     }
-    /* Menü underline animasyonu */
     .nav-links a{ position:relative; }
     .nav-links a::after{
       content:""; position:absolute; left:0; right:0; bottom:-6px; margin:auto;
       width:0; height:1.5px; background:var(--accent); transition:width .25s ease;
     }
     .nav-links a:hover::after{ width:100% }
-    .nav-links a:hover, .nav-links button:hover{ opacity:1; color:var(--accent) }
+    .nav-links a:hover, .nav-links button:hover{ color:var(--accent) }
 
     /* Mobile menu */
     .hamburger{ display:none; width:40px; height:36px; padding:8px; border-radius:10px; border:1px solid var(--border); background:#fff; cursor:pointer }
     .hamburger span{ display:block; height:2px; margin:5px 0; background:var(--primary) }
-
     @media (max-width:900px){
       .hamburger{ display:block }
       .nav-links{ position:absolute; right:20px; top:62px; background:#fff; border:1px solid var(--border); border-radius:12px; box-shadow:var(--shadow); padding:10px; flex-direction:column; align-items:stretch; gap:8px; display:none }
@@ -126,14 +127,14 @@
       box-shadow:var(--shadow); z-index:1001
     }
     .dropdown.open .dropdown-menu{ display:block }
-    .dropdown-menu a{ display:block; padding:10px 14px; color:var(--primary); font-weight:500 }
+    .dropdown-menu a{ display:block; padding:10px 14px; color:var(--primary) }
     .dropdown-menu a:hover{ background-color:var(--card) }
 
     /* SAYFA YAPISI */
     .page{ display:none }
     .page.active{ display:block }
 
-    /* HEADER (hero) — yazı görselin üstüne binmesin diye kadraj ayarı */
+    /* HEADER (hero) — yazı görsel üzerine binmesin */
     header{
       position:relative;
       display:flex; flex-direction:column; align-items:center; justify-content:center;
@@ -144,7 +145,7 @@
     }
     header .logo{ height:100px; width:auto }
     header h1{ text-shadow:0 8px 28px rgba(0,0,0,.32) }
-    header p{ max-width:820px; margin:10px auto 0; line-height:1.7; opacity:.95 }
+    header p{ max-width:820px; margin:10px auto 0; line-height:1.7; opacity:.98 }
     @media (min-width: 901px){ header{ background-position: 68% calc(50% + 60px); } }
     @media (max-width: 600px){ header{ background-position: 60% calc(50% - 40px); } }
 
@@ -178,11 +179,11 @@
     .product-card:hover{ transform:translateY(-4px); box-shadow:0 18px 40px rgba(0,0,0,.12); border-color:#ddd0c2 }
     .product-card img{ width:100%; height:auto; aspect-ratio:3 / 4; object-fit:cover; display:block; cursor:pointer; transition:transform 260ms ease, opacity 260ms ease; background:#f3f0ec }
     .product-card:hover img{ transform:scale(1.02); opacity:.98 }
-    .product-card p{ padding:12px 12px 16px; font-size:1.02rem; color:#6d645b }
+    .product-card p{ padding:12px 12px 16px; font-size:1.02rem; color:#4a413a }
 
     /* Footer */
     footer{ background:#faf7f2; color:#2a221a; text-align:center; padding:28px; border-top:1px solid var(--border) }
-    footer a{ color:var(--accent); text-decoration:none; font-weight:600 }
+    footer a{ color:var(--accent); text-decoration:none }
     footer a:hover{ text-decoration:underline }
 
     /* Lightbox */
@@ -210,7 +211,7 @@
     @media (max-width: 900px){ .gallery{ grid-template-columns:1fr; } }
     .g-thumbs-vert{ display:flex; flex-direction:column; gap:10px; max-height:calc(100vh - 160px); overflow:auto; }
     .g-thumbs-vert img{
-      width:88px; height:88px; object-fit:cover; border-radius:10px; opacity:.85;
+      width:88px; height:88px; object-fit:cover; border-radius:10px; opacity:.9;
       cursor:pointer; border:1px solid var(--border); transition:opacity var(--transition), transform var(--transition), border-color var(--transition)
     }
     .g-thumbs-vert img.active{ opacity:1; border-color:var(--accent); transform:translateY(-2px) }
@@ -221,13 +222,10 @@
     .g-btn{ background:rgba(0,0,0,.55); color:#fff; border:0; width:42px; height:42px; border-radius:50%; cursor:pointer; pointer-events:auto }
 
     /* Sağ sütun */
-    .pm-title{
-      font-family:'Italiana','Cormorant Garamond', serif;
-      font-weight:400; letter-spacing:.01em; color:#1a1612;
-    }
+    .pm-title{ color:#15110e; }
 
     .pm-options{ display:grid; gap:14px; margin:14px 0 }
-    .opt-group label{ display:block; font-weight:600; margin-bottom:8px; color:#222 }
+    .opt-group label{ display:block; margin-bottom:8px; color:#222 }
 
     .pm-actions{ display:flex; gap:10px; margin:14px 0 8px; flex-wrap:wrap; align-items:center }
     .btn{
@@ -243,11 +241,11 @@
     .accordion{ border-top:1px solid #efe8de; margin-top:12px }
     .acc-item{ border-bottom:1px solid #efe8de }
     .acc-btn{
-      width:100%; text-align:left; padding:14px 4px; background:none; border:0; font:inherit; cursor:pointer;
+      width:100%; text-align:left; padding:14px 4px; background:none; border:0; cursor:pointer;
       display:flex; align-items:center; justify-content:space-between;
     }
     .acc-btn span{
-      font-family:'Poppins',sans-serif; letter-spacing:.06em; text-transform:uppercase; font-weight:500; color:#2a251f;
+      letter-spacing:.06em; text-transform:uppercase; color:#2a251f;
     }
     .acc-btn:hover span{ color:var(--accent) }
     .acc-panel{ display:none; padding:0 4px 14px; color:#444; line-height:1.6 }
@@ -255,9 +253,9 @@
 
     /* Ölçü formu */
     .measure-form{ display:grid; grid-template-columns:1fr 1fr; gap:10px; width:100%; margin-top:6px }
-    .measure-form label{ font-size:.9rem; color:#333; display:block }
+    .measure-form label{ font-size:.95rem; color:#1e1814; display:block }
     .measure-form input, .measure-form textarea, .measure-form select{
-      width:100%; padding:10px; border:1px solid #ede5da; border-radius:12px; font:inherit; background:#fffdf9
+      width:100%; padding:10px; border:1px solid #ede5da; border-radius:12px; background:#fffdf9
     }
     .measure-form textarea{ grid-column:1/-1; min-height:84px }
     :where(input,textarea,select):focus{ outline:2px solid rgba(176,138,99,.25); outline-offset:2px }
@@ -279,7 +277,7 @@
     }
     .atelier-card:hover{ transform:translateY(-4px); box-shadow:0 18px 40px rgba(0,0,0,.12); border-color:#ddd0c2 }
     .atelier-card img{ width:100%; aspect-ratio:3/4; object-fit:cover; display:block; background:#f3f0ec; cursor:pointer; }
-    .atelier-card p{ padding:10px 12px 14px; color:#6d645b }
+    .atelier-card p{ padding:10px 12px 14px; color:#4a413a }
     .atl-nav{
       position:absolute; top:50%; transform:translateY(-50%);
       width:44px; height:44px; border-radius:50%;
@@ -289,7 +287,12 @@
     .atl-prev{ left:0; } .atl-next{ right:0; }
     .atl-nav:hover{ border-color:var(--accent-2); }
     .atl-nav:disabled{ opacity:.5; cursor:not-allowed }
-    @media (max-width:600px){ .atelier-card{ flex-basis:68vw } }
+
+    /* Mobil okunurluk artışı */
+    @media (max-width: 600px){
+      body{ font-size:17px; }
+      .atelier-card{ flex-basis:68vw }
+    }
   </style>
 </head>
 <body>
@@ -394,7 +397,7 @@
       <h2>Atölyeden Seçkiler</h2>
       <div class="atelier-row">
         <button class="atl-nav atl-prev" type="button" aria-label="Geri">‹</button>
-        <div class="atelier-scroll" id="atelier-scroll">
+        <div class="atelier-scroll" id="atelier-scroll" tabindex="0" aria-label="Atölye ürünleri yatay liste">
           <article class="atelier-card" data-product="atelier-1">
             <img src="https://i.imgur.com/mJo5QjJ.jpeg" alt="Atölye seçki 1" class="product-image" loading="lazy" decoding="async">
             <p>Atölye seçkisi – 1</p>
@@ -675,7 +678,7 @@
         });
       }
 
-      /* Kategori carousellerini sonsuz akış için klonla */
+      /* Kategori carousel: akış için klonla (sonsuz görünüm) */
       document.querySelectorAll('.carousel:not(.atelier-carousel) .carousel-track').forEach(track=>{
         const items = Array.from(track.children);
         items.forEach(node => track.appendChild(node.cloneNode(true)));
@@ -780,7 +783,7 @@
           'https://i.imgur.com/7N6azdr.jpeg','https://i.imgur.com/vkQnNb3.jpeg','https://i.imgur.com/ZVjvWjm.jpeg']},
       };
 
-      /* Form (tek şema) */
+      /* Ölçü formu alanları */
       const SCHEMAS = {
         default: [
           { id:'m-chest',   label:'Göğüs çevresi' },
@@ -913,7 +916,7 @@
         if (location.hash.startsWith('#urun/')) history.back();
       }
 
-      /* Ürün görsellerine tıklayınca modal aç (Atölye kartları dahil) */
+      /* Ürün görselleri tıklanınca modal (Atölye kartları dahil) */
       document.querySelectorAll('.product-card .product-image, .atelier-card .product-image')
         .forEach(img => img.addEventListener('click', (e) => openProduct(e.currentTarget.closest('[data-product]'))));
 
@@ -959,6 +962,18 @@
       atlScroll?.addEventListener('keydown', (e)=>{
         if(e.key === 'ArrowRight') scrollByStep(1);
         if(e.key === 'ArrowLeft')  scrollByStep(-1);
+      });
+
+      /* ===== Accordion kontrolü ===== */
+      document.querySelectorAll('.acc-item').forEach(item=>{
+        const btn = item.querySelector('.acc-btn');
+        if(!btn) return;
+        btn.addEventListener('click', ()=>{
+          const isOpen = item.hasAttribute('open');
+          // tek açık kalsın istersek: önce hepsini kapat
+          document.querySelectorAll('.acc-item[open]').forEach(i=> i.removeAttribute('open'));
+          if(!isOpen){ item.setAttribute('open',''); }
+        });
       });
     });
   </script>
