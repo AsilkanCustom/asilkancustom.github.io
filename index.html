@@ -13,7 +13,8 @@
 
   <!-- Preload hero image -->
   <link rel="preload" as="image" href="https://i.imgur.com/hAPeeeA.jpeg">
-
+  <link rel="preload" as="image" href="https://i.imgur.com/2liV16Z.jpeg">
+  <link rel="preload" as="image" href="https://i.imgur.com/4JdKq1t.jpeg">
   <!-- Favicon (base64) -->
   <link rel="icon" type="image/jpeg" href="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/4QAiRXhpZgAATU0AKgAAAAgAAQESAAMAAAABAAEAAAAAAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAgACADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD6nV0cnawbHofw/oadXneueGdbh+1GxvJpIJflCwthgncFe/U9P6VyR8Y+L9A066hntZ702+Ckk3yHPXDOw6EA9efegaVz3GmvIiEB2Vc9Mn3A/mR+deJN4r8X+ILO1toLe4shN/rHh+cs2MkB1HQcdB35rrtC8M6zI9s+oXkyQRjaVlbLFewA6AfWgR3WoXcdhY3F3PnyYI2lfHUKoyf0Fef+J9b0DXrVI7y0mLAKf3kiRMAyO4HU5+4evHvXo5AIweRTTGjDDIpHTBFBrTlCPxxv8zzzwr4g8P6LZG30+yvEfazSDKNgIoJ+YsBjHI/Gu8028j1DT7a8hVljnjWVQ2MgEZGcEj9ajl0u0kleXy3jkkOXaGVo95wBk7SMnAAyfQelWoYkhiSOJQqKMADtQFSVN/BG3zP/2Q==" />
 
@@ -27,25 +28,40 @@
   </script>
 
   <style>
-/* Hero slideshow */
+/* Hero slideshow (yumuşak, takılmasız) */
 header{ position:relative; overflow:hidden; }
-.hero-slides{ position:absolute; inset:0; z-index:0; }
+/* Arka plan tekrar boyama yapmasın */
+header{ background-image:none !important; }
+
+.hero-slides{
+  position:absolute; inset:0; z-index:0;
+  contain:strict;              /* paint+layout izolasyonu */
+}
 .hero-slides img{
   position:absolute; inset:0; width:100%; height:100%;
   object-fit:cover; opacity:0;
-  transition:opacity .6s ease;
-  animation:heroFade 6s infinite;
+  will-change:opacity;
+  backface-visibility:hidden;  /* GPU optimizasyonu */
+  transform:translateZ(0);
+  animation:heroFade 6s linear infinite;
 }
-.hero-slides img:nth-child(1){ animation-delay:0s }
-.hero-slides img:nth-child(2){ animation-delay:2s }
-.hero-slides img:nth-child(3){ animation-delay:4s }
 
+/* 3 görselde 2 sn görünür, ~0.3 sn’de fade-out */
 @keyframes heroFade{
-  0%{opacity:1} 30%{opacity:1} 40%{opacity:0} 100%{opacity:0}
+  0%, 28% { opacity:1; }
+  33%,100%{ opacity:0; }
 }
+
+/* Her görsele offset ver */
+.hero-slides img:nth-child(1){ animation-delay:0s; }
+.hero-slides img:nth-child(2){ animation-delay:2s; }
+.hero-slides img:nth-child(3){ animation-delay:4s; }
+
+/* Görseller decode edilene kadar animasyonu beklet */
+.hero-slides:not(.is-ready) img{ animation:none; opacity:0; }
 
 /* İçerik üstte kalsın */
-header > *:not(.hero-slides){ position:relative; z-index:1 }
+header > *:not(.hero-slides){ position:relative; z-index:1; }
     
     :root{
       --bg:#ffffff;
@@ -675,6 +691,17 @@ header > *:not(.hero-slides){ position:relative; z-index:1 }
   </div>
 
   <script>
+/* Hero görüntülerini önceden decode et, sonra animasyonu başlat */
+const hero = document.querySelector('.hero-slides');
+if (hero) {
+  const imgs = Array.from(hero.querySelectorAll('img'));
+  Promise.all(
+    imgs.map(img => (img.decode ? img.decode().catch(()=>{}) : Promise.resolve()))
+  ).then(() => {
+    hero.classList.add('is-ready');
+  });
+}
+    
     function showPage(name){
       document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
       const el = document.getElementById('page-' + name);
@@ -1139,4 +1166,5 @@ header > *:not(.hero-slides){ position:relative; z-index:1 }
   </script>
 </body>
 </html>
+
 
