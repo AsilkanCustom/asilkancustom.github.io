@@ -399,6 +399,27 @@ header > *:not(.hero-slides){ position:relative; z-index:1; }
     background:#000;                /* transparan kısımlar için emniyet */
   }
   .hero-slides img.is-active{ opacity: 1; }
+</style>
+<style>
+  /* ... senin mevcut CSS’lerin burada ... */
+
+  /* === Hero görsel konum ayarları === */
+  .hero-slides img{
+    object-fit: cover;
+    object-position: 50% 50%;
+  }
+
+  @media (min-width: 901px){
+    .hero-slides img:nth-child(1){ object-position: 50% 70%; }
+    .hero-slides img:nth-child(2){ object-position: 50% 65%; }
+    .hero-slides img:nth-child(3){ object-position: 50% 50%; }
+  }
+
+  @media (max-width: 600px){
+    .hero-slides img:nth-child(1){ object-position: 50% 30%; }
+    .hero-slides img:nth-child(2){ object-position: 50% 35%; }
+    .hero-slides img:nth-child(3){ object-position: 50% 50%; }
+  }
 </style>  
 </head>
 <body>
@@ -1226,4 +1247,5 @@ if (hero) {
 </script>  
 </body>
 </html>
+
 
