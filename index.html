@@ -179,13 +179,20 @@
     }
 
     /* Footer */
-    /* (Çantalar mobil 2 sütun) */
+    /* (Çantalar mobil 2 sütun ve çakışma önleme) */
     @media (max-width:640px){
       #page-cantalar .products{
         display:grid !important;
         grid-template-columns:repeat(2, minmax(0, 1fr));
-        gap:12px;
+        gap:12px !important;
+        align-items:start !important;
       }
+      #page-cantalar .product-card{
+        width:auto !important;
+        margin:0 !important;
+        transform:none !important;
+      }
+      #page-cantalar .product-card img{ display:block !important; }
     }
     footer{ background:#faf7f2; color:#2a221a; text-align:center; padding:28px; border-top:1px solid var(--border) }
     footer a{ color:#8b5e3c; text-decoration:none; font-weight:600 }
@@ -250,13 +257,17 @@
     .acc-btn span{ font-weight:600; color:#222 }
     .acc-panel{ padding:0 4px 14px; color:#444; line-height:1.6 }
 
-    /* Ölçü formu */
+    /* Ölçü formu (varsayılan 2 sütun) */
     .measure-form{ display:grid; grid-template-columns:1fr 1fr; gap:10px; width:100%; margin-top:6px }
     .measure-form label{ font-size:.9rem; color:#333; display:block }
     .measure-form input, .measure-form textarea, .measure-form select{
       width:100%; padding:10px; border:1px solid var(--border); border-radius:12px; font:inherit; background:#fff
     }
     .measure-form textarea{ grid-column:1/-1; min-height:84px }
+
+    /* Trend-2 & Trend-3: her ekranda 2 sütun sabit */
+    .measure-form--2col{ display:grid !important; grid-template-columns:1fr 1fr !important; gap:10px !important; }
+    @media (max-width:640px){ .measure-form--2col{ grid-template-columns:1fr 1fr !important; } }
 
     @media (hover:none){
       .product-card:hover{ transform:none; box-shadow:var(--shadow); border-color:var(--border) }
@@ -289,6 +300,13 @@
     }
     .atl-prev{ left:0; } .atl-next{ right:0; }
     .atl-nav:disabled{ opacity:.5; cursor:not-allowed }
+
+    /* >>> MOBİLDE Atölye kartları daha küçük <<< */
+    @media (max-width:640px){
+      .atelier-row{ margin:0 -4px !important; }
+      .atelier-scroll{ gap:10px !important; padding:6px !important; }
+      .atelier-card{ flex:0 0 220px !important; }
+    }
 
     /* >>> MOBİL KOMPAKT ÜRÜN DİYALOĞU <<< */
     @media (max-width:640px){
@@ -375,7 +393,6 @@
       </div>
       <h2>Ceketler</h2>
       <div class="products">
-        <!-- ... ürün kartları ... -->
         <div class="product-card" data-product="ceket-1">
           <img src="https://i.imgur.com/vJCJwvC.jpeg" alt="El dokuması halıdan özel tasarım ceket" class="product-image" loading="lazy" decoding="async">
           <p>El dokuması halıdan üretilmiş özel tasarım ceket.</p>
@@ -425,7 +442,6 @@
       <div class="atelier-row">
         <button class="atl-nav atl-prev" type="button" aria-label="Geri">‹</button>
         <div class="atelier-scroll" id="atelier-scroll">
-          <!-- ... kartlar ... -->
           <article class="atelier-card" data-product="atelier-1">
             <img src="https://i.imgur.com/mJo5QjJ.jpeg" alt="Atölye seçki 1" class="product-image" loading="lazy" decoding="async">
             <p>Atölye seçkisi – 1</p>
@@ -544,6 +560,7 @@
       <h4>Asilkan Custom – Eşsiz Olmak İsteyenler İçin.</h4>
     </section>
   </div>
+
   <!-- BEDEN BİLGİSİ -->
   <div class="page" id="page-cart">
     <section class="section" id="cart">
@@ -818,7 +835,8 @@
           'https://i.imgur.com/7N6azdr.jpeg','https://i.imgur.com/vkQnNb3.jpeg','https://i.imgur.com/ZVjvWjm.jpeg']},
       };
 
-      /* --- Ölçü şeması (sağ sütun) --- */
+      /* --- Ölçü şeması (varsayılan & ürün bazlı) --- */
+      let CURRENT_SCHEMA = 'default';
       const SCHEMAS = {
         default: [
           { id:'m-chest',   label:'Göğüs çevresi' },
@@ -831,10 +849,25 @@
           { id:'m-notes',   label:'Not / İstek (opsiyonel)', type:'textarea', full:true }
         ]
       };
+      const PRODUCT_SCHEMAS = {
+        'trend-2': [
+          { id:'m-waist',  label:'Bel' },
+          { id:'m-hip',    label:'Kalça' },
+          { id:'m-outleg', label:'Bacak boyu' },
+          { id:'m-inleg',  label:'İç bacak boyu' }
+        ],
+        'trend-3': [
+          { id:'m-waist',  label:'Bel' },
+          { id:'m-hip',    label:'Kalça' },
+          { id:'m-outleg', label:'Bacak boyu' },
+          { id:'m-inleg',  label:'İç bacak boyu' }
+        ]
+      };
 
       function renderMeasureForm(){
         const measureForm = document.getElementById('measure-form');
-        const fields = SCHEMAS.default;
+        const custom = PRODUCT_SCHEMAS[CURRENT_SCHEMA];
+        const fields = custom || SCHEMAS.default;
         const inputsHtml = fields.map(f=>{
           const full = f.full ? 'style="grid-column:1/-1"' : '';
           if(f.type === 'textarea'){
@@ -851,6 +884,13 @@
         }).join('');
 
         measureForm.innerHTML = inputsHtml;
+
+        // Trend-2/3 için 2 sütun zorla
+        if (PRODUCT_SCHEMAS[CURRENT_SCHEMA]) {
+          measureForm.classList.add('measure-form--2col');
+        } else {
+          measureForm.classList.remove('measure-form--2col');
+        }
 
         // WA linkini alanlar değişince güncelle
         measureForm.querySelectorAll('input, textarea, select').forEach(el=>{
@@ -871,6 +911,7 @@
         const rows = [];
         const add = (id, label, suffix='') => { const v = val(id); if(v) rows.push(`${label}: ${v}${suffix}`); };
 
+        // Varsayılan alanlar
         add('m-chest','Göğüs');
         add('m-shoulder','Omuz');
         add('m-waist','Bel');
@@ -879,6 +920,8 @@
         add('m-height','Boy');
         const weight = val('m-weight'); if(weight) rows.push(`Kilo: ${weight}kg`);
         const notes  = val('m-notes');
+
+        // Trend alanları (kullanıcı doldurursa zaten yukarıdaki 'Bel' vb. eklenir)
 
         return (rows.length?`\nÖlçüler: ${rows.join(', ')}`:'') + (notes?`\nNot: ${notes}`:'');
       }
@@ -936,6 +979,9 @@
 
         pmTitle.textContent = data.title;
         pmDesc.textContent  = data.desc;
+
+        // Ürün bazlı ölçü formu türü
+        CURRENT_SCHEMA = (id==='trend-2' || id==='trend-3') ? id : 'default';
 
         // === Bölüme göre davranışlar ===
         const pmOptions = document.querySelector('.pm-options');
