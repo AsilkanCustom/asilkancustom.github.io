@@ -33,6 +33,11 @@ header{ position:relative; overflow:hidden; }
 /* Arka plan tekrar boyama yapmasın */
 header{ background-image:none !important; }
 
+/* ===================== FIX: ALT ZEMİN SİYAH ===================== */
+header{ background-color:#000 !important; }        /* altta beyaz görünmesin */
+.hero-slides{ background:#000; }                   /* animasyon sırasında da siyah kalsın */
+/* ================================================================ */
+
 .hero-slides{
   position:absolute; inset:0; z-index:0;
   contain:strict;              /* paint+layout izolasyonu */
@@ -44,13 +49,20 @@ header{ background-image:none !important; }
   backface-visibility:hidden;  /* GPU optimizasyonu */
   transform:translateZ(0);
   animation:heroFade 6s linear infinite;
+
+  /* ===================== FIX: SİYAH EMNİYET ===================== */
+  background:#000; /* img transparan kısımlarında da beyaz patlamasın */
+  /* =============================================================== */
 }
 
-/* 3 görselde 2 sn görünür, ~0.3 sn’de fade-out */
+/* ===================== FIX: ÖRTÜŞMELİ ZAMANLAMA ===================== */
+/* 3 görsel: ~2 sn görünür, ~0.3 sn FARKLI KAREYLE ÖRTÜŞEREK fade-out.
+   Böylece iki görsel kısa süre aynı anda 1 olur; asla ikisi birden 0 olmaz. */
 @keyframes heroFade{
-  0%, 28% { opacity:1; }
-  33%,100%{ opacity:0; }
+  0%, 34% { opacity:1; }   /* önceki görsel hala 1 */
+  38%,100%{ opacity:0; }   /* 0'a iniş; bu sırada sonraki zaten 1'de */
 }
+/* =================================================================== */
 
 /* Her görsele offset ver */
 .hero-slides img:nth-child(1){ animation-delay:0s; }
@@ -1166,5 +1178,3 @@ if (hero) {
   </script>
 </body>
 </html>
-
-
