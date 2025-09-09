@@ -160,7 +160,8 @@
       contain: paint;
     }
     .product-card:hover{ transform:translateY(-4px); box-shadow:0 18px 40px rgba(0,0,0,.12); border-color:#ddd0c2 }
-    .product-card img{ width:100%; height:auto; aspect-ratio:3 / 4; object-fit:cover; display:block; cursor:pointer; transition:transform 260ms ease, opacity 260ms ease; background:#f3f0ec }
+    /* >>> KARE GÖRSEL <<< */
+    .product-card img{ width:100%; height:auto; aspect-ratio:1 / 1; object-fit:cover; display:block; cursor:pointer; transition:transform 260ms ease, opacity 260ms ease; background:#f3f0ec }
     .product-card:hover img{ transform:scale(1.02); opacity:.98 }
     .product-card p{ padding:12px 12px 16px; font-size:1.02rem; color:var(--muted) }
 
@@ -178,6 +179,14 @@
     }
 
     /* Footer */
+    /* (Çantalar mobil 2 sütun) */
+    @media (max-width:640px){
+      #page-cantalar .products{
+        display:grid !important;
+        grid-template-columns:repeat(2, minmax(0, 1fr));
+        gap:12px;
+      }
+    }
     footer{ background:#faf7f2; color:#2a221a; text-align:center; padding:28px; border-top:1px solid var(--border) }
     footer a{ color:#8b5e3c; text-decoration:none; font-weight:600 }
     footer a:hover{ text-decoration:underline }
@@ -220,13 +229,17 @@
     .g-btn{ background:rgba(0,0,0,.55); color:#fff; border:0; width:42px; height:42px; border-radius:50%; cursor:pointer; pointer-events:auto }
 
     /* Sağ sütun */
-    .pm-title{ margin:6px 0 6px; font-size:1.8rem; color:#1d1d1d }
+    .pm-title{ margin:6px 0 6px; font-size:1.3rem; font-weight:400; color:#1d1d1d }  /* küçültüldü & inceltildi */
     .pm-options{ display:grid; gap:14px; margin:14px 0 }
     .opt-group label{ display:block; font-weight:600; margin-bottom:8px; color:#222 }
     .pm-actions{ display:flex; gap:10px; margin:14px 0 8px; flex-wrap:wrap; align-items:center }
     .btn{ padding:12px 16px; border-radius:12px; border:1px solid var(--border); background:#fff; cursor:pointer; transition:background var(--transition), color var(--transition), border-color var(--transition) }
     .btn.primary{ background:#8b5e3c; color:#fff; border-color:#8b5e3c }
     .btn.primary:hover{ filter:brightness(.95) }
+
+    /* Daha küçük metin */
+    .pm-desc{ font-size:.92rem; line-height:1.55; }
+    .acc-panel{ font-size:.92rem; line-height:1.55; }
 
     /* Accordion (Details tabanlı) */
     .accordion{ border-top:1px solid var(--border); margin-top:12px }
@@ -265,7 +278,8 @@
       transition:transform var(--transition), box-shadow var(--transition), border-color var(--transition);
     }
     .atelier-card:hover{ transform:translateY(-4px); box-shadow:0 18px 40px rgba(0,0,0,.12); border-color:#ddd0c2 }
-    .atelier-card img{ width:100%; aspect-ratio:3/4; object-fit:cover; display:block; background:#f3f0ec; cursor:pointer; }
+    /* >>> KARE GÖRSEL <<< */
+    .atelier-card img{ width:100%; aspect-ratio:1/1; object-fit:cover; display:block; background:#f3f0ec; cursor:pointer; }
     .atelier-card p{ padding:10px 12px 14px; color:var(--muted) }
     .atl-nav{
       position:absolute; top:50%; transform:translateY(-50%);
@@ -361,7 +375,7 @@
       </div>
       <h2>Ceketler</h2>
       <div class="products">
-        <!-- ... ürün kartları aynı ... -->
+        <!-- ... ürün kartları ... -->
         <div class="product-card" data-product="ceket-1">
           <img src="https://i.imgur.com/vJCJwvC.jpeg" alt="El dokuması halıdan özel tasarım ceket" class="product-image" loading="lazy" decoding="async">
           <p>El dokuması halıdan üretilmiş özel tasarım ceket.</p>
@@ -411,7 +425,7 @@
       <div class="atelier-row">
         <button class="atl-nav atl-prev" type="button" aria-label="Geri">‹</button>
         <div class="atelier-scroll" id="atelier-scroll">
-          <!-- ... kartlar aynı ... -->
+          <!-- ... kartlar ... -->
           <article class="atelier-card" data-product="atelier-1">
             <img src="https://i.imgur.com/mJo5QjJ.jpeg" alt="Atölye seçki 1" class="product-image" loading="lazy" decoding="async">
             <p>Atölye seçkisi – 1</p>
@@ -922,6 +936,48 @@
 
         pmTitle.textContent = data.title;
         pmDesc.textContent  = data.desc;
+
+        // === Bölüme göre davranışlar ===
+        const pmOptions = document.querySelector('.pm-options');
+        const pmActions = document.querySelector('.pm-actions');
+
+        // Çantalar için istek kutusu yardımcıları
+        function ensureRequestBox(){
+          let box = document.getElementById('canta-not');
+          if(!box){
+            box = document.createElement('textarea');
+            box.id = 'canta-not';
+            box.placeholder = 'İsteklerinizi ve kişiselleştirme notlarınızı yazın...';
+            box.style.width = '100%';
+            box.style.minHeight = '84px';
+            box.style.margin = '8px 0 0';
+            const actions = document.querySelector('.pm-actions');
+            if(actions) actions.before(box);
+          } else {
+            box.style.display = '';
+          }
+        }
+        function hideRequestBox(){
+          const box = document.getElementById('canta-not');
+          if(box) box.style.display = 'none';
+        }
+
+        if(id.startsWith('atelier-')){
+          // Atölye: beden ve sipariş yok (sadece sağdaki bilgi ve açıklamalar)
+          if(pmOptions) pmOptions.style.display = 'none';
+          if(pmActions) pmActions.style.display = 'none';
+          hideRequestBox();
+        } else if(id.startsWith('canta-')){
+          // Çantalar: beden yok; istek kutusu + açıklama + sipariş ver
+          if(pmOptions) pmOptions.style.display = 'none';
+          if(pmActions) pmActions.style.display = '';
+          ensureRequestBox();
+        } else {
+          // Standart ürünler: her şey açık
+          if(pmOptions) pmOptions.style.display = '';
+          if(pmActions) pmActions.style.display = '';
+          hideRequestBox();
+        }
 
         renderMeasureForm();
         renderThumbsVert();
