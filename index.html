@@ -435,6 +435,26 @@ header { background-image:none !important; background-color:#000 !important; }
     .hero-slides img:nth-child(3){ object-position:50% 50%; }
   }
 </style>  
+
+<!-- === EKLENEN STİLLER (2) ÇANTALAR & (3) BEDEN BİLGİSİ === -->
+<style>
+/* (2) Çantalar: tüm kartlar aynı çerçeve boyu */
+#page-cantalar .products { justify-content:center; }
+#page-cantalar .product-card { width:300px; }
+#page-cantalar .product-card img { aspect-ratio:1/1; object-fit:cover; }
+
+/* (3) Beden Bilgisi: 2 sütun görsel */
+#page-cart .products{
+  display:grid !important;
+  grid-template-columns:repeat(2, minmax(0,1fr)) !important;
+  gap:16px !important;
+}
+#page-cart .product-card{ width:auto; }
+#page-cart .product-card img{ width:100%; aspect-ratio:1/1; object-fit:cover; }
+
+/* (1) Atölyeden Seçkiler: sağda boşluk hissini önlemek için son-padding’i minimal tut */
+.atelier-scroll{ padding-right:8px; }
+</style>
 </head>
 <body>
   <nav>
@@ -1273,10 +1293,4 @@ document.querySelectorAll('[data-page]').forEach(el=>{
 </script>  
 </body>
 </html>
-
-
-
-
-
-
 
