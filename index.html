@@ -386,6 +386,21 @@ header > *:not(.hero-slides){ position:relative; z-index:1; }
       .measure-form textarea{ min-height:72px }
     }    
   </style>
+  <style>
+/* Küçük koleksiyon açıklaması (ana sayfa altı) */
+.tiny-collection-copy{
+  max-width: 920px;
+  margin: 28px auto 48px;   /* üst/alt boşluk */
+  padding: 0 20px;          /* kenarlara nefes */
+  text-align: center;
+  color: #333;
+  line-height: 1.7;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  font-size: clamp(11px, 1.7vw, 13px); /* oldukça küçük */
+}
+.tiny-collection-copy b{ font-weight: 600; }
+  
 <style>
   /* HERO: CSS animasyonu kapat, JS ile crossfade yap */
   .hero-slides { background:#000; } /* alt zemin siyah kalsın */
@@ -464,6 +479,11 @@ header > *:not(.hero-slides){ position:relative; z-index:1; }
       <h1>Geçmişin ruhu ve modern stilin birleşim noktası...</h1>
       <p>If you love Turkish carpet motifs, you are in the right place.</p>
     </header>
+<!-- HOME: Ana başlığın altında küçük açıklama -->
+<div class="tiny-collection-copy">
+  <p><b>Asilkancustom Koleksiyonu</b>, vibrant stilin tamamlayıcısı niteliğindeki parçaları, geçmişin ruhu ve modern stil yaklaşımıyla bir araya getiriyor. Koleksiyon; ceket, yelek, çanta, pantolon ve şort gibi temel ürünlerden oluşuyor. Her parça, markanın kültürel referanslarla şekillenen tasarım anlayışını yansıtan detaylarla zenginleştirildi.</p>
+  <p>Ayarlanabilir yapılar, dayanıklı kumaşlar ve tonal logolar sayesinde çantalar sadece tamamlayıcı değil, aynı zamanda stilin taşıyıcısı hâline geliyor. Canlı tonlar ve etnik formlar, parçaların hem modern hem de sokak stiline kolayca entegre olmasını sağlıyor.</p>
+</div>    
   </div>
 
   <!-- CEKETLER -->
@@ -1258,5 +1278,6 @@ if (hero) {
 </script>  
 </body>
 </html>
+
 
 
