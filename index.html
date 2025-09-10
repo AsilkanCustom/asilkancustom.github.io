@@ -386,7 +386,7 @@ header > *:not(.hero-slides){ position:relative; z-index:1; }
       .measure-form textarea{ min-height:72px }
     }    
   </style>
-  <style>
+<style>
 /* Küçük koleksiyon açıklaması (ana sayfa altı) */
 .tiny-collection-copy{
   max-width: 920px;
@@ -400,20 +400,19 @@ header > *:not(.hero-slides){ position:relative; z-index:1; }
   font-size: clamp(11px, 1.7vw, 13px); /* oldukça küçük */
 }
 .tiny-collection-copy b{ font-weight: 600; }
-  
-<style>
-  /* HERO: CSS animasyonu kapat, JS ile crossfade yap */
-  .hero-slides { background:#000; } /* alt zemin siyah kalsın */
-  header { background-image:none !important; background-color:#000 !important; }
 
-  .hero-slides img{
-    /* Var olan position/inset/object-fit kalsın */
-    animation: none !important;     /* CSS keyframes devre dışı */
-    opacity: 0;
-    transition: opacity 800ms ease; /* yumuşak geçiş */
-    background:#000;                /* transparan kısımlar için emniyet */
-  }
-  .hero-slides img.is-active{ opacity: 1; }
+/* HERO: CSS animasyonu kapat, JS ile crossfade yap */
+.hero-slides { background:#000; } /* alt zemin siyah kalsın */
+header { background-image:none !important; background-color:#000 !important; }
+
+.hero-slides img{
+  /* Var olan position/inset/object-fit kalsın */
+  animation: none !important;     /* CSS keyframes devre dışı */
+  opacity: 0;
+  transition: opacity 800ms ease; /* yumuşak geçiş */
+  background:#000;                /* transparan kısımlar için emniyet */
+}
+.hero-slides img.is-active{ opacity: 1; }
 </style>
 <style>
   /* ... senin mevcut CSS’lerin burada ... */
@@ -1266,6 +1265,7 @@ if (hero) {
 </script>  
 </body>
 </html>
+
 
 
 
