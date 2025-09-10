@@ -455,7 +455,7 @@ header { background-image:none !important; background-color:#000 !important; }
           <ul class="dropdown-menu" id="products-menu">
             <li><a href="#ceketler" data-page="ceketler">Ceketler</a></li>
             <li><a href="#cantalar" data-page="cantalar">Çantalar</a></li>
-            <li><a href="#trendler" data-page="pantolonler">Pantolonlar</a></li>
+            <li><a href="#pantolonlar" data-page="pantolonler">Pantolonlar</a></li>
           </ul>
         </li>
         <li><a href="#about" data-page="about">Hakkımızda</a></li>
@@ -748,7 +748,7 @@ if (hero) {
     }
     function getPageFromHash(){
       const h = (location.hash || '#home').replace('#','');
-      const allowed = ['home','ceketler','cantalar','trendler','about','cart'];
+      const allowed = ['home','ceketler','cantalar','pantolonlar','about','cart'];
       return allowed.includes(h) ? h : 'home';
     }
     function updateHashSafely(page){ try { location.hash = page; } catch(_) {} }
@@ -1265,6 +1265,7 @@ if (hero) {
 </script>  
 </body>
 </html>
+
 
 
 
