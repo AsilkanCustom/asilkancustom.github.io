@@ -455,6 +455,25 @@ header { background-image:none !important; background-color:#000 !important; }
 /* (1) Atölyeden Seçkiler: sağda boşluk hissini önlemek için son-padding’i minimal tut */
 .atelier-scroll{ padding-right:8px; }
 </style>
+<style>
+/* === Atölyeden Seçkiler: hem sağda hem solda boşluğu kaldır === */
+.atelier-scroll {
+  scroll-snap-type: x mandatory;
+  scroll-padding: 0;
+  padding: 0 8px;
+}
+
+.atelier-card {
+  flex: 0 0 220px;
+  scroll-snap-align: start;
+}
+
+.atelier-scroll::before,
+.atelier-scroll::after {
+  content: none !important;
+}
+</style>
+</head>  
 </head>
 <body>
   <nav>
@@ -1293,4 +1312,5 @@ document.querySelectorAll('[data-page]').forEach(el=>{
 </script>  
 </body>
 </html>
+
 
