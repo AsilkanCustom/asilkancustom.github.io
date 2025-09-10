@@ -455,7 +455,7 @@ header { background-image:none !important; background-color:#000 !important; }
           <ul class="dropdown-menu" id="products-menu">
             <li><a href="#ceketler" data-page="ceketler">Ceketler</a></li>
             <li><a href="#cantalar" data-page="cantalar">Çantalar</a></li>
-            <li><a href="#pantolonlar" data-page="pantolonler">Pantolonlar</a></li>
+            <li><a href="#pantolonlar" data-page="pantolonlar">Pantolonlar</a></li>
           </ul>
         </li>
         <li><a href="#about" data-page="about">Hakkımızda</a></li>
@@ -760,10 +760,11 @@ if (hero) {
 
       /* Sayfa yönlendirme */
       showPage(getPageFromHash());
-      document.querySelectorAll('[data-page]').forEach(el=>{
-        el.addEventListener('click', (e)=>{
-          const page = e.currentTarget.getAttribute('data-page');
-          if(page){ e.preventDefault(); showPage(page); updateHashSafely(page); }
+document.querySelectorAll('[data-page]').forEach(el=>{
+  el.addEventListener('click', (e)=>{
+    const href = e.currentTarget.getAttribute('href') || '';
+    const page = href.startsWith('#') ? href.slice(1) : e.currentTarget.getAttribute('data-page');
+    if(page){ e.preventDefault(); showPage(page); updateHashSafely(page); }
           if(navLinks){ navLinks.classList.remove('show'); navLinks.setAttribute('aria-hidden','true'); }
           if(hamburger){ hamburger.setAttribute('aria-expanded','false'); }
           dropdown?.classList.remove('open');
@@ -1265,6 +1266,7 @@ if (hero) {
 </script>  
 </body>
 </html>
+
 
 
 
