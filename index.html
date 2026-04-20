@@ -1345,32 +1345,21 @@ document.querySelectorAll('[data-page]').forEach(el=>{
   window.addEventListener('resize', applyMobileFocal);
 })();
 </script>  
-</body>
-</html>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-  // Sadece ana sayfadayken hero-enter sınıfını ekle
-  if (location.hash === '' || location.hash === '#home') {
-    requestAnimationFrame(() => {
+  const updateHeroState = () => {
+    const hash = location.hash.replace('#', '');
+    if (hash === '' || hash === 'home') {
       document.body.classList.add('hero-enter');
-    });
-  }
-
-  // Başka bölümlere geçilince kaldır
-  window.addEventListener('hashchange', () => {
-    if (location.hash !== '' && location.hash !== '#home') {
+    } else {
       document.body.classList.remove('hero-enter');
     }
-  });
+  };
+
+  // Sayfa ilk yüklendiğinde çalıştır
+  updateHeroState();
+
+  // Hash (sayfa) değişince güncelle
+  window.addEventListener('hashchange', updateHeroState);
 });
 </script>
-
-
-
-
-
-
-
-
-
-
