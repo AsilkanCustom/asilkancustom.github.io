@@ -388,7 +388,12 @@ header > *:not(.hero-slides){ position:relative; z-index:1; }
   </style>
 <style>
 /* Küçük koleksiyon açıklaması (ana sayfa altı) */
-.tiny-collection-copy{
+  <div style="text-align:center; margin-top:40px;">
+  <button id="open3D" class="btn primary" style="font-size:1.1rem;">Tasarımını Hazırla</button>
+</div>
+
+<!-- 3D Tasarım Alanı (ilk başta gizli) -->
+<div id="designer3d" style="display:none; height:500px; margin-top:40px;"></div>.tiny-collection-copy{
   max-width: 920px;
   margin: 28px auto 48px;   /* üst/alt boşluk */
   padding: 0 20px;          /* kenarlara nefes */
@@ -1336,3 +1341,68 @@ document.querySelectorAll('[data-page]').forEach(el=>{
 </script>  
 </body>
 </html>
+<!-- Three.js kütüphanesi -->
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+<script>
+document.getElementById("open3D").addEventListener("click", () => {
+  const container = document.getElementById("designer3d");
+  container.style.display = "block";
+  init3DScene(container);
+});
+
+function init3DScene(container) {
+  // Boyutlar
+  const width = container.clientWidth;
+  const height = container.clientHeight;
+
+  // 3B sahne
+  const scene = new THREE.Scene();
+  scene.background = new THREE.Color("#f3f0ec");
+
+  // Kamera
+  const camera = new THREE.PerspectiveCamera(45, width/height, 0.1, 1000);
+  camera.position.set(2, 2, 3);
+
+  // Renderer
+  const renderer = new THREE.WebGLRenderer({antialias:true});
+  renderer.setSize(width, height);
+  container.appendChild(renderer.domElement);
+
+  // Işıklar
+  const light = new THREE.DirectionalLight(0xffffff, 1);
+  light.position.set(5,5,5);
+  scene.add(light);
+  scene.add(new THREE.AmbientLight(0xffffff, 0.4));
+
+  // Örnek bir 3B model (kutucuk)
+  const geometry = new THREE.BoxGeometry(1, 1, 1);
+  const material = new THREE.MeshStandardMaterial({color: 0x8b5e3c});
+  const cube = new THREE.Mesh(geometry, material);
+  scene.add(cube);
+
+  // Basit Orbit Controls (fareyle döndürmek için)
+  const controlsScript = document.createElement("script");
+  controlsScript.src = "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/js/controls/OrbitControls.min.js";
+  controlsScript.onload = () => {
+    const controls = new THREE.OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+
+    function animate() {
+      requestAnimationFrame(animate);
+      controls.update();
+      renderer.render(scene, camera);
+    }
+    animate();
+  };
+  document.body.appendChild(controlsScript);
+
+  // Ekran yeniden boyutlanınca ayarları düzelt
+  window.addEventListener("resize", () => {
+    const newWidth = container.clientWidth;
+    const newHeight = container.clientHeight;
+    camera.aspect = newWidth / newHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(newWidth, newHeight);
+  });
+}
+</script>
