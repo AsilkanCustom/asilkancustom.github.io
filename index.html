@@ -825,7 +825,9 @@ document.querySelectorAll('[data-page]').forEach(el=>{
     const page = href.startsWith('#') ? href.slice(1) : e.currentTarget.getAttribute('data-page');
     if(page){ e.preventDefault(); showPage(page); updateHashSafely(page); }
           if(navLinks){ navLinks.classList.remove('show'); navLinks.setAttribute('aria-hidden','true'); }
-          if(hamburger){ hamburger.setAttribute('aria-expanded','false'); }
+    // Menüde aktif linki vurgula
+document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+e.currentTarget.classList.add('active');          if(hamburger){ hamburger.setAttribute('aria-expanded','false'); }
           dropdown?.classList.remove('open');
           dropdown?.querySelector('button')?.setAttribute('aria-expanded','false');
         });
