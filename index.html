@@ -1336,14 +1336,63 @@ e.currentTarget.classList.add('active');          if(hamburger){ hamburger.setAt
 </script>  
 </body>
 </html>
+<li><a href="#tasarla" data-page="tasarla">Kendi Tasarımını Oluştur</a></li>
+<div class="page" id="page-tasarla">
+  <section class="section" id="tasarla">
+    <h2>Kendi Tasarımını Oluştur</h2>
+    <div class="designer">
+      <div class="model-area">
+        <img id="model-base" src="model-ceket.png" alt="Model Üzerinde Ceket">
+        <img id="pattern-overlay" src="" alt="" style="display:none;">
+      </div>
+      <div class="upload-area">
+        <p>Kumaş veya halı desenini yükle:</p>
+        <input type="file" id="upload-pattern" accept="image/*">
+      </div>
+    </div>
+  </section>
+</div>
+.designer {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:20px;
+}
 
+.model-area {
+  position:relative;
+  width:300px;
+  max-width:90vw;
+}
 
+#model-base,
+#pattern-overlay {
+  position:absolute;
+  top:0; left:0;
+  width:100%;
+  height:auto;
+  object-fit:cover;
+}
 
+.upload-area {
+  text-align:center;
+}
+// === Kendi desenini yükle özelliği ===
+const uploadPattern = document.getElementById('upload-pattern');
+const overlay = document.getElementById('pattern-overlay');
 
-
-
-
-
+if(uploadPattern){
+  uploadPattern.addEventListener('change', (e)=>{
+    const file = e.target.files[0];
+    if(file){
+      const url = URL.createObjectURL(file);
+      overlay.src = url;
+      overlay.style.display = 'block';
+      overlay.style.opacity = 0.8;
+      overlay.style.mixBlendMode = 'multiply'; // Deseni cekete karıştır
+    }
+  });
+}
 
 
 
