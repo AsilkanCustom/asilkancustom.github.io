@@ -1347,8 +1347,23 @@ document.querySelectorAll('[data-page]').forEach(el=>{
 </script>  
 </body>
 </html>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // Sadece ana sayfadayken hero-enter sınıfını ekle
+  if (location.hash === '' || location.hash === '#home') {
+    requestAnimationFrame(() => {
+      document.body.classList.add('hero-enter');
+    });
+  }
 
-
+  // Başka bölümlere geçilince kaldır
+  window.addEventListener('hashchange', () => {
+    if (location.hash !== '' && location.hash !== '#home') {
+      document.body.classList.remove('hero-enter');
+    }
+  });
+});
+</script>
 
 
 
