@@ -831,8 +831,21 @@ e.currentTarget.classList.add('active');          if(hamburger){ hamburger.setAt
         });
       });
       window.addEventListener('hashchange', ()=> showPage(getPageFromHash()));
+if(hamburger){
+  hamburger.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const open = navLinks && navLinks.classList.toggle('show');
+    hamburger.setAttribute('aria-expanded', String(!!open));
+    navLinks?.setAttribute('aria-hidden', String(!open));
 
-      /* Mobil menü */
+    // 👇 BU İKİ SATIRI EKLE
+    if(open){
+      document.body.style.overflow = 'hidden';   // menü açıkken scroll kilitli
+    }else{
+      document.body.style.overflow = '';         // kapatılınca scroll serbest
+    }
+  });
+}      /* Mobil menü */
       if(hamburger){
         hamburger.addEventListener('click', (e) => {
           e.stopPropagation();
