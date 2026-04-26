@@ -1402,3 +1402,124 @@ function init3DScene(container) {
 </script>
 </body>
 </html>
+<div class="page" id="page-about">
+    <section class="section">
+      <h2>Hikayemiz</h2>
+      <div style="max-width:800px; margin:auto; line-height:1.8; text-align:center;">
+        <p>Asilkan Custom, Anadolu'nun kadim el dokuması halı kültürünü modern moda dünyasına taşıma tutkusuyla doğdu. Her bir parçamız, onlarca yılın yaşanmışlığını taşıyan eşsiz el dokuması halılardan özenle seçilerek, usta ellerde yeniden hayat buluyor.</p>
+        <p>Sürdürülebilir moda anlayışıyla, "kişiye özel" ve "tek" (one-of-a-kind) üretim yaparak seri üretimin tekdüzeliğine karşı duruyoruz.</p>
+      </div>
+    </section>
+  </div>
+
+  <div class="page" id="page-cart">
+    <section class="section">
+      <h2>Beden ve Ölçü Tablosu</h2>
+      <div class="products">
+        <div class="product-card">
+          <img src="https://i.imgur.com/vJCJwvC.jpeg" alt="Ölçü Rehberi 1">
+          <p>Ceket Ölçü Rehberi: Standart ve Oversize kesim detayları.</p>
+        </div>
+        <div class="product-card">
+          <img src="https://i.imgur.com/ykwtfHk.jpeg" alt="Ölçü Rehberi 2">
+          <p>Pantolon Ölçü Rehberi: Bel ve boy ölçüm teknikleri.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <p>&copy; 2026 Asilkan Custom. Tüm hakları saklıdır.</p>
+    <p>Takip edin: <a href="https://instagram.com/asilkancustom" target="_blank">Instagram</a></p>
+  </footer>
+
+  <div id="product-modal">
+    <div class="pm-dialog">
+      <div class="pm-close"><button id="close-modal">&times;</button></div>
+      <div class="pm-grid">
+        <div class="gallery-sticky">
+          <div class="gallery">
+            <div class="g-thumbs-vert" id="modal-thumbs"></div>
+            <div class="gallery-main-wrap">
+              <img src="" id="main-modal-img" class="gallery-main" alt="Ürün Detay">
+            </div>
+          </div>
+        </div>
+        <div class="pm-info">
+          <h2 class="pm-title" id="modal-title">Ürün Başlığı</h2>
+          <div class="pm-desc" id="modal-desc">Ürün hakkında detaylı bilgi burada yer alacak.</div>
+          <div class="accordion">
+            <details class="acc-item" open>
+              <summary class="acc-btn"><span>Sipariş ve Ölçü</span></summary>
+              <div class="acc-panel">
+                <form class="measure-form measure-form--2col">
+                  <input type="text" placeholder="Boy (cm)" required>
+                  <input type="text" placeholder="Kilo (kg)" required>
+                  <textarea placeholder="Eklemek istediğiniz notlar..."></textarea>
+                </form>
+              </div>
+            </details>
+          </div>
+          <div class="pm-actions">
+            <a href="https://wa.me/905454388096" target="_blank" class="btn primary">WhatsApp ile Sipariş Ver</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Sayfa Navigasyonu
+    const links = document.querySelectorAll('[data-page]');
+    const pages = document.querySelectorAll('.page');
+
+    links.forEach(link => {
+      link.addEventListener('click', (e) => {
+        const target = link.getAttribute('data-page');
+        pages.forEach(p => p.classList.remove('active'));
+        document.getElementById('page-' + target).classList.add('active');
+        
+        // Menüyü mobilde kapat
+        document.getElementById('nav-links').classList.remove('show');
+        window.scrollTo(0, 0);
+      });
+    });
+
+    // Hamburger Menü
+    document.getElementById('hamburger').addEventListener('click', () => {
+      document.getElementById('nav-links').classList.toggle('show');
+    });
+
+    // Hero Crossfade Logic
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.hero-slides img');
+    function showSlide(index) {
+      slides.forEach(img => img.classList.remove('is-active'));
+      slides[index].classList.add('is-active');
+    }
+    setInterval(() => {
+      currentSlide = (currentSlide + 1) % slides.length;
+      showSlide(currentSlide);
+    }, 4000);
+    showSlide(0);
+
+    // Modal Kontrolü
+    const modal = document.getElementById('product-modal');
+    document.querySelectorAll('.product-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const title = card.querySelector('p').innerText;
+        const imgSrc = card.querySelector('img').src;
+        document.getElementById('modal-title').innerText = title;
+        document.getElementById('main-modal-img').src = imgSrc;
+        modal.classList.add('show');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    document.getElementById('close-modal').addEventListener('click', () => {
+      modal.classList.remove('show');
+      document.body.style.overflow = 'auto';
+    });
+  </script>
+</body>
+</html>
