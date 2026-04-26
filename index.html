@@ -55,7 +55,45 @@ header {
   opacity: 0.5; /* Sinematik karanlık efekt */
   transform: scale(1) translateZ(0);
 }
-/* ===================== FIX: ÖRTÜŞMELİ ZAMANLAMA ===================== */
+    /* LUXE GRID SYSTEM */
+.luxe-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  padding: 0 10px;
+}
+
+.grid-item {
+  overflow: hidden;
+  opacity: 0; /* Başlangıçta görünmez */
+  transform: translateY(40px); /* Aşağıdan gelme efekti */
+  transition: all 1s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+.grid-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1.5s ease;
+}
+
+.grid-item:hover img {
+  transform: scale(1.05);
+}
+
+/* Asimetrik Yerleşim */
+.grid-item.tall { grid-row: span 2; height: 100%; }
+.grid-item.wide { grid-column: span 2; height: 300px; }
+
+.grid-item.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 600px) {
+  .luxe-grid { grid-template-columns: 1fr; }
+  .grid-item.wide, .grid-item.tall { grid-column: auto; grid-row: auto; height: 400px; }
+}/* ===================== FIX: ÖRTÜŞMELİ ZAMANLAMA ===================== */
 /* 3 görsel: ~2 sn görünür, ~0.3 sn FARKLI KAREYLE ÖRTÜŞEREK fade-out.
    Böylece iki görsel kısa süre aynı anda 1 olur; asla ikisi birden 0 olmaz. */
 @keyframes heroFade{
@@ -514,7 +552,26 @@ header { background-image:none !important; background-color:#000 !important; }
         <li><a href="https://wa.me/c/905454388096" target="_blank" rel="noopener">İletişim</a></li>
         <li><a href="#cart" data-page="cart">Beden Bilgisi</a></li>
       </ul>
+      <section class="section home-gallery">
+  <div class="section-header">
+    <h2>La Vision</h2>
+    <p>Geleneksel dokuların modern dünyadaki sessiz lüksü.</p>
+  </div>
+  <div class="luxe-grid" id="dynamic-gallery">
+    <div class="grid-item tall">
+      <img src="https://i.imgur.com/WzlSfVi.jpeg" alt="Asilkan Style" loading="lazy">
     </div>
+    <div class="grid-item">
+      <img src="https://i.imgur.com/txFwYJn.jpeg" alt="Detail" loading="lazy">
+    </div>
+    <div class="grid-item">
+      <img src="https://i.imgur.com/BGECmbh.jpeg" alt="Texture" loading="lazy">
+    </div>
+    <div class="grid-item wide">
+      <img src="https://i.imgur.com/uERTE2A.jpeg" alt="Atelier" loading="lazy">
+    </div>
+  </div>
+</section>    </div>
   </nav>
 
   <!-- HOME -->
@@ -810,7 +867,30 @@ if (hero) {
     imgs.map(img => (img.decode ? img.decode().catch(()=>{}) : Promise.resolve()))
   ).then(() => {
     hero.classList.add('is-ready');
+/* SCROLL REVEAL - Görselleri aşağı indikçe göster */
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('is-visible');
+    }
   });
+}, { 
+  threshold: 0.15, // Görselin %15'i göründüğünde başla
+  rootMargin: "0px 0px -50px 0px" 
+});
+
+// Grid item'ları izlemeye al
+document.querySelectorAll('.grid-item').forEach(item => {
+  revealObserver.observe(item);
+});
+
+/* OPTIONAL: Daha fazla görsel eklemek istersen buraya yeni linkler koyabilirsin */
+const additionalImages = [
+  'https://i.imgur.com/QrExQJC.jpeg',
+  'https://i.imgur.com/4cjlU1w.jpeg'
+];
+
+// Sayfa sona yaklaştığında otomatik ekleme logic'i buraya kurulabilir.});
 }
     
     function showPage(name){
