@@ -1,353 +1,535 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="tr" class="no-js">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-  <meta name="description" content="Asilkan Custom – El dokuması halılardan kişiye özel ceket ve çanta tasarımları. Geçmişin ruhu, modern stil." />
-  <title>ASİLKAN Custom | Kişiye Özel Tasarım</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="description" content="Asilkan Custom – Geleneksel Anadolu halılarının modern terzilikle buluştuğu 3D tasarım ve üretim atölyesi." />
+    <meta name="author" content="Asilkan Custom" />
+    <title>ASİLKAN CUSTOM | 3D Atelier & Bespoke Tailoring</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
-
-  <style>
-    :root {
-      --bg: #ffffff;
-      --primary: #1a1a1a;
-      --accent: #8b5e3c;
-      --text: #2d2a26;
-      --muted: #6b625a;
-      --border: #e7e2db;
-      --radius: 12px;
-      --shadow: 0 10px 30px rgba(0,0,0,0.05);
-      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      --container: 1200px;
-    }
-
-    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      margin: 0;
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    /* TYPOGRAPHY */
-    h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; color: var(--primary); margin: 0 0 0.5em; }
-    h1 { font-size: clamp(2.5rem, 8vw, 4rem); line-height: 1.1; }
-    h2 { font-size: clamp(2rem, 5vw, 2.5rem); text-align: center; margin-bottom: 1.5rem; }
-
-    /* NAVIGATION */
-    nav {
-      position: fixed; top: 0; width: 100%; z-index: 1000;
-      background: rgba(255,255,255,0.85);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border);
-    }
-    .nav-container {
-      max-width: var(--container); margin: 0 auto;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 12px 20px;
-    }
-    .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--primary); }
-    .brand img { height: 45px; width: auto; }
-    .brand span { font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem; }
-
-    .nav-links { display: flex; gap: 25px; list-style: none; margin: 0; padding: 0; }
-    .nav-links a, .nav-links button {
-      text-decoration: none; color: var(--primary); font-size: 0.85rem;
-      font-weight: 500; text-transform: uppercase; letter-spacing: 1px;
-      transition: var(--transition); border: none; background: none; cursor: pointer;
-    }
-    .nav-links a:hover { color: var(--accent); }
-
-    /* HERO SECTION */
-    header {
-      position: relative; height: 100vh; min-height: 600px;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      text-align: center; color: #fff; overflow: hidden; background: #000;
-    }
-    .hero-slides { position: absolute; inset: 0; z-index: 0; }
-    .hero-slides img {
-      position: absolute; inset: 0; width: 100%; height: 100%;
-      object-fit: cover; opacity: 0; transition: opacity 1.5s ease;
-    }
-    .hero-slides img.is-active { opacity: 0.6; }
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Poppins:wght@200;300;400;500;600&display=swap" rel="stylesheet">
     
-    /* Mobil Odak Noktası Düzeltmesi */
-    @media (max-width: 600px) {
-      .hero-slides img:nth-child(1) { object-position: center 10%; }
-      .hero-slides img:nth-child(2) { object-position: center 15%; }
-      header h1 { padding: 0 15px; }
-    }
+    <style>
+        /* ASİLKAN CUSTOM PREMIUM STYLESHEET 
+           Version: 4.0.0 (3D & Atelier Focused)
+        */
 
-    .hero-content { position: relative; z-index: 1; max-width: 800px; padding: 20px; }
-    .eyebrow { text-transform: uppercase; letter-spacing: 4px; font-size: 0.8rem; margin-bottom: 1rem; opacity: 0.9; }
-    header .logo { height: 120px; margin-bottom: 20px; filter: drop-shadow(0 0 10px rgba(0,0,0,0.3)); }
+        :root {
+            --color-primary: #0a0a0a;
+            --color-secondary: #ffffff;
+            --color-accent: #8b5e3c;
+            --color-accent-light: #c4a484;
+            --color-bg: #fdfcfb;
+            --color-muted: #7a7a7a;
+            --color-border: #e8e4e1;
+            --font-main: 'Poppins', sans-serif;
+            --font-heading: 'Cormorant Garamond', serif;
+            --spacing-unit: 8px;
+            --transition-smooth: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            --header-height: 80px;
+            --z-index-nav: 1000;
+            --z-index-modal: 2000;
+        }
 
-    /* PRODUCT CARDS & GRID */
-    .section { padding: 80px 20px; max-width: var(--container); margin: 0 auto; }
-    .products {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 30px;
-    }
-    .product-card {
-      background: #fff; border-radius: var(--radius); overflow: hidden;
-      box-shadow: var(--shadow); transition: var(--transition);
-      position: relative; border: 1px solid var(--border);
-    }
-    .product-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
-    .product-card img { width: 100%; aspect-ratio: 1; object-fit: cover; cursor: pointer; }
-    .product-card p { padding: 15px; margin: 0; font-weight: 500; font-size: 0.95rem; text-align: center; }
+        /* Reset & Base */
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+        body { 
+            font-family: var(--font-main); 
+            background-color: var(--color-bg); 
+            color: var(--color-primary); 
+            overflow-x: hidden; 
+            line-height: 1.7;
+        }
 
-    /* SATILDI ETİKETİ */
-    .sold-out { filter: grayscale(0.8); opacity: 0.7; }
-    .sold-badge {
-      position: absolute; top: 15px; right: 15px;
-      background: rgba(0,0,0,0.7); color: #fff;
-      padding: 5px 12px; border-radius: 20px; font-size: 0.7rem;
-      text-transform: uppercase; z-index: 2; pointer-events: none;
-    }
+        /* --- PRELOADER --- */
+        #preloader {
+            position: fixed; inset: 0; background: var(--color-primary);
+            z-index: 9999; display: flex; flex-direction: column;
+            align-items: center; justify-content: center; color: white;
+            transition: opacity 0.8s ease;
+        }
+        .loader-logo { width: 80px; height: auto; animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { opacity: 0.3; } 50% { opacity: 1; } 100% { opacity: 0.3; } }
 
-    /* MODAL & GALLERY */
-    #product-modal {
-      position: fixed; inset: 0; background: rgba(255,255,255,0.98);
-      z-index: 2000; display: none; overflow-y: auto;
-    }
-    .modal-content {
-      max-width: 1200px; margin: 0 auto; padding: 40px 20px;
-      display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px;
-    }
-    @media (max-width: 900px) {
-      .modal-content { grid-template-columns: 1fr; padding-top: 60px; }
-    }
-    .close-modal {
-      position: fixed; top: 20px; right: 20px; font-size: 2rem;
-      background: none; border: none; cursor: pointer; z-index: 2001;
-    }
+        /* --- NAVIGATION --- */
+        nav {
+            position: fixed; top: 0; left: 0; width: 100%; height: var(--header-height);
+            background: rgba(253, 252, 251, 0.9); backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--color-border); z-index: var(--z-index-nav);
+            display: flex; align-items: center; transition: var(--transition-smooth);
+        }
+        nav.scrolled { height: 60px; background: white; box-shadow: 0 4px 30px rgba(0,0,0,0.03); }
 
-    .gallery-main { width: 100%; border-radius: var(--radius); aspect-ratio: 4/5; object-fit: cover; }
-    .thumbs-container { display: flex; gap: 10px; margin-top: 15px; overflow-x: auto; padding-bottom: 5px; }
-    .thumb { width: 80px; height: 80px; object-fit: cover; border-radius: 8px; cursor: pointer; opacity: 0.6; }
-    .thumb.active { opacity: 1; border: 2px solid var(--accent); }
+        .nav-inner {
+            max-width: 1400px; margin: 0 auto; width: 100%; padding: 0 40px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .nav-logo img { height: 50px; transition: var(--transition-smooth); }
+        .nav-links { display: flex; list-style: none; gap: 40px; }
+        .nav-links a {
+            text-decoration: none; color: var(--color-primary); font-size: 13px;
+            font-weight: 500; text-transform: uppercase; letter-spacing: 2px;
+            position: relative; padding-bottom: 5px;
+        }
+        .nav-links a::after {
+            content: ''; position: absolute; bottom: 0; left: 0; width: 0;
+            height: 1px; background: var(--color-accent); transition: width 0.3s ease;
+        }
+        .nav-links a:hover::after { width: 100%; }
 
-    /* FORM ELEMENTS */
-    .measure-form { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 20px 0; }
-    .measure-form label { font-size: 0.8rem; font-weight: 600; color: var(--muted); }
-    .measure-form input {
-      width: 100%; padding: 12px; border: 1px solid var(--border);
-      border-radius: 10px; margin-top: 5px; outline: none;
-    }
-    .btn-primary {
-      display: inline-block; width: 100%; padding: 16px;
-      background: var(--accent); color: #fff; text-decoration: none;
-      text-align: center; border-radius: 10px; font-weight: 600;
-      transition: var(--transition); border: none; cursor: pointer;
-    }
-    .btn-primary:hover { filter: brightness(1.1); }
+        /* --- HERO V2 (Full Screen Crossfade) --- */
+        .hero-v2 {
+            position: relative; height: 100vh; overflow: hidden; background: #000;
+            display: flex; align-items: center; justify-content: center; text-align: center;
+        }
+        .hero-v2 .slide {
+            position: absolute; inset: 0; opacity: 0; transition: opacity 1.5s ease-in-out;
+            background-size: cover; background-position: center;
+        }
+        .hero-v2 .slide.active { opacity: 0.6; }
+        .hero-content {
+            position: relative; z-index: 10; color: white; padding: 0 20px;
+            transform: translateY(30px); animation: slideUp 1.2s forwards 1s;
+        }
+        @keyframes slideUp { to { transform: translateY(0); opacity: 1; } }
+        
+        .hero-content h1 {
+            font-family: var(--font-heading); font-size: clamp(3rem, 10vw, 6rem);
+            font-weight: 300; line-height: 1; margin-bottom: 20px;
+        }
+        .hero-btn {
+            display: inline-block; padding: 18px 40px; border: 1px solid white;
+            color: white; text-decoration: none; font-size: 12px; letter-spacing: 3px;
+            text-transform: uppercase; transition: var(--transition-smooth);
+            margin-top: 30px;
+        }
+        .hero-btn:hover { background: white; color: black; }
 
-    /* FOOTER */
-    footer { background: #fafafa; padding: 40px 20px; text-align: center; border-top: 1px solid var(--border); }
-    .social-links { display: flex; justify-content: center; gap: 20px; margin-top: 15px; }
-    .social-links a { color: var(--accent); text-decoration: none; font-weight: 600; font-size: 0.9rem; }
+        /* --- 3D DESIGN STUDIO (THE CORE) --- */
+        .atelier-3d { padding: 120px 20px; background: #fff; text-align: center; }
+        .atelier-container {
+            max-width: 1200px; margin: 0 auto; display: grid;
+            grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+        }
+        @media (max-width: 900px) { .atelier-container { grid-template-columns: 1fr; } }
 
-    /* MOBILE NAV */
-    .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; }
-    .hamburger span { width: 25px; height: 2px; background: var(--primary); }
+        .viz-window {
+            position: relative; background: #f9f9f9; border-radius: 20px;
+            aspect-ratio: 4/5; overflow: hidden; border: 1px solid var(--color-border);
+            box-shadow: 0 40px 80px rgba(0,0,0,0.05);
+        }
+        .viz-overlay-pattern {
+            position: absolute; inset: 0; mix-blend-mode: multiply;
+            background-size: cover; opacity: 0.8; transition: var(--transition-smooth);
+        }
+        .viz-base-model {
+            position: absolute; inset: 0; width: 100%; height: 100%;
+            object-fit: contain; z-index: 2; pointer-events: none;
+        }
 
-    @media (max-width: 900px) {
-      .hamburger { display: flex; }
-      .nav-links {
-        display: none; position: absolute; top: 100%; left: 0; width: 100%;
-        background: #fff; flex-direction: column; padding: 20px; gap: 15px;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-      }
-      .nav-links.show { display: flex; }
-    }
-  </style>
+        .design-controls { text-align: left; }
+        .design-controls h2 { font-family: var(--font-heading); font-size: 3rem; margin-bottom: 20px; }
+        .pattern-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 30px;
+        }
+        .pattern-item {
+            aspect-ratio: 1; border-radius: 10px; cursor: pointer;
+            border: 2px solid transparent; transition: var(--transition-smooth);
+            background-size: cover;
+        }
+        .pattern-item.active { border-color: var(--color-accent); transform: scale(0.95); }
+
+        /* --- PRODUCT GRID PREMIUM --- */
+        .grid-section { padding: 100px 40px; }
+        .grid-header {
+            display: flex; justify-content: space-between; align-items: flex-end;
+            max-width: 1400px; margin: 0 auto 60px;
+        }
+        .grid-header h3 { font-family: var(--font-heading); font-size: 3.5rem; font-weight: 400; }
+        
+        .premium-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 50px; max-width: 1400px; margin: 0 auto;
+        }
+        .card-v3 {
+            position: relative; transition: var(--transition-smooth);
+        }
+        .img-wrapper {
+            position: relative; aspect-ratio: 3/4; overflow: hidden; border-radius: 4px;
+            background: #eee;
+        }
+        .card-v3 img {
+            width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s ease;
+        }
+        .card-v3:hover img { transform: scale(1.08); }
+        .card-info { margin-top: 20px; text-align: center; }
+        .card-info h4 { font-family: var(--font-heading); font-size: 1.8rem; margin-bottom: 5px; }
+        .card-info span { font-size: 11px; text-transform: uppercase; color: var(--color-muted); letter-spacing: 2px; }
+
+        .sold-overlay {
+            position: absolute; inset: 0; background: rgba(255,255,255,0.4);
+            display: flex; align-items: center; justify-content: center; z-index: 5;
+            backdrop-filter: grayscale(1);
+        }
+        .sold-label {
+            background: black; color: white; padding: 10px 25px;
+            font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+        }
+
+        /* --- PRODUCT MODAL 2.0 --- */
+        .modal-v2 {
+            position: fixed; inset: 0; background: white; z-index: var(--z-index-modal);
+            display: none; opacity: 0; transition: opacity 0.5s ease;
+        }
+        .modal-v2.active { display: block; opacity: 1; }
+        .modal-grid {
+            display: grid; grid-template-columns: 1fr 1fr; height: 100vh;
+        }
+        @media (max-width: 1000px) { .modal-grid { grid-template-columns: 1fr; overflow-y: auto; } }
+
+        .modal-gallery { position: relative; background: #f4f4f4; }
+        .modal-gallery img { width: 100%; height: 100%; object-fit: cover; }
+        .modal-details { padding: 80px; overflow-y: auto; }
+        .modal-close {
+            position: absolute; top: 40px; right: 40px; border: none; background: none;
+            cursor: pointer; font-size: 30px; z-index: 10;
+        }
+
+        /* --- MEASUREMENT SYSTEM --- */
+        .form-section { margin-top: 40px; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; font-size: 11px; text-transform: uppercase; margin-bottom: 8px; color: var(--color-muted); }
+        .input-v2 {
+            width: 100%; border: none; border-bottom: 1px solid var(--color-border);
+            padding: 12px 0; font-size: 15px; outline: none; transition: 0.3s;
+        }
+        .input-v2:focus { border-color: var(--color-accent); }
+
+        /* --- FOOTER REDESIGN --- */
+        footer {
+            background: var(--color-primary); color: white; padding: 100px 40px;
+            margin-top: 100px;
+        }
+        .footer-inner {
+            max-width: 1400px; margin: 0 auto; display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr; gap: 80px;
+        }
+        @media (max-width: 900px) { .footer-inner { grid-template-columns: 1fr; gap: 40px; } }
+        .footer-col h5 { font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 25px; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 12px; }
+        .footer-col ul a { color: #aaa; text-decoration: none; font-size: 13px; transition: 0.3s; }
+        .footer-col ul a:hover { color: white; }
+
+        /* Animations */
+        [data-aos] { opacity: 0; transform: translateY(40px); transition: 1s cubic-bezier(0.16, 1, 0.3, 1); }
+        [data-aos].aos-animate { opacity: 1; transform: translateY(0); }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: var(--color-accent); border-radius: 10px; }
+    </style>
 </head>
 <body>
 
-  <nav>
-    <div class="nav-container">
-      <a href="#home" class="brand">
-        <img src="https://i.imgur.com/14VgsWh.png" alt="Asilkan Custom Logo">
-        <span>Asilkan Custom</span>
-      </a>
-      <button class="hamburger" id="menuToggle">
-        <span></span><span></span><span></span>
-      </button>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="#home">Ana Sayfa</a></li>
-        <li><a href="#ceketler">Ceketler</a></li>
-        <li><a href="#cantalar">Çantalar</a></li>
-        <li><a href="#about">Hakkımızda</a></li>
-        <li><a href="https://wa.me/905454388096" target="_blank">İletişim</a></li>
-      </ul>
+    <div id="preloader">
+        <img src="https://i.imgur.com/14VgsWh.png" class="loader-logo" alt="Asilkan Logo">
+        <p style="letter-spacing: 5px; margin-top: 20px; font-size: 10px; text-transform: uppercase;">Zanaat Yükleniyor</p>
     </div>
-  </nav>
 
-  <header id="home">
-    <div class="hero-slides">
-      <img src="https://i.imgur.com/hAPeeeA.jpeg" class="is-active" alt="">
-      <img src="https://i.imgur.com/2liV16Z.jpeg" alt="">
-      <img src="https://i.imgur.com/4JdKq1t.jpeg" alt="">
-    </div>
-    <div class="hero-content">
-      <div class="eyebrow">Handcrafted Heritage</div>
-      <img class="logo" src="https://i.imgur.com/14VgsWh.png" alt="Logo">
-      <h1>Geçmişin ruhu, modern stilin birleşimi.</h1>
-    </div>
-  </header>
+    <nav id="mainNav">
+        <div class="nav-inner">
+            <a href="#" class="nav-logo">
+                <img src="https://i.imgur.com/14VgsWh.png" alt="Asilkan Custom">
+            </a>
+            <ul class="nav-links">
+                <li><a href="#atelier">3D Tasarım</a></li>
+                <li><a href="#collection">Koleksiyon</a></li>
+                <li><a href="#craft">Zanaat</a></li>
+                <li><a href="#about">Biz Kimiz</a></li>
+                <li><a href="#contact">İletişim</a></li>
+            </ul>
+        </div>
+    </nav>
 
-  <section class="section" id="ceketler">
-    <h2>Özel Tasarım Ceketler</h2>
-    <div class="products" id="jacketGrid">
-      </div>
-  </section>
-
-  <div id="product-modal">
-    <button class="close-modal" id="closeModal">&times;</button>
-    <div class="modal-content">
-      <div class="modal-gallery">
-        <img id="mainModalImg" class="gallery-main" src="" alt="">
-        <div id="thumbContainer" class="thumbs-container"></div>
-      </div>
-      <div class="modal-info">
-        <h3 id="modalTitle">Ürün Başlığı</h3>
-        <p id="modalDesc" style="color: var(--muted); font-size: 0.9rem;"></p>
+    <section class="hero-v2" id="home">
+        <div class="slide active" style="background-image: url('https://i.imgur.com/hAPeeeA.jpeg');"></div>
+        <div class="slide" style="background-image: url('https://i.imgur.com/2liV16Z.jpeg');"></div>
+        <div class="slide" style="background-image: url('https://i.imgur.com/4JdKq1t.jpeg');"></div>
         
-        <div id="measureSection">
-          <h4 style="margin-top:20px; font-size: 1rem;">Ölçülerinizi Girin</h4>
-          <div class="measure-form" id="measureFields">
+        <div class="hero-content">
+            <p class="eyebrow">The Art of Turkish Carpet Tailoring</p>
+            <h1>Geleceği Geçmişle <br>İnşa Ediyoruz.</h1>
+            <a href="#atelier" class="hero-btn">Kendi Ceketini Tasarla</a>
+        </div>
+    </section>
+
+    <section class="atelier-3d" id="atelier">
+        <div class="atelier-container">
+            <div class="viz-window" data-aos>
+                <div id="visualPattern" class="viz-overlay-pattern" style="background-image: url('https://i.imgur.com/vJCJwvC.jpeg');"></div>
+                <img src="https://i.imgur.com/vJCJwvC.jpeg" class="viz-base-model" alt="Base Jacket Structure" style="filter: brightness(0.9) contrast(1.1); mix-blend-mode: screen;">
+                
+                <div style="position: absolute; bottom: 20px; left: 20px; z-index: 10; color: white; background: rgba(0,0,0,0.5); padding: 5px 15px; font-size: 10px; border-radius: 30px;">
+                    3D ÖNİZLEME MODU AKTİF
+                </div>
+            </div>
+            
+            <div class="design-controls" data-aos>
+                <span style="color: var(--color-accent); font-weight: 600; letter-spacing: 2px; font-size: 12px;">DESIGN STUDIO</span>
+                <h2>Sizin Hikayeniz, Sizin Deseniniz.</h2>
+                <p>Arşivimizdeki el dokuması halılardan birini seçin, biz onu vücut ölçülerinize özel bir şahesere dönüştürelim.</p>
+                
+                <div class="pattern-grid">
+                    <div class="pattern-item active" style="background-image: url('https://i.imgur.com/vJCJwvC.jpeg');" onclick="updatePreview(this, 'https://i.imgur.com/vJCJwvC.jpeg')"></div>
+                    <div class="pattern-item" style="background-image: url('https://i.imgur.com/FlNkiBA.jpeg');" onclick="updatePreview(this, 'https://i.imgur.com/FlNkiBA.jpeg')"></div>
+                    <div class="pattern-item" style="background-image: url('https://i.imgur.com/a0asIvM.jpeg');" onclick="updatePreview(this, 'https://i.imgur.com/a0asIvM.jpeg')"></div>
+                    <div class="pattern-item" style="background-image: url('https://i.imgur.com/jSAeqRV.jpeg');" onclick="updatePreview(this, 'https://i.imgur.com/jSAeqRV.jpeg')"></div>
+                    <div class="pattern-item" style="background-image: url('https://i.imgur.com/bNdRdez.jpeg');" onclick="updatePreview(this, 'https://i.imgur.com/bNdRdez.jpeg')"></div>
+                    <div class="pattern-item" style="background-image: url('https://i.imgur.com/pyEPaRW.jpeg');" onclick="updatePreview(this, 'https://i.imgur.com/pyEPaRW.jpeg')"></div>
+                </div>
+
+                <div style="margin-top: 40px; display: flex; gap: 20px;">
+                    <button class="hero-btn" style="color: black; border-color: black; width: 100%;" onclick="startOrderFrom3D()">Bu Deseni Seç ve Ölçü Ver</button>
+                </div>
             </div>
         </div>
+    </section>
 
-        <a href="#" id="waOrderBtn" target="_blank" class="btn-primary">WhatsApp ile Sipariş Ver</a>
-        
-        <div style="margin-top: 30px; font-size: 0.8rem; border-top: 1px solid var(--border); padding-top: 20px;">
-          <p><strong>Kargo:</strong> 3-7 iş günü içinde üretim tamamlanır.</p>
-          <p><strong>Bakım:</strong> Sadece kuru temizleme önerilir.</p>
+    <section class="grid-section" id="collection">
+        <div class="grid-header" data-aos>
+            <div>
+                <p class="eyebrow" style="color: var(--color-accent); margin: 0;">Ready to Wear</p>
+                <h3>Arşiv Seçkileri</h3>
+            </div>
+            <p style="max-width: 400px; color: var(--color-muted); font-size: 14px;">Satışı devam eden veya örnek teşkil eden daha önceki üretimlerimizden ilham alın.</p>
         </div>
-      </div>
+
+        <div class="premium-grid" id="productGrid">
+            </div>
+    </section>
+
+    <section id="craft" style="background: var(--color-primary); color: white; padding: 150px 0;">
+        <div style="max-width: 1400px; margin: 0 auto; padding: 0 40px;">
+            <div class="atelier-container">
+                <div data-aos>
+                    <h2 style="color: white; font-family: var(--font-heading); font-size: 4rem;">Bir Halının Yeniden <br>Doğuşu.</h2>
+                    <p style="color: #888; font-size: 1.2rem; margin-top: 30px;">Anadolu'nun her bir köşesinden toplanan 40-50 yıllık el dokuması halılar, asit yıkamalardan ve özel temizlik süreçlerinden geçer. Ardından, bir tasarım değil, bir "karakter" yaratmak için tek tek kesilir ve dikilir.</p>
+                </div>
+                <div class="viz-window" style="background: #111;" data-aos>
+                    <img src="https://i.imgur.com/hAPeeeA.jpeg" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.5;" alt="Craft">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="modal-v2" id="productModal">
+        <button class="modal-close" onclick="closeProductModal()">&times;</button>
+        <div class="modal-grid">
+            <div class="modal-gallery">
+                <img id="modalMainImage" src="" alt="">
+            </div>
+            <div class="modal-details">
+                <span id="modalCategory" style="letter-spacing: 3px; font-size: 10px; color: var(--color-accent);">COATS / BESPOKE</span>
+                <h3 id="modalTitle" style="font-family: var(--font-heading); font-size: 3.5rem; margin: 10px 0 20px;">Product Name</h3>
+                <p id="modalDescription" style="color: var(--color-muted);"></p>
+                
+                <div class="form-section">
+                    <h5 style="margin-bottom: 20px; font-weight: 600; text-transform: uppercase; font-size: 11px;">Ölçülerinizi Tamamlayın</h5>
+                    <div class="measure-form">
+                        <div class="form-group">
+                            <label>Omuz Genişliği (cm)</label>
+                            <input type="number" class="input-v2" id="measure_shoulder" placeholder="45">
+                        </div>
+                        <div class="form-group">
+                            <label>Göğüs Çevresi (cm)</label>
+                            <input type="number" class="input-v2" id="measure_chest" placeholder="105">
+                        </div>
+                        <div class="form-group">
+                            <label>Ceket Boyu (cm)</label>
+                            <input type="number" class="input-v2" id="measure_length" placeholder="70">
+                        </div>
+                        <div class="form-group">
+                            <label>Vücut Tipi</label>
+                            <select class="input-v2" id="measure_fit">
+                                <option>Slim Fit</option>
+                                <option selected>Regular Fit</option>
+                                <option>Oversize</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button class="hero-btn" style="background: var(--color-primary); color: white; width: 100%;" onclick="sendWhatsApp()">WhatsApp Üzerinden Teklif Al</button>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 
-  <footer>
-    <img src="https://i.imgur.com/14VgsWh.png" alt="" style="height: 40px; margin-bottom: 20px;">
-    <p>&copy; 2026 Asilkan Custom. Tüm hakları saklıdır.</p>
-    <div class="social-links">
-      <a href="https://instagram.com/asilkancustom">Instagram</a>
-      <a href="https://wa.me/905454388096">WhatsApp</a>
-      <a href="mailto:asilkan.customwears@gmail.com">Email</a>
-    </div>
-  </footer>
-
-  <script>
-    // ÜRÜN VERİLERİ
-    const PRODUCTS = [
-      { id: 'c1', type: 'jacket', title: 'Boho Halı Ceket', sold: false, images: ['https://i.imgur.com/vJCJwvC.jpeg','https://i.imgur.com/tFgr8Vs.jpeg','https://i.imgur.com/Wqch8Ne.jpeg'], desc: 'El dokuması halıdan üretilmiş, eşsiz vintage motiflere sahip özel tasarım.' },
-      { id: 'c2', type: 'jacket', title: 'Anadolu Motif Ceket', sold: true, images: ['https://i.imgur.com/FlNkiBA.jpeg','https://i.imgur.com/zxkpMU1.jpeg'], desc: 'Geleneksel Anadolu desenlerinin modern kesimle buluştuğu koleksiyon parçası.' },
-      { id: 'c3', type: 'jacket', title: 'Vintage Spirit', sold: false, images: ['https://i.imgur.com/a0asIvM.jpeg'], desc: 'Geçmişin ruhunu taşıyan, zamansız ve güçlü bir duruş.' },
-      { id: 'c4', type: 'jacket', title: 'Retro Fusion', sold: true, images: ['https://i.imgur.com/jSAeqRV.jpeg'], desc: 'Modern dokunuşlarla retro bir görünüm.' }
-    ];
-
-    const MEASURE_FIELDS = [
-      { id: 'chest', label: 'Göğüs (cm)' },
-      { id: 'shoulder', label: 'Omuz (cm)' },
-      { id: 'length', label: 'Boy (cm)' },
-      { id: 'sleeve', label: 'Kol (cm)' }
-    ];
-
-    // DOM ELEMENTS
-    const jacketGrid = document.getElementById('jacketGrid');
-    const productModal = document.getElementById('product-modal');
-    const closeModal = document.getElementById('closeModal');
-    const navLinks = document.getElementById('navLinks');
-    const menuToggle = document.getElementById('menuToggle');
-
-    // INITIALIZE GRID
-    function renderGrid() {
-      jacketGrid.innerHTML = PRODUCTS.map(p => `
-        <div class="product-card ${p.sold ? 'sold-out' : ''}" onclick="openProduct('${p.id}')">
-          ${p.sold ? '<div class="sold-badge">Satıldı</div>' : ''}
-          <img src="${p.images[0]}" alt="${p.title}" loading="lazy">
-          <p>${p.title}</p>
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-col">
+                <img src="https://i.imgur.com/14VgsWh.png" style="height: 60px; margin-bottom: 20px;" alt="Logo">
+                <p style="color: #888; font-size: 14px; max-width: 300px;">Her dikişte bir hikaye, her desende bir miras. Asilkan Custom, giyilebilir sanatı keşfedenler için tasarlandı.</p>
+            </div>
+            <div class="footer-col">
+                <h5>Keşfedin</h5>
+                <ul>
+                    <li><a href="#home">Ana Sayfa</a></li>
+                    <li><a href="#atelier">3D Atölye</a></li>
+                    <li><a href="#collection">Koleksiyon</a></li>
+                    <li><a href="#about">Hikayemiz</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Müşteri Hizmetleri</h5>
+                <ul>
+                    <li><a href="#">Beden Tablosu</a></li>
+                    <li><a href="#">Kargo ve İade</a></li>
+                    <li><a href="#">Bakım Rehberi</a></li>
+                    <li><a href="#">Sıkça Sorulan Sorular</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Bize Ulaşın</h5>
+                <ul>
+                    <li><a href="https://wa.me/905454388096">WhatsApp</a></li>
+                    <li><a href="https://instagram.com/asilkancustom">Instagram</a></li>
+                    <li><a href="mailto:asilkan.customwears@gmail.com">Email Gönder</a></li>
+                    <li style="color: #666; font-size: 12px; margin-top: 20px;">Karaman, Türkiye</li>
+                </ul>
+            </div>
         </div>
-      `).join('');
-    }
-
-    // MODAL LOGIC
-    function openProduct(id) {
-      const p = PRODUCTS.find(x => x.id === id);
-      document.getElementById('modalTitle').textContent = p.title;
-      document.getElementById('modalDesc').textContent = p.desc;
-      document.getElementById('mainModalImg').src = p.images[0];
-      
-      // Thumbs
-      const thumbCont = document.getElementById('thumbContainer');
-      thumbCont.innerHTML = p.images.map((img, i) => `
-        <img src="${img}" class="thumb ${i===0 ? 'active' : ''}" onclick="changeModalImg(this, '${img}')">
-      `).join('');
-
-      // Fields
-      const fieldCont = document.getElementById('measureFields');
-      fieldCont.innerHTML = MEASURE_FIELDS.map(f => `
-        <div>
-          <label>${f.label}</label>
-          <input type="number" id="field-${f.id}" placeholder="00" oninput="updateWA()">
+        <div style="text-align: center; margin-top: 80px; border-top: 1px solid #222; padding-top: 40px; font-size: 11px; color: #555; letter-spacing: 2px;">
+            &copy; 2026 ASILKAN CUSTOM | HANDCRAFTED HERITAGE
         </div>
-      `).join('');
+    </footer>
 
-      productModal.style.display = 'block';
-      document.body.style.overflow = 'hidden';
-      updateWA();
-    }
+    <script>
+        /* ASİLKAN CUSTOM CORE ENGINE 
+           Logic for 3D simulation, Dynamic Grid and Modal 
+        */
 
-    function changeModalImg(el, src) {
-      document.getElementById('mainModalImg').src = src;
-      document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
-      el.classList.add('active');
-    }
+        // Product Database
+        const PRODUCTS = [
+            { id: 1, name: 'Anatolian Soul No.1', category: 'COAT / BESPOKE', sold: false, image: 'https://i.imgur.com/vJCJwvC.jpeg', desc: '40 yıllık Kars el dokuması halısından üretilen bu parça, geometrik desenleri ve dayanıklı yün yapısıyla kış ayları için tasarlandı.' },
+            { id: 2, name: 'Sultan\'s Heritage', category: 'COAT / READY-TO-WEAR', sold: true, image: 'https://i.imgur.com/FlNkiBA.jpeg', desc: 'Bitkisel kök boya ile renklendirilmiş ipliklerin eşsiz uyumu. Her detayında saray ihtişamı.' },
+            { id: 3, name: 'Nomad Spirit', category: 'JACKET / BESPOKE', sold: false, image: 'https://i.imgur.com/a0asIvM.jpeg', desc: 'Minimalist kesim, maksimalist desen. Modern şehir hayatı için tasarlanmış vintage bir dokunuş.' },
+            { id: 4, name: 'Taurus Mountain Echo', category: 'COAT / READY-TO-WEAR', sold: true, image: 'https://i.imgur.com/jSAeqRV.jpeg', desc: 'Toros dağlarındaki göçebe kültürünün yansıması. Kalın doku, güçlü duruş.' },
+            { id: 5, name: 'Silk Road Path', category: 'BLAZER / CUSTOM', sold: false, image: 'https://i.imgur.com/bNdRdez.jpeg', desc: 'İpek ve yün karışımı antik halı parçalarının modernize edilmiş hali.' },
+            { id: 6, name: 'Golden Horn Mood', category: 'COAT / BESPOKE', sold: false, image: 'https://i.imgur.com/pyEPaRW.jpeg', desc: 'Haliç kıyılarındaki gün batımını andıran sıcak tonlar ve etnik motifler.' }
+        ];
 
-    function updateWA() {
-      const title = document.getElementById('modalTitle').textContent;
-      let measures = "";
-      MEASURE_FIELDS.forEach(f => {
-        const val = document.getElementById(`field-${f.id}`).value;
-        if(val) measures += `\n- ${f.label}: ${val}`;
-      });
+        // Core Functions
+        document.addEventListener('DOMContentLoaded', () => {
+            // Remove Preloader
+            setTimeout(() => {
+                document.getElementById('preloader').style.opacity = '0';
+                setTimeout(() => document.getElementById('preloader').remove(), 800);
+            }, 1500);
 
-      const text = encodeURIComponent(`Merhaba, "${title}" ürününüz hakkında bilgi almak istiyorum.${measures ? '\n\nÖlçülerim:' + measures : ''}\n\nUygunluk durumunu öğrenebilir miyim?`);
-      document.getElementById('waOrderBtn').href = `https://wa.me/905454388096?text=${text}`;
-    }
+            renderProducts();
+            initAOS();
+            initHeroSlides();
+        });
 
-    // HERO SLIDESHOW
-    let slideIndex = 0;
-    const slides = document.querySelectorAll('.hero-slides img');
-    function startSlides() {
-      setInterval(() => {
-        slides[slideIndex].classList.remove('is-active');
-        slideIndex = (slideIndex + 1) % slides.length;
-        slides[slideIndex].classList.add('is-active');
-      }, 5000);
-    }
+        // 3D Visualizer Logic
+        function updatePreview(el, imgUrl) {
+            // UI Toggle
+            document.querySelectorAll('.pattern-item').forEach(p => p.classList.remove('active'));
+            el.classList.add('active');
 
-    // EVENT LISTENERS
-    closeModal.onclick = () => {
-      productModal.style.display = 'none';
-      document.body.style.overflow = 'auto';
-    };
+            // Visualization Update
+            const viz = document.getElementById('visualPattern');
+            viz.style.opacity = '0';
+            setTimeout(() => {
+                viz.style.backgroundImage = `url('${imgUrl}')`;
+                viz.style.opacity = '0.8';
+            }, 300);
+        }
 
-    menuToggle.onclick = () => navLinks.classList.toggle('show');
+        // Product Grid Engine
+        function renderProducts() {
+            const grid = document.getElementById('productGrid');
+            grid.innerHTML = PRODUCTS.map(p => `
+                <div class="card-v3" data-aos onclick="openProductModal(${p.id})">
+                    ${p.sold ? '<div class="sold-overlay"><div class="sold-label">ARCHIVE / SOLD</div></div>' : ''}
+                    <div class="img-wrapper">
+                        <img src="${p.image}" alt="${p.name}" loading="lazy">
+                    </div>
+                    <div class="card-info">
+                        <span>${p.category}</span>
+                        <h4>${p.name}</h4>
+                    </div>
+                </div>
+            `).join('');
+        }
 
-    // Start
-    renderGrid();
-    startSlides();
-  </script>
+        // Modal Engine
+        function openProductModal(id) {
+            const p = PRODUCTS.find(item => item.id === id);
+            if(!p) return;
+
+            document.getElementById('modalTitle').innerText = p.name;
+            document.getElementById('modalCategory').innerText = p.category;
+            document.getElementById('modalDescription').innerText = p.desc;
+            document.getElementById('modalMainImage').src = p.image;
+
+            document.getElementById('productModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeProductModal() {
+            document.getElementById('productModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // WhatsApp Integrator
+        function sendWhatsApp() {
+            const name = document.getElementById('modalTitle').innerText;
+            const shoulder = document.getElementById('measure_shoulder').value;
+            const chest = document.getElementById('measure_chest').value;
+            const length = document.getElementById('measure_length').value;
+            const fit = document.getElementById('measure_fit').value;
+
+            const text = `Merhaba Asilkan Custom, \n\n"${name}" ürününüz ile ilgileniyorum. \n\nÖlçülerim: \n- Omuz: ${shoulder}cm \n- Göğüs: ${chest}cm \n- Boy: ${length}cm \n- Kalıp: ${fit} \n\nÜretim süreci ve fiyatlandırma hakkında bilgi alabilir miyim?`;
+            window.open(`https://wa.me/905454388096?text=${encodeURIComponent(text)}`, '_blank');
+        }
+
+        function startOrderFrom3D() {
+            const currentPattern = document.querySelector('.pattern-item.active').style.backgroundImage.slice(5, -2);
+            openProductModal(1); // Default modal for custom design
+            document.getElementById('modalTitle').innerText = "Kişiye Özel Tasarım";
+            document.getElementById('modalDescription').innerText = "Seçtiğiniz halı deseni ile size özel üretim süreci başlatılacaktır.";
+            document.getElementById('modalMainImage').src = currentPattern;
+        }
+
+        // UX Extras
+        window.onscroll = () => {
+            const nav = document.getElementById('mainNav');
+            if (window.scrollY > 100) nav.classList.add('scrolled');
+            else nav.classList.remove('scrolled');
+        };
+
+        function initHeroSlides() {
+            let current = 0;
+            const slides = document.querySelectorAll('.hero-v2 .slide');
+            setInterval(() => {
+                slides[current].classList.remove('active');
+                current = (current + 1) % slides.length;
+                slides[current].classList.add('active');
+            }, 6000);
+        }
+
+        function initAOS() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) entry.target.classList.add('aos-animate');
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('[data-aos]').forEach(el => observer.observe(el));
+        }
+    </script>
 </body>
 </html>
