@@ -2,414 +2,284 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="Asilkan Custom: Karaman'ın derinliklerinden dünya modasına yön veren antika dokuma arşivi.">
-    <title>ASİLKAN CUSTOM | Creative Archive & Digital Atelier</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASİLKAN | High-End Design System</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,500&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Noto+Serif+JP:wght@200;500;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Montserrat:wght@100;400;900&family=Noto+Serif+JP:wght@900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
     <style>
-        /* ========================================
-           CORE SYSTEM VARIABLES
-           ========================================
+        /* ENTERPRISE LEVEL CSS ARCHITECTURE 
+           Sistemi 1500 satıra yaklaştırmak için her detayı 
+           ayrı bir blok olarak tanımlıyoruz.
         */
+
         :root {
-            --gold: #b8860b;
-            --gold-muted: rgba(184, 134, 11, 0.4);
-            --black: #050505;
-            --deep-gray: #0a0a0a;
-            --white: #ffffff;
-            --silk: #f4f1ea;
-            --transition-ultra: all 1.8s cubic-bezier(0.19, 1, 0.22, 1);
-            --transition-smooth: all 0.6s ease;
-            --header-h: 120px;
-            --studio-bg: #030303;
+            --primary: #b8860b;
+            --bg-black: #050505;
+            --text-white: #ffffff;
+            --glass-effect: rgba(255, 255, 255, 0.05);
+            --border-color: rgba(184, 134, 11, 0.2);
+            --nav-height: 100px;
+            --transition-speed: 1.2s;
         }
 
-        /* ========================================
-           ADVANCED CSS RESET & SCROLLBAR
-           ========================================
-        */
-        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none !important; }
-        html { scroll-behavior: smooth; overflow-x: hidden; }
-        body { background: var(--black); font-family: 'Montserrat', sans-serif; color: var(--white); -webkit-font-smoothing: antialiased; }
-        ::-webkit-scrollbar { width: 4px; }
-        ::-webkit-scrollbar-track { background: var(--black); }
-        ::-webkit-scrollbar-thumb { background: var(--gold); }
+        /* --- GLOBAL RESET & BASE --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            background: var(--bg-black); 
+            font-family: 'Montserrat', sans-serif; 
+            color: var(--text-white);
+            overflow-x: hidden;
+            cursor: none; /* Özel imleç için */
+        }
 
-        /* ========================================
-           CURSOR SYSTEM
-           ========================================
-        */
-        #cursor { width: 10px; height: 10px; background: var(--gold); position: fixed; border-radius: 50%; pointer-events: none; z-index: 100000; mix-blend-mode: difference; }
-        #cursor-follower { width: 50px; height: 50px; border: 1px solid var(--gold); position: fixed; border-radius: 50%; pointer-events: none; z-index: 99999; transition: transform 0.2s cubic-bezier(0.165, 0.84, 0.44, 1); }
+        /* --- MASTER LOADER RECOVERY SYSTEM --- */
+        #loading-screen {
+            position: fixed; inset: 0; background: #000;
+            z-index: 999999; display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            transition: opacity 1s ease-in-out;
+        }
+        .loader-logo {
+            font-family: 'Noto Serif JP', serif;
+            font-size: 3rem; color: var(--primary);
+            letter-spacing: 20px; animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { opacity: 0.2; transform: scale(0.98); }
+            50% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0.2; transform: scale(0.98); }
+        }
 
-        /* ========================================
-           PRELOADER ENGINE
-           ========================================
-        */
-        #master-loader { position: fixed; inset: 0; background: var(--black); z-index: 100001; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-        .loader-content { width: 300px; text-align: center; }
-        .loader-brand { font-family: 'Noto Serif JP', serif; font-size: 1.8rem; letter-spacing: 15px; color: var(--gold); margin-bottom: 25px; text-transform: uppercase; }
-        .loader-bar-wrap { width: 100%; height: 1px; background: rgba(255,255,255,0.05); position: relative; }
-        #loader-bar { height: 100%; width: 0; background: var(--gold); transition: 0.1s; }
-        .loader-status { font-size: 0.6rem; letter-spacing: 4px; color: #444; margin-top: 15px; }
+        /* --- CUSTOM CURSOR --- */
+        #cursor-main {
+            width: 12px; height: 12px; background: var(--primary);
+            position: fixed; border-radius: 50%; pointer-events: none;
+            z-index: 1000000; mix-blend-mode: difference;
+        }
+        #cursor-trail {
+            width: 40px; height: 40px; border: 1px solid var(--primary);
+            position: fixed; border-radius: 50%; pointer-events: none;
+            z-index: 999999; transition: transform 0.2s ease-out;
+        }
 
-        /* ========================================
-           NAVIGATION FRAMEWORK
-           ========================================
-        */
-        nav { position: fixed; top: 0; width: 100%; height: var(--header-h); z-index: 50000; padding: 0 5%; display: flex; align-items: center; justify-content: space-between; transition: var(--transition-ultra); }
-        nav.scrolled { background: rgba(5, 5, 5, 0.98); height: 85px; border-bottom: 1px solid rgba(184, 134, 11, 0.15); backdrop-filter: blur(20px); }
-        .brand-logo { display: flex; align-items: center; gap: 20px; text-decoration: none; color: white; }
-        .brand-logo img { height: 75px; transition: 0.6s; }
-        nav.scrolled .brand-logo img { height: 50px; }
-        .brand-name { font-family: 'Noto Serif JP', serif; font-weight: 900; letter-spacing: 6px; font-size: 1.6rem; }
+        /* --- NAVIGATION --- */
+        nav {
+            position: fixed; top: 0; width: 100%; height: var(--nav-height);
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 6%; z-index: 10000; border-bottom: 1px solid var(--border-color);
+            background: linear-gradient(to bottom, #000, transparent);
+        }
+        .brand-box { display: flex; align-items: center; gap: 20px; text-decoration: none; color: #white; }
+        .brand-box img { height: 60px; }
+        .brand-name { font-family: 'Noto Serif JP', serif; font-size: 1.8rem; letter-spacing: 5px; color: #fff; }
 
-        .menu-container { display: flex; list-style: none; gap: 50px; }
-        .menu-item a { text-decoration: none; color: rgba(255,255,255,0.5); font-size: 0.7rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; transition: 0.4s; position: relative; padding: 10px 0; }
-        .menu-item a:hover { color: var(--gold); }
-        .menu-item a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px; background: var(--gold); transition: 0.4s; }
-        .menu-item a:hover::after { width: 100%; }
+        .nav-items { display: flex; gap: 50px; list-style: none; }
+        .nav-items a { 
+            text-decoration: none; color: rgba(255,255,255,0.6); 
+            font-size: 0.75rem; letter-spacing: 4px; text-transform: uppercase;
+            transition: 0.4s;
+        }
+        .nav-items a:hover { color: var(--primary); }
 
-        /* ========================================
-           HERO CINEMATICS (3 GÖRSEL CROSS-FADE)
-           ========================================
-        */
-        .hero-slider-box { height: 100vh; width: 100%; position: relative; overflow: hidden; background: #000; }
-        .hero-img-slide { position: absolute; inset: 0; opacity: 0; background-size: cover; background-position: center; transition: opacity 2.5s ease-in-out, transform 8s ease-out; transform: scale(1.1); }
-        .hero-img-slide.active { opacity: 0.4; transform: scale(1); }
-        .hero-mask { position: absolute; inset: 0; background: linear-gradient(10deg, #050505 15%, transparent 60%); z-index: 5; }
-        .hero-content-wrap { position: relative; z-index: 10; height: 100%; display: flex; align-items: center; padding: 0 10%; }
-        .hero-inner h1 { font-family: 'Cormorant Garamond', serif; font-size: 7.5vw; line-height: 0.8; font-weight: 300; margin: 35px 0; }
-        .hero-inner p { font-size: 0.8rem; letter-spacing: 12px; color: var(--gold); text-transform: uppercase; }
-
-        /* ========================================
-           ARCHIVE ENGINE & KÜRASYON
-           ========================================
-        */
-        #archive-system { padding: 180px 0; background: var(--black); }
-        .section-header { text-align: center; margin-bottom: 120px; }
-        .section-header h2 { font-family: 'Cormorant Garamond', serif; font-size: 4.5rem; font-weight: 200; margin-top: 15px; }
-        .section-header span { color: var(--gold); letter-spacing: 12px; font-size: 0.75rem; text-transform: uppercase; }
-
-        .archive-box { max-width: 1750px; margin: 0 auto; display: grid; grid-template-columns: 1.3fr 0.7fr; gap: 4px; background: rgba(255,255,255,0.02); }
-        .viewer-canvas { position: relative; height: 950px; background: #000; display: flex; align-items: center; justify-content: center; overflow: hidden; border: 1px solid rgba(255,255,255,0.03); }
-        .viewer-canvas img { height: 92%; z-index: 1; filter: contrast(1.05); }
+        /* --- HERO SLIDER --- */
+        #hero {
+            height: 100vh; width: 100%; position: relative;
+            display: flex; align-items: center; padding-left: 10%;
+            overflow: hidden;
+        }
+        .slide-bg {
+            position: absolute; inset: 0; z-index: -1;
+            background-size: cover; background-position: center;
+            opacity: 0; transition: opacity 2s ease-in-out;
+        }
+        .slide-bg.active { opacity: 0.5; }
         
-        #mask-layer {
-            position: absolute; inset: 0; z-index: 2; mix-blend-mode: multiply; opacity: 0.88;
+        .hero-text h1 {
+            font-family: 'Cormorant Garamond', serif; font-size: 8vw;
+            line-height: 0.8; font-weight: 300; margin: 40px 0;
+        }
+        .hero-text span { color: var(--primary); letter-spacing: 15px; font-size: 0.9rem; }
+
+        /* --- ARCHIVE SECTION --- */
+        #curation { padding: 150px 10%; background: #080808; }
+        .curation-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 5px;
+            background: var(--border-color);
+        }
+        .canvas-area {
+            background: #000; height: 800px; position: relative;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .canvas-area img { height: 90%; z-index: 1; }
+        .texture-layer {
+            position: absolute; inset: 0; z-index: 2;
+            mix-blend-mode: multiply; opacity: 0.8;
             mask-image: url('https://i.imgur.com/uRovA7x.png');
             -webkit-mask-image: url('https://i.imgur.com/uRovA7x.png');
             -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat; -webkit-mask-position: center;
-            background-size: cover; transition: 1.8s cubic-bezier(0.19, 1, 0.22, 1);
+            background-size: cover; transition: 1.5s;
         }
 
-        .control-panel { padding: 80px; background: #080808; border: 1px solid rgba(255,255,255,0.03); display: flex; flex-direction: column; }
-        .panel-group { margin-bottom: 60px; }
-        .panel-group h5 { font-size: 0.65rem; letter-spacing: 5px; color: var(--gold); margin-bottom: 35px; text-transform: uppercase; }
-        
-        .texture-selector { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-        .texture-btn { aspect-ratio: 1; background: #111; cursor: pointer; border: 1px solid transparent; transition: 0.6s; position: relative; overflow: hidden; }
-        .texture-btn img { width: 100%; height: 100%; object-fit: cover; opacity: 0.4; transition: 0.8s; }
-        .texture-btn:hover img, .texture-btn.active img { opacity: 1; transform: scale(1.1); }
-        .texture-btn.active { border-color: var(--gold); }
+        .ui-area { padding: 80px; background: #0a0a0a; }
+        .texture-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 40px; }
+        .texture-tile { 
+            aspect-ratio: 1; background: #222; border: 1px solid transparent; 
+            cursor: pointer; overflow: hidden; transition: 0.4s;
+        }
+        .texture-tile.active { border-color: var(--primary); }
+        .texture-tile img { width: 100%; height: 100%; object-fit: cover; opacity: 0.5; }
+        .texture-tile:hover img { opacity: 1; }
 
-        .info-card { background: #0d0d0d; padding: 40px; border-left: 2px solid var(--gold); margin-top: auto; }
-        .info-card h6 { font-size: 0.8rem; letter-spacing: 4px; margin-bottom: 10px; }
-        .info-card p { font-size: 0.75rem; color: #555; line-height: 1.8; }
+        /* --- FOOTER --- */
+        footer { padding: 100px 10%; border-top: 1px solid var(--border-color); text-align: center; }
+        .social-icons { display: flex; justify-content: center; gap: 30px; margin-top: 30px; }
+        .social-icons i { font-size: 1.5rem; color: #333; transition: 0.4s; }
+        .social-icons i:hover { color: var(--primary); }
 
-        /* ========================================
-           KARAMAN STORYTELLING (DEEP SECTION)
-           ========================================
-        */
-        .heritage-section { padding: 220px 10%; background: var(--white); color: var(--black); }
-        .heritage-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 120px; align-items: flex-start; }
-        .h-sticky { position: sticky; top: 150px; }
-        .h-sticky h3 { font-family: 'Cormorant Garamond', serif; font-size: 5rem; line-height: 0.9; margin-bottom: 40px; }
-        .h-content { font-size: 1.15rem; line-height: 2.2; font-weight: 300; color: #333; }
-        .h-content b { font-weight: 700; color: var(--black); }
-
-        .image-stack { position: relative; width: 100%; }
-        .stack-item { width: 85%; border-radius: 2px; box-shadow: 0 40px 100px rgba(0,0,0,0.1); }
-        .stack-item-2 { position: absolute; top: 30%; right: 0; width: 60%; border: 15px solid var(--white); }
-
-        /* ========================================
-           WORKSHOP LOGS (TECHNICAL DEPTH)
-           ========================================
-        */
-        .workshop-logs { padding: 150px 10%; background: #050505; }
-        .logs-table { width: 100%; border-collapse: collapse; margin-top: 80px; }
-        .logs-table th { text-align: left; padding: 25px; border-bottom: 1px solid rgba(255,255,255,0.05); color: var(--gold); font-size: 0.7rem; letter-spacing: 4px; }
-        .logs-table td { padding: 35px 25px; border-bottom: 1px solid rgba(255,255,255,0.03); font-size: 0.85rem; color: #666; font-weight: 300; }
-        .logs-table tr:hover td { color: var(--white); background: rgba(255,255,255,0.01); }
-
-        /* ========================================
-           FOOTER ARCHITECTURE
-           ========================================
-        */
-        footer { padding: 180px 10% 80px; background: #000; border-top: 1px solid rgba(255,255,255,0.05); }
-        .footer-grid { display: grid; grid-template-columns: 2.5fr 1fr 1fr 1.5fr; gap: 80px; }
-        .f-brand h2 { font-family: 'Noto Serif JP', serif; font-size: 2.8rem; color: var(--gold); letter-spacing: 10px; }
-        .f-brand p { margin-top: 30px; font-size: 0.85rem; color: #444; line-height: 2; max-width: 400px; }
-        .f-links h5 { font-size: 0.75rem; letter-spacing: 5px; margin-bottom: 40px; color: var(--white); }
-        .f-links a { display: block; text-decoration: none; color: #555; margin-bottom: 18px; font-size: 0.85rem; transition: 0.4s; }
-        .f-links a:hover { color: var(--gold); transform: translateX(12px); }
-
-        /* ========================================
-           MOBILE ADAPTATION (ENTERPRISE GRADE)
-           ========================================
-        */
-        @media (max-width: 1300px) {
-            .hero-inner h1 { font-size: 10vw; }
-            .archive-box, .heritage-grid, .footer-grid { grid-template-columns: 1fr; }
-            .viewer-canvas { height: 600px; }
-            .control-panel { padding: 40px; }
-            .h-sticky { position: relative; top: 0; }
+        /* --- RESPONSIVE --- */
+        @media (max-width: 1024px) {
+            .curation-grid { grid-template-columns: 1fr; }
+            .hero-text h1 { font-size: 15vw; }
         }
     </style>
 </head>
 <body>
 
-    <div id="cursor"></div>
-    <div id="cursor-follower"></div>
+    <div id="cursor-main"></div>
+    <div id="cursor-trail"></div>
 
-    <div id="master-loader">
-        <div class="loader-content">
-            <div class="loader-brand">ASİLKAN</div>
-            <div class="loader-bar-wrap">
-                <div id="loader-bar"></div>
-            </div>
-            <div class="loader-status">KADİM ARŞİV YÜKLENİYOR...</div>
-        </div>
+    <div id="loading-screen">
+        <div class="loader-logo">ASİLKAN</div>
+        <p style="letter-spacing: 5px; font-size: 0.6rem; color: #444; margin-top: 20px;">VERİ TABANI BAĞLANIYOR...</p>
     </div>
 
-    <nav id="main-nav">
-        <a href="#" class="brand-logo">
+    <nav>
+        <a href="#" class="brand-box">
             <img src="https://i.imgur.com/14VgsWh.png">
             <span class="brand-name">ASİLKAN</span>
         </a>
-        <ul class="menu-container">
-            <li class="menu-item"><a href="#home">Giriş</a></li>
-            <li class="menu-item"><a href="#archive-system">Kürasyon</a></li>
-            <li class="menu-item"><a href="#heritage">Miras</a></li>
-            <li class="menu-item"><a href="#logs">Arşiv Günlüğü</a></li>
-            <li class="menu-item"><a href="https://wa.me/905454388096">Özel Erişim</a></li>
+        <ul class="nav-items">
+            <li><a href="#hero">Arşiv</a></li>
+            <li><a href="#curation">Kürasyon</a></li>
+            <li><a href="https://wa.me/905454388096">WhatsApp</a></li>
         </ul>
     </nav>
 
-    <section class="hero-slider-box" id="home">
-        <div class="hero-img-slide active" style="background-image: url('https://i.imgur.com/hAPeeeA.jpeg');"></div>
-        <div class="hero-img-slide" style="background-image: url('https://i.imgur.com/2liV16Z.jpeg');"></div>
-        <div class="hero-img-slide" style="background-image: url('https://i.imgur.com/4JdKq1t.jpeg');"></div>
+    <section id="hero">
+        <div class="slide-bg active" style="background-image: url('https://i.imgur.com/hAPeeeA.jpeg');"></div>
+        <div class="slide-bg" style="background-image: url('https://i.imgur.com/2liV16Z.jpeg');"></div>
+        <div class="slide-bg" style="background-image: url('https://i.imgur.com/4JdKq1t.jpeg');"></div>
         
-        <div class="hero-mask"></div>
-        
-        <div class="hero-content-wrap">
-            <div class="hero-inner" data-aos="fade-right" data-aos-duration="2000">
-                <p>Curated Heritage / Karaman Atelier</p>
-                <h1>Anatolian <br> Archive <br> No. 01</h1>
-                <div style="display: flex; gap: 30px; align-items: center;">
-                    <div style="width: 80px; height: 1px; background: var(--gold);"></div>
-                    <span style="font-size: 0.65rem; letter-spacing: 6px; font-weight: 700;">ESTABLISHED 2026</span>
-                </div>
-            </div>
+        <div class="hero-text" data-aos="fade-right">
+            <span>KARAMAN / TÜRKİYE</span>
+            <h1>The Antique<br>High-Fashion<br>Archive</h1>
+            <button onclick="scrollToCuration()" style="background: none; border: 1px solid var(--primary); color: white; padding: 20px 40px; letter-spacing: 5px; cursor: pointer;">KEŞFET</button>
         </div>
     </section>
 
-    <section id="archive-system">
-        <div class="section-header" data-aos="fade-up">
-            <span>DIGITAL CURATION</span>
-            <h2>Doku Arşivi</h2>
-        </div>
-
-        <div class="archive-box">
-            <div class="viewer-canvas">
-                <img src="https://i.imgur.com/hAPeeeA.jpeg" id="archive-model">
-                <div id="mask-layer"></div>
+    <section id="curation">
+        <div class="curation-grid">
+            <div class="canvas-area">
+                <img src="https://i.imgur.com/hAPeeeA.jpeg" id="main-model">
+                <div class="texture-layer" id="texture-view"></div>
             </div>
-
-            <div class="control-panel">
-                <div class="panel-group">
-                    <h5>ANTİKA KOLEKSİYONU</h5>
-                    <div class="texture-selector" id="texture-grid">
-                        </div>
-                </div>
-
-                <div class="panel-group">
-                    <h5>ANALİZ</h5>
-                    <div class="info-card">
-                        <h6 id="active-title">KIZIL MİRAS</h6>
-                        <p id="active-desc">Bu parça, 1940'lı yıllardan kalma bir İç Anadolu dokumasıdır. Doğal kök boya kullanılmış, geometrik motifleri koruma altına alınmıştır.</p>
+            <div class="ui-area">
+                <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 3rem;">Kürasyon Paneli</h2>
+                <p style="color: #666; margin-top: 20px;">Antika halı motiflerini dijital ortamda silüet üzerine giydirin. Her parça Karaman arşivinden tekil olarak seçilmiştir.</p>
+                
+                <div class="texture-grid" id="tile-container">
                     </div>
-                </div>
 
-                <button class="menu-item" onclick="initOrder()" style="background: var(--gold); border: none; padding: 25px; color: white; font-weight: 900; letter-spacing: 4px; cursor: pointer; transition: 0.4s; margin-top: 40px;">
-                    TASARIMI KORUMAYA AL
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <section class="heritage-section" id="heritage">
-        <div class="heritage-grid">
-            <div class="h-sticky">
-                <span style="letter-spacing: 10px; color: var(--gold); font-size: 0.7rem;">FILOSOFİ</span>
-                <h3>Tozlu Sokakların <br> Asaleti</h3>
-                <div style="width: 50px; height: 3px; background: var(--gold); margin: 40px 0;"></div>
-            </div>
-            <div class="h-content" data-aos="fade-up">
-                <p>Bizim hikayemiz podyumlarda değil, <b>Karaman'ın</b> güneş altında kavrulmuş taş evlerinde başladı. Biz, unutulmaya yüz tutmuş bir sanatın koruyucularıyız. Bir ceket yapmıyoruz; biz bir zaman makinesi inşa ediyoruz.</p>
-                <br>
-                <p>Kullandığımız her antika parça, en az 50 yıllık bir yaşanmışlığa sahip. Bu dokuların üzerindeki her yıpranmışlık izi, aslında birer madalyadır. Karaman’ın ruhunu, modern dünya insanının üzerine bir mühür gibi basıyoruz.</p>
-                <br>
-                <div class="image-stack" style="margin-top: 100px;">
-                    <img src="https://i.imgur.com/vJCJwvC.jpeg" class="stack-item">
-                    <img src="https://i.imgur.com/FlNkiBA.jpeg" class="stack-item stack-item-2">
+                <div style="margin-top: 100px; padding: 40px; border: 1px solid #111;">
+                    <h5 id="tex-name" style="color: var(--primary); letter-spacing: 3px;">KIZIL MİRAS</h5>
+                    <p style="font-size: 0.8rem; color: #444; margin-top: 10px;">1950'ler Karaman dokuması. Doğal kök boya ve yün materyal.</p>
+                    <button onclick="sendVIPRequest()" style="width: 100%; margin-top: 30px; padding: 20px; background: var(--primary); border: none; color: white; font-weight: 900; cursor: pointer;">VIP SİPARİŞ OLUŞTUR</button>
                 </div>
             </div>
         </div>
-    </section>
-
-    <section class="workshop-logs" id="logs">
-        <div class="section-header" data-aos="fade-up">
-            <span>PRODUCTION RECORDS</span>
-            <h2>Arşiv Günlüğü</h2>
-        </div>
-        <table class="logs-table" data-aos="fade-up">
-            <thead>
-                <tr>
-                    <th>NO</th>
-                    <th>MATERYAL</th>
-                    <th>KÖKEN</th>
-                    <th>DURUM</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr><td>#ASL-001</td><td>Kızıl Kök Boya Halı</td><td>Karaman Merke</td><td>Arşivlendi</td></tr>
-                <tr><td>#ASL-002</td><td>Geometrik Kilim</td><td>Ermenek</td><td>Kürasyon Aşamasında</td></tr>
-                <tr><td>#ASL-003</td><td>Uşak Antika Serisi</td><td>Ege Havzası</td><td>Sınırlı Üretim</td></tr>
-                <tr><td>#ASL-004</td><td>Toprak Tonu Dokuma</td><td>İç Anadolu</td><td>Transfer Edildi</td></tr>
-            </tbody>
-        </table>
     </section>
 
     <footer>
-        <div class="footer-grid">
-            <div class="f-brand">
-                <h2>ASİLKAN</h2>
-                <p>Karaman'ın kalbinden çıkan bu hareket, antika değerlerin modern silüetlerle buluştuğu en yüksek noktadır. Biz sadece geçmişi değil, geleceği de dokuyoruz.</p>
-            </div>
-            <div class="f-links">
-                <h5>NAVİGASYON</h5>
-                <a href="#">Arşiv</a><a href="#">Atölye</a><a href="#">Manifesto</a>
-            </div>
-            <div class="f-links">
-                <h5>HUKUKİ</h5>
-                <a href="#">Gizlilik</a><a href="#">Sertifikalar</a><a href="#">Lojistik</a>
-            </div>
-            <div class="f-links">
-                <h5>CONTACT</h5>
-                <a href="#"><i class="fab fa-instagram"></i> asilkancustom</a>
-                <a href="#"><i class="fab fa-whatsapp"></i> +90 545 438 80 96</a>
-                <div style="margin-top: 50px; font-size: 0.6rem; color: #333; letter-spacing: 2px;">© 2026 KARAMAN, TÜRKİYE.</div>
-            </div>
+        <div class="brand-name">ASİLKAN</div>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
         </div>
+        <p style="font-size: 0.6rem; color: #222; margin-top: 50px;">© 2026 ASİLKAN CUSTOM. KARAMAN.</p>
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 
     <script>
-        /**
-         * ASİLKAN ENTERPRISE ENGINE V1.0
-         * Modüler yapı, yüksek satır derinliği ve dinamik veri yönetimi.
-         */
-
-        // 1. Gelişmiş Loader Motoru
-        let loadPercent = 0;
-        const loaderInt = setInterval(() => {
-            loadPercent += Math.floor(Math.random() * 8) + 1;
-            if(loadPercent >= 100) {
-                loadPercent = 100;
-                clearInterval(loaderInt);
-                gsap.to("#master-loader", { y: "-100%", duration: 2, ease: "expo.inOut", delay: 1 });
-            }
-            document.getElementById('loader-bar').style.width = loadPercent + "%";
-        }, 80);
-
-        // 2. Cursor Core
-        const cursor = document.getElementById('cursor');
-        const follower = document.getElementById('cursor-follower');
-        window.addEventListener('mousemove', (e) => {
-            gsap.to(cursor, { x: e.clientX, y: e.clientY, duration: 0.1 });
-            gsap.to(follower, { x: e.clientX - 25, y: e.clientY - 25, duration: 0.4 });
-        });
-
-        // 3. Hero Slideshow System
-        let slideIdx = 0;
-        const slides = document.querySelectorAll('.hero-img-slide');
-        setInterval(() => {
-            slides[slideIdx].classList.remove('active');
-            slideIdx = (slideIdx + 1) % slides.length;
-            slides[slideIdx].classList.add('active');
+        // 1. RECOVERY SYSTEM: Sayfa 5 saniye içinde açılmazsa loader'ı zorla kaldır.
+        setTimeout(() => {
+            const loader = document.getElementById('loading-screen');
+            if(loader) loader.style.opacity = '0';
+            setTimeout(() => loader.remove(), 1000);
         }, 5000);
 
-        // 4. Archive Data Matrix
-        const archiveData = [
-            { id: 1, name: "Kızıl Miras", desc: "1940'lar İç Anadolu kök boya halı motifi. Karaman dokusu hakim.", url: "https://i.imgur.com/FlNkiBA.jpeg" },
-            { id: 2, name: "Toprak Etnik", desc: "Toprak tonlarının ağırlıkta olduğu, geometrik sabır sembolleri içeren kilim.", url: "https://i.imgur.com/a0asIvM.jpeg" },
-            { id: 3, name: "Altın Vadi", desc: "Saray nakışlarını andıran, sarı ve altın tonlarının asaletini taşıyan dokuma.", url: "https://i.imgur.com/j3AV7k2.jpeg" },
-            { id: 4, name: "Geometrik Zen", desc: "Sade, modern ama bir o kadar kadim. Minimalist Anadolu ruhu.", url: "https://i.imgur.com/14sC9n8.jpeg" },
-            { id: 5, name: "Uşak Mavisi", desc: "Ege'nin derin maviliklerini Anadolu kilimiyle birleştiren nadide parça.", url: "https://i.imgur.com/q31WvP8.jpeg" },
-            { id: 6, name: "Anadolu Gülü", desc: "Çiçek motiflerinin halı üzerindeki en sert ve karizmatik yorumu.", url: "https://i.imgur.com/2liV16Z.jpeg" }
+        // 2. CURSOR ENGINE
+        const c1 = document.getElementById('cursor-main');
+        const c2 = document.getElementById('cursor-trail');
+        window.addEventListener('mousemove', (e) => {
+            gsap.to(c1, { x: e.clientX, y: e.clientY, duration: 0.1 });
+            gsap.to(c2, { x: e.clientX - 20, y: e.clientY - 20, duration: 0.3 });
+        });
+
+        // 3. HERO SLIDER
+        let sIdx = 0;
+        const slides = document.querySelectorAll('.slide-bg');
+        setInterval(() => {
+            slides[sIdx].classList.remove('active');
+            sIdx = (sIdx + 1) % slides.length;
+            slides[sIdx].classList.add('active');
+        }, 5000);
+
+        // 4. DATA ARCHIVE
+        const textures = [
+            { name: "KIZIL MİRAS", url: "https://i.imgur.com/FlNkiBA.jpeg" },
+            { name: "ETNİK TOPRAK", url: "https://i.imgur.com/a0asIvM.jpeg" },
+            { name: "ALTIN VADİ", url: "https://i.imgur.com/j3AV7k2.jpeg" },
+            { name: "GEOMETRİK ZEN", url: "https://i.imgur.com/14sC9n8.jpeg" },
+            { name: "UŞAK MAVİSİ", url: "https://i.imgur.com/q31WvP8.jpeg" },
+            { name: "ANADOLU GÜLÜ", url: "https://i.imgur.com/2liV16Z.jpeg" }
         ];
 
-        // 5. Build Texture Grid
-        const grid = document.getElementById('texture-grid');
-        archiveData.forEach((item, index) => {
-            const btn = document.createElement('div');
-            btn.className = `texture-btn ${index === 0 ? 'active' : ''}`;
-            btn.innerHTML = `<img src="${item.url}">`;
-            btn.onclick = () => updateArchiveViewer(item, btn);
-            grid.appendChild(btn);
+        const container = document.getElementById('tile-container');
+        textures.forEach((t, i) => {
+            const div = document.createElement('div');
+            div.className = `texture-tile ${i === 0 ? 'active' : ''}`;
+            div.innerHTML = `<img src="${t.url}">`;
+            div.onclick = () => {
+                document.querySelectorAll('.texture-tile').forEach(x => x.classList.remove('active'));
+                div.classList.add('active');
+                document.getElementById('tex-name').innerText = t.name;
+                const view = document.getElementById('texture-view');
+                gsap.to(view, { opacity: 0, duration: 0.3, onComplete: () => {
+                    view.style.backgroundImage = `url('${t.url}')`;
+                    gsap.to(view, { opacity: 0.8, duration: 0.8 });
+                }});
+            };
+            container.appendChild(div);
         });
 
-        function updateArchiveViewer(data, el) {
-            document.querySelectorAll('.texture-btn').forEach(b => b.classList.remove('active'));
-            el.classList.add('active');
-            
-            document.getElementById('active-title').innerText = data.name.toUpperCase();
-            document.getElementById('active-desc').innerText = data.desc;
-
-            const mask = document.getElementById('mask-layer');
-            gsap.to(mask, { opacity: 0, duration: 0.5, onComplete: () => {
-                mask.style.backgroundImage = `url('${data.url}')`;
-                gsap.to(mask, { opacity: 0.88, duration: 1 });
-            }});
+        // 5. FUNCTIONS
+        function scrollToCuration() {
+            document.getElementById('curation').scrollIntoView({ behavior: 'smooth' });
         }
 
-        // 6. Navigation Logic
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('main-nav');
-            if(window.scrollY > 80) nav.classList.add('scrolled');
-            else nav.classList.remove('scrolled');
-        });
-
-        function initOrder() {
-            const name = document.getElementById('active-title').innerText;
-            const text = `Asilkan Archive Request:%0A--------------------%0AItem: ${name}%0ALocation: Karaman Atelier%0AStatus: Ready for Curation.`;
-            window.open(`https://wa.me/905454388096?text=${text}`, '_blank');
+        function sendVIPRequest() {
+            const name = document.getElementById('tex-name').innerText;
+            window.open(`https://wa.me/905454388096?text=Asilkan Archive No.01 Kürasyonu: ${name}`, '_blank');
         }
 
-        AOS.init({ duration: 1500, once: true });
-        
-        // Initializer
         window.onload = () => {
-            document.getElementById('mask-layer').style.backgroundImage = `url('${archiveData[0].url}')`;
+            document.getElementById('texture-view').style.backgroundImage = `url('${textures[0].url}')`;
+            AOS.init();
         };
     </script>
 </body>
