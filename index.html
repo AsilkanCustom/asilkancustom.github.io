@@ -34,27 +34,27 @@ header{ position:relative; overflow:hidden; }
 header{ background-image:none !important; }
 
 /* ===================== FIX: ALT ZEMİN SİYAH ===================== */
-header{ background-color:#000 !important; }        /* altta beyaz görünmesin */
-.hero-slides{ background:#000; }                   /* animasyon sırasında da siyah kalsın */
-/* ================================================================ */
-
-.hero-slides{
-  position:absolute; inset:0; z-index:0;
-  contain:strict;              /* paint+layout izolasyonu */
-}
-.hero-slides img{
-  position:absolute; inset:0; width:100%; height:100%;
-  object-fit:cover; opacity:0;
-  will-change:opacity;
-  backface-visibility:hidden;  /* GPU optimizasyonu */
-  transform:translateZ(0);
-  animation:heroFade 6s linear infinite;
-
-  /* ===================== FIX: SİYAH EMNİYET ===================== */
-  background:#000; /* img transparan kısımlarında da beyaz patlamasın */
-  /* =============================================================== */
+header { 
+  background-color: #0a0a0a !important; /* Arka plan siyah kalsın */
 }
 
+.hero-slides img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  /* GPU Hızlandırma: Takılmayı önler */
+  transform: scale(1.05) translateZ(0); 
+  transition: opacity 1.5s ease-in-out, transform 8s linear;
+  will-change: opacity, transform;
+}
+
+.hero-slides img.is-active {
+  opacity: 0.5; /* Sinematik karanlık efekt */
+  transform: scale(1) translateZ(0);
+}
 /* ===================== FIX: ÖRTÜŞMELİ ZAMANLAMA ===================== */
 /* 3 görsel: ~2 sn görünür, ~0.3 sn FARKLI KAREYLE ÖRTÜŞEREK fade-out.
    Böylece iki görsel kısa süre aynı anda 1 olur; asla ikisi birden 0 olmaz. */
@@ -75,31 +75,25 @@ header{ background-color:#000 !important; }        /* altta beyaz görünmesin *
 /* İçerik üstte kalsın */
 header > *:not(.hero-slides){ position:relative; z-index:1; }
     
-    :root{
-      --bg:#ffffff;
-      --primary:#2a221a;
-      --accent:#8b5e3c;
-      --text:#2d2a26;
-      --muted:#6b625a;
-      --card:#faf8f6;
-      --border:#e7e2db;
-      --radius:16px;
-      --shadow:0 12px 30px rgba(0,0,0,.08);
-      --transition:200ms ease;
-      --container:1160px;
-    }
+    :root {
+  --bg: #ffffff;
+  --primary: #121212;   /* Daha derin bir siyah */
+  --accent: #a67c52;    /* Lüks Altın/Bronz tonu */
+  --accent-light: #f9f7f4; 
+  --text: #2d2a26;
+  --muted: #888888;
+  --border: #e2ded8;
+  --radius: 0px;        /* Lüks markalar genellikle keskin köşe kullanır */
+  --transition: cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s;
+}
 
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0}
-    body{
-      font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      background:var(--bg);
-      color:var(--text);
-      line-height:1.55;
-      -webkit-font-smoothing:antialiased;
-      text-rendering:optimizeLegibility;
-    }
-    h1,h2,h3,h4{
+/* Cartier Tarzı Başlık Fontu Ayarı */
+h1, h2, h3, .brand span {
+  font-family: 'Cormorant Garamond', serif !important;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 500;
+}    h1,h2,h3,h4{
       font-family:'Cormorant Garamond', Georgia, 'Times New Roman', serif;
       font-weight:500; letter-spacing:-.01em; color:var(--primary); margin:0 0 .4em;
     }
@@ -440,19 +434,38 @@ header { background-image:none !important; background-color:#000 !important; }
 <style>
 /* (2) Çantalar: tüm kartlar aynı çerçeve boyu */
 #page-cantalar .products { justify-content:center; }
-#page-cantalar .product-card { width:300px; }
-#page-cantalar .product-card img { aspect-ratio:1/1; object-fit:cover; }
-
-/* (3) Beden Bilgisi: 2 sütun görsel */
-#page-cart .products{
-  display:grid !important;
-  grid-template-columns:repeat(2, minmax(0,1fr)) !important;
-  gap:16px !important;
+#page-cantalar .product-card {
+  border: none !important; /* İnce çizgileri kaldır */
+  box-shadow: none !important; /* Gölgeyi kaldır, temiz görünüm sağla */
+  padding-bottom: 20px;
+  transition: var(--transition);
 }
-#page-cart .product-card{ width:auto; }
-#page-cart .product-card img{ width:100%; aspect-ratio:1/1; object-fit:cover; }
 
-/* (1) Atölyeden Seçkiler: sağda boşluk hissini önlemek için son-padding’i minimal tut */
+.product-card img {
+  aspect-ratio: 3 / 4; /* Moda dünyası dikey oranı */
+  object-fit: cover;
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.product-card:hover img {
+  transform: scale(1.04);
+}
+
+.product-card p {
+  font-size: 0.9rem;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--primary);
+  margin-top: 15px;
+  border-bottom: 1px solid transparent;
+  display: inline-block;
+  width: 100%;
+}
+
+.product-card:hover p {
+  color: var(--accent);
+}/* (1) Atölyeden Seçkiler: sağda boşluk hissini önlemek için son-padding’i minimal tut */
 .atelier-scroll{ padding-right:8px; }
 </style>
 <style>
