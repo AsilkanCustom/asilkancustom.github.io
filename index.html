@@ -885,8 +885,19 @@ header { background-image:none !important; background-color:#000 !important; }
     </div>
   </div>
 
-  <script>
-/* Hero görüntülerini önceden decode et, sonra animasyonu başlat */
+  <script>// Carousel Sonsuz Döngü Klonlama
+function initFabricCarousel() {
+  const track = document.getElementById('fabric-track');
+  if (track) {
+    const items = Array.from(track.children);
+    items.forEach(item => {
+      const clone = item.cloneNode(true);
+      track.appendChild(clone);
+    });
+  }
+}
+// Sayfa yüklendiğinde çalıştır
+window.addEventListener('DOMContentLoaded', initFabricCarousel);/* Hero görüntülerini önceden decode et, sonra animasyonu başlat */
 const hero = document.querySelector('.hero-slides');
 if (hero) {
   const imgs = Array.from(hero.querySelectorAll('img'));
