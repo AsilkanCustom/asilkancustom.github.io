@@ -462,58 +462,6 @@ header { background-image:none !important; background-color:#000 !important; }
   display: inline-block;
   width: 100%;
 }
-/* FABRIC SELECTOR CSS */
-.fabric-selector {
-  background: var(--accent-light);
-  padding: 30px 0;
-  overflow: hidden;
-}
-
-.fabric-item {
-  position: relative;
-  width: 220px;
-  height: 300px;
-  margin: 0 15px;
-  flex-shrink: 0;
-  cursor: pointer;
-  transition: transform 0.6s cubic-bezier(0.2, 1, 0.3, 1);
-}
-
-.fabric-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: grayscale(0.2);
-  transition: 0.8s ease;
-}
-
-.fabric-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(18, 18, 18, 0.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: 0.4s ease;
-}
-
-.fabric-overlay span {
-  color: #fff;
-  border: 1px solid #fff;
-  padding: 10px 20px;
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-}
-
-.fabric-item:hover { transform: scale(1.05); }
-.fabric-item:hover img { filter: grayscale(0); }
-.fabric-item:hover .fabric-overlay { opacity: 1; }
-
-/* Carousel Hover Durdurma */
-.carousel:hover .carousel-track {
-  animation-play-state: paused;
 }.product-card:hover p {
   color: var(--accent);
 }/* (1) Atölyeden Seçkiler: sağda boşluk hissini önlemek için son-padding’i minimal tut */
@@ -567,8 +515,60 @@ header { background-image:none !important; background-color:#000 !important; }
       </ul>
     </div>
   </nav>
+  
+/* FABRIC SELECTOR CSS */
+.fabric-selector {
+  background: var(--accent-light);
+  padding: 30px 0;
+  overflow: hidden;
+}
 
-  <!-- HOME -->
+.fabric-item {
+  position: relative;
+  width: 220px;
+  height: 300px;
+  margin: 0 15px;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: transform 0.6s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+.fabric-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(0.2);
+  transition: 0.8s ease;
+}
+
+.fabric-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(18, 18, 18, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: 0.4s ease;
+}
+
+.fabric-overlay span {
+  color: #fff;
+  border: 1px solid #fff;
+  padding: 10px 20px;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.fabric-item:hover { transform: scale(1.05); }
+.fabric-item:hover img { filter: grayscale(0); }
+.fabric-item:hover .fabric-overlay { opacity: 1; }
+
+/* Carousel Hover Durdurma */
+.carousel:hover .carousel-track {
+  animation-play-state: paused;
+}  <!-- HOME -->
   <div class="page active" id="page-home">
     <header id="home">
 <div class="hero-slides" aria-hidden="true">
