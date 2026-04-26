@@ -462,7 +462,8 @@ header { background-image:none !important; background-color:#000 !important; }
   display: inline-block;
   width: 100%;
 }
-}.product-card:hover p {
+
+.product-card:hover p {
   color: var(--accent);
 }/* (1) Atölyeden Seçkiler: sağda boşluk hissini önlemek için son-padding’i minimal tut */
 .atelier-scroll{ padding-right:8px; }
@@ -515,60 +516,8 @@ header { background-image:none !important; background-color:#000 !important; }
       </ul>
     </div>
   </nav>
-  
-/* FABRIC SELECTOR CSS */
-.fabric-selector {
-  background: var(--accent-light);
-  padding: 30px 0;
-  overflow: hidden;
-}
 
-.fabric-item {
-  position: relative;
-  width: 220px;
-  height: 300px;
-  margin: 0 15px;
-  flex-shrink: 0;
-  cursor: pointer;
-  transition: transform 0.6s cubic-bezier(0.2, 1, 0.3, 1);
-}
-
-.fabric-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: grayscale(0.2);
-  transition: 0.8s ease;
-}
-
-.fabric-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(18, 18, 18, 0.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: 0.4s ease;
-}
-
-.fabric-overlay span {
-  color: #fff;
-  border: 1px solid #fff;
-  padding: 10px 20px;
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-}
-
-.fabric-item:hover { transform: scale(1.05); }
-.fabric-item:hover img { filter: grayscale(0); }
-.fabric-item:hover .fabric-overlay { opacity: 1; }
-
-/* Carousel Hover Durdurma */
-.carousel:hover .carousel-track {
-  animation-play-state: paused;
-}  <!-- HOME -->
+  <!-- HOME -->
   <div class="page active" id="page-home">
     <header id="home">
 <div class="hero-slides" aria-hidden="true">
@@ -589,52 +538,19 @@ header { background-image:none !important; background-color:#000 !important; }
   </div>
 
   <!-- CEKETLER -->
-  <div id="page-ceketler" class="page">
-  <section class="section">
-    <div class="section-header" style="text-align:center; margin-bottom:50px;">
-      <h2>Atelier Fabric Explorer</h2>
-      <p style="color: var(--muted); font-size: 0.85rem; letter-spacing: 0.1em;">
-        DOKUYU SEÇİN, CEKETİNİZE DÖNÜŞSÜN
-      </p>
-    </div>
-
-    <div class="carousel fabric-selector" style="margin-bottom: 80px;">
-      <div class="carousel-track" id="fabric-track">
-        <div class="fabric-item" onclick="openProduct('ceket-1')">
-          <img src="https://i.imgur.com/WzlSfVi.jpeg" alt="Fabric 1">
-          <div class="fabric-overlay"><span>Ceketi İncele</span></div>
-        </div>
-        <div class="fabric-item" onclick="openProduct('ceket-2')">
-          <img src="https://i.imgur.com/txFwYJn.jpeg" alt="Fabric 2">
-          <div class="fabric-overlay"><span>Ceketi İncele</span></div>
-        </div>
-        <div class="fabric-item" onclick="openProduct('ceket-3')">
-          <img src="https://i.imgur.com/BGECmbh.jpeg" alt="Fabric 3">
-          <div class="fabric-overlay"><span>Ceketi İncele</span></div>
-        </div>
-        <div class="fabric-item" onclick="openProduct('ceket-4')">
-          <img src="https://i.imgur.com/QrExQJC.jpeg" alt="Fabric 4">
-          <div class="fabric-overlay"><span>Ceketi İncele</span></div>
+  <div class="page" id="page-ceketler">
+    <section class="section" id="ceketler">
+      <div class="carousel carousel-small category-carousel" aria-label="Öne çıkan ürünler">
+        <div class="carousel-track">
+          <img src="https://i.imgur.com/WzlSfVi.jpeg" alt="Ürün 1" loading="lazy" decoding="async">
+          <img src="https://i.imgur.com/txFwYJn.jpeg" alt="Ürün 2" loading="lazy" decoding="async">
+          <img src="https://i.imgur.com/BGECmbh.jpeg" alt="Ürün 3" loading="lazy" decoding="async">
+          <img src="https://i.imgur.com/QrExQJC.jpeg" alt="Ürün 4" loading="lazy" decoding="async">
+          <img src="https://i.imgur.com/uERTE2A.jpeg" alt="Ürün 5" loading="lazy" decoding="async">
+          <img src="https://i.imgur.com/4cjlU1w.jpeg" alt="Ürün 6" loading="lazy" decoding="async">
         </div>
       </div>
-    </div>
-
-    <div style="text-align:center; margin: 60px 0 30px;">
-      <h3>Prêt-à-Porter (Hazır Koleksiyon)</h3>
-    </div>
-
-    <div class="products">
-      <div class="product-card" onclick="openProduct('ceket-1')">
-        <img src="https://i.imgur.com/vJCJwvC.jpeg">
-        <p>Boho Heritage Ceket</p>
-      </div>
-      <div class="product-card" onclick="openProduct('ceket-2')">
-        <img src="https://i.imgur.com/FlNkiBA.jpeg">
-        <p>Anatolian Motif Ceket</p>
-      </div>
-    </div>
-  </section>
-</div>      <h2>Ceketler</h2>
+      <h2>Ceketler</h2>
       <div class="products">
         <div class="product-card" data-product="ceket-1">
           <img src="https://i.imgur.com/vJCJwvC.jpeg" alt="El dokuması halıdan özel tasarım ceket" class="product-image" loading="lazy" decoding="async">
@@ -885,19 +801,8 @@ header { background-image:none !important; background-color:#000 !important; }
     </div>
   </div>
 
-  <script>// Carousel Sonsuz Döngü Klonlama
-function initFabricCarousel() {
-  const track = document.getElementById('fabric-track');
-  if (track) {
-    const items = Array.from(track.children);
-    items.forEach(item => {
-      const clone = item.cloneNode(true);
-      track.appendChild(clone);
-    });
-  }
-}
-// Sayfa yüklendiğinde çalıştır
-window.addEventListener('DOMContentLoaded', initFabricCarousel);/* Hero görüntülerini önceden decode et, sonra animasyonu başlat */
+  <script>
+/* Hero görüntülerini önceden decode et, sonra animasyonu başlat */
 const hero = document.querySelector('.hero-slides');
 if (hero) {
   const imgs = Array.from(hero.querySelectorAll('img'));
