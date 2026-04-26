@@ -2,425 +2,210 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>MAISON ASİLKAN | Anadolu'nun Mirası</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ASİLKAN | Modern Miras Atölyesi</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@100;200;300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
-        /* MAISON ASILKAN OS v10.0 - PURE LUXURY
-           DESIGNED FOR PRESTIGE & HIGH-END PERFORMANCE
-        */
         :root {
-            --onyx: #050505;
-            --maison-gold: #b38b59;
-            --maison-gold-light: #d4b886;
-            --ivory: #fcfcfc;
-            --border: rgba(179, 139, 89, 0.15);
-            --font-serif: 'Playfair Display', serif;
-            --font-sans: 'Montserrat', sans-serif;
-            --transition: all 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+            --bg: #f4f4f4; /* Les Benjamins Off-White */
+            --text: #000000;
+            --accent: #ff0000; /* Streetwear enerjisi için kırmızı vurgu */
+            --border: #e0e0e0;
+            --font-main: 'Montserrat', sans-serif;
+            --transition: all 0.8s cubic-bezier(0.85, 0, 0.15, 1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
-        body { 
-            background: var(--onyx); color: var(--ivory); 
-            font-family: var(--font-sans); overflow-x: hidden;
-            scroll-behavior: smooth;
+        body, html { height: 100%; width: 100%; font-family: var(--font-main); background: var(--bg); color: var(--text); overflow: hidden; }
+
+        /* --- NAVİGASYON --- */
+        nav {
+            position: fixed; top: 0; width: 100%; height: 80px; z-index: 5000;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 40px; mix-blend-mode: difference;
         }
+        .logo img { height: 35px; filter: invert(1); } /* Beyaz logoyu siyah yapıyoruz */
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { text-decoration: none; color: white; font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; }
 
-        /* --- MAISON PRELOADER --- */
-        #maisonLoader {
-            position: fixed; inset: 0; background: var(--onyx); z-index: 10000;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
+        /* --- ANA SAYFA: SADECE ANİMASYON --- */
+        #home {
+            position: fixed; inset: 0; z-index: 100; display: flex;
+            align-items: center; justify-content: center; background: #000;
         }
-        .loader-symbol { width: 60px; filter: invert(1); animation: symbolFade 3s infinite; }
-        @keyframes symbolFade { 0%, 100% { opacity: 0.1; } 50% { opacity: 1; } }
-
-        /* --- PRESTIGE NAVIGATION --- */
-        nav.nav-maison {
-            position: fixed; top: 0; width: 100%; height: 100px; z-index: 5000;
-            padding: 0 6%; display: flex; align-items: center; justify-content: space-between;
-            transition: var(--transition); border-bottom: 1px solid transparent;
+        .hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
+        .hero-title {
+            position: relative; z-index: 101; text-align: center; color: white;
         }
-        nav.nav-maison.scrolled { background: rgba(5,5,5,0.95); height: 80px; backdrop-filter: blur(30px); border-bottom-color: var(--border); }
-        .logo-maison img { height: 50px; filter: invert(1); }
+        .hero-title h1 { font-size: clamp(3rem, 15vw, 10rem); font-weight: 900; letter-spacing: -5px; line-height: 0.8; }
+        .scroll-down { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); color: white; font-size: 10px; letter-spacing: 5px; animation: bounce 2s infinite; }
+        @keyframes bounce { 0%, 100% { transform: translate(-50%, 0); } 50% { transform: translate(-50%, 10px); } }
 
-        .links-maison { display: flex; gap: 50px; }
-        .links-maison a {
-            text-decoration: none; color: var(--ivory); font-size: 10px;
-            letter-spacing: 5px; text-transform: uppercase; font-weight: 300;
-            opacity: 0.5; transition: 0.4s;
+        /* --- BUTONLARLA GEÇİŞ SİSTEMİ --- */
+        .page-trigger {
+            position: fixed; bottom: 40px; right: 40px; z-index: 1000; display: flex; gap: 10px;
         }
-        .links-maison a:hover { opacity: 1; color: var(--maison-gold); }
-
-        @media (max-width: 1024px) { .links-maison { display: none; } }
-
-        /* --- CINEMATIC HOME --- */
-        section.maison-hero {
-            height: 100svh; position: relative; overflow: hidden;
-            display: flex; align-items: center; justify-content: center;
+        .trigger-btn {
+            padding: 15px 30px; background: #000; color: #fff; border: none;
+            font-size: 10px; font-weight: 700; letter-spacing: 3px; cursor: pointer; transition: 0.3s;
         }
-        .hero-media-wrap { position: absolute; inset: 0; z-index: 1; opacity: 0.4; }
-        .hero-media-wrap img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.1); animation: slowZoom 20s infinite alternate; }
-        @keyframes slowZoom { from { transform: scale(1.1); } to { transform: scale(1); } }
+        .trigger-btn:hover { background: var(--accent); }
 
-        .hero-title-box { position: relative; z-index: 10; text-align: center; }
-        .hero-title-box span { font-family: var(--font-serif); font-style: italic; font-size: 1.6rem; color: var(--maison-gold); display: block; margin-bottom: 25px; }
-        .hero-title-box h1 { font-family: var(--font-serif); font-size: clamp(3.5rem, 12vw, 9rem); font-weight: 300; line-height: 0.85; margin-bottom: 50px; letter-spacing: -2px; }
-
-        .btn-maison {
-            padding: 22px 65px; border: 1px solid var(--maison-gold);
-            color: var(--maison-gold); text-decoration: none; font-size: 11px;
-            letter-spacing: 6px; text-transform: uppercase; transition: 0.6s;
-            background: transparent; cursor: pointer;
+        /* --- DİNAMİK SAYFA BÖLÜMLERİ --- */
+        .section-page {
+            position: fixed; inset: 0; background: var(--bg); z-index: 200;
+            transform: translateY(100%); transition: var(--transition);
+            overflow-y: auto; padding: 120px 40px 60px;
         }
-        .btn-maison:hover { background: var(--maison-gold); color: var(--onyx); box-shadow: 0 25px 50px rgba(0,0,0,0.5); }
+        .section-page.active { transform: translateY(0); }
+        .close-btn { position: fixed; top: 40px; right: 40px; font-size: 24px; cursor: pointer; z-index: 300; }
 
-        /* --- 3D ATELIER ENGINE v10 --- */
-        .maison-atelier { padding: 180px 6%; background: #080808; }
-        .atelier-header { text-align: center; margin-bottom: 120px; }
-        .atelier-header h2 { font-family: var(--font-serif); font-size: clamp(3rem, 8vw, 5.5rem); font-weight: 300; margin-bottom: 15px; }
-        .atelier-header p { font-size: 11px; letter-spacing: 6px; text-transform: uppercase; color: var(--maison-gold); }
-
-        .atelier-grid {
-            display: grid; grid-template-columns: 350px 1fr 350px; gap: 60px;
-            max-width: 1900px; margin: 0 auto; height: 900px;
+        /* --- 3D ATÖLYE SAYFASI --- */
+        .studio-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; max-width: 1400px; margin: 0 auto; }
+        .visualizer {
+            background: #fff; border: 1px solid var(--border); height: 70vh;
+            position: relative; display: flex; align-items: center; justify-content: center;
         }
-        @media (max-width: 1300px) { .atelier-grid { grid-template-columns: 1fr; height: auto; } }
-
-        /* Carpet Collection */
-        .hali-arsiv { overflow-y: auto; scrollbar-width: none; padding-right: 15px; }
-        .hali-arsiv::-webkit-scrollbar { display: none; }
-        .hali-item { 
-            height: 240px; margin-bottom: 30px; border: 1px solid var(--border);
-            cursor: pointer; position: relative; overflow: hidden; transition: 0.8s;
-        }
-        .hali-item img { width: 100%; height: 100%; object-fit: cover; opacity: 0.5; transition: 1.2s; }
-        .hali-item:hover img { opacity: 0.95; transform: scale(1.08); }
-        .hali-item.active { border-color: var(--maison-gold); border-width: 2px; }
-        .hali-item span { position: absolute; bottom: 20px; left: 20px; font-size: 10px; letter-spacing: 4px; color: white; text-transform: uppercase; text-shadow: 0 2px 10px black; }
-
-        /* Visualizer Engine v10 */
-        .atelier-visualizer {
-            position: relative; background: radial-gradient(circle, #121212 0%, #050505 100%);
-            border-radius: 4px; border: 1px solid var(--border);
-            display: flex; align-items: center; justify-content: center; overflow: hidden;
-        }
-        .visual-model { height: 92%; z-index: 5; filter: drop-shadow(0 40px 80px rgba(0,0,0,0.9)); transition: var(--transition); }
-        
-        .visual-skin {
-            position: absolute; inset: 0; z-index: 1;
-            background-repeat: repeat; background-size: 400px;
-            mix-blend-mode: multiply; opacity: 0; transition: opacity 0.8s ease, background 0.5s step-end;
+        .visualizer img { height: 85%; z-index: 5; }
+        .pattern-overlay {
+            position: absolute; inset: 0; mix-blend-mode: multiply; opacity: 0.9;
+            background-size: 300px; transition: 0.5s;
             -webkit-mask-image: url('https://i.imgur.com/vJCJwvC.jpeg');
             -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat; -webkit-mask-position: center;
         }
-        .visual-skin.active { opacity: 0.9; }
 
-        /* Maison Form */
-        .atelier-form { background: var(--glass); padding: 50px; border: 1px solid var(--border); display: flex; flex-direction: column; gap: 35px; }
-        .form-h { font-family: var(--font-serif); font-size: 2.2rem; border-bottom: 1px solid var(--border); padding-bottom: 25px; font-weight: 300; }
-        .f-group label { font-size: 9px; letter-spacing: 3px; color: var(--maison-gold); text-transform: uppercase; display: block; margin-bottom: 12px; }
-        .f-group input { width: 100%; background: transparent; border: none; border-bottom: 1px solid #222; padding: 15px 0; color: white; font-size: 16px; outline: none; transition: 0.4s; }
-        .f-group input:focus { border-color: var(--maison-gold); }
+        /* --- KOLEKSİYON SAYFASI --- */
+        .archive-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+        .archive-item { aspect-ratio: 1; background: #fff; overflow: hidden; position: relative; }
+        .archive-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .archive-item:hover img { transform: scale(1.05); filter: grayscale(1); }
+        .archive-item .info { position: absolute; bottom: 20px; left: 20px; color: white; opacity: 0; transition: 0.3s; }
+        .archive-item:hover .info { opacity: 1; }
 
-        /* --- ARCHIVE: THE EXHIBITION --- */
-        .maison-archive { padding: 150px 6%; }
-        .archive-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 100px; }
-        .archive-header h3 { font-family: var(--font-serif); font-size: 4.5rem; font-weight: 300; }
-        
-        .exhibition-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(450px, 1fr)); gap: 50px; }
-        @media (max-width: 768px) { .exhibition-grid { grid-template-columns: 1fr; } }
-        
-        .exhibit-item { position: relative; height: 750px; overflow: hidden; cursor: none; }
-        .exhibit-img { width: 100%; height: 100%; object-fit: cover; transition: 2s var(--transition); }
-        .exhibit-item:hover .exhibit-img { transform: scale(1.1); filter: brightness(0.6); }
-        
-        .exhibit-overlay {
-            position: absolute; inset: 0; display: flex; flex-direction: column;
-            align-items: center; justify-content: center; opacity: 0; transition: 0.7s;
-            text-align: center; padding: 40px;
+        /* --- FORM STİLLERİ --- */
+        .input-group { margin-bottom: 25px; }
+        .input-group label { display: block; font-size: 9px; font-weight: 700; text-transform: uppercase; margin-bottom: 10px; }
+        .input-group input { width: 100%; padding: 15px; border: 1px solid #000; background: transparent; font-family: var(--font-main); font-weight: 700; }
+
+        @media (max-width: 768px) {
+            .studio-grid { grid-template-columns: 1fr; }
+            .archive-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            nav { padding: 0 20px; }
+            .page-trigger { bottom: 20px; right: 20px; width: calc(100% - 40px); flex-direction: column; }
+            .trigger-btn { width: 100%; text-align: center; }
         }
-        .exhibit-item:hover .exhibit-overlay { opacity: 1; }
-        .exhibit-overlay h5 { font-family: var(--font-serif); font-size: 3rem; margin-bottom: 15px; font-weight: 300; }
-
-        /* --- FOOTER: NOIR --- */
-        footer.maison-footer {
-            padding: 150px 6% 60px; background: #000;
-            border-top: 1px solid var(--border);
-        }
-        .footer-inner {
-            max-width: 1800px; margin: 0 auto; display: grid;
-            grid-template-columns: 2.5fr 1fr 1fr 1.5fr; gap: 100px;
-        }
-        @media (max-width: 1100px) { .footer-inner { grid-template-columns: 1fr; gap: 60px; } }
-        .footer-col h6 { font-size: 11px; letter-spacing: 6px; color: var(--maison-gold); margin-bottom: 40px; text-transform: uppercase; }
-        .footer-col p { color: #666; font-size: 14px; line-height: 2.2; }
-        .footer-col ul { list-style: none; }
-        .footer-col li { margin-bottom: 20px; }
-        .footer-col a { color: #888; text-decoration: none; font-size: 14px; transition: 0.3s; }
-        .footer-col a:hover { color: var(--maison-gold); padding-left: 10px; }
-
-        /* WhatsApp Luxe */
-        .maison-wa {
-            position: fixed; bottom: 40px; right: 40px; width: 75px; height: 75px;
-            background: var(--maison-gold); color: black; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 32px; z-index: 1000; box-shadow: 0 30px 60px rgba(0,0,0,0.5);
-            transition: 0.5s;
-        }
-        .maison-wa:hover { transform: translateY(-15px) rotate(15deg); background: var(--ivory); }
-
-        /* Reveal Logic */
-        .reveal { opacity: 0; transform: translateY(50px); transition: 1.5s var(--transition); }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-
     </style>
 </head>
 <body>
 
-    <div id="maisonLoader">
-        <img src="https://i.imgur.com/14VgsWh.png" class="loader-symbol" alt="Maison Symbol">
-        <p style="margin-top: 30px; font-size: 10px; letter-spacing: 10px; font-weight: 200; text-transform: uppercase;">Maison Asilkan</p>
-    </div>
-
-    <nav class="nav-maison" id="maisonNav">
-        <div class="nav-inner" style="width:100%; display:flex; justify-content:space-between; align-items:center;">
-            <a href="#" class="logo-maison">
-                <img src="https://i.imgur.com/14VgsWh.png" alt="Maison Asilkan">
-            </a>
-            <ul class="links-maison">
-                <li><a href="#studio">Collection Bespoke</a></li>
-                <li><a href="#archive">The Exhibition</a></li>
-                <li><a href="#about">Legacy</a></li>
-                <li><a href="#contact">Contact Atelier</a></li>
-            </ul>
+    <nav>
+        <a href="#" class="logo" onclick="closeAllPages()"><img src="https://i.imgur.com/14VgsWh.png" alt="Asilkan"></a>
+        <div class="nav-links">
+            <a href="#">MAĞAZA</a>
+            <a href="#">KEŞFET</a>
+            <a href="#">HESABIM</a>
         </div>
     </nav>
 
-    <section class="maison-hero" id="home">
-        <div class="hero-media-wrap">
-            <img src="https://i.imgur.com/hAPeeeA.jpeg" alt="Atelier Heritage">
+    <section id="home">
+        <img src="https://i.imgur.com/hAPeeeA.jpeg" class="hero-video" alt="Asilkan Animasyon">
+        <div class="hero-title">
+            <h1>ASİLKAN</h1>
         </div>
-        <div class="hero-title-box">
-            <span>Bespoke Excellence / Handmade in Türkiye</span>
-            <h1>Timeless Art, <br>Tailored Legacy.</h1>
-            <a href="#studio" class="btn-maison">Explore Atelier</a>
-        </div>
+        <div class="scroll-down">KEŞFETMEK İÇİN BUTONLARI KULLAN</div>
     </section>
 
-    <section class="maison-atelier" id="studio">
-        <div class="atelier-header reveal">
-            <p>Atelier Interface v10.0 / GPU Accelerated</p>
-            <h2>3D Virtual Experience</h2>
-        </div>
+    <div class="page-trigger">
+        <button class="trigger-btn" onclick="openPage('studioPage')">3D TASARIM</button>
+        <button class="trigger-btn" onclick="openPage('archivePage')">KOLEKSİYON</button>
+        <button class="trigger-btn" onclick="openPage('aboutPage')">MİRAS</button>
+    </div>
 
-        <div class="atelier-grid">
-            <div class="hali-arsiv reveal">
-                <div class="hali-item active" onclick="updateSkin(this, 'https://i.imgur.com/vJCJwvC.jpeg', 'Heritage Silk')">
-                    <img src="https://i.imgur.com/vJCJwvC.jpeg" alt="Carpet 1">
-                    <span>Miras No.01</span>
-                </div>
-                <div class="hali-item" onclick="updateSkin(this, 'https://i.imgur.com/FlNkiBA.jpeg', 'Bosphorus Spirit')">
-                    <img src="https://i.imgur.com/FlNkiBA.jpeg" alt="Carpet 2">
-                    <span>Boğaz Esintisi</span>
-                </div>
-                <div class="hali-item" onclick="updateSkin(this, 'https://i.imgur.com/a0asIvM.jpeg', 'Nomadic Soul')">
-                    <img src="https://i.imgur.com/a0asIvM.jpeg" alt="Carpet 3">
-                    <span>Yörük Ruhu</span>
-                </div>
-                <div class="hali-item" onclick="updateSkin(this, 'https://i.imgur.com/jSAeqRV.jpeg', 'Taurus Echo')">
-                    <img src="https://i.imgur.com/jSAeqRV.jpeg" alt="Carpet 4">
-                    <span>Toros Yankısı</span>
-                </div>
+    <div id="studioPage" class="section-page">
+        <div class="close-btn" onclick="closeAllPages()">&times;</div>
+        <div class="studio-grid">
+            <div class="visualizer">
+                <div class="pattern-overlay" id="pOverlay" style="background-image: url('https://i.imgur.com/vJCJwvC.jpeg');"></div>
+                <img src="https://i.imgur.com/vJCJwvC.jpeg" alt="Ceket">
             </div>
-
-            <div class="atelier-visualizer reveal">
-                <div class="visual-skin" id="visualSkin" style="background-image: url('https://i.imgur.com/vJCJwvC.jpeg'); opacity: 0.9;"></div>
-                <img src="https://i.imgur.com/vJCJwvC.jpeg" class="visual-model" id="visualModel" alt="Maison Jacket">
+            <div class="controls">
+                <h2 style="font-weight: 900; font-size: 3rem; margin-bottom: 20px;">DİJİTAL ATÖLYE</h2>
+                <p style="margin-bottom: 40px; font-weight: 300;">Halılarınızı seçin ve modern kesimlerle birleştirin.</p>
                 
-                <div style="position: absolute; top: 40px; left: 40px; display: flex; align-items: center; gap: 15px;">
-                    <div style="width: 10px; height: 10px; background: var(--maison-gold); border-radius: 50%; box-shadow: 0 0 20px var(--maison-gold);"></div>
-                    <span id="atelierStatus" style="font-size: 10px; letter-spacing: 4px; font-weight: 300;">ATELIER ACTIVE</span>
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 40px;">
+                    <div onclick="setPattern('https://i.imgur.com/vJCJwvC.jpeg')" style="aspect-ratio:1; background:url('https://i.imgur.com/vJCJwvC.jpeg') center/cover; cursor:pointer; border:1px solid #000;"></div>
+                    <div onclick="setPattern('https://i.imgur.com/FlNkiBA.jpeg')" style="aspect-ratio:1; background:url('https://i.imgur.com/FlNkiBA.jpeg') center/cover; cursor:pointer; border:1px solid #000;"></div>
+                    <div onclick="setPattern('https://i.imgur.com/a0asIvM.jpeg')" style="aspect-ratio:1; background:url('https://i.imgur.com/a0asIvM.jpeg') center/cover; cursor:pointer; border:1px solid #000;"></div>
+                    <div onclick="setPattern('https://i.imgur.com/jSAeqRV.jpeg')" style="aspect-ratio:1; background:url('https://i.imgur.com/jSAeqRV.jpeg') center/cover; cursor:pointer; border:1px solid #000;"></div>
                 </div>
-            </div>
 
-            <div class="atelier-form reveal">
-                <div class="form-h">Bespoke Metrics</div>
-                <div class="f-group">
-                    <label>Shoulder Width (cm)</label>
-                    <input type="number" id="m_shoulder" placeholder="44.0">
+                <div class="input-group">
+                    <label>Omuz Ölçüsü (cm)</label>
+                    <input type="number" id="omuz" placeholder="44">
                 </div>
-                <div class="f-group">
-                    <label>Chest Circumference (cm)</label>
-                    <input type="number" id="m_chest" placeholder="105.0">
+                <div class="input-group">
+                    <label>Göğüs Ölçüsü (cm)</label>
+                    <input type="number" id="gogus" placeholder="102">
                 </div>
-                <div class="f-group">
-                    <label>Atelier Silhouette</label>
-                    <select style="width:100%; background:transparent; color:white; border:none; border-bottom:1px solid #222; padding:15px 0; font-size:14px; outline:none;">
-                        <option>Atelier Slim</option>
-                        <option selected>Classic Regular</option>
-                        <option>Bespoke Oversize</option>
-                    </select>
-                </div>
-                <button class="btn-maison" style="background: var(--maison-gold); color: black; border: none; margin-top: 20px;" onclick="requestOffer()">Submit Offer Request</button>
+                <button class="trigger-btn" style="width:100%; padding:25px;" onclick="sendOrder()">SİPARİŞ TALEBİ GÖNDER</button>
             </div>
         </div>
-    </section>
+    </div>
 
-    <section class="maison-archive" id="archive">
-        <div class="archive-header reveal">
-            <h3>Archival Exhibition</h3>
-            <p style="color: #666; max-width: 350px; font-size: 14px; text-align: right; line-height: 2;">Her parça biriciktir. Maison arşivindeki satışı gerçekleşmiş kült eserleri inceleyin.</p>
+    <div id="archivePage" class="section-page">
+        <div class="close-btn" onclick="closeAllPages()">&times;</div>
+        <h2 style="font-weight: 900; font-size: 4rem; text-align: center; margin-bottom: 60px;">ARŞİV 2026</h2>
+        <div class="archive-grid">
+            <div class="archive-item"><img src="https://i.imgur.com/vJCJwvC.jpeg" alt=""><div class="info"><h3>MİRAS 01</h3></div></div>
+            <div class="archive-item"><img src="https://i.imgur.com/FlNkiBA.jpeg" alt=""><div class="info"><h3>MİRAS 02</h3></div></div>
+            <div class="archive-item"><img src="https://i.imgur.com/a0asIvM.jpeg" alt=""><div class="info"><h3>MİRAS 03</h3></div></div>
+            <div class="archive-item"><img src="https://i.imgur.com/jSAeqRV.jpeg" alt=""><div class="info"><h3>MİRAS 04</h3></div></div>
+            <div class="archive-item"><img src="https://i.imgur.com/HSszXJf.jpeg" alt=""><div class="info"><h3>ÇANTA 01</h3></div></div>
+            <div class="archive-item"><img src="https://i.imgur.com/ykwtfHk.jpeg" alt=""><div class="info"><h3>ŞORT 01</h3></div></div>
         </div>
-        <div class="exhibition-grid">
-            <div class="exhibit-item reveal">
-                <img src="https://i.imgur.com/vJCJwvC.jpeg" class="exhibit-img" alt="Ex1">
-                <div class="exhibit-overlay">
-                    <h5>Heritage 01</h5>
-                    <p style="font-size: 12px; letter-spacing: 6px; text-transform: uppercase;">Antique Bespoke</p>
-                </div>
-            </div>
-            <div class="exhibit-item reveal">
-                <img src="https://i.imgur.com/FlNkiBA.jpeg" class="exhibit-img" alt="Ex2">
-                <div class="exhibit-overlay">
-                    <h5>Golden Horn</h5>
-                    <p style="font-size: 12px; letter-spacing: 6px; text-transform: uppercase;">Kilim Blazer</p>
-                </div>
-            </div>
-            <div class="exhibit-item reveal">
-                <img src="https://i.imgur.com/HSszXJf.jpeg" class="exhibit-img" alt="Ex3">
-                <div class="exhibit-overlay">
-                    <h5>The Nomad Bag</h5>
-                    <p style="font-size: 12px; letter-spacing: 6px; text-transform: uppercase;">Handcrafted Tote</p>
-                </div>
-            </div>
-            <div class="exhibit-item reveal">
-                <img src="https://i.imgur.com/ykwtfHk.jpeg" class="exhibit-img" alt="Ex4">
-                <div class="exhibit-overlay">
-                    <h5>Bosphorus Short</h5>
-                    <p style="font-size: 12px; letter-spacing: 6px; text-transform: uppercase;">Summer Capsule</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    </div>
 
-    <footer class="maison-footer" id="contact">
-        <div class="footer-inner">
-            <div class="footer-col">
-                <img src="https://i.imgur.com/14VgsWh.png" style="height: 65px; filter: invert(1); margin-bottom: 50px;" alt="">
-                <p>Maison Asilkan, Anadolu'nun kadim dokuma sanatını yüksek terzilik ve çağdaş dijital vizyonla harmanlayan özel bir moda evidir.</p>
-            </div>
-            <div class="footer-col">
-                <h6>L'Atelier</h6>
-                <ul>
-                    <li><a href="#">Bespoke Experience</a></li>
-                    <li><a href="#">Halı Restorasyonu</a></li>
-                    <li><a href="#">3D Design Studio</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h6>Maison</h6>
-                <ul>
-                    <li><a href="#">Heritage Story</a></li>
-                    <li><a href="#">Zanaat Prensipleri</a></li>
-                    <li><a href="#">Privacy & Terms</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h6>Contact</h6>
-                <p style="margin-bottom: 25px;">Karaman / Türkiye</p>
-                <p style="color: var(--maison-gold); font-size: 15px;">asilkan.customwears@gmail.com</p>
-                <div style="margin-top: 40px; display: flex; gap: 25px;">
-                    <a href="https://instagram.com/asilkancustom" style="color: white; font-size: 22px;"><i class="fab fa-instagram"></i></a>
-                    <a href="https://wa.me/905454388096" style="color: white; font-size: 22px;"><i class="fab fa-whatsapp"></i></a>
-                </div>
-            </div>
+    <div id="aboutPage" class="section-page">
+        <div class="close-btn" onclick="closeAllPages()">&times;</div>
+        <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+            <h2 style="font-weight: 900; font-size: 5rem; line-height: 0.9; margin-bottom: 40px;">ZANAAT VE <br>TEKNOLOJİ</h2>
+            <p style="font-size: 1.5rem; line-height: 1.6; font-weight: 300;">Anadolu'nun her bir köşesinden toplanan el dokuması halılar, İstanbul'un modern terzilik vizyonuyla yeniden hayat buluyor. Biz sadece kıyafet dikmiyoruz; biz bir kültürü üzerinizde taşımanızı sağlıyoruz.</p>
+            <img src="https://i.imgur.com/hAPeeeA.jpeg" style="width: 100%; margin-top: 60px;" alt="">
         </div>
-        <div style="text-align: center; margin-top: 120px; color: #333; font-size: 11px; letter-spacing: 6px;">
-            &copy; 2026 MAISON ASILKAN | THE CULTURE OF DESIGN
-        </div>
-    </footer>
+    </div>
 
-    <a href="https://wa.me/905454388096" class="maison-wa" target="_blank">
+    <a href="https://wa.me/905454388096" style="position: fixed; bottom: 40px; left: 40px; z-index: 1000; color: #000; font-size: 24px;">
         <i class="fab fa-whatsapp"></i>
     </a>
 
     <script>
-        /**
-         * MAISON ASILKAN CORE - v10.0
-         * Ultra-Premium State Management & Visual Engine
-         */
+        function openPage(pageId) {
+            closeAllPages();
+            document.getElementById(pageId).classList.add('active');
+        }
 
-        let atelierState = { design: "Heritage No.01", tex: "https://i.imgur.com/vJCJwvC.jpeg" };
-
-        window.addEventListener('load', () => {
-            // Loader Kill
-            const loader = document.getElementById('maisonLoader');
-            setTimeout(() => {
-                loader.style.opacity = '0';
-                setTimeout(() => loader.remove(), 1500);
-            }, 1000);
-
-            initMaison();
-        });
-
-        function initMaison() {
-            // Reveal Observer
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) entry.target.classList.add('active');
-                });
-            }, { threshold: 0.1 });
-
-            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-            // Nav State
-            window.addEventListener('scroll', () => {
-                const nav = document.getElementById('maisonNav');
-                if (window.scrollY > 80) nav.classList.add('scrolled');
-                else nav.classList.remove('scrolled');
+        function closeAllPages() {
+            document.querySelectorAll('.section-page').forEach(page => {
+                page.classList.remove('active');
             });
         }
 
-        // VISUALIZER ENGINE (Fixed Texture Logic)
-        function updateSkin(el, url, name) {
-            // UI Update
-            document.querySelectorAll('.hali-item').forEach(item => item.classList.remove('active'));
-            el.classList.add('active');
-            
-            const status = document.getElementById('atelierStatus');
-            const skin = document.getElementById('visualSkin');
-            
-            status.innerText = "UPDATING ATELIER...";
-            skin.style.opacity = '0'; // Clean fade
-            
-            // Texture Swap with Blob Protection
-            setTimeout(() => {
-                skin.style.backgroundImage = `url('${url}')`;
-                skin.style.opacity = '0.9';
-                status.innerText = `READY: ${name.toUpperCase()}`;
-                atelierState = { design: name, tex: url };
-            }, 450);
+        function setPattern(url) {
+            document.getElementById('pOverlay').style.backgroundImage = `url(${url})`;
         }
 
-        // ORDER ENGINE
-        function requestOffer() {
-            const sh = document.getElementById('m_shoulder').value;
-            const ch = document.getElementById('m_chest').value;
-
-            if(!sh || !ch) {
-                alert("Please complete metrics for bespoke analysis.");
-                return;
-            }
-
-            const message = `MAISON ASILKAN ATELIER\n---\nSelected Heritage: ${atelierState.design}\nAtelier File: ${atelierState.tex}\n\nClient Metrics:\n- Shoulder: ${sh}cm\n- Chest: ${ch}cm\n---\nPlease provide bespoke timeline and formal quote.`;
-            window.open(`https://wa.me/905454388096?text=${encodeURIComponent(message)}`, '_blank');
+        function sendOrder() {
+            const o = document.getElementById('omuz').value;
+            const g = document.getElementById('gogus').value;
+            if(!o || !g) { alert("Lütfen ölçüleri girin."); return; }
+            const msg = `Asilkan Atölye Siparişi:\nÖlçüler: ${o}cm Omuz, ${g}cm Göğüs\nÜretim onayı bekliyorum.`;
+            window.open(`https://wa.me/905454388096?text=${encodeURIComponent(msg)}`);
         }
-
     </script>
 </body>
 </html>
