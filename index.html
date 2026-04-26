@@ -32,8 +32,107 @@
 header{ position:relative; overflow:hidden; }
 /* Arka plan tekrar boyama yapmasın */
 header{ background-image:none !important; }
+/* 1. VİDEO VE HERO OPTİMİZASYONU */
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  z-index: 1;
+  /* GPU Hızlandırma: Kayma ve takılmaları önler */
+  transform: translateZ(0);
+  transition: opacity 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
-/* ===================== FIX: ALT ZEMİN SİYAH ===================== */
+/* Video veya görsel aktif olduğunda görünür yap */
+.hero-slides .is-active {
+  opacity: 0.5 !important; /* Arka plan siyahıyla birleşerek lüks bir doku verir */
+}
+
+/* 2. ATÖLYE (FABRIC SELECTOR) TASARIMI */
+.fabric-selector {
+  background: var(--accent-light);
+  padding: 40px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.fabric-item {
+  position: relative;
+  width: 240px;
+  height: 320px;
+  margin: 0 20px;
+  flex-shrink: 0;
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.fabric-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: sepia(0.2) contrast(1.1); /* Hafif vintage doku */
+  transition: 1.2s ease;
+}
+
+.fabric-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(18, 18, 18, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.fabric-overlay span {
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  padding: 12px 24px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  backdrop-filter: blur(4px);
+}
+
+.fabric-item:hover {
+  transform: translateY(-10px);
+}
+
+.fabric-item:hover img {
+  transform: scale(1.1);
+  filter: sepia(0) contrast(1.2);
+}
+
+.fabric-item:hover .fabric-overlay {
+  opacity: 1;
+}
+
+/* 3. MODERN SEKMELER VE TEXT İYİLEŞTİRMELERİ */
+.page.active {
+  display: block;
+  animation: luxeReveal 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+@keyframes luxeReveal {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Scrollbar'ı lüks hale getirelim */
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--accent);
+}/* ===================== FIX: ALT ZEMİN SİYAH ===================== */
 header { 
   background-color: #0a0a0a !important; /* Arka plan siyah kalsın */
 }
