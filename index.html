@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <meta name="description" content="Asilkan Custom – El dokuması halılardan kişiye özel tasarımlar" />
+  <meta name="description" content="Asilkan Custom – El dokuması halılardan kişiye özel ceket ve çanta tasarımları" />
   <title>ASİLKAN Custom</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Cormorant+Garamond:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -19,227 +19,251 @@
       --muted: #6b625a;
       --card: #faf8f6;
       --border: #e7e2db;
-      --radius: 12px;
-      --shadow: 0 8px 24px rgba(0,0,0,.08);
+      --radius: 16px;
+      --shadow: 0 12px 30px rgba(0,0,0,.08);
       --nav-height: 70px;
     }
 
-    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; margin: 0; padding: 0; }
+    
     body {
-      margin: 0; padding: 0;
       font-family: 'Poppins', sans-serif;
       background: var(--bg);
       color: var(--text);
-      line-height: 1.6;
+      line-height: 1.55;
       overflow-x: hidden;
     }
 
-    /* NAV & MENU FIX */
+    /* --- NAVIGASYON (Telefon Fix) --- */
     nav {
       position: fixed; top: 0; left: 0; width: 100%; height: var(--nav-height);
-      background: rgba(255,255,255,0.95);
-      backdrop-filter: blur(10px);
-      z-index: 1000; border-bottom: 1px solid var(--border);
+      background: rgba(255,255,255,0.85); backdrop-filter: blur(15px);
+      z-index: 2000; border-bottom: 1px solid var(--border);
     }
     .nav-container {
       max-width: 1160px; margin: 0 auto; height: 100%;
       display: flex; align-items: center; justify-content: space-between; padding: 0 20px;
     }
-    .brand { display: flex; align-items: center; gap: 8px; text-decoration: none; color: var(--primary); }
-    .brand img { height: 36px; }
-    .brand span { font-weight: 600; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; }
+    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--primary); }
+    .brand img { height: 40px; }
+    .brand span { font-weight: 600; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px; }
 
     .hamburger {
-      display: none; background: none; border: none; cursor: pointer; padding: 10px; z-index: 1100;
+      display: none; background: #fff; border: 1px solid var(--border); 
+      padding: 8px; border-radius: 8px; cursor: pointer; z-index: 2100;
     }
-    .hamburger span { display: block; width: 25px; height: 2px; background: var(--primary); margin: 5px 0; transition: 0.3s; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--primary); margin: 4px 0; transition: 0.3s; }
 
-    .nav-links {
-      display: flex; gap: 20px; list-style: none; margin: 0; padding: 0;
-    }
+    .nav-links { display: flex; gap: 25px; list-style: none; align-items: center; }
     .nav-links a, .nav-links button {
-      text-decoration: none; color: var(--primary); font-weight: 400; font-size: 0.85rem;
+      text-decoration: none; color: var(--primary); font-weight: 500; font-size: 0.85rem;
       text-transform: uppercase; letter-spacing: 0.5px; background: none; border: none; cursor: pointer;
     }
 
-    /* MOBILE MENU ACTIVE STATE */
     @media (max-width: 900px) {
       .hamburger { display: block; }
       .nav-links {
-        position: fixed; top: 0; right: -100%; width: 80%; height: 100vh;
-        background: #fff; flex-direction: column; align-items: center; justify-content: center;
-        transition: 0.4s ease; box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+        position: fixed; top: 0; right: -100%; width: 260px; height: 100vh;
+        background: #fff; flex-direction: column; padding-top: 100px;
+        transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: -5px 0 20px rgba(0,0,0,0.1);
       }
       .nav-links.active { right: 0; }
-      .dropdown-menu { position: static !important; box-shadow: none !important; text-align: center; display: none; }
+      .dropdown-menu { position: static !important; opacity: 1 !important; visibility: visible !important; display: none; box-shadow: none !important; padding-left: 20px !important; }
       .dropdown.open .dropdown-menu { display: block; }
     }
 
-    /* HERO SECTION */
+    /* --- HERO SLIDER --- */
     header {
-      height: 100vh; position: relative; display: flex; flex-direction: column;
-      align-items: center; justify-content: center; text-align: center; color: #fff;
-      background: #000; overflow: hidden;
+      height: 100vh; background: #000; position: relative;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; color: #fff; overflow: hidden;
     }
-    .hero-bg { position: absolute; inset: 0; z-index: 0; }
-    .hero-bg img { 
-      position: absolute; inset: 0; width: 100%; height: 100%; 
-      object-fit: cover; opacity: 0; transition: opacity 1s ease-in-out;
+    .hero-slides { position: absolute; inset: 0; z-index: 0; }
+    .hero-slides img {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; opacity: 0; transition: opacity 1.5s ease-in-out;
     }
-    .hero-bg img.active { opacity: 0.6; }
-    
-    .hero-content { position: relative; z-index: 1; padding: 20px; }
-    .hero-content h1 { 
-      font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 8vw, 4rem); 
-      margin-bottom: 10px; line-height: 1.1; 
-    }
-    .hero-btn {
-      display: inline-block; padding: 14px 32px; background: var(--accent);
-      color: #fff; text-decoration: none; border-radius: 50px;
-      font-weight: 600; margin-top: 20px; transition: 0.3s;
+    .hero-slides img.active { opacity: 0.5; }
+    .hero-content { position: relative; z-index: 10; padding: 20px; }
+    .hero-content h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(32px, 7vw, 56px); text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+    .hero-btn { 
+      display: inline-block; margin-top: 25px; padding: 15px 35px; 
+      background: var(--accent); color: #fff; text-decoration: none; 
+      border-radius: 50px; font-weight: 600; transition: 0.3s;
     }
 
-    /* SINGLE INFO SECTION (İki seçenek hatası burada düzeltildi) */
-    .info-box {
-      max-width: 1100px; margin: 60px auto; padding: 30px;
-      background: var(--card); border-radius: var(--radius);
-      display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: center;
+    /* --- BEDEN TABLOSU & AÇIKLAMA (Tek Parça) --- */
+    .home-info-section { max-width: 1160px; margin: 60px auto; padding: 0 20px; }
+    .info-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+      display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px; align-items: center; padding: 30px;
     }
-    @media (max-width: 768px) { .info-box { grid-template-columns: 1fr; margin: 30px 20px; } }
-    .info-box img { width: 100%; border-radius: var(--radius); }
+    @media (max-width: 768px) { .info-card { grid-template-columns: 1fr; } }
+    .info-card img { width: 100%; border-radius: 12px; box-shadow: var(--shadow); }
 
-    /* PRODUCT GRID */
-    .section { padding: 80px 20px; max-width: 1160px; margin: 0 auto; }
-    .section-title { text-align: center; font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; margin-bottom: 40px; }
-    
-    .products-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px;
+    .tiny-copy { text-align: center; font-size: 13px; color: var(--muted); margin: 40px auto; max-width: 800px; }
+
+    /* --- ÜRÜN KARTLARI --- */
+    .section { padding: 60px 20px; max-width: 1160px; margin: 0 auto; }
+    .products-grid { 
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+      gap: 30px; margin-top: 30px;
     }
-    @media (max-width: 600px) { .products-grid { grid-template-columns: 1fr 1fr; gap: 10px; } }
+    @media (max-width: 640px) { .products-grid { grid-template-columns: 1fr 1fr; gap: 12px; } }
 
     .product-card {
       background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
-      overflow: hidden; transition: 0.3s; position: relative;
+      overflow: hidden; transition: 0.3s;
     }
-    .product-card img { width: 100%; aspect-ratio: 1/1; object-fit: cover; display: block; }
-    .product-card p { padding: 12px; font-size: 0.9rem; margin: 0; color: var(--muted); }
+    .product-card img { width: 100%; aspect-ratio: 1/1; object-fit: cover; }
+    .product-card p { padding: 15px; font-size: 0.95rem; color: var(--text); font-weight: 400; }
 
-    /* PAGE CONTROL */
+    /* --- PAGE CONTROL --- */
     .page { display: none; padding-top: var(--nav-height); }
     .page.active { display: block; }
     #page-home { padding-top: 0; }
 
-    footer { padding: 40px 20px; text-align: center; background: var(--card); border-top: 1px solid var(--border); }
+    /* --- DROPDOWN --- */
+    .dropdown { position: relative; }
+    .dropdown-menu {
+      position: absolute; top: 100%; left: 0; background: #fff;
+      min-width: 180px; border: 1px solid var(--border); border-radius: 8px;
+      list-style: none; padding: 10px 0; box-shadow: var(--shadow);
+      opacity: 0; visibility: hidden; transition: 0.2s;
+    }
+    .dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; }
+    .dropdown-menu a { display: block; padding: 8px 20px; text-transform: none; }
+
+    footer { background: var(--card); padding: 40px 20px; text-align: center; border-top: 1px solid var(--border); }
   </style>
 </head>
 <body>
 
   <nav>
     <div class="nav-container">
-      <a href="#" class="brand" onclick="showPage('home')">
+      <a href="#" class="brand" onclick="showPage('page-home')">
         <img src="https://i.imgur.com/14VgsWh.png" alt="Logo">
         <span>AsilkanCustom</span>
       </a>
-      <button class="hamburger" id="menuToggle">
+      <button class="hamburger" id="mobMenuBtn">
         <span></span><span></span><span></span>
       </button>
       <ul class="nav-links" id="navLinks">
-        <li><a href="#" onclick="showPage('home')">Ana Sayfa</a></li>
+        <li><a href="#" onclick="showPage('page-home')">Ana Sayfa</a></li>
         <li class="dropdown">
-          <button onclick="toggleDropdown()">Ürünler ▾</button>
+          <button style="font-family:inherit;">Ürünler ▾</button>
           <ul class="dropdown-menu">
-            <li><a href="#" onclick="showPage('ceketler')">Ceketler</a></li>
-            <li><a href="#" onclick="showPage('cantalar')">Çantalar</a></li>
+            <li><a href="#" onclick="showPage('page-ceketler')">Ceketler</a></li>
+            <li><a href="#" onclick="showPage('page-cantalar')">Çantalar</a></li>
+            <li><a href="#" onclick="showPage('page-pantolonlar')">Pantolonlar</a></li>
           </ul>
         </li>
-        <li><a href="#" onclick="showPage('about')">Hakkımızda</a></li>
+        <li><a href="#" onclick="showPage('page-about')">Hakkımızda</a></li>
+        <li><a href="#" onclick="showPage('page-cart')">Beden Bilgisi</a></li>
         <li><a href="https://wa.me/905454388096" target="_blank">İletişim</a></li>
       </ul>
     </div>
   </nav>
 
-  <div id="home" class="page active">
+  <div id="page-home" class="page active">
     <header>
-      <div class="hero-bg" id="heroBg">
+      <div class="hero-slides">
         <img src="https://i.imgur.com/hAPeeeA.jpeg" class="active">
         <img src="https://i.imgur.com/2liV16Z.jpeg">
         <img src="https://i.imgur.com/4JdKq1t.jpeg">
       </div>
       <div class="hero-content">
-        <h1>Geçmişin Ruhu,<br>Modern Stil.</h1>
-        <p>El dokuması halıların eşsiz hikayesi üzerinizde canlansın.</p>
-        <a href="#" class="hero-btn" onclick="showPage('ceketler')">Koleksiyonu Keşfet</a>
+        <img src="https://i.imgur.com/14VgsWh.png" style="height: 80px; margin-bottom: 20px;">
+        <h1>Geçmişin ruhu ve modern stilin birleşim noktası...</h1>
+        <p>If you love Turkish carpet motifs, you are in the right place.</p>
+        <a href="#" class="hero-btn" onclick="showPage('page-ceketler')">Alışverişe Başla</a>
       </div>
     </header>
 
-    <div class="info-box">
-      <img src="https://i.imgur.com/8Qp7ZqC.jpeg" alt="Beden Tablosu">
-      <div>
-        <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 2rem;">Size En Uygun Bedeni Bulun</h2>
-        <p>Kişiye özel tasarımlarımızda kusursuz fit için hazırladığımız rehberi inceleyin.</p>
-        <a href="https://wa.me/905454388096" class="hero-btn" style="padding: 10px 20px;">Ölçü Almak İçin Danış</a>
+    <div class="home-info-section">
+      <div class="info-card">
+        <img src="https://i.imgur.com/8Qp7ZqC.jpeg" alt="Beden Tablosu">
+        <div>
+          <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 28px; margin-bottom: 15px;">Size En Uygun Bedeni Bulun</h2>
+          <p style="color: var(--muted); margin-bottom: 20px;">Kişiye özel tasarımlarımızda kusursuz fit için hazırladığımız ölçü rehberini inceleyerek bedeninizi keşfedin.</p>
+          <a href="#" class="hero-btn" onclick="showPage('page-cart')" style="margin:0; padding: 12px 25px;">Ölçü Detaylarını Gör</a>
+        </div>
+      </div>
+
+      <div class="tiny-copy">
+        <p><b>Asilkancustom Koleksiyonu</b>; vibrant stilin tamamlayıcısı niteliğindeki parçalarıyla geçmişin ruhunu modern bir stil yaklaşımıyla günümüze taşıyor. Canlı tonlar ve etnik formlar, parçaların hem modern hem de sokak stiline kolayca entegre olmasını sağlıyor.</p>
       </div>
     </div>
   </div>
 
-  <div id="ceketler" class="page">
+  <div id="page-ceketler" class="page">
     <section class="section">
-      <h2 class="section-title">Ceket Koleksiyonu</h2>
+      <h2 style="text-align:center; font-family: 'Cormorant Garamond', serif; font-size: 32px;">Ceketler</h2>
       <div class="products-grid">
-        <div class="product-card">
-          <img src="https://i.imgur.com/vJCJwvC.jpeg" alt="Ceket">
-          <p>Özel Tasarım Halı Ceket</p>
-        </div>
-        <div class="product-card">
-          <img src="https://i.imgur.com/FlNkiBA.jpeg" alt="Ceket">
-          <p>Vintage Dokulu Ceket</p>
-        </div>
-        </div>
+        <div class="product-card"><img src="https://i.imgur.com/vJCJwvC.jpeg"><p>El dokuması halıdan üretilmiş özel tasarım ceket.</p></div>
+        <div class="product-card"><img src="https://i.imgur.com/FlNkiBA.jpeg"><p>Geçmişin izlerini taşıyan tasarım.</p></div>
+        <div class="product-card"><img src="https://i.imgur.com/a0asIvM.jpeg"><p>Vintage stil, güçlü duruş (SATILDI).</p></div>
+        <div class="product-card"><img src="https://i.imgur.com/jSAeqRV.jpeg"><p>Modern dokunuşlarla retro bir görünüm (SATILDI).</p></div>
+        <div class="product-card"><img src="https://i.imgur.com/bNdRdez.jpeg"><p>Klasik tasarım, modern kesim (SATILDI).</p></div>
+        <div class="product-card"><img src="https://i.imgur.com/pyEPaRW.jpeg"><p>Göz alıcı renkler ve dokular (SATILDI).</p></div>
+        <div class="product-card"><img src="https://i.imgur.com/A4L1DUC.jpeg"><p>Klasik tasarım, modern kesim (SATILDI).</p></div>
+        <div class="product-card"><img src="https://i.imgur.com/VLZSRqF.jpeg"><p>Göz alıcı renkler ve dokular (SATILDI).</p></div>
+        <div class="product-card"><img src="https://i.imgur.com/J70KDGj.jpeg"><p>Vibrant renklerde, her tarza uygun (SATILDI).</p></div>
+        <div class="product-card"><img src="https://i.imgur.com/0K6sqEp.jpeg"><p>El yapımı özgün tasarım (SATILDI).</p></div>
+        <div class="product-card"><img src="https://i.imgur.com/qOlAAqa.jpeg"><p>Göz alıcı renkler ve dokular (SATILDI).</p></div>
+        <div class="product-card"><img src="https://i.imgur.com/DY6wUXN.jpeg"><p>Vibrant renklerde, her tarza uygun.</p></div>
+        <div class="product-card"><img src="https://i.imgur.com/f44J5py.jpeg"><p>El yapımı özgün tasarım (SATILDI).</p></div>
+      </div>
     </section>
   </div>
 
-  <div id="cantalar" class="page">
+  <div id="page-cantalar" class="page">
     <section class="section">
-      <h2 class="section-title">Çanta Koleksiyonu</h2>
+      <h2 style="text-align:center; font-family: 'Cormorant Garamond', serif; font-size: 32px;">Çantalar</h2>
       <div class="products-grid">
-        <div class="product-card">
-          <img src="https://i.imgur.com/vJCJwvC.jpeg" alt="Çanta">
-          <p>Halı Dokuma Çanta</p>
-        </div>
+        <div class="product-card"><img src="https://i.imgur.com/WzlSfVi.jpeg"><p>El dokuması motifli özel çanta.</p></div>
+        <div class="product-card"><img src="https://i.imgur.com/txFwYJn.jpeg"><p>Etnik desenli omuz çantası.</p></div>
       </div>
     </section>
   </div>
 
   <footer>
-    <p>&copy; 2026 Asilkan Custom - Tüm tasarımlar el yapımıdır.</p>
+    <img src="https://i.imgur.com/14VgsWh.png" style="height: 40px; margin-bottom: 15px;">
+    <p>&copy; 2026 Asilkan Custom. Tüm hakları saklıdır.</p>
   </footer>
 
   <script>
-    // SAYFA DEĞİŞTİRME SİSTEMİ
-    function showPage(pageId) {
+    // SAYFA YÖNETİMİ
+    function showPage(id) {
       document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-      document.getElementById(pageId).classList.add('active');
+      document.getElementById(id).classList.add('active');
       document.getElementById('navLinks').classList.remove('active');
-      window.scrollTo(0,0);
+      window.scrollTo({top: 0, behavior: 'smooth'});
     }
 
     // MOBİL MENÜ
-    const menuToggle = document.getElementById('menuToggle');
+    const mobMenuBtn = document.getElementById('mobMenuBtn');
     const navLinks = document.getElementById('navLinks');
-    menuToggle.onclick = () => navLinks.classList.toggle('active');
+    mobMenuBtn.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
 
-    function toggleDropdown() {
-      document.querySelector('.dropdown').classList.toggle('open');
+    // MOBİL DROPDOWN FIX
+    if(window.innerWidth < 900) {
+      document.querySelector('.dropdown button').addEventListener('click', (e) => {
+        e.stopPropagation();
+        document.querySelector('.dropdown').classList.toggle('open');
+      });
     }
 
     // HERO SLIDER
-    const images = document.querySelectorAll('#heroBg img');
-    let currentImg = 0;
+    const heroImgs = document.querySelectorAll('.hero-slides img');
+    let currentIdx = 0;
     setInterval(() => {
-      images[currentImg].classList.remove('active');
-      currentImg = (currentImg + 1) % images.length;
-      images[currentImg].classList.add('active');
-    }, 4000);
+      heroImgs[currentIdx].classList.remove('active');
+      currentIdx = (currentIdx + 1) % heroImgs.length;
+      heroImgs[currentIdx].classList.add('active');
+    }, 4500);
   </script>
 </body>
 </html>
