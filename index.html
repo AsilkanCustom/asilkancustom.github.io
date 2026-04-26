@@ -12,8 +12,8 @@
     <style>
         /* ASİLKAN SINGULARITY DESIGN SYSTEM
            ---------------------------------
-           Renk Paleti: Obsidian (#020202), Raw Bronze (#a67c52), Ghost White (#ffffff)
-           Mimari: High-Performance Monolithic UI
+           Renk: Obsidian (#020202), Raw Bronze (#a67c52), Ghost White (#ffffff)
+           Satır derinliği ve teknik işlevsellik maksimize edilmiştir.
         */
 
         :root {
@@ -24,7 +24,6 @@
             --text-dim: rgba(255, 255, 255, 0.3);
             --transition: all 1.4s cubic-bezier(0.23, 1, 0.32, 1);
             --ease-in-out: cubic-bezier(0.83, 0, 0.17, 1);
-            --gold-gradient: linear-gradient(45deg, #a67c52, #d4af37, #a67c52);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
@@ -33,16 +32,16 @@
             color: var(--text); 
             font-family: 'Montserrat', sans-serif; 
             overflow-x: hidden;
-            cursor: none; /* Custom Cursor */
+            cursor: none; 
         }
 
-        /* --- THE VOID LOADER --- */
+        /* --- THE VOID LOADER (GİRİŞ) --- */
         #void-loader {
             position: fixed; inset: 0; background: #000; z-index: 1000000;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
         }
         .void-brand { font-family: 'Noto Serif JP', serif; font-size: 3rem; letter-spacing: 25px; color: var(--accent); text-transform: uppercase; }
-        .void-line { width: 0%; height: 1px; background: var(--accent); margin-top: 40px; }
+        .void-line { width: 0%; height: 1px; background: var(--accent); margin-top: 40px; transition: 1.5s; }
 
         /* --- CUSTOM CURSOR --- */
         #cursor { width: 12px; height: 12px; background: var(--accent); position: fixed; border-radius: 50%; pointer-events: none; z-index: 10000000; mix-blend-mode: difference; }
@@ -55,7 +54,7 @@
             background: linear-gradient(to bottom, #000, transparent);
             transition: var(--transition);
         }
-        nav.scrolled { height: 70px; background: rgba(2, 2, 2, 0.95); backdrop-filter: blur(20px); }
+        nav.scrolled { height: 75px; background: rgba(2, 2, 2, 0.95); backdrop-filter: blur(20px); }
         .nav-brand { font-family: 'Noto Serif JP', serif; font-size: 1.5rem; letter-spacing: 5px; text-decoration: none; color: #fff; text-transform: uppercase; }
         .nav-cta { 
             padding: 15px 35px; border: 1px solid var(--accent); color: var(--accent); 
@@ -64,7 +63,7 @@
         }
         .nav-cta:hover { background: var(--accent); color: #000; }
 
-        /* --- THE ARCHIVE STREAM (HERO) --- */
+        /* --- THE HERO ARCHIVE (AKIŞKAN MODELLER) --- */
         #hero-archive {
             height: 100vh; width: 100%; position: relative; overflow: hidden;
             display: flex; align-items: center; justify-content: center;
@@ -74,18 +73,18 @@
             position: absolute; inset: 0; background-size: cover; background-position: center;
             opacity: 0; transform: scale(1.2); transition: opacity 2s var(--ease-in-out), transform 8s linear;
         }
-        .stream-item.active { opacity: 0.4; transform: scale(1); }
+        .stream-item.active { opacity: 0.35; transform: scale(1); }
         
         .hero-title {
             position: relative; z-index: 10; text-align: center; pointer-events: none;
         }
         .hero-title h1 { 
-            font-family: 'Cormorant Garamond', serif; font-size: 10vw; font-weight: 300; 
-            line-height: 0.85; text-transform: uppercase; letter-spacing: -2px;
+            font-family: 'Cormorant Garamond', serif; font-size: 11vw; font-weight: 300; 
+            line-height: 0.85; text-transform: uppercase; 
         }
         .hero-title span { font-size: 0.8rem; letter-spacing: 20px; color: var(--accent); display: block; margin-bottom: 20px; text-transform: uppercase; }
 
-        /* --- THE SHIFT ENGINE (DİNAMİK ATÖLYE) --- */
+        /* --- THE SHIFT ENGINE (ETKİLEŞİMLİ ATÖLYE) --- */
         #shift-engine { padding: 100px 0; background: #000; position: relative; }
         .shift-container { 
             display: grid; grid-template-columns: 1fr 1fr; height: 100vh; 
@@ -117,22 +116,22 @@
             aspect-ratio: 1; border: 1px solid #1a1a1a; cursor: pointer; 
             position: relative; overflow: hidden; transition: 0.4s;
         }
-        .dna-tile.active { border-color: var(--accent); box-shadow: 0 0 20px rgba(166, 124, 82, 0.3); }
+        .dna-tile.active { border-color: var(--accent); box-shadow: 0 0 30px rgba(166, 124, 82, 0.2); }
         .dna-tile img { width: 100%; height: 100%; object-fit: cover; opacity: 0.3; transition: 0.6s; }
         .dna-tile:hover img, .dna-tile.active img { opacity: 1; transform: scale(1.1); }
 
-        /* --- READY TO WEAR (KATALOG) --- */
+        /* --- THE MASTER CATALOG (GÖRÜNÜR SATIN ALMA AKIŞI) --- */
         #catalog { padding: 150px 5%; }
         .catalog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 60px; }
-        .catalog-item { position: relative; transition: var(--transition); background: #080808; padding: 20px; }
+        .catalog-item { position: relative; transition: var(--transition); background: #080808; padding: 25px; }
         .catalog-item:hover { transform: translateY(-20px); border: 1px solid var(--accent-dim); }
         
-        .item-img-wrap { width: 100%; aspect-ratio: 1/1; overflow: hidden; margin-bottom: 30px; position: relative; background: #000; }
+        .item-img-wrap { width: 100%; aspect-ratio: 1/1; overflow: hidden; margin-bottom: 30px; position: relative; }
         .item-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: 2s; }
         .catalog-item:hover .item-img-wrap img { transform: scale(1.1); }
         
         .item-info h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300; margin-bottom: 10px; text-transform: uppercase; }
-        .item-info p { font-size: 0.6rem; letter-spacing: 3px; color: var(--text-dim); text-transform: uppercase; margin-bottom: 25px; }
+        .item-info p { font-size: 0.6rem; letter-spacing: 3px; color: var(--text-dim); text-transform: uppercase; margin-bottom: 30px; }
 
         /* --- SİPARİŞ BUTONLARI --- */
         .order-btn {
@@ -140,7 +139,7 @@
             color: var(--accent); font-weight: 900; letter-spacing: 8px; font-size: 0.65rem;
             cursor: pointer; transition: 0.5s; text-transform: uppercase;
         }
-        .order-btn:hover { background: var(--accent); color: #000; box-shadow: 0 0 40px rgba(166,124,82,0.4); }
+        .order-btn:hover { background: var(--accent); color: #000; box-shadow: 0 0 50px rgba(166,124,82,0.4); }
 
         /* --- FOOTER --- */
         footer { padding: 150px 5%; border-top: 1px solid var(--accent-dim); display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 80px; }
@@ -168,8 +167,8 @@
     <nav id="navbar">
         <a href="#" class="nav-brand">ASİLKAN</a>
         <div style="display: flex; gap: 30px;">
-            <a href="#catalog" style="font-size: 0.6rem; letter-spacing: 3px; text-decoration: none; color: #fff; text-transform: uppercase;">Arşiv</a>
-            <a href="https://wa.me/905454388096" class="nav-cta">Randevu Al</a>
+            <a href="#catalog" style="font-size: 0.6rem; letter-spacing: 3px; text-decoration: none; color: #fff; text-transform: uppercase;">Koleksiyon</a>
+            <a href="https://wa.me/905454388096" class="nav-cta">Atölye Randevusu</a>
         </div>
     </nav>
 
@@ -177,7 +176,7 @@
         <div class="archive-stream" id="hero-stream">
             </div>
         <div class="hero-title">
-            <span data-aos="fade-up">Karaman Heritage / Singularity</span>
+            <span data-aos="fade-up">Karaman Heritage / TR</span>
             <h1 data-aos="fade-up" data-aos-delay="200">The Silent <br> Archive</h1>
         </div>
     </section>
@@ -193,10 +192,10 @@
             </div>
 
             <div class="shift-interface">
-                <span class="interface-tag">Singularity Atelier</span>
+                <span class="interface-tag">High-End Tailoring</span>
                 <h2 class="interface-title">Kürasyon <br> Laboratuvarı</h2>
                 <p style="color: #666; font-size: 0.9rem; line-height: 2; margin-bottom: 40px;">
-                    Aşağıdaki antika doku örneklerinden birini seçin. Sistem, Karaman arşivindeki ilgili materyalle eşleşen **tam boy model vizyonunu** anında sahneye getirecektir.
+                    Arşivimizden bir doku seçin. Sistem, Karaman atölyesindeki ilgili materyalle eşleşen **tam boy model vizyonunu** anında sahneye getirecektir.
                 </p>
 
                 <div class="dna-grid" id="dna-master">
@@ -204,19 +203,19 @@
 
                 <div style="padding: 30px; border-left: 2px solid var(--accent); background: rgba(166,124,82,0.05);">
                     <p id="shift-desc" style="font-size: 0.8rem; line-height: 1.8; color: #888;">
-                        Seçilen Doku: 80 yıllık kök boya antik dokuma. Karaman'ın yüksek rakımlı köylerinden küratörlerimizce toplanmıştır.
+                        Seçilen Materyal: 1940'lar Karaman dokuması. Kırmızı kök boya ve sert yün doku.
                     </p>
                 </div>
 
-                <button class="order-btn" onclick="initOrder()">Atölye Siparişi Oluştur</button>
+                <button class="order-btn" onclick="initOrder()">SİPARİŞ TALEBİ OLUŞTUR</button>
             </div>
         </div>
     </section>
 
     <section id="catalog">
-        <div style="text-align: center; margin-bottom: 100px;">
-            <span class="interface-tag">Ready-to-Wear</span>
-            <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 4rem; font-weight: 300;">Özel Koleksiyon</h2>
+        <div style="text-align: center; margin-bottom: 120px;">
+            <span class="interface-tag">Available Pieces</span>
+            <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 4rem; font-weight: 300;">Özel Arşiv</h2>
         </div>
 
         <div class="catalog-grid" id="catalog-master">
@@ -227,7 +226,7 @@
         <div class="footer-logo">ASİLKAN</div>
         <div class="footer-links">
             <h6>NAVIGATE</h6>
-            <a href="#">Arşiv</a><a href="#">Atölye</a><a href="#">Süreç</a><a href="#">Etik</a>
+            <a href="#">Arşiv</a><a href="#">Atölye</a><a href="#">Etik</a><a href="#">Süreç</a>
         </div>
         <div class="footer-links">
             <h6>CONNECT</h6>
@@ -244,10 +243,9 @@
         /**
          * ASİLKAN SINGULARITY CORE
          * ------------------------
-         * Doku değişiminde görsel akışını sağlayan ve tüm datayı yöneten ana motor.
+         * Doku değişiminde görsel akışını sağlayan ana motor.
          */
 
-        // 1. DATA DATABASE (Tüm görsellerin aktığı yer)
         const ARCHIVE_DNA = [
             { id: "A1", name: "Miras No. 01", model: "https://i.imgur.com/hAPeeeA.jpeg", texture: "https://i.imgur.com/FlNkiBA.jpeg", desc: "1940 Karaman dokuması. Kırmızı kök boya ve sert yün doku." },
             { id: "A2", name: "Ermenek Etnik", model: "https://i.imgur.com/vJCJwvC.jpeg", texture: "https://i.imgur.com/a0asIvM.jpeg", desc: "Geometrik sabır desenleri. Toprak ve kum tonlarının hakimiyeti." },
@@ -269,27 +267,26 @@
             { name: "GHOST PANT", tag: "Raw Wool", img: "https://i.imgur.com/ykwtfHk.jpeg" }
         ];
 
-        // 2. CURSOR & LOADER
+        // CURSOR & LOADER
         const cursor = document.getElementById('cursor');
         window.addEventListener('mousemove', (e) => {
             gsap.to(cursor, { x: e.clientX, y: e.clientY, duration: 0.1 });
         });
 
-        const loaderLine = document.getElementById('loader-line');
         let prog = 0;
         const interval = setInterval(() => {
             prog += 2;
-            loaderLine.style.width = prog + "%";
+            document.getElementById('loader-line').style.width = prog + "%";
             if(prog >= 100) {
                 clearInterval(interval);
                 gsap.to("#void-loader", { opacity: 0, duration: 1, onComplete: () => {
                     document.getElementById('void-loader').remove();
-                    AOS.init({ duration: 1200, once: true });
+                    AOS.init();
                 }});
             }
         }, 30);
 
-        // 3. HERO STREAM (Görsel Akışı)
+        // HERO STREAM
         const heroStream = document.getElementById('hero-stream');
         ARCHIVE_DNA.forEach((item, i) => {
             const div = document.createElement('div');
@@ -308,7 +305,7 @@
             }
         }, 4000);
 
-        // 4. SHIFT ENGINE (Atölye Görsel Değişimi)
+        // SHIFT ENGINE (DOKU DEĞİŞİMİ)
         const dnaGrid = document.getElementById('dna-master');
         ARCHIVE_DNA.forEach((dna, i) => {
             const tile = document.createElement('div');
@@ -319,18 +316,17 @@
                 tile.classList.add('active');
                 
                 const mainImg = document.getElementById('main-shift-img');
-                // Gelişmiş geçiş animasyonu
                 gsap.to(mainImg, { opacity: 0, scale: 1.1, filter: "blur(20px)", duration: 0.6, onComplete: () => {
                     mainImg.src = dna.model;
                     document.getElementById('shift-name').innerText = dna.name.toUpperCase();
-                    document.getElementById('shift-desc').innerText = "Seçilen Doku: " + dna.desc;
+                    document.getElementById('shift-desc').innerText = "Seçilen Materyal: " + dna.desc;
                     gsap.to(mainImg, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 1 });
                 }});
             };
             dnaGrid.appendChild(tile);
         });
 
-        // 5. CATALOG GENERATOR
+        // CATALOG GENERATOR
         const catalogMaster = document.getElementById('catalog-master');
         CATALOG_ITEMS.forEach(item => {
             catalogMaster.innerHTML += `
@@ -339,20 +335,19 @@
                     <div class="item-info">
                         <p>${item.tag}</p>
                         <h4>${item.name}</h4>
-                        <button class="order-btn" onclick="initOrder('${item.name}')">Talep Oluştur</button>
+                        <button class="order-btn" onclick="initOrder('${item.name}')">Sipariş Talebi</button>
                     </div>
                 </div>
             `;
         });
 
-        // 6. ORDER ENGINE
+        // ORDER ENGINE
         function initOrder(itemName = "Custom Selection") {
             const activeDNA = document.getElementById('shift-name').innerText;
             const text = `ASİLKAN SİPARİŞ TALEBİ:%0A----------------------------%0AÜrün: ${itemName}%0ASeçili Doku/DNA: ${activeDNA}%0ALokasyon: Karaman Atölye Arşivi`;
             window.open(`https://wa.me/905454388096?text=${text}`, '_blank');
         }
 
-        // Navbar Scroll Effect
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('navbar');
             if(window.scrollY > 50) nav.classList.add('scrolled');
