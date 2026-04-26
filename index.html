@@ -3,453 +3,261 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="author" content="Asilkan Custom">
-    <meta name="description" content="Asilkan Custom - High-End Antique Carpet Archive & Modern Silhouette Engineering. Karaman, Turkey.">
-    <title>ASİLKAN CUSTOM | THE INFINITY ARCHIVE V.1.0</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100&family=Noto+Serif+JP:wght@200;300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <title>ASİLKAN CUSTOM | THE ATELIER SHOP</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@100;300;500;700;900&family=Noto+Serif+JP:wght@900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
 
     <style>
-        /* ================================================================
-           1. CORE ARCHITECTURE & VARIABLES
-           ================================================================
+        /* ASİLKAN CORE CSS FRAMEWORK 
+           Bu bölüm sitenin tüm görsel matematiğini belirler.
         */
         :root {
-            --primary-gold: #b8860b;
-            --primary-gold-rgb: 184, 134, 11;
-            --deep-black: #050505;
-            --pure-white: #ffffff;
-            --silk-white: #f8f8f8;
-            --text-muted: #666666;
-            --border-alpha: rgba(184, 134, 11, 0.15);
-            --glass-bg: rgba(5, 5, 5, 0.85);
-            
-            /* Spacing Grid */
-            --space-xs: 10px;
-            --space-sm: 20px;
-            --space-md: 40px;
-            --space-lg: 80px;
-            --space-xl: 120px;
-            
-            /* Animations */
-            --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
-            --transition-main: all 0.8s var(--ease-out-expo);
-            --transition-slow: all 1.5s var(--ease-out-expo);
+            --gold: #b8860b;
+            --black: #050505;
+            --deep: #0a0a0a;
+            --white: #ffffff;
+            --accent: #1a1a1a;
+            --transition: all 0.7s cubic-bezier(0.19, 1, 0.22, 1);
         }
 
-        /* ================================================================
-           2. ADVANCED CSS RESET & GLOBAL STYLES
-           ================================================================
-        */
-        *, *::before, *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        html {
-            font-size: 16px;
-            scroll-behavior: smooth;
-            background-color: var(--deep-black);
-        }
-
-        body {
-            font-family: 'Montserrat', sans-serif;
-            color: var(--pure-white);
-            line-height: 1.6;
+        * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
+        body { 
+            background: var(--black); 
+            font-family: 'Montserrat', sans-serif; 
+            color: var(--white); 
             overflow-x: hidden;
-            cursor: none; /* Custom cursor implementation */
+            -webkit-font-smoothing: antialiased;
         }
 
-        ul { list-style: none; }
-        a { text-decoration: none; color: inherit; transition: var(--transition-main); }
-        img { max-width: 100%; height: auto; display: block; }
-        button { background: none; border: none; cursor: pointer; font-family: inherit; }
+        /* CUSTOM SCROLLBAR */
+        ::-webkit-scrollbar { width: 3px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: var(--gold); }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 4px; }
-        ::-webkit-scrollbar-track { background: var(--deep-black); }
-        ::-webkit-scrollbar-thumb { background: var(--primary-gold); }
-
-        /* ================================================================
-           3. UI COMPONENTS - CURSOR & PRELOADER
-           ================================================================
-        */
-        #master-cursor {
-            width: 10px; height: 10px; background: var(--primary-gold);
-            position: fixed; border-radius: 50%; pointer-events: none;
-            z-index: 1000000; mix-blend-mode: difference;
-        }
-
-        #master-cursor-trail {
-            width: 45px; height: 45px; border: 1px solid var(--primary-gold);
-            position: fixed; border-radius: 50%; pointer-events: none;
-            z-index: 999999; transition: transform 0.15s ease-out;
-        }
-
-        #preloader {
-            position: fixed; inset: 0; background: var(--deep-black);
-            z-index: 9999999; display: flex; flex-direction: column;
+        /* PRELOADER SYSTEM */
+        #loader {
+            position: fixed; inset: 0; background: var(--black);
+            z-index: 100000; display: flex; flex-direction: column;
             align-items: center; justify-content: center;
         }
+        .loader-bar { width: 200px; height: 1px; background: #222; margin-top: 20px; position: relative; }
+        #loader-progress { position: absolute; left: 0; top: 0; height: 100%; width: 0; background: var(--gold); }
 
-        .preloader-brand {
-            font-family: 'Noto Serif JP', serif;
-            font-size: 2.5rem; letter-spacing: 15px;
-            color: var(--primary-gold); margin-bottom: 30px;
-            text-transform: uppercase; opacity: 0;
-            animation: fadeInOut 3s infinite;
-        }
-
-        @keyframes fadeInOut {
-            0%, 100% { opacity: 0.2; }
-            50% { opacity: 1; }
-        }
-
-        .progress-container { width: 250px; height: 1px; background: rgba(255,255,255,0.05); overflow: hidden; }
-        #progress-bar { width: 0%; height: 100%; background: var(--primary-gold); transition: 0.4s; }
-
-        /* ================================================================
-           4. NAVIGATION ARCHITECTURE
-           ================================================================
-        */
+        /* HEADER & NAVIGATION */
         nav {
-            position: fixed; top: 0; width: 100%; height: 120px;
+            position: fixed; top: 0; width: 100%; height: 100px;
             display: flex; align-items: center; justify-content: space-between;
-            padding: 0 5%; z-index: 10000; transition: var(--transition-main);
+            padding: 0 5%; z-index: 10000; transition: var(--transition);
         }
-
-        nav.sticky {
-            height: 90px; background: var(--glass-bg);
-            backdrop-filter: blur(15px); border-bottom: 1px solid var(--border-alpha);
-        }
-
-        .logo-wrap { display: flex; align-items: center; gap: 15px; }
-        .logo-wrap img { height: 70px; transition: var(--transition-main); }
-        nav.sticky .logo-wrap img { height: 50px; }
-        .logo-text { font-family: 'Noto Serif JP', serif; font-size: 1.6rem; letter-spacing: 5px; font-weight: 900; }
-
-        .nav-links { display: flex; gap: 40px; }
-        .nav-link { 
-            font-size: 0.75rem; letter-spacing: 3px; font-weight: 600;
-            text-transform: uppercase; color: rgba(255,255,255,0.6);
-        }
-        .nav-link:hover { color: var(--primary-gold); }
-
-        /* ================================================================
-           5. HERO CINEMATICS (TRIPLE IMAGE CROSS-FADE)
-           ================================================================
-        */
-        #hero-cinematic {
-            height: 100vh; width: 100%; position: relative;
-            background: #000; overflow: hidden;
-            display: flex; align-items: center;
-        }
-
-        .hero-slide {
-            position: absolute; inset: 0; opacity: 0;
-            background-size: cover; background-position: center;
-            transition: opacity 2s ease-in-out, transform 10s linear;
-            transform: scale(1.1);
-        }
-
-        .hero-slide.active { opacity: 0.5; transform: scale(1); }
-
-        .hero-overlay {
-            position: absolute; inset: 0;
-            background: linear-gradient(to right, var(--deep-black) 25%, transparent);
-            z-index: 5;
-        }
-
-        .hero-content {
-            position: relative; z-index: 10; padding: 0 8%; max-width: 900px;
-        }
-
-        .hero-content span {
-            font-size: 0.8rem; letter-spacing: 12px; color: var(--primary-gold);
-            text-transform: uppercase; margin-bottom: 30px; display: block;
-        }
-
-        .hero-content h1 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 8vw; line-height: 0.85; font-weight: 300;
-            margin-bottom: 50px;
-        }
-
-        .btn-discover {
-            padding: 25px 60px; border: 1px solid var(--primary-gold);
-            color: var(--pure-white); font-size: 0.7rem; letter-spacing: 5px;
-            font-weight: 700; transition: var(--transition-main);
-            position: relative; overflow: hidden;
-        }
-
-        .btn-discover:hover { background: var(--primary-gold); color: #000; }
-
-        /* ================================================================
-           6. ARCHIVE & CURATION ENGINE (TECHNICAL BLOCK)
-           ================================================================
-        */
-        #archive-engine { padding: 180px 0; background: var(--deep-black); }
-
-        .engine-container {
-            max-width: 1800px; margin: 0 auto;
-            display: grid; grid-template-columns: 1.2fr 0.8fr;
-            gap: 2px; background: var(--border-alpha);
-        }
-
-        .visual-side {
-            position: relative; height: 1000px; background: #000;
-            display: flex; align-items: center; justify-content: center;
-            overflow: hidden;
-        }
-
-        .visual-side .main-model { height: 95%; z-index: 1; filter: contrast(1.1); }
-
-        #texture-mask-layer {
-            position: absolute; inset: 0; z-index: 2;
-            mix-blend-mode: multiply; opacity: 0.85;
-            mask-image: url('https://i.imgur.com/uRovA7x.png');
-            -webkit-mask-image: url('https://i.imgur.com/uRovA7x.png');
-            -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat; -webkit-mask-position: center;
-            background-size: cover; transition: var(--transition-slow);
-        }
-
-        .control-side {
-            background: #080808; padding: 100px;
-            display: flex; flex-direction: column;
-        }
-
-        .control-header h2 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 4rem; font-weight: 300; margin-bottom: 20px;
-        }
-
-        .texture-selector-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr);
-            gap: 15px; margin-top: 60px;
-        }
-
-        .texture-tile {
-            aspect-ratio: 1; background: #111; cursor: pointer;
-            border: 1px solid transparent; transition: var(--transition-main);
-            overflow: hidden; position: relative;
-        }
-
-        .texture-tile.active { border-color: var(--primary-gold); }
-        .texture-tile img { width: 100%; height: 100%; object-fit: cover; opacity: 0.4; }
-        .texture-tile:hover img, .texture-tile.active img { opacity: 1; transform: scale(1.1); }
-
-        .analysis-box {
-            margin-top: auto; padding: 50px; background: #0c0c0c;
-            border-left: 3px solid var(--primary-gold);
-        }
-
-        .analysis-box h4 { font-size: 0.8rem; letter-spacing: 5px; color: var(--primary-gold); margin-bottom: 15px; }
-        .analysis-box p { font-size: 0.85rem; color: #555; line-height: 1.8; }
-
-        /* ================================================================
-           7. PHILOSOPHY & STORYTELLING
-           ================================================================
-        */
-        .story-section { padding: 220px 10%; background: var(--pure-white); color: var(--deep-black); }
-        .story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 150px; align-items: flex-start; }
+        nav.scrolled { background: rgba(5,5,5,0.95); height: 80px; border-bottom: 1px solid #1a1a1a; backdrop-filter: blur(10px); }
         
-        .story-text h3 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 5.5rem; line-height: 0.9; margin-bottom: 50px;
+        .logo { display: flex; align-items: center; gap: 15px; }
+        .logo img { height: 60px; transition: 0.5s; }
+        nav.scrolled .logo img { height: 45px; }
+        .logo span { font-family: 'Noto Serif JP', serif; font-size: 1.5rem; letter-spacing: 4px; }
+
+        .nav-links { display: flex; gap: 35px; list-style: none; }
+        .nav-links a { 
+            text-decoration: none; color: #888; font-size: 0.7rem; 
+            letter-spacing: 3px; font-weight: 700; text-transform: uppercase;
+            transition: 0.3s;
+        }
+        .nav-links a:hover { color: var(--gold); }
+
+        .cart-trigger { position: relative; cursor: pointer; }
+        .cart-count { 
+            position: absolute; -top: 10px; -right: 15px; 
+            background: var(--gold); color: #000; font-size: 0.6rem;
+            width: 16px; height: 16px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; font-weight: 900;
         }
 
-        .story-text p { font-size: 1.25rem; line-height: 2.2; font-weight: 300; color: #333; margin-bottom: 40px; }
-        .story-text b { font-weight: 800; color: #000; }
+        /* SHOPPING CART OVERLAY */
+        #cart-sidebar {
+            position: fixed; top: 0; right: -400px; width: 400px; height: 100vh;
+            background: #0d0d0d; z-index: 20000; padding: 50px;
+            transition: var(--transition); border-left: 1px solid #1a1a1a;
+        }
+        #cart-sidebar.open { right: 0; }
+        .cart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
+        .cart-items { height: 60vh; overflow-y: auto; }
+        .cart-item { display: flex; gap: 20px; margin-bottom: 25px; border-bottom: 1px solid #1a1a1a; padding-bottom: 15px; }
+        .cart-item img { width: 70px; height: 90px; object-fit: cover; }
+        .cart-total { margin-top: 30px; border-top: 1px solid var(--gold); padding-top: 20px; }
 
-        .story-image-stack { position: relative; }
-        .main-stack-img { width: 90%; box-shadow: 60px 60px 0 var(--silk-white); }
-        .sub-stack-img { position: absolute; bottom: -10%; right: 0; width: 55%; border: 20px solid var(--pure-white); }
+        /* HERO CINEMATICS */
+        #hero { height: 100vh; width: 100%; position: relative; display: flex; align-items: center; overflow: hidden; }
+        .hero-slide { 
+            position: absolute; inset: 0; background-size: cover; background-position: center;
+            opacity: 0; transition: 2s; transform: scale(1.1);
+        }
+        .hero-slide.active { opacity: 0.4; transform: scale(1); }
+        .hero-content { position: relative; z-index: 5; padding-left: 10%; }
+        .hero-content h1 { font-family: 'Cormorant Garamond', serif; font-size: 7vw; line-height: 1; margin: 20px 0; }
+        .hero-content span { color: var(--gold); letter-spacing: 10px; font-weight: 700; font-size: 0.8rem; }
 
-        /* ================================================================
-           8. WORKSHOP DATABASE (TECHNICAL DEPTH)
-           ================================================================
-        */
-        #workshop-logs { padding: 150px 10%; background: var(--deep-black); }
-        .log-table { width: 100%; border-collapse: collapse; margin-top: 80px; }
-        .log-table th { text-align: left; padding: 30px; border-bottom: 1px solid rgba(255,255,255,0.05); color: var(--primary-gold); letter-spacing: 5px; font-size: 0.7rem; }
-        .log-table td { padding: 40px 30px; border-bottom: 1px solid rgba(255,255,255,0.02); font-size: 0.8rem; color: #555; }
-        .log-table tr:hover td { color: #fff; background: rgba(255,255,255,0.01); }
-
-        /* ================================================================
-           9. FOOTER DESIGN SYSTEM
-           ================================================================
-        */
-        footer { padding: 200px 10% 80px; background: #000; border-top: 1px solid var(--border-alpha); }
-        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 100px; }
-        .f-brand h2 { font-family: 'Noto Serif JP', serif; font-size: 3rem; color: var(--primary-gold); letter-spacing: 12px; }
-        .f-links h5 { font-size: 0.8rem; letter-spacing: 6px; margin-bottom: 40px; }
-        .f-links a { display: block; color: #444; margin-bottom: 20px; font-size: 0.9rem; transition: var(--transition-main); }
-        .f-links a:hover { color: var(--primary-gold); transform: translateX(15px); }
-
-        /* ================================================================
-           10. ADVANCED RESPONSIVE GRID
-           ================================================================
-        */
-        @media (max-width: 1400px) {
-            .control-side { padding: 60px; }
-            .engine-container { grid-template-columns: 1fr; }
-            .visual-side { height: 700px; }
+        /* ATELIER STYLING ENGINE (INTERAKTIF MODÜL) */
+        #atelier-engine { padding: 120px 5%; background: #000; }
+        .engine-wrapper { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 50px; align-items: start; }
+        
+        .preview-box { position: relative; height: 850px; background: #080808; border: 1px solid #111; overflow: hidden; display: flex; justify-content: center; align-items: center; }
+        .model-img { height: 90%; z-index: 1; }
+        #texture-overlay {
+            position: absolute; inset: 0; z-index: 2; mix-blend-mode: multiply; opacity: 0.85;
+            mask-image: url('https://i.imgur.com/uRovA7x.png'); -webkit-mask-image: url('https://i.imgur.com/uRovA7x.png');
+            -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat; -webkit-mask-position: center;
+            background-size: cover; transition: 1s ease-in-out;
         }
 
-        @media (max-width: 1024px) {
-            .story-grid, .footer-grid { grid-template-columns: 1fr; gap: 80px; }
-            .hero-content h1 { font-size: 15vw; }
-            nav { height: 90px; }
-            .nav-links { display: none; }
-        }
+        .config-panel { background: #0d0d0d; padding: 60px; border: 1px solid #1a1a1a; }
+        .tex-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 30px 0; }
+        .tex-item { aspect-ratio: 1; cursor: pointer; border: 1px solid transparent; transition: 0.3s; position: relative; }
+        .tex-item.active { border-color: var(--gold); }
+        .tex-item img { width: 100%; height: 100%; object-fit: cover; opacity: 0.4; }
+        .tex-item:hover img, .tex-item.active img { opacity: 1; }
 
-        /* ================================================================
-           11. ADDITIONAL DECORATIVE CSS (FOR SATIR SAYISI & DETAIL)
-           ================================================================
-        */
-        .gold-line { width: 100px; height: 1px; background: var(--primary-gold); margin: 30px 0; }
-        .section-tag { font-size: 0.6rem; letter-spacing: 10px; color: var(--primary-gold); text-transform: uppercase; margin-bottom: 20px; display: block; }
-        .parallax-text { position: absolute; font-size: 20vw; color: rgba(255,255,255,0.02); font-family: 'Noto Serif JP', serif; z-index: 0; pointer-events: none; }
+        /* PRODUCT CATALOG */
+        #shop { padding: 120px 5%; }
+        .section-title { font-family: 'Cormorant Garamond', serif; font-size: 4rem; text-align: center; margin-bottom: 80px; }
+        .product-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; }
+        .product-card { background: #0d0d0d; padding: 20px; transition: 0.5s; border: 1px solid #111; position: relative; overflow: hidden; }
+        .product-card:hover { border-color: var(--gold); transform: translateY(-10px); }
+        .product-card img { width: 100%; aspect-ratio: 3/4; object-fit: cover; margin-bottom: 20px; }
+        .product-card h3 { font-size: 0.8rem; letter-spacing: 2px; margin-bottom: 10px; }
+        .product-card .price { color: var(--gold); font-weight: 700; }
+        .add-to-cart-btn { 
+            width: 100%; padding: 15px; margin-top: 20px; 
+            background: transparent; border: 1px solid #222; 
+            color: #fff; font-size: 0.7rem; font-weight: 700;
+            letter-spacing: 2px; cursor: pointer; transition: 0.3s;
+        }
+        .add-to-cart-btn:hover { background: var(--gold); color: #000; border-color: var(--gold); }
+
+        /* FOOTER */
+        footer { padding: 100px 5%; background: #050505; border-top: 1px solid #111; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 50px; }
+        footer h5 { font-size: 0.7rem; letter-spacing: 4px; margin-bottom: 30px; color: var(--gold); }
+        footer a { display: block; color: #444; text-decoration: none; margin-bottom: 15px; font-size: 0.8rem; transition: 0.3s; }
+        footer a:hover { color: var(--gold); padding-left: 10px; }
+
+        /* RESPONSIVE */
+        @media (max-width: 1200px) {
+            .product-grid { grid-template-columns: repeat(2, 1fr); }
+            .engine-wrapper { grid-template-columns: 1fr; }
+            #cart-sidebar { width: 100%; right: -100%; }
+        }
     </style>
 </head>
 <body>
 
-    <div id="master-cursor"></div>
-    <div id="master-cursor-trail"></div>
+    <div id="loader">
+        <h2 style="font-family: 'Noto Serif JP', serif; letter-spacing: 15px;">ASİLKAN</h2>
+        <div class="loader-bar"><div id="loader-progress"></div></div>
+    </div>
 
-    <div id="preloader">
-        <div class="preloader-brand">ASİLKAN CUSTOM</div>
-        <div class="progress-container">
-            <div id="progress-bar"></div>
+    <div id="cart-sidebar">
+        <div class="cart-header">
+            <h3>SEPETİNİZ</h3>
+            <i class="fas fa-times" onclick="toggleCart()" style="cursor: pointer;"></i>
+        </div>
+        <div class="cart-items" id="cart-list">
+            <p style="color: #333; text-align: center; margin-top: 50px;">Sepetiniz henüz boş.</p>
+        </div>
+        <div class="cart-total">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
+                <span>TOPLAM:</span>
+                <span id="total-amount">0.00 TL</span>
+            </div>
+            <button class="add-to-cart-btn" style="background: var(--gold); color: #000;" onclick="checkout()">ÖDEMEYE GEÇ</button>
         </div>
     </div>
 
-    <nav id="master-nav">
-        <a href="#" class="logo-wrap">
-            <img src="https://i.imgur.com/14VgsWh.png" alt="Asilkan Logo">
-            <span class="logo-text">ASİLKAN</span>
+    <nav id="navbar">
+        <a href="#" class="logo">
+            <img src="https://i.imgur.com/14VgsWh.png" alt="Logo">
+            <span>ASİLKAN</span>
         </a>
         <ul class="nav-links">
-            <li><a href="#hero" class="nav-link">Arşiv</a></li>
-            <li><a href="#archive-engine" class="nav-link">Kürasyon</a></li>
-            <li><a href="#story" class="nav-link">Miras</a></li>
-            <li><a href="#workshop-logs" class="nav-link">Database</a></li>
-            <li><a href="https://wa.me/905454388096" class="nav-link">Contact</a></li>
+            <li><a href="#hero">Ana Sayfa</a></li>
+            <li><a href="#atelier-engine">Atölye</a></li>
+            <li><a href="#shop">Koleksiyon</a></li>
+            <li><a href="https://wa.me/905454388096">Özel Dikim</a></li>
         </ul>
+        <div class="cart-trigger" onclick="toggleCart()">
+            <i class="fas fa-shopping-bag" style="font-size: 1.2rem;"></i>
+            <span class="cart-count" id="cart-counter">0</span>
+        </div>
     </nav>
 
-    <section id="hero-cinematic">
+    <section id="hero">
         <div class="hero-slide active" style="background-image: url('https://i.imgur.com/hAPeeeA.jpeg');"></div>
         <div class="hero-slide" style="background-image: url('https://i.imgur.com/2liV16Z.jpeg');"></div>
         <div class="hero-slide" style="background-image: url('https://i.imgur.com/4JdKq1t.jpeg');"></div>
         
-        <div class="hero-overlay"></div>
-        
         <div class="hero-content">
-            <span data-aos="fade-up">ANTIQUE ARCHIVE NO. 001 / KARAMAN</span>
-            <h1 data-aos="fade-up" data-aos-delay="200">The Silent <br> Soul of <br> Heritage.</h1>
-            <div class="gold-line" data-aos="fade-up" data-aos-delay="400"></div>
-            <button class="btn-discover" data-aos="fade-up" data-aos-delay="600" onclick="scrollToArchive()">EXPLORE THE ARCHIVE</button>
+            <span data-aos="fade-up">KARAMAN ATELIER CUSTOMS</span>
+            <h1 data-aos="fade-up" data-aos-delay="200">The Modern <br> Antique <br> Identity.</h1>
+            <p data-aos="fade-up" data-aos-delay="400" style="max-width: 500px; color: #888; font-size: 0.9rem; margin-bottom: 40px;">
+                Antika Anadolu dokularını, modern terzilik sanatı ile birleştiriyoruz. Her parça tek, her dikiş bir hikaye.
+            </p>
+            <button class="add-to-cart-btn" style="width: auto; padding: 20px 50px;" onclick="location.href='#shop'">KOLEKSİYONU GÖR</button>
         </div>
     </section>
 
-    <section id="archive-engine">
-        <div style="text-align: center; margin-bottom: 100px;">
-            <span class="section-tag">ENGINEERING</span>
-            <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 4rem; font-weight: 300;">Kürasyon Paneli</h2>
-        </div>
-
-        <div class="engine-container">
-            <div class="visual-side">
-                <div class="parallax-text">ARCHIVE</div>
-                <img src="https://i.imgur.com/hAPeeeA.jpeg" class="main-model" alt="Featured Model">
-                <div id="texture-mask-layer"></div>
+    <section id="atelier-engine">
+        <div class="section-title">STİL ATÖLYESİ</div>
+        <div class="engine-wrapper">
+            <div class="preview-box">
+                <img src="https://i.imgur.com/hAPeeeA.jpeg" class="model-img" id="main-atelier-model">
+                <div id="texture-overlay"></div>
             </div>
+            <div class="config-panel">
+                <span style="color: var(--gold); letter-spacing: 5px; font-size: 0.7rem;">KİŞİSELLEŞTİRME</span>
+                <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 3rem; margin: 15px 0;">Doku Seçimi</h2>
+                <p style="color: #555; font-size: 0.85rem; line-height: 1.8;">
+                    Arşivimizden seçilen antika halı ve kilim desenlerini ceketinize veya pantolonunuza dijital olarak uygulayın.
+                </p>
 
-            <div class="control-side">
-                <div class="control-header">
-                    <span class="section-tag">SELECTION</span>
-                    <h2>Antika Arşivi</h2>
-                    <p style="color: #444; font-size: 0.9rem;">Karaman'ın derinliklerinden toplanan, en az 60 yıllık geçmişe sahip dokular arasından bir seçim yapın.</p>
-                </div>
-
-                <div class="texture-selector-grid" id="master-grid">
+                <div class="tex-grid" id="texture-options">
                     </div>
 
-                <div class="analysis-box">
-                    <h4 id="active-tex-title">KIZIL MİRAS</h4>
-                    <p id="active-tex-desc">Bu parça, 1940'lı yıllardan kalma bir İç Anadolu dokumasıdır. Doğal kök boya kullanılmış, geometrik motifleri koruma altına alınmıştır.</p>
+                <div style="margin-top: 50px; padding: 30px; background: #080808; border-left: 2px solid var(--gold);">
+                    <h4 id="selected-tex-name" style="letter-spacing: 3px;">KIZIL MİRAS</h4>
+                    <p id="selected-tex-info" style="font-size: 0.75rem; color: #444; margin-top: 10px;">1940'lar İç Anadolu kök boya dokuma.</p>
                 </div>
 
-                <button class="btn-discover" style="margin-top: 40px; width: 100%; background: var(--primary-gold); color: #000;" onclick="initVIPRequest()">
-                    VIP SİPARİŞ OLUŞTUR
-                </button>
+                <button class="add-to-cart-btn" style="background: var(--gold); color: #000; margin-top: 40px;" onclick="addAtelierToCart()">BU TASARIMI SEPETE EKLE</button>
             </div>
         </div>
     </section>
 
-    <section class="story-section" id="story">
-        <div class="story-grid">
-            <div class="story-text" data-aos="fade-right">
-                <span class="section-tag">HERITAGE</span>
-                <h3>Tozlu <br> Sokakların <br> Asaleti</h3>
-                <p>Dünya modasının ışıltılı podyumları, Karaman'ın <b>kerpiç evli</b> ara sokaklarındaki bu sessiz zanaattan doğdu. Biz, bir terzi dükkanı değil; Anadolu'nun unutulmuş <b>kodlarını</b> çözen birer arşivciyiz.</p>
-                <p>Her bir doku, bir insanın ömrünü, bir ailenin hikayesini taşır. Biz bu hikayeyi modern bir zırha dönüştürüp dünyaya sunuyoruz.</p>
-                <div class="gold-line"></div>
+    <section id="shop">
+        <div class="section-title">HAZIR GİYİM</div>
+        <div class="product-grid" id="product-container">
             </div>
-            <div class="story-image-stack" data-aos="fade-left">
-                <img src="https://i.imgur.com/vJCJwvC.jpeg" class="main-stack-img" alt="Workshop">
-                <img src="https://i.imgur.com/FlNkiBA.jpeg" class="sub-stack-img" alt="Texture Detail">
-            </div>
-        </div>
-    </section>
-
-    <section id="workshop-logs">
-        <span class="section-tag" style="text-align: center; display: block;">TECHNICAL RECORDS</span>
-        <h2 style="text-align: center; font-family: 'Cormorant Garamond', serif; font-size: 4rem; font-weight: 300;">Arşiv Kayıtları</h2>
-        
-        <table class="log-table" data-aos="fade-up">
-            <thead>
-                <tr>
-                    <th>SERIAL NO</th>
-                    <th>MATERIAL TYPE</th>
-                    <th>ORIGIN</th>
-                    <th>AGE ESTIMATE</th>
-                    <th>STATUS</th>
-                </tr>
-            </thead>
-            <tbody id="log-body">
-                </tbody>
-        </table>
     </section>
 
     <footer>
-        <div class="footer-grid">
-            <div class="f-brand">
-                <h2>ASİLKAN</h2>
-                <p>The definitive intersection of Anatolian antique archives and modern silhouette engineering. Handcrafted in Karaman, TR.</p>
-            </div>
-            <div class="f-links">
-                <h5>BÖLÜMLER</h5>
-                <a href="#">Koleksiyonlar</a><a href="#">Özel Arşiv</a><a href="#">Kürasyon</a>
-            </div>
-            <div class="f-links">
-                <h5>KURUMSAL</h5>
-                <a href="#">Gizlilik</a><a href="#">Sertifikalar</a><a href="#">Lojistik</a>
-            </div>
-            <div class="f-links">
-                <h5>İLETİŞİM</h5>
-                <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
-                <a href="#"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-                <p style="font-size: 0.6rem; color: #222; margin-top: 60px;">© 2026 ASİLKAN CUSTOM ATELIER. ALL RIGHTS RESERVED.</p>
-            </div>
+        <div>
+            <h2 style="font-family: 'Noto Serif JP', serif; letter-spacing: 8px;">ASİLKAN</h2>
+            <p style="margin-top: 20px; color: #333; font-size: 0.8rem; line-height: 2;">
+                Karaman merkezli atölyemizde, geçmişin tozlu raflarındaki antika dokuları modern moda dünyasına kazandırıyoruz.
+            </p>
+        </div>
+        <div>
+            <h5>MAĞAZA</h5>
+            <a href="#">Ceketler</a><a href="#">Pantolonlar</a><a href="#">Aksesuarlar</a>
+        </div>
+        <div>
+            <h5>DESTEK</h5>
+            <a href="#">Ölçü Tablosu</a><a href="#">Lojistik</a><a href="#">İade Koşulları</a>
+        </div>
+        <div>
+            <h5>İLETİŞİM</h5>
+            <a href="https://instagram.com/asilkancustom"><i class="fab fa-instagram"></i> Instagram</a>
+            <a href="https://wa.me/905454388096"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+            <p style="font-size: 0.6rem; color: #111; margin-top: 50px;">© 2026 ASİLKAN CUSTOM. TÜM HAKLARI SAKLIDIR.</p>
         </div>
     </footer>
 
@@ -458,112 +266,165 @@
 
     <script>
         /**
-         * ================================================================
-         * ASİLKAN CORE ENGINE V1.0
-         * ================================================================
+         * ASİLKAN ENTERPRISE COMMERCE CORE
+         * Sitenin tüm alışveriş, stil motoru ve animasyon mantığı.
          */
 
-        // 1. DATA REPOSITORY (Satır sayısını ve veri derinliğini artıran ana blok)
-        const ARCHIVE_DATA = [
-            { id: "ASL-01", name: "Kızıl Miras", origin: "Karaman Merke", age: "80 Yıl", desc: "1940'lar kök boya yün dokuma. Karaman motiflerinin en saf hali.", url: "https://i.imgur.com/FlNkiBA.jpeg" },
-            { id: "ASL-02", name: "Toprak Etnik", origin: "Ermenek", age: "65 Yıl", desc: "Toprak tonlarının hakim olduğu, geometrik sabır sembolleri.", url: "https://i.imgur.com/a0asIvM.jpeg" },
-            { id: "ASL-03", name: "Altın Vadi", origin: "İç Anadolu", age: "55 Yıl", desc: "Hasat zamanı renklerini taşıyan, yüksek kaliteli nadide parça.", url: "https://i.imgur.com/j3AV7k2.jpeg" },
-            { id: "ASL-04", name: "Geometrik Zen", origin: "Konya-Karaman", age: "70 Yıl", desc: "Minimalist Anadolu çizgileri. Modern tasarıma en uygun doku.", url: "https://i.imgur.com/14sC9n8.jpeg" },
-            { id: "ASL-05", name: "Uşak Mavisi", origin: "Batı Anadolu", age: "90 Yıl", desc: "Kök boya mavisinin zamansız asaletini taşıyan antik kilim.", url: "https://i.imgur.com/q31WvP8.jpeg" },
-            { id: "ASL-06", name: "Anadolu Gülü", origin: "Toroslar", age: "60 Yıl", desc: "El işlemeli çiçek motiflerinin halı üzerindeki sert yorumu.", url: "https://i.imgur.com/2liV16Z.jpeg" }
+        // 1. DATA DATABASE
+        const TEXTURE_DB = [
+            { id: 'T1', name: 'Kızıl Miras', info: '1940 Karaman El Dokuması', url: 'https://i.imgur.com/FlNkiBA.jpeg', price: 12500 },
+            { id: 'T2', name: 'Ermenek Etnik', info: 'Geometrik Sabır Motifleri', url: 'https://i.imgur.com/a0asIvM.jpeg', price: 14200 },
+            { id: 'T3', name: 'Altın Vadi', info: 'Hasat Zamanı Kök Boya', url: 'https://i.imgur.com/j3AV7k2.jpeg', price: 11800 },
+            { id: 'T4', name: 'Anadolu Mavi', info: 'Uşak Antika Serisi', url: 'https://i.imgur.com/q31WvP8.jpeg', price: 15500 },
+            { id: 'T5', name: 'Toprak Form', origin: 'Toroslar Dokuması', url: 'https://i.imgur.com/14sC9n8.jpeg', price: 10900 },
+            { id: 'T6', name: 'Saray Gülü', info: 'Nakışlı Antika Kilim', url: 'https://i.imgur.com/2liV16Z.jpeg', price: 19000 }
         ];
 
-        // 2. PRELOADER & PROGRESS SYSTEM
-        let currentProgress = 0;
-        const progressInterval = setInterval(() => {
-            currentProgress += Math.floor(Math.random() * 15) + 1;
-            if(currentProgress >= 100) {
-                currentProgress = 100;
-                clearInterval(progressInterval);
-                setTimeout(() => {
-                    gsap.to("#preloader", { y: "-100%", duration: 1.5, ease: "expo.inOut" });
-                }, 500);
+        const PRODUCTS_DB = [
+            { id: 'P1', name: 'NOMAD OVERSIZED JACKET', price: 18500, img: 'https://i.imgur.com/vJCJwvC.jpeg' },
+            { id: 'P2', name: 'ANTIQUE PATTERN TROUSERS', price: 9200, img: 'https://i.imgur.com/FlNkiBA.jpeg' },
+            { id: 'P3', name: 'KARAMAN WOOL BLAZER', price: 22000, img: 'https://i.imgur.com/hAPeeeA.jpeg' },
+            { id: 'P4', name: 'ETHNIC DETAIL SHIRT', price: 6500, img: 'https://i.imgur.com/2liV16Z.jpeg' },
+            { id: 'P5', name: 'HERITAGE BOMBER', price: 16800, img: 'https://i.imgur.com/4JdKq1t.jpeg' },
+            { id: 'P6', name: 'DESERT SUIT SET', price: 34000, img: 'https://i.imgur.com/vJCJwvC.jpeg' },
+            { id: 'P7', name: 'CUSTOM VEST NO.01', price: 7800, img: 'https://i.imgur.com/hAPeeeA.jpeg' },
+            { id: 'P8', name: 'ARCHIVE TOTE BAG', price: 3200, img: 'https://i.imgur.com/j3AV7k2.jpeg' }
+        ];
+
+        let cart = [];
+        let selectedTexture = TEXTURE_DB[0];
+
+        // 2. LOADER
+        let loadVal = 0;
+        const loadInt = setInterval(() => {
+            loadVal += Math.random() * 20;
+            if(loadVal >= 100) {
+                loadVal = 100;
+                clearInterval(loadInt);
+                gsap.to("#loader", { y: "-100%", duration: 1.2, ease: "expo.inOut" });
             }
-            document.getElementById('progress-bar').style.width = currentProgress + "%";
+            document.getElementById('loader-progress').style.width = loadVal + "%";
         }, 100);
 
-        // 3. CUSTOM CURSOR TRACKING
-        const cursorMain = document.getElementById('master-cursor');
-        const cursorTrail = document.getElementById('master-cursor-trail');
-        window.addEventListener('mousemove', (e) => {
-            gsap.to(cursorMain, { x: e.clientX, y: e.clientY, duration: 0.1 });
-            gsap.to(cursorTrail, { x: e.clientX - 22, y: e.clientY - 22, duration: 0.35 });
-        });
-
-        // 4. HERO SLIDESHOW SYSTEM
-        let currentSlide = 0;
+        // 3. HERO SLIDER
+        let sIdx = 0;
         const slides = document.querySelectorAll('.hero-slide');
-        function rotateHero() {
-            slides[currentSlide].classList.remove('active');
-            currentSlide = (currentSlide + 1) % slides.length;
-            slides[currentSlide].classList.add('active');
-        }
-        setInterval(rotateHero, 5000);
+        setInterval(() => {
+            slides[sIdx].classList.remove('active');
+            sIdx = (sIdx + 1) % slides.length;
+            slides[sIdx].classList.add('active');
+        }, 5000);
 
-        // 5. ARCHIVE GRID GENERATOR
-        const grid = document.getElementById('master-grid');
-        ARCHIVE_DATA.forEach((item, index) => {
-            const tile = document.createElement('div');
-            tile.className = `texture-tile ${index === 0 ? 'active' : ''}`;
-            tile.innerHTML = `<img src="${item.url}" alt="${item.name}">`;
-            tile.onclick = () => selectArchiveItem(item, tile);
-            grid.appendChild(tile);
+        // 4. ATELIER ENGINE INITIALIZATION
+        const texGrid = document.getElementById('texture-options');
+        TEXTURE_DB.forEach((tex, i) => {
+            const div = document.createElement('div');
+            div.className = `tex-item ${i === 0 ? 'active' : ''}`;
+            div.innerHTML = `<img src="${tex.url}">`;
+            div.onclick = () => {
+                document.querySelectorAll('.tex-item').forEach(el => el.classList.remove('active'));
+                div.classList.add('active');
+                selectedTexture = tex;
+                updateAtelier();
+            };
+            texGrid.appendChild(div);
         });
 
-        function selectArchiveItem(data, element) {
-            document.querySelectorAll('.texture-tile').forEach(t => t.classList.remove('active'));
-            element.classList.add('active');
-            
-            document.getElementById('active-tex-title').innerText = data.name.toUpperCase();
-            document.getElementById('active-tex-desc').innerText = data.desc;
-
-            const layer = document.getElementById('texture-mask-layer');
-            gsap.to(layer, { opacity: 0, duration: 0.4, onComplete: () => {
-                layer.style.backgroundImage = `url('${data.url}')`;
-                gsap.to(layer, { opacity: 0.85, duration: 1 });
+        function updateAtelier() {
+            document.getElementById('selected-tex-name').innerText = selectedTexture.name.toUpperCase();
+            document.getElementById('selected-tex-info').innerText = selectedTexture.info;
+            const overlay = document.getElementById('texture-overlay');
+            gsap.to(overlay, { opacity: 0, duration: 0.3, onComplete: () => {
+                overlay.style.backgroundImage = `url('${selectedTexture.url}')`;
+                gsap.to(overlay, { opacity: 0.85, duration: 0.7 });
             }});
         }
 
-        // 6. DATABASE LOG GENERATOR
-        const logBody = document.getElementById('log-body');
-        ARCHIVE_DATA.forEach(item => {
-            const row = `<tr>
-                <td>#${item.id}</td>
-                <td>${item.name}</td>
-                <td>${item.origin}</td>
-                <td>${item.age}</td>
-                <td style="color: var(--primary-gold)">AVAILABLE</td>
-            </tr>`;
-            logBody.innerHTML += row;
+        // 5. SHOP CATALOG INITIALIZATION
+        const shopGrid = document.getElementById('product-container');
+        PRODUCTS_DB.forEach(prod => {
+            const card = `
+                <div class="product-card" data-aos="fade-up">
+                    <img src="${prod.img}" alt="${prod.name}">
+                    <h3>${prod.name}</h3>
+                    <div class="price">${prod.price.toLocaleString('tr-TR')} TL</div>
+                    <button class="add-to-cart-btn" onclick="addToCart('${prod.id}')">SEPETE EKLE</button>
+                </div>
+            `;
+            shopGrid.innerHTML += card;
         });
 
-        // 7. SCROLL OBSERVERS
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('master-nav');
-            if(window.scrollY > 100) nav.classList.add('sticky');
-            else nav.classList.remove('sticky');
-        });
-
-        // 8. UTILITY FUNCTIONS
-        function scrollToArchive() {
-            document.getElementById('archive-engine').scrollIntoView({ behavior: 'smooth' });
+        // 6. CART SYSTEM
+        function toggleCart() {
+            document.getElementById('cart-sidebar').classList.toggle('open');
         }
 
-        function initVIPRequest() {
-            const title = document.getElementById('active-tex-title').innerText;
-            const msg = `Asilkan Infinity Archive Request:%0A-----------------------------%0ASelected Material: ${title}%0ALocation: Karaman Atelier%0AStatus: Verification Required.`;
-            window.open(`https://wa.me/905454388096?text=${msg}`, '_blank');
+        function addToCart(id) {
+            const product = PRODUCTS_DB.find(p => p.id === id);
+            cart.push(product);
+            updateCartUI();
+            if(!document.getElementById('cart-sidebar').classList.contains('open')) toggleCart();
         }
 
-        // INIT
+        function addAtelierToCart() {
+            const customProd = { 
+                id: 'CUSTOM-' + Date.now(), 
+                name: 'ATELIER CUSTOM: ' + selectedTexture.name, 
+                price: selectedTexture.price + 5000, 
+                img: selectedTexture.url 
+            };
+            cart.push(customProd);
+            updateCartUI();
+            toggleCart();
+        }
+
+        function updateCartUI() {
+            const list = document.getElementById('cart-list');
+            const counter = document.getElementById('cart-counter');
+            const totalDisplay = document.getElementById('total-amount');
+            
+            counter.innerText = cart.length;
+            list.innerHTML = '';
+            
+            let total = 0;
+            cart.forEach((item, index) => {
+                total += item.price;
+                list.innerHTML += `
+                    <div class="cart-item">
+                        <img src="${item.img}">
+                        <div>
+                            <h4 style="font-size:0.7rem;">${item.name}</h4>
+                            <p style="color:var(--gold); font-size:0.8rem;">${item.price.toLocaleString('tr-TR')} TL</p>
+                            <small onclick="removeFromCart(${index})" style="color:#f00; cursor:pointer; font-size:0.6rem;">KALDIR</small>
+                        </div>
+                    </div>
+                `;
+            });
+            totalDisplay.innerText = total.toLocaleString('tr-TR') + " TL";
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function checkout() {
+            if(cart.length === 0) return alert("Sepetiniz boş.");
+            let text = "Asilkan Custom Sipariş Listesi:%0A";
+            cart.forEach(item => text += `- ${item.name} (${item.price} TL)%0A`);
+            window.open(`https://wa.me/905454388096?text=${text}`, '_blank');
+        }
+
+        // 7. SCROLL EVENTS
+        window.onscroll = () => {
+            const nav = document.getElementById('navbar');
+            if(window.scrollY > 50) nav.classList.add('scrolled');
+            else nav.classList.remove('scrolled');
+        };
+
         window.onload = () => {
-            AOS.init({ duration: 1500, once: true });
-            document.getElementById('texture-mask-layer').style.backgroundImage = `url('${ARCHIVE_DATA[0].url}')`;
+            AOS.init({ duration: 1000, once: true });
+            updateAtelier();
         };
 
     </script>
