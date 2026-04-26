@@ -1106,15 +1106,20 @@ document.querySelectorAll('[data-page]').forEach(el=>{
         });
       }
 
-      function buildMeasurementText(){
-        const measureForm = document.getElementById('measure-form');
-        if(!measureForm) return '';
-        const val = id => {
-          const el = measureForm.querySelector('#'+id);
-          if(!el) return '';
-          return (el.tagName === 'TEXTAREA') ? el.value.trim() : el.value;
-        };
-        const rows = [];
+      function buildMeasurementText() {
+  const fields = document.querySelectorAll('#measure-form input, #measure-form textarea');
+  let details = "";
+  
+  fields.forEach(field => {
+    if (field.value.trim() !== "") {
+      // ID'den etiketi bul (Örn: m-chest -> Göğüs)
+      const label = field.parentElement.innerText.split('\n')[0];
+      details += `\n- ${label}: ${field.value}${field.type === 'number' ? ' cm' : ''}`;
+    }
+  });
+
+  return details ? `\n\n*Terzilik Ölçüleri:*${details}` : "";
+}        const rows = [];
         const add = (id, label, suffix='') => { const v = val(id); if(v) rows.push(`${label}: ${v}${suffix}`); };
 
         // Varsayılan alanlar
