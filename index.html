@@ -392,7 +392,27 @@ header > *:not(.hero-slides){ position:relative; z-index:1; }
 </div>
 
 <div id="designer3d" style="display:none; height:500px; margin-top:40px;"></div>.tiny-collection-copy{
-  max-width: 920px;
+  <div class="tiny-collection-copy">
+  ... mevcut yazıların ...
+</div>
+
+<div style="max-width: var(--container); margin: 0 auto 40px; padding: 0 20px;">
+  <div style="background: var(--card); border-radius: var(--radius); padding: 20px; display: flex; flex-wrap: wrap; align-items: center; gap: 20px; border: 1px solid var(--border);">
+    
+    <div style="flex: 1; min-width: 280px;">
+      <img src="https://i.imgur.com/8Qp7ZqC.jpeg" alt="Asilkan Beden Tablosu" style="width: 100%; border-radius: 12px; box-shadow: var(--shadow);">
+    </div>
+
+    <div style="flex: 1; min-width: 280px; text-align: left;">
+      <h3 style="margin-bottom: 10px;">Size En Uygun Bedeni Bulun</h3>
+      <p style="font-size: 0.9rem; color: var(--muted); margin-bottom: 20px;">
+        Kişiye özel tasarımlarımızda en doğru fit için ölçü tablomuzu inceleyebilirsiniz. Ceket ve pantolon ölçümleri hakkında daha fazla bilgi için rehberimize göz atın.
+      </p>
+      <a href="#cart" data-page="cart" class="btn primary" style="text-decoration: none; display: inline-block;">Tüm Ölçü Detayları</a>
+    </div>
+
+  </div>
+</div>  max-width: 920px;
   margin: 28px auto 48px;   /* üst/alt boşluk */
   padding: 0 20px;          /* kenarlara nefes */
   text-align: center;
