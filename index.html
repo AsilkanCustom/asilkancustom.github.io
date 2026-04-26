@@ -3,25 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>ASİLKAN | Modern Miras Atölyesi v13.0</title>
+    <title>ASİLKAN | Modern Miras Atölyesi v15.0</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700;900&family=Playfair+Display:ital,wght@0,900;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
-        /* ASILKAN v13.0 - OFF-WHITE LUXURY EDITION 
-           Endüstriyel Seviye Kod Mimarisi
+        /* ASILKAN ULTIMATE ARCHITECTURE v15.0 
+           ESTETİK SEVİYE: MAKSİMUM | DİL: TÜRKÇE | STİL: LES BENJAMINS
         */
         :root {
-            --bg: #f5f5f5; /* Kirli Beyaz / Les Benjamins imzası */
+            --bg: #f2f2f2; /* Off-White */
             --black: #000000;
-            --accent: #e61919; 
-            --border: #e0e0e0;
-            --transition: all 1s cubic-bezier(0.85, 0, 0.15, 1);
-            --safe-area: clamp(20px, 8vw, 100px);
+            --accent: #e61919;
+            --border: #d1d1d1;
+            --transition-ultra: all 1.2s cubic-bezier(0.9, 0, 0.1, 1);
+            --safe-area: clamp(20px, 8vw, 120px);
         }
 
+        /* RESET & BASE */
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
         body, html { 
             height: 100svh; width: 100%; 
@@ -30,200 +31,220 @@
             overflow: hidden;
         }
 
-        /* --- ANA SAYFA: SADECE ANİMASYON --- */
-        #mainStage {
-            position: fixed; inset: 0; z-index: 100; background: #000;
+        /* --- ANA GİRİŞ (SADECE ANİMASYON) --- */
+        #heroStage {
+            position: fixed; inset: 0; z-index: 500; background: #000;
             display: flex; align-items: center; justify-content: center;
-            transition: var(--transition);
+            transition: var(--transition-ultra);
         }
-        .stage-media { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
-        .stage-title {
-            position: relative; z-index: 101; text-align: center; color: white;
-            animation: float 4s ease-in-out infinite;
+        .hero-media { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.6; filter: grayscale(1); }
+        .hero-text {
+            position: relative; z-index: 501; text-align: center; color: white;
+            animation: textEntrance 2s forwards;
         }
-        .stage-title h1 { font-size: clamp(4rem, 20vw, 18rem); font-weight: 900; letter-spacing: -10px; line-height: 0.7; }
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+        .hero-text h1 { font-size: clamp(4rem, 22vw, 20rem); font-weight: 900; letter-spacing: -12px; line-height: 0.7; }
+        @keyframes textEntrance { from { opacity: 0; transform: scale(1.1); } to { opacity: 1; transform: scale(1); } }
 
-        /* --- MENÜ VE LOGO --- */
+        /* --- ÜST NAVİGASYON --- */
         nav {
-            position: fixed; top: 0; width: 100%; height: 100px; z-index: 5000;
+            position: fixed; top: 0; width: 100%; height: 110px; z-index: 5000;
             display: flex; align-items: center; justify-content: space-between;
             padding: 0 var(--safe-area); mix-blend-mode: difference;
         }
-        .logo img { height: 40px; filter: invert(1); }
+        .logo img { height: 45px; filter: invert(1); }
+        .top-info { font-weight: 900; font-size: 11px; letter-spacing: 6px; color: white; text-transform: uppercase; }
 
-        /* --- SAYFA KONTROLLERİ (ALT BUTONLAR) --- */
-        .controls {
-            position: fixed; bottom: 50px; right: var(--safe-area); z-index: 1000;
+        /* --- SAYFA TETİKLEYİCİ BUTONLAR (SAĞ ALT) --- */
+        .master-controls {
+            position: fixed; bottom: 60px; right: var(--safe-area); z-index: 1000;
             display: flex; flex-direction: column; gap: 15px;
         }
         .nav-btn {
-            padding: 25px 50px; background: #000; color: #fff; border: none;
+            padding: 28px 55px; background: #000; color: #fff; border: none;
             font-size: 11px; font-weight: 900; letter-spacing: 5px; cursor: pointer;
-            text-transform: uppercase; transition: var(--transition);
-            text-align: right; border-radius: 2px;
+            text-transform: uppercase; transition: var(--transition-ultra);
+            text-align: right; border-radius: 0;
         }
-        .nav-btn:hover { background: var(--accent); padding-right: 70px; }
+        .nav-btn:hover { background: var(--accent); padding-right: 80px; }
 
-        /* --- MODÜLER TAM EKRAN SAYFALAR --- */
+        /* --- MODÜLER SAYFA SİSTEMİ --- */
         .page-module {
             position: fixed; inset: 0; background: var(--bg); z-index: 2000;
-            transform: translateX(100%); transition: var(--transition);
-            overflow-y: auto; padding: 120px var(--safe-area) 80px;
+            transform: translateY(100%); transition: var(--transition-ultra);
+            overflow-y: auto; padding: 140px var(--safe-area) 100px;
         }
-        .page-module.is-active { transform: translateX(0); }
+        .page-module.active { transform: translateY(0); }
         .close-view { 
-            position: fixed; top: 40px; right: var(--safe-area); 
-            font-size: 40px; font-weight: 100; cursor: pointer; z-index: 3000;
+            position: fixed; top: 45px; right: var(--safe-area); 
+            font-size: 50px; font-weight: 100; cursor: pointer; z-index: 6000;
         }
 
-        /* --- 3D ATÖLYE SİSTEMİ v13 --- */
-        .studio-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; max-width: 1700px; margin: 0 auto; align-items: center; }
-        .canvas-area {
-            background: #fff; border: 1px solid var(--border); height: 75vh;
+        /* --- 3D ATÖLYE v15 --- */
+        .studio-layout { display: grid; grid-template-columns: 1.2fr 1fr; gap: 100px; max-width: 1800px; margin: 0 auto; align-items: center; }
+        .canvas-container {
+            background: #fff; border: 1px solid var(--border); height: 78vh;
             position: relative; display: flex; align-items: center; justify-content: center;
+            overflow: hidden;
         }
-        .canvas-area img { height: 90%; z-index: 10; filter: drop-shadow(0 40px 80px rgba(0,0,0,0.15)); }
+        .canvas-container img { height: 92%; z-index: 10; filter: drop-shadow(0 50px 100px rgba(0,0,0,0.1)); }
         
-        .skin-layer {
+        /* 3D Texture Mapping Motoru */
+        .mask-layer {
             position: absolute; inset: 0; z-index: 5;
-            background-size: 400px; mix-blend-mode: multiply; opacity: 0;
-            transition: opacity 0.8s ease, background 0.5s ease;
+            background-size: 380px; mix-blend-mode: multiply; opacity: 0;
+            transition: opacity 1s ease, background 0.6s ease;
             -webkit-mask-image: url('https://i.imgur.com/vJCJwvC.jpeg');
             -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat; -webkit-mask-position: center;
         }
-        .skin-layer.active { opacity: 0.95; }
+        .mask-layer.active { opacity: 0.95; }
 
-        .form-area h2 { font-size: 6rem; font-weight: 900; letter-spacing: -6px; line-height: 0.8; margin-bottom: 30px; }
+        .form-content h2 { font-size: clamp(3rem, 8vw, 7rem); font-weight: 900; letter-spacing: -7px; line-height: 0.75; margin-bottom: 40px; }
         .hali-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin: 40px 0; }
-        .hali-thumb { aspect-ratio: 1; cursor: pointer; transition: 0.3s; border: 1px solid transparent; background-size: cover; filter: grayscale(1); }
-        .hali-thumb.active, .hali-thumb:hover { filter: grayscale(0); border-color: #000; transform: scale(0.95); }
+        .hali-thumb { aspect-ratio: 1; cursor: pointer; transition: 0.4s; border: 1px solid transparent; background-size: cover; filter: grayscale(1); }
+        .hali-thumb.active { filter: grayscale(0); border-color: #000; transform: scale(1.05); }
 
         /* --- KOLEKSİYON TASARIMI --- */
-        .grid-header { margin-bottom: 100px; }
-        .grid-header h2 { font-size: 10rem; font-weight: 900; letter-spacing: -10px; line-height: 0.7; }
-        .masonry-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
-        .card { position: relative; aspect-ratio: 4/5; overflow: hidden; background: #fff; }
-        .card img { width: 100%; height: 100%; object-fit: cover; transition: 1.5s var(--transition); }
-        .card:hover img { transform: scale(1.1) rotate(1deg); filter: grayscale(1); }
-        .card-meta { position: absolute; bottom: 30px; left: 30px; color: #000; }
-        .card-meta h3 { font-size: 2rem; font-weight: 900; letter-spacing: -1px; }
+        .collection-title { font-size: clamp(4rem, 15vw, 12rem); font-weight: 900; letter-spacing: -12px; line-height: 0.7; margin-bottom: 100px; }
+        .masonry { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .item { position: relative; aspect-ratio: 4/5; overflow: hidden; background: #fff; border: 1px solid var(--border); }
+        .item img { width: 100%; height: 100%; object-fit: cover; transition: 2s var(--transition-ultra); }
+        .item:hover img { transform: scale(1.1); filter: grayscale(1); }
+        .item-info { position: absolute; bottom: 40px; left: 40px; z-index: 10; }
+        .item-info h3 { font-size: 2.5rem; font-weight: 900; letter-spacing: -2px; }
 
-        /* --- MOBİL OPTİMİZASYON --- */
+        /* --- MİRAS VE HİKAYE --- */
+        .story-text { max-width: 1000px; font-size: 2.2rem; font-weight: 300; line-height: 1.2; margin-bottom: 60px; }
+        .story-text b { font-weight: 900; color: var(--accent); }
+
+        /* MOBİL UYUMLULUK */
         @media (max-width: 1024px) {
-            .studio-wrap { grid-template-columns: 1fr; }
-            .masonry-grid { grid-template-columns: 1fr; }
-            .nav-btn { width: 100%; text-align: center; padding: 20px; }
-            .controls { left: 20px; right: 20px; bottom: 20px; }
-            .grid-header h2 { font-size: 5rem; letter-spacing: -4px; }
-            .form-area h2 { font-size: 3.5rem; }
+            .studio-layout { grid-template-columns: 1fr; }
+            .masonry { grid-template-columns: 1fr; }
+            .nav-btn { width: 100%; text-align: center; }
+            .master-controls { left: 20px; right: 20px; bottom: 20px; }
+            .hero-text h1 { letter-spacing: -4px; }
+            .page-module { padding: 120px 20px 100px; }
         }
 
-        /* WHATSAPP v13 */
-        .wa-luxe { position: fixed; bottom: 50px; left: var(--safe-area); z-index: 1000; color: #000; text-decoration: none; font-weight: 900; letter-spacing: 3px; font-size: 12px; }
+        /* WHATSAPP v15 */
+        .wa-luxe { position: fixed; bottom: 60px; left: var(--safe-area); z-index: 1000; color: #000; text-decoration: none; font-weight: 900; letter-spacing: 4px; font-size: 12px; mix-blend-mode: difference; color: white; }
     </style>
 </head>
 <body>
 
     <nav>
-        <a href="#" class="logo" onclick="closeAll()"><img src="https://i.imgur.com/14VgsWh.png" alt="Asilkan"></a>
-        <div style="font-weight: 900; font-size: 10px; letter-spacing: 5px;">2026 COLLECTION</div>
+        <a href="#" class="logo" onclick="closePages()"><img src="https://i.imgur.com/14VgsWh.png" alt="Asilkan"></a>
+        <div class="top-info">2026 TASARIM ARŞİVİ</div>
     </nav>
 
-    <section id="mainStage">
-        <img src="https://i.imgur.com/hAPeeeA.jpeg" class="stage-media" alt="Hero">
-        <div class="stage-title">
+    <section id="heroStage">
+        <img src="https://i.imgur.com/hAPeeeA.jpeg" class="hero-media" alt="Background">
+        <div class="hero-text">
             <h1>ASİLKAN</h1>
         </div>
     </section>
 
-    <div class="controls">
-        <button class="nav-btn" onclick="openModule('modAtolye')">Atölye 3D</button>
-        <button class="nav-btn" onclick="openModule('modGaleri')">Koleksiyon</button>
-        <button class="nav-btn" onclick="openModule('modMiras')">Mirasımız</button>
+    <div class="master-controls">
+        <button class="nav-btn" onclick="openPage('pAtolye')">Atölye 3D</button>
+        <button class="nav-btn" onclick="openPage('pGaleri')">Koleksiyon</button>
+        <button class="nav-btn" onclick="openPage('pMiras')">Mirasımız</button>
     </div>
 
-    <div id="modAtolye" class="page-module">
-        <div class="close-view" onclick="closeAll()">&times;</div>
-        <div class="studio-wrap">
-            <div class="canvas-area">
-                <div class="skin-layer" id="jacketSkin" style="background-image: url('https://i.imgur.com/vJCJwvC.jpeg'); opacity: 0.95;"></div>
-                <img src="https://i.imgur.com/vJCJwvC.jpeg" alt="Model">
+    <div id="pAtolye" class="page-module">
+        <div class="close-view" onclick="closePages()">&times;</div>
+        <div class="studio-layout">
+            <div class="canvas-container">
+                <div class="mask-layer" id="texEngine" style="background-image: url('https://i.imgur.com/vJCJwvC.jpeg'); opacity: 0.95;"></div>
+                <img src="https://i.imgur.com/vJCJwvC.jpeg" alt="Mannequin">
             </div>
-            <div class="form-area">
-                <h2>DİJİTAL<br>MİRAS.</h2>
-                <p style="font-weight: 400; opacity: 0.5; margin-bottom: 30px;">Anadolu'nun kadim halılarını seçin ve modern streetwear kesimleriyle birleştirin.</p>
+            <div class="form-content">
+                <h2>MODERN<br>ZANAAT.</h2>
+                <p style="font-weight: 400; opacity: 0.4; margin-bottom: 40px; line-height: 1.8;">Anadolu'nun kadim halı dokularını seçin, sistemimiz onu modern streetwear kalıplarıyla birleştirsin.</p>
                 
                 <div class="hali-grid">
-                    <div class="hali-thumb active" onclick="update3D('https://i.imgur.com/vJCJwvC.jpeg', 'Halı 01')" style="background-image: url('https://i.imgur.com/vJCJwvC.jpeg');"></div>
-                    <div class="hali-thumb" onclick="update3D('https://i.imgur.com/FlNkiBA.jpeg', 'Halı 02')" style="background-image: url('https://i.imgur.com/FlNkiBA.jpeg');"></div>
-                    <div class="hali-thumb" onclick="update3D('https://i.imgur.com/a0asIvM.jpeg', 'Halı 03')" style="background-image: url('https://i.imgur.com/a0asIvM.jpeg');"></div>
-                    <div class="hali-thumb" onclick="update3D('https://i.imgur.com/jSAeqRV.jpeg', 'Halı 04')" style="background-image: url('https://i.imgur.com/jSAeqRV.jpeg');"></div>
+                    <div class="hali-thumb active" onclick="syncAtelier('https://i.imgur.com/vJCJwvC.jpeg', 'Miras 01')" style="background-image: url('https://i.imgur.com/vJCJwvC.jpeg');"></div>
+                    <div class="hali-thumb" onclick="syncAtelier('https://i.imgur.com/FlNkiBA.jpeg', 'Anadolu 02')" style="background-image: url('https://i.imgur.com/FlNkiBA.jpeg');"></div>
+                    <div class="hali-thumb" onclick="syncAtelier('https://i.imgur.com/a0asIvM.jpeg', 'Yörük 03')" style="background-image: url('https://i.imgur.com/a0asIvM.jpeg');"></div>
+                    <div class="hali-thumb" onclick="syncAtelier('https://i.imgur.com/jSAeqRV.jpeg', 'Toros 04')" style="background-image: url('https://i.imgur.com/jSAeqRV.jpeg');"></div>
                 </div>
 
-                <input type="text" id="userSize" placeholder="VÜCUT ÖLÇÜLERİNİZ (ÖRN: 46 / M)" style="width:100%; padding:25px; background:none; border:2px solid #000; font-family:var(--font-main); font-weight:900; margin-bottom:20px;">
-                <button class="nav-btn" style="width:100%; text-align:center;" onclick="sendOrder()">TASARIMI ONAYLA</button>
+                <div style="display: flex; flex-direction: column; gap: 20px;">
+                    <input type="text" id="userSize" placeholder="BEDEN VEYA ÖZEL ÖLÇÜ (CM)" style="width:100%; padding:25px; background:none; border:2px solid #000; font-family:var(--font-main); font-weight:900;">
+                    <button class="nav-btn" style="width:100%; text-align:center;" onclick="submitDesign()">TASARIMI KAYDET VE İLERLE</button>
+                </div>
             </div>
         </div>
     </div>
 
-    <div id="modGaleri" class="page-module">
-        <div class="close-view" onclick="closeAll()">&times;</div>
-        <div class="grid-header">
-            <h2>KÜLTÜR<br>SERİSİ.</h2>
-        </div>
-        <div class="masonry-grid">
-            <div class="card"><img src="https://i.imgur.com/vJCJwvC.jpeg" alt=""><div class="card-meta"><h3>MİRAS 01</h3></div></div>
-            <div class="card"><img src="https://i.imgur.com/FlNkiBA.jpeg" alt=""><div class="card-meta"><h3>MİRAS 02</h3></div></div>
-            <div class="card"><img src="https://i.imgur.com/HSszXJf.jpeg" alt=""><div class="card-meta"><h3>ÇANTA 01</h3></div></div>
-            <div class="card"><img src="https://i.imgur.com/ykwtfHk.jpeg" alt=""><div class="card-meta"><h3>ŞORT 01</h3></div></div>
+    <div id="pGaleri" class="page-module">
+        <div class="close-view" onclick="closePages()">&times;</div>
+        <h2 class="collection-title">KÜLTÜR<br>AKIMI.</h2>
+        <div class="masonry">
+            <div class="item"><img src="https://i.imgur.com/vJCJwvC.jpeg" alt=""><div class="item-info"><h3>CEKET 01</h3></div></div>
+            <div class="item"><img src="https://i.imgur.com/FlNkiBA.jpeg" alt=""><div class="item-info"><h3>CEKET 02</h3></div></div>
+            <div class="item"><img src="https://i.imgur.com/HSszXJf.jpeg" alt=""><div class="item-info"><h3>TOTE BAG</h3></div></div>
+            <div class="item"><img src="https://i.imgur.com/ykwtfHk.jpeg" alt=""><div class="item-info"><h3>SHORT 01</h3></div></div>
         </div>
     </div>
 
-    <div id="modMiras" class="page-module">
-        <div class="close-view" onclick="closeAll()">&times;</div>
-        <div style="max-width: 1000px;">
-            <h2 style="font-size: 8rem; font-weight: 900; letter-spacing: -8px; line-height: 0.8; margin-bottom: 50px;">ANADOLU<br>MODERNİZMİ.</h2>
-            <p style="font-size: 2rem; font-weight: 300; line-height: 1.3;">Biz, 1950'lerin el dokuması halılarını, 2026'nın sokak stiliyle birleştiriyoruz. Asilkan, bir kıyafet markası değil; bir kültür hareketidir.</p>
-            <img src="https://i.imgur.com/hAPeeeA.jpeg" style="width: 100%; margin-top: 50px; filter: grayscale(1);" alt="Zanaat">
+    <div id="pMiras" class="page-module">
+        <div class="close-view" onclick="closePages()">&times;</div>
+        <div style="max-width: 1200px;">
+            <h2 class="collection-title" style="font-size: 8rem;">GELECEK<br>GELENEKTE.</h2>
+            <p class="story-text">Biz, 50 yıllık <b>el dokuması Anadolu halılarını</b>, modern sokak kültürünün <b>asi ve minimal</b> çizgileriyle buluşturuyoruz. Her Asilkan parçası, giyilebilir bir tarih belgesidir.</p>
+            <img src="https://i.imgur.com/hAPeeeA.jpeg" style="width: 100%; filter: grayscale(1); margin-top: 40px;" alt="Zanaat">
         </div>
     </div>
 
-    <a href="https://wa.me/905454388096" class="wa-luxe">WHATSAPP / ATÖLYE</a>
+    <a href="https://wa.me/905454388096" class="wa-luxe">WHATSAPP / ATELIER</a>
 
     <script>
-        // Sayfa Yönetimi
-        function openModule(id) {
-            document.querySelectorAll('.page-module').forEach(m => m.classList.remove('is-active'));
-            document.getElementById(id).classList.add('is-active');
-        }
-        function closeAll() {
-            document.querySelectorAll('.page-module').forEach(m => m.classList.remove('is-active'));
+        /**
+         * ASILKAN ATELIER ENGINE v15.0
+         * Modüler Sayfa Yönetimi ve Gelişmiş 3D Doku Motoru
+         */
+
+        // Sayfa Kontrol Sistemi
+        function openPage(id) {
+            document.querySelectorAll('.page-module').forEach(m => m.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
         }
 
-        // 3D Texture Engine v13
-        let currentSelection = "Miras 01";
-        function update3D(url, name) {
-            const skin = document.getElementById('jacketSkin');
-            skin.style.opacity = '0';
+        function closePages() {
+            document.querySelectorAll('.page-module').forEach(m => m.classList.remove('active'));
+        }
+
+        // 3D Doku Motoru
+        let activeSelection = "Miras 01";
+        function syncAtelier(url, name) {
+            const engine = document.getElementById('texEngine');
+            engine.style.opacity = '0';
             
-            // UI Toggle
+            // UI Güncelleme
             document.querySelectorAll('.hali-thumb').forEach(t => t.classList.remove('active'));
             event.currentTarget.classList.add('active');
 
+            // Donanım Hızlandırmalı Doku Geçişi
             setTimeout(() => {
-                skin.style.backgroundImage = `url(${url})`;
-                skin.style.opacity = '0.95';
-                currentSelection = name;
-            }, 350);
+                engine.style.backgroundImage = `url(${url})`;
+                engine.style.opacity = '0.95';
+                activeSelection = name;
+            }, 400);
         }
 
-        function sendOrder() {
+        function submitDesign() {
             const size = document.getElementById('userSize').value;
-            if(!size) { alert("Lütfen ölçü belirtin."); return; }
-            const text = `Asilkan v13 Özel Tasarım:\nModel: ${currentSelection}\nÖlçü: ${size}\nİletişime geçmenizi bekliyorum.`;
-            window.open(`https://wa.me/905454388096?text=${encodeURIComponent(text)}`);
+            if(!size) { alert("Lütfen ölçülerinizi belirtin."); return; }
+            const msg = `Asilkan v15 Tasarım Onayı:\nSeçilen Doku: ${activeSelection}\nÖlçüler: ${size}\nİletişim bekliyorum.`;
+            window.open(`https://wa.me/905454388096?text=${encodeURIComponent(msg)}`);
         }
+
+        // Otomatik Giriş Animasyonu
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                // Giriş animasyonu bittikten sonra kontrolleri göster (isteğe bağlı)
+            }, 2000);
+        });
     </script>
 </body>
 </html>
