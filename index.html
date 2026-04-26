@@ -1070,38 +1070,38 @@ document.querySelectorAll('[data-page]').forEach(el=>{
         ]
       };
 
-      function renderMeasureForm(){
-        const measureForm = document.getElementById('measure-form');
-        const custom = PRODUCT_SCHEMAS[CURRENT_SCHEMA];
-        const fields = custom || SCHEMAS.default;
-        const inputsHtml = fields.map(f=>{
-          const full = f.full ? 'style="grid-column:1/-1"' : '';
-          if(f.type === 'textarea'){
-            return `<label ${full}>
-                      ${f.label}
-                      <textarea id="${f.id}" placeholder="İç cep, dış cep, gizli cep"></textarea>
-                    </label>`;
-          }
-          const step = f.id === 'm-weight' ? '1' : '0.1';
-          return `<label ${full}>
-                    ${f.label}
-                    <input type="number" id="${f.id}" min="0" step="${step}" placeholder="">
-                  </label>`;
-        }).join('');
+      function renderMeasureForm() {
+  const measureForm = document.getElementById('measure-form');
+  const fields = PRODUCT_SCHEMAS[CURRENT_SCHEMA] || SCHEMAS.default;
+  
+  const inputsHtml = fields.map(f => {
+    const isFull = f.full ? 'style="grid-column:1/-1"' : '';
+    const placeholder = f.label === 'Not / İstek (opsiyonel)' ? 'Örn: İç cep olsun, kol boyu kısa olsun...' : '00.0 cm';
+    
+    if (f.type === 'textarea') {
+      return `
+        <label ${isFull}>
+          ${f.label}
+          <textarea id="${f.id}" placeholder="${placeholder}"></textarea>
+        </label>`;
+    }
+    
+    return `
+      <label ${isFull}>
+        ${f.label}
+        <input type="number" id="${f.id}" step="0.1" placeholder="${placeholder}">
+      </label>`;
+  }).join('');
 
-        measureForm.innerHTML = inputsHtml;
+  measureForm.innerHTML = inputsHtml;
 
-        // Trend-2/3 için 2 sütun zorla
-        if (PRODUCT_SCHEMAS[CURRENT_SCHEMA]) {
-          measureForm.classList.add('measure-form--2col');
-        } else {
-          measureForm.classList.remove('measure-form--2col');
-        }
-
-        // WA linkini alanlar değişince güncelle
-        measureForm.querySelectorAll('input, textarea, select').forEach(el=>{
-          const update = ()=> pmWA.href = buildWAUrl(pmTitle.textContent);
-          el.addEventListener('input', update);
+  // Modern etkileşim: Değer girildikçe WhatsApp linkini sessizce hazırla
+  measureForm.querySelectorAll('input, textarea').forEach(el => {
+    el.addEventListener('input', () => {
+      pmWA.href = buildWAUrl(pmTitle.textContent);
+    });
+  });
+}          el.addEventListener('input', update);
           el.addEventListener('change', update);
         });
       }
