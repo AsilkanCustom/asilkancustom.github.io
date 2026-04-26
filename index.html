@@ -9,373 +9,421 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;0,700;1,400&family=Montserrat:wght@100;300;500;700&display=swap" rel="stylesheet">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@100;200;300;400;500;600&display=swap" rel="stylesheet">
 
     <style>
-        /* ASILKAN CUSTOM OS v7.0 - INDUSTRIAL ARCHITECTURE 
-           FULL-SCALE FASHION TECH INFRASTRUCTURE
+        /* ASILKAN CUSTOM OS v8.0 - CARTIER ESTHETIQUE
+           INDUSTRIAL SCALE BESPOKE ARCHITECTURE
         */
         :root {
+            /* Palette: Deep Gold & Onyx Black */
             --gold: #c5a059;
-            --gold-soft: #d4b886;
-            --dark: #070707;
-            --dark-soft: #111111;
-            --light: #fdfcfb;
+            --gold-bright: #e2c08d;
+            --dark: #050505;
+            --dark-soft: #0f0f0f;
             --white: #ffffff;
-            --border: rgba(197, 160, 89, 0.12);
-            --glass: rgba(255, 255, 255, 0.02);
-            --transition-smooth: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-            --header-h: 85px;
-            --safe-area: 50px;
+            --cream: #f4f1ea;
+            --border: rgba(197, 160, 89, 0.15);
+            --glass: rgba(255, 255, 255, 0.015);
+            
+            /* Spacing & Layout */
+            --header-h: 100px;
+            --safe-area: clamp(20px, 8vw, 100px);
+            --transition-bespoke: all 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+            --font-luxury: 'Cormorant Garamond', serif;
+            --font-modern: 'Montserrat', sans-serif;
         }
 
-        @media (max-width: 768px) { :root { --safe-area: 20px; --header-h: 70px; } }
+        @media (max-width: 768px) { :root { --header-h: 70px; --safe-area: 25px; } }
 
+        /* Core */
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        body { 
-            background: var(--dark); color: var(--light); 
-            font-family: 'Montserrat', sans-serif; 
+        html, body { 
+            height: 100%; width: 100%; 
+            background: var(--dark); color: var(--white); 
+            font-family: var(--font-modern); 
             overflow-x: hidden; scroll-behavior: smooth;
         }
 
-        /* --- MASTER LOADER --- */
-        #masterLoader {
+        /* --- PRELOADER: THE ATELIER ENTRANCE --- */
+        #atlierLoader {
             position: fixed; inset: 0; background: var(--dark); z-index: 10000;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
+            transition: opacity 1.5s var(--transition-bespoke);
         }
-        .loader-ring { width: 100px; height: 100px; border: 1px solid var(--border); border-radius: 50%; border-top-color: var(--gold); animation: spin 1s linear infinite; }
-        @keyframes spin { 100% { transform: rotate(360deg); } }
+        .loader-branding { width: 120px; filter: invert(1); animation: fadePulse 2.5s infinite; }
+        .loader-line { width: 300px; height: 1px; background: rgba(255,255,255,0.05); margin-top: 40px; position: relative; overflow: hidden; }
+        .loader-fill { position: absolute; height: 100%; width: 0%; background: var(--gold); left: 0; }
+        @keyframes fadePulse { 0%, 100% { opacity: 0.2; transform: scale(0.98); } 50% { opacity: 1; transform: scale(1); } }
 
-        /* --- NAVIGATION v7 --- */
-        header.nav-v7 {
-            position: fixed; top: 0; width: 100%; height: var(--header-h); z-index: 2000;
+        /* --- NAVIGATION: LUXURY MINIMALISM --- */
+        header.master-nav {
+            position: fixed; top: 0; width: 100%; height: var(--header-h); z-index: 5000;
             display: flex; align-items: center; padding: 0 var(--safe-area);
-            transition: var(--transition-smooth);
+            transition: var(--transition-bespoke); border-bottom: 1px solid transparent;
         }
-        header.is-scrolled { background: rgba(7,7,7,0.9); backdrop-filter: blur(25px); border-bottom: 1px solid var(--border); }
-        .nav-inner { width: 100%; max-width: 1800px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-        .logo img { height: 45px; filter: invert(1); }
-
-        .nav-actions { display: flex; align-items: center; gap: 30px; }
-        .nav-link { color: white; text-decoration: none; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; font-weight: 500; opacity: 0.6; transition: 0.3s; }
-        .nav-link:hover { opacity: 1; color: var(--gold); }
-
-        /* --- HERO: THE STORYTELLER --- */
-        .hero-v7 { height: 100svh; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
-        .hero-video-wrap { position: absolute; inset: 0; z-index: 1; }
-        .hero-video-wrap img { width: 100%; height: 100%; object-fit: cover; opacity: 0.5; }
+        header.is-scrolled { background: rgba(5,5,5,0.95); height: 80px; backdrop-filter: blur(25px); border-bottom-color: var(--border); }
+        .nav-inner { width: 100%; display: flex; justify-content: space-between; align-items: center; }
+        .nav-logo img { height: 50px; filter: invert(1); transition: 0.5s; }
         
-        .hero-content { position: relative; z-index: 10; text-align: center; max-width: 1000px; padding: 0 20px; }
-        .hero-content p { color: var(--gold); letter-spacing: 8px; text-transform: uppercase; font-size: 12px; margin-bottom: 20px; }
-        .hero-content h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem, 10vw, 7.5rem); font-weight: 300; line-height: 1; margin-bottom: 40px; }
-
-        /* --- 3D INTERACTIVE CARPET-TO-JACKET STUDIO --- */
-        .studio-v7 { padding: 120px var(--safe-area); background: #0a0a0a; }
-        .studio-title { text-align: center; margin-bottom: 100px; }
-        .studio-title h2 { font-family: 'Cormorant Garamond', serif; font-size: 4rem; }
-
-        .studio-layout { display: grid; grid-template-columns: 350px 1fr 350px; gap: 40px; max-width: 1800px; margin: 0 auto; height: 800px; }
-        @media (max-width: 1200px) { .studio-layout { grid-template-columns: 1fr; height: auto; } }
-
-        /* Carpet Sidebar */
-        .carpet-vault { overflow-y: auto; padding-right: 15px; }
-        .carpet-item { 
-            height: 180px; background: var(--dark-soft); margin-bottom: 20px; border-radius: 4px;
-            cursor: pointer; border: 1px solid var(--border); overflow: hidden; position: relative;
-            transition: 0.4s;
+        .nav-links { display: flex; gap: 40px; list-style: none; }
+        .nav-links a {
+            text-decoration: none; color: var(--white); font-size: 11px;
+            font-weight: 300; text-transform: uppercase; letter-spacing: 4px;
+            opacity: 0.5; transition: 0.4s;
         }
-        .carpet-item img { width: 100%; height: 100%; object-fit: cover; opacity: 0.6; transition: 0.5s; }
-        .carpet-item:hover img { opacity: 1; transform: scale(1.1); }
-        .carpet-item.active { border-color: var(--gold); }
-        .carpet-item span { position: absolute; bottom: 10px; left: 15px; font-size: 10px; letter-spacing: 2px; }
+        .nav-links a:hover { opacity: 1; color: var(--gold); }
+        @media (max-width: 1024px) { .nav-links { display: none; } }
 
-        /* Visualizer Core */
-        .visualizer-v7 {
-            position: relative; background: #0d0d0d; border-radius: 15px;
-            display: flex; align-items: center; justify-content: center;
-            border: 1px solid var(--border); overflow: hidden;
-        }
-        .transformer-engine {
-            width: 100%; height: 100%; position: relative;
+        /* --- HERO v8: CINEMATIC STORYTELLING --- */
+        .hero-engine {
+            position: relative; height: 100vh; overflow: hidden;
             display: flex; align-items: center; justify-content: center;
         }
-        .model-base { height: 90%; z-index: 2; transition: 0.8s; }
-        .pattern-skin {
+        .hero-media { position: absolute; inset: 0; z-index: 1; }
+        .hero-media img { width: 100%; height: 100%; object-fit: cover; opacity: 0.4; transform: scale(1.1); animation: heroZoom 20s infinite alternate; }
+        @keyframes heroZoom { to { transform: scale(1); } }
+
+        .hero-content { position: relative; z-index: 10; text-align: center; max-width: 1200px; padding: 0 20px; }
+        .hero-content span { font-family: var(--font-luxury); font-style: italic; font-size: 1.5rem; color: var(--gold); display: block; margin-bottom: 20px; }
+        .hero-content h1 { font-family: var(--font-luxury); font-size: clamp(3.5rem, 12vw, 8.5rem); font-weight: 300; line-height: 0.9; margin-bottom: 50px; }
+        
+        .btn-gold {
+            padding: 22px 60px; background: transparent; border: 1px solid var(--gold);
+            color: var(--gold); font-size: 11px; letter-spacing: 5px; text-transform: uppercase;
+            text-decoration: none; transition: 0.5s; cursor: pointer;
+        }
+        .btn-gold:hover { background: var(--gold); color: var(--dark); box-shadow: 0 20px 40px rgba(197, 160, 89, 0.2); }
+
+        /* --- 3D STUDIO v8: THE BESPOKE VISUALIZER --- */
+        .studio-v8 { padding: 150px var(--safe-area); background: #080808; position: relative; }
+        .studio-header { text-align: center; margin-bottom: 120px; }
+        .studio-header h2 { font-family: var(--font-luxury); font-size: clamp(3rem, 7vw, 5rem); font-weight: 300; }
+        .studio-header p { font-size: 10px; letter-spacing: 6px; text-transform: uppercase; color: var(--gold); margin-top: 20px; }
+
+        .studio-interface {
+            display: grid; grid-template-columns: 320px 1fr 320px; gap: 60px;
+            max-width: 1900px; margin: 0 auto; min-height: 850px;
+        }
+        @media (max-width: 1300px) { .studio-interface { grid-template-columns: 1fr; height: auto; } }
+
+        /* Left: Carpet Archive */
+        .carpet-scroll { overflow-y: auto; max-height: 800px; padding-right: 20px; scrollbar-width: none; }
+        .carpet-scroll::-webkit-scrollbar { display: none; }
+        .carpet-item {
+            margin-bottom: 25px; cursor: pointer; border: 1px solid var(--border);
+            border-radius: 2px; overflow: hidden; position: relative; transition: 0.6s;
+        }
+        .carpet-item img { width: 100%; aspect-ratio: 4/5; object-fit: cover; opacity: 0.5; transition: 0.8s; }
+        .carpet-item:hover img { opacity: 0.9; transform: scale(1.05); }
+        .carpet-item.active { border-color: var(--gold); border-width: 2px; }
+        .carpet-item .meta { position: absolute; bottom: 15px; left: 15px; font-size: 9px; letter-spacing: 3px; color: white; text-transform: uppercase; }
+
+        /* Center: 3D Visualizer Core */
+        .visualizer-v8 {
+            background: radial-gradient(circle, #151515 0%, #080808 100%);
+            border-radius: 4px; border: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: center;
+            overflow: hidden; position: relative;
+        }
+        .engine-mannequin { width: 100%; height: 100%; position: relative; display: flex; align-items: center; justify-content: center; }
+        .jacket-master { height: 92%; z-index: 5; filter: drop-shadow(0 30px 60px rgba(0,0,0,0.8)); transition: transform 0.8s var(--transition-bespoke); }
+        
+        .texture-layer {
             position: absolute; inset: 0; z-index: 1;
-            background-repeat: repeat; background-size: 300px;
+            background-repeat: repeat; background-size: 400px;
             mix-blend-mode: multiply; opacity: 0;
-            transition: 1s ease-in-out;
+            transition: opacity 1s ease, background 0.8s ease;
             mask-image: url('https://i.imgur.com/vJCJwvC.jpeg');
             -webkit-mask-image: url('https://i.imgur.com/vJCJwvC.jpeg');
             -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat; -webkit-mask-position: center;
         }
-        .pattern-skin.active { opacity: 0.9; }
+        .texture-layer.active { opacity: 0.9; }
 
-        /* Metrics Sidebar */
-        .metrics-panel { background: var(--glass); padding: 30px; border: 1px solid var(--border); display: flex; flex-direction: column; gap: 25px; }
-        .metric-field label { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 10px; }
-        .metric-field input { width: 100%; background: transparent; border: none; border-bottom: 1px solid #333; padding: 10px 0; color: white; outline: none; }
+        /* Right: Analytics & Fit */
+        .bespoke-form { background: var(--glass); padding: 45px; border: 1px solid var(--border); display: flex; flex-direction: column; gap: 30px; }
+        .form-title { font-family: var(--font-luxury); font-size: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 20px; }
+        .field-group label { font-size: 9px; text-transform: uppercase; letter-spacing: 3px; color: var(--gold); display: block; margin-bottom: 12px; }
+        .field-group input { width: 100%; background: transparent; border: none; border-bottom: 1px solid #222; padding: 12px 0; color: white; outline: none; transition: 0.4s; }
+        .field-group input:focus { border-color: var(--gold); }
+
+        /* --- ARCHIVE: THE MUSEUM GALLERY --- */
+        .museum-v8 { padding: 150px var(--safe-area); }
+        .museum-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 80px; }
+        .museum-header h3 { font-family: var(--font-luxury); font-size: 4rem; font-weight: 300; }
         
-        .btn-v7 {
-            width: 100%; padding: 20px; background: var(--gold); color: black; border: none;
-            text-transform: uppercase; letter-spacing: 4px; font-size: 10px; font-weight: 700;
-            cursor: pointer; transition: 0.4s;
+        .masonry-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(450px, 1fr)); gap: 4px; }
+        @media (max-width: 768px) { .masonry-grid { grid-template-columns: 1fr; } }
+        
+        .art-item { position: relative; height: 750px; overflow: hidden; cursor: crosshair; }
+        .art-item img { width: 100%; height: 100%; object-fit: cover; transition: 1.8s var(--transition-bespoke); }
+        .art-item:hover img { transform: scale(1.1); filter: grayscale(0.5) brightness(0.5); }
+        .art-item .overlay {
+            position: absolute; inset: 0; display: flex; flex-direction: column;
+            align-items: center; justify-content: center; opacity: 0; transition: 0.6s;
+            text-align: center; padding: 40px;
         }
-        .btn-v7:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(197, 160, 89, 0.2); }
+        .art-item:hover .overlay { opacity: 1; }
+        .art-item h5 { font-family: var(--font-luxury); font-size: 3rem; margin-bottom: 15px; }
 
-        /* --- ARCHIVE: THE MUSEUM GRID --- */
-        .archive-v7 { padding: 100px var(--safe-area); }
-        .archive-header { margin-bottom: 60px; }
-        .archive-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); gap: 30px; }
-        
-        .art-card { position: relative; aspect-ratio: 1; overflow: hidden; border-radius: 2px; }
-        .art-card img { width: 100%; height: 100%; object-fit: cover; transition: 1.5s var(--transition-smooth); }
-        .art-card:hover img { transform: scale(1.1); filter: brightness(0.6); }
-        .art-info { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; transition: 0.5s; padding: 40px; text-align: center; }
-        .art-card:hover .art-info { opacity: 1; }
-        .art-info h4 { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; margin-bottom: 10px; }
+        /* --- FOOTER: NOIR ELEGANCE --- */
+        footer.luxury-footer {
+            padding: 150px var(--safe-area) 50px; background: #020202;
+            border-top: 1px solid var(--border);
+        }
+        .f-wrap {
+            max-width: 1800px; margin: 0 auto; display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 80px;
+        }
+        @media (max-width: 1024px) { .f-wrap { grid-template-columns: 1fr; gap: 60px; } }
+        .f-col h6 { font-size: 11px; letter-spacing: 5px; color: var(--gold); margin-bottom: 35px; text-transform: uppercase; }
+        .f-col p { color: #666; line-height: 2; font-size: 14px; }
+        .f-col ul { list-style: none; }
+        .f-col ul li { margin-bottom: 18px; }
+        .f-col ul a { color: #888; text-decoration: none; font-size: 13px; transition: 0.3s; letter-spacing: 1px; }
+        .f-col ul a:hover { color: var(--gold); padding-left: 8px; }
 
-        /* --- FOOTER v7 --- */
-        footer { padding: 100px var(--safe-area) 50px; background: #050505; border-top: 1px solid var(--border); }
-        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; max-width: 1800px; margin: 0 auto; }
-        @media (max-width: 1024px) { .footer-grid { grid-template-columns: 1fr; } }
-        .footer-logo img { height: 50px; margin-bottom: 30px; }
-        .footer-col h6 { color: var(--gold); font-size: 10px; letter-spacing: 4px; margin-bottom: 25px; text-transform: uppercase; }
-        .footer-col ul { list-style: none; }
-        .footer-col ul li { margin-bottom: 12px; }
-        .footer-col ul a { color: #666; text-decoration: none; font-size: 14px; transition: 0.3s; }
-        .footer-col ul a:hover { color: white; padding-left: 5px; }
+        /* WHATSAPP LUXE */
+        .wa-bespoke {
+            position: fixed; bottom: 40px; right: 40px; width: 70px; height: 70px;
+            background: var(--gold); border-radius: 50%; display: flex; align-items: center;
+            justify-content: center; color: var(--dark); font-size: 30px; z-index: 1000;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4); transition: 0.4s;
+        }
+        .wa-bespoke:hover { transform: translateY(-10px) rotate(10deg); background: var(--white); }
 
-        /* WA Float */
-        .wa-v7 { position: fixed; bottom: 40px; right: 40px; background: #25D366; color: white; width: 65px; height: 65px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; z-index: 1000; box-shadow: 0 15px 40px rgba(0,0,0,0.3); transition: 0.4s; }
-        .wa-v7:hover { transform: scale(1.1) rotate(10deg); }
-
-        /* Animation */
-        .reveal { opacity: 0; transform: translateY(40px); transition: 1s cubic-bezier(0.16, 1, 0.3, 1); }
+        /* AOS Animation Sim */
+        .reveal { opacity: 0; transform: translateY(60px); transition: 1.5s var(--transition-bespoke); }
         .reveal.active { opacity: 1; transform: translateY(0); }
+
     </style>
 </head>
 <body>
 
-    <div id="masterLoader">
-        <img src="https://i.imgur.com/14VgsWh.png" style="width: 60px; filter: invert(1); margin-bottom: 30px;" alt="Logo">
-        <div class="loader-ring"></div>
-        <p style="margin-top: 20px; font-size: 9px; letter-spacing: 5px; color: #444;">INITIALIZING ATELIER v7.0</p>
+    <div id="atlierLoader">
+        <img src="https://i.imgur.com/14VgsWh.png" class="loader-branding" alt="Asilkan Logo">
+        <div class="loader-line">
+            <div class="loader-fill" id="loadBar"></div>
+        </div>
+        <p style="margin-top: 20px; font-size: 9px; letter-spacing: 8px; font-weight: 200;">ASILKAN ATELIER v8.0</p>
     </div>
 
-    <header class="nav-v7" id="mainHeader">
+    <header class="master-nav" id="topHeader">
         <div class="nav-inner">
-            <a href="#" class="logo"><img src="https://i.imgur.com/14VgsWh.png" alt="Asilkan"></a>
-            <div class="nav-actions">
-                <a href="#studio" class="nav-link">Design Studio</a>
-                <a href="#archive" class="nav-link">Archive</a>
-                <a href="#about" class="nav-link">Zanaat</a>
-                <a href="#contact" class="nav-link">İletişim</a>
-            </div>
+            <a href="#" class="nav-logo">
+                <img src="https://i.imgur.com/14VgsWh.png" alt="Asilkan Custom">
+            </a>
+            <ul class="nav-links">
+                <li><a href="#studio">Bespoke Design</a></li>
+                <li><a href="#museum">The Museum</a></li>
+                <li><a href="#craft">Craftsmanship</a></li>
+                <li><a href="#contact">Atelier Contact</a></li>
+            </ul>
         </div>
     </header>
 
-    <section class="hero-v7" id="home">
-        <div class="hero-video-wrap">
-            <img src="https://i.imgur.com/hAPeeeA.jpeg" alt="Heritage">
+    <section class="hero-engine" id="home">
+        <div class="hero-media">
+            <img src="https://i.imgur.com/hAPeeeA.jpeg" alt="Asilkan Heritage">
         </div>
         <div class="hero-content">
-            <p>Traditional Soul / Modern Cut</p>
-            <h1>Your Heritage, <br>Tailored.</h1>
-            <div style="display: flex; gap: 20px; justify-content: center; margin-top: 40px;">
-                <a href="#studio" class="btn-v7" style="background: white; color: black; width: auto; padding: 15px 40px;">3D ATÖLYEYE GİR</a>
-                <a href="#archive" class="btn-v7" style="background: transparent; border: 1px solid white; color: white; width: auto; padding: 15px 40px;">KOLEKSİYONU GÖR</a>
-            </div>
+            <span>The Art of Handcrafted Excellence</span>
+            <h1>Anatolian Soul, <br>Tailored for You.</h1>
+            <a href="#studio" class="btn-gold">Start Your Design</a>
         </div>
     </section>
 
-    <section class="studio-v7" id="studio">
-        <div class="studio-title reveal">
-            <p style="color: var(--gold); letter-spacing: 5px; font-size: 10px; margin-bottom: 15px;">bespoke tailoring</p>
-            <h2>Halıdan Cekete Dönüşüm</h2>
+    <section class="studio-v8" id="studio">
+        <div class="studio-header reveal">
+            <p>Experience v8.0 / Hardware Accelerated</p>
+            <h2>3D Virtual Tailor</h2>
         </div>
 
-        <div class="studio-layout">
-            <div class="carpet-vault reveal">
-                <div class="carpet-item active" onclick="transformJacket(this, 'https://i.imgur.com/vJCJwvC.jpeg', 'Anatolian Classic')">
-                    <img src="https://i.imgur.com/vJCJwvC.jpeg" alt="Halı 1">
-                    <span>ANADOLU NO.1</span>
+        <div class="studio-interface">
+            <div class="carpet-scroll reveal">
+                <div class="carpet-item active" onclick="syncJacket(this, 'https://i.imgur.com/vJCJwvC.jpeg', 'Heritage No.01')">
+                    <img src="https://i.imgur.com/vJCJwvC.jpeg" alt="Archive 1">
+                    <div class="meta">Kars / Heritage</div>
                 </div>
-                <div class="carpet-item" onclick="transformJacket(this, 'https://i.imgur.com/FlNkiBA.jpeg', 'Bosphorus Dream')">
-                    <img src="https://i.imgur.com/FlNkiBA.jpeg" alt="Halı 2">
-                    <span>BOSPHORUS DREAM</span>
+                <div class="carpet-item" onclick="syncJacket(this, 'https://i.imgur.com/FlNkiBA.jpeg', 'Bosphorus Dream')">
+                    <img src="https://i.imgur.com/FlNkiBA.jpeg" alt="Archive 2">
+                    <div class="meta">Antik Uşak</div>
                 </div>
-                <div class="carpet-item" onclick="transformJacket(this, 'https://i.imgur.com/a0asIvM.jpeg', 'Kars Vintage')">
-                    <img src="https://i.imgur.com/a0asIvM.jpeg" alt="Halı 3">
-                    <span>KARS VINTAGE</span>
+                <div class="carpet-item" onclick="syncJacket(this, 'https://i.imgur.com/a0asIvM.jpeg', 'Nomadic Spirit')">
+                    <img src="https://i.imgur.com/a0asIvM.jpeg" alt="Archive 3">
+                    <div class="meta">Yörük Motif</div>
                 </div>
-                <div class="carpet-item" onclick="transformJacket(this, 'https://i.imgur.com/jSAeqRV.jpeg', 'Nomad Soul')">
-                    <img src="https://i.imgur.com/jSAeqRV.jpeg" alt="Halı 4">
-                    <span>NOMAD SOUL</span>
-                </div>
-                <div class="carpet-item" onclick="transformJacket(this, 'https://i.imgur.com/bNdRdez.jpeg', 'Silk Road')">
-                    <img src="https://i.imgur.com/bNdRdez.jpeg" alt="Halı 5">
-                    <span>SILK ROAD</span>
+                <div class="carpet-item" onclick="syncJacket(this, 'https://i.imgur.com/jSAeqRV.jpeg', 'Taurus Echo')">
+                    <img src="https://i.imgur.com/jSAeqRV.jpeg" alt="Archive 4">
+                    <div class="meta">Toros Clan</div>
                 </div>
             </div>
 
-            <div class="visualizer-v7 reveal">
-                <div class="transformer-engine">
-                    <div class="pattern-skin" id="patternSkin"></div>
-                    <img src="https://i.imgur.com/vJCJwvC.jpeg" class="model-base" id="mainModel" alt="Jacket Base">
+            <div class="visualizer-v8 reveal">
+                <div class="engine-mannequin">
+                    <div class="texture-layer" id="texLayer" style="background-image: url('https://i.imgur.com/vJCJwvC.jpeg'); opacity: 0.9;"></div>
+                    <img src="https://i.imgur.com/vJCJwvC.jpeg" class="jacket-master" id="jacketImg" alt="Bespoke Jacket">
                     
-                    <div style="position: absolute; bottom: 30px; left: 30px; display: flex; align-items: center; gap: 10px;">
-                        <div style="width: 10px; height: 10px; background: var(--gold); border-radius: 50%; animation: pulse 2s infinite;"></div>
-                        <span id="currentStatus" style="font-size: 10px; letter-spacing: 2px;">MODEL READY</span>
+                    <div style="position: absolute; top: 40px; left: 40px; display: flex; align-items: center; gap: 15px;">
+                        <div style="width: 8px; height: 8px; background: var(--gold); border-radius: 50%; box-shadow: 0 0 15px var(--gold);"></div>
+                        <span id="engineStatus" style="font-size: 10px; letter-spacing: 3px; font-weight: 300;">VIRTUAL ATELIER ACTIVE</span>
                     </div>
                 </div>
             </div>
 
-            <div class="metrics-panel reveal">
-                <h5 style="font-family: 'Cormorant Garamond'; font-size: 2rem; margin-bottom: 20px;">Ölçülerinizi Girin</h5>
-                <div class="metric-field">
-                    <label>Omuz (cm)</label>
-                    <input type="number" id="m_shoulder" placeholder="44">
+            <div class="bespoke-form reveal">
+                <div class="form-title">Body Metrics</div>
+                <div class="field-group">
+                    <label>Shoulder Width (cm)</label>
+                    <input type="number" id="m_shoulder" placeholder="44.0">
                 </div>
-                <div class="metric-field">
-                    <label>Göğüs (cm)</label>
-                    <input type="number" id="m_chest" placeholder="102">
+                <div class="field-group">
+                    <label>Chest Circumference (cm)</label>
+                    <input type="number" id="m_chest" placeholder="102.0">
                 </div>
-                <div class="metric-field">
-                    <label>Boy (cm)</label>
-                    <input type="number" id="m_height" placeholder="185">
+                <div class="field-group">
+                    <label>Arm Length (cm)</label>
+                    <input type="number" id="m_arm" placeholder="62.5">
                 </div>
-                <div class="metric-field">
-                    <label>Ceket Kalıbı</label>
-                    <select id="m_fit" style="width: 100%; background: transparent; border: none; border-bottom: 1px solid #333; color: white; padding: 10px 0;">
-                        <option value="slim">Slim Fit</option>
-                        <option value="regular" selected>Regular Fit</option>
-                        <option value="oversize">Oversize</option>
+                <div class="field-group">
+                    <label>Preferred Fit</label>
+                    <select style="width:100%; background:transparent; color:white; border:none; border-bottom:1px solid #222; padding:12px 0;">
+                        <option>Atelier Slim</option>
+                        <option selected>Classic Regular</option>
+                        <option>Neo Oversize</option>
                     </select>
                 </div>
-                
-                <div style="margin-top: auto;">
-                    <button class="btn-v7" onclick="completeOrder()">TEKLİF AL</button>
-                    <p style="font-size: 10px; color: #555; text-align: center; margin-top: 15px;">Teslim süresi: 15-20 İş Günü</p>
+                <button class="btn-gold" style="background: var(--gold); color: black; border: none; margin-top: 20px;" onclick="placeOrder()">Get Bespoke Offer</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="museum-v8" id="museum">
+        <div class="museum-header reveal">
+            <h3>Archival Collection</h3>
+            <p style="color: #666; max-width: 300px; font-size: 13px; text-align: right;">Her parça tek ve eşsizdir. Satışı gerçekleşmiş arşiv modellerimizi keşfedin.</p>
+        </div>
+        <div class="masonry-grid">
+            <div class="art-item reveal">
+                <img src="https://i.imgur.com/vJCJwvC.jpeg" alt="">
+                <div class="overlay">
+                    <h5>Heritage 01</h5>
+                    <p style="font-size: 12px; letter-spacing: 4px;">BESPOKE COAT</p>
+                </div>
+            </div>
+            <div class="art-item reveal">
+                <img src="https://i.imgur.com/FlNkiBA.jpeg" alt="">
+                <div class="overlay">
+                    <h5>Golden Horn</h5>
+                    <p style="font-size: 12px; letter-spacing: 4px;">ANTIQUE BLAZER</p>
+                </div>
+            </div>
+            <div class="art-item reveal">
+                <img src="https://i.imgur.com/a0asIvM.jpeg" alt="">
+                <div class="overlay">
+                    <h5>Nomadic Soul</h5>
+                    <p style="font-size: 12px; letter-spacing: 4px;">COLLECTOR'S ITEM</p>
+                </div>
+            </div>
+            <div class="art-item reveal">
+                <img src="https://i.imgur.com/jSAeqRV.jpeg" alt="">
+                <div class="overlay">
+                    <h5>Taurus Peak</h5>
+                    <p style="font-size: 12px; letter-spacing: 4px;">LIMITED EDITION</p>
+                </div>
+            </div>
+            <div class="art-item reveal">
+                <img src="https://i.imgur.com/HSszXJf.jpeg" alt="">
+                <div class="overlay">
+                    <h5>Carpet Tote</h5>
+                    <p style="font-size: 12px; letter-spacing: 4px;">LEATHER & KILIM</p>
+                </div>
+            </div>
+            <div class="art-item reveal">
+                <img src="https://i.imgur.com/ykwtfHk.jpeg" alt="">
+                <div class="overlay">
+                    <h5>Vintage Short</h5>
+                    <p style="font-size: 12px; letter-spacing: 4px;">SUMMER CAPSULE</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="archive-v7" id="archive">
-        <div class="archive-header reveal">
-            <p style="color: var(--gold); letter-spacing: 5px; font-size: 10px;">legacy collection</p>
-            <h3 style="font-family: 'Cormorant Garamond'; font-size: 4rem;">Arşiv Seçkileri</h3>
-        </div>
-        <div class="archive-grid">
-            <div class="art-card reveal">
-                <img src="https://i.imgur.com/vJCJwvC.jpeg" alt="C1">
-                <div class="art-info">
-                    <h4>Boho Heritage</h4>
-                    <p>El Dokuması Halı Ceket</p>
-                </div>
+    <footer class="luxury-footer" id="contact">
+        <div class="f-wrap">
+            <div class="f-col">
+                <img src="https://i.imgur.com/14VgsWh.png" style="height: 60px; filter: invert(1); margin-bottom: 40px;" alt="">
+                <p>Asilkan Custom, Anadolu'nun bin yıllık dokuma mirasını modern terzilik sanatı ve ileri teknoloji ile buluşturan bir "Haute-Couture" moda evidir.</p>
             </div>
-            <div class="art-card reveal">
-                <img src="https://i.imgur.com/FlNkiBA.jpeg" alt="C2">
-                <div class="art-info">
-                    <h4>Bosphorus Spirit</h4>
-                    <p>Antik Halı Tasarım</p>
-                </div>
-            </div>
-            <div class="art-card reveal">
-                <img src="https://i.imgur.com/a0asIvM.jpeg" alt="C3">
-                <div class="art-info">
-                    <h4>Vintage Soul</h4>
-                    <p>Kişiye Özel Kesim</p>
-                </div>
-            </div>
-            <div class="art-card reveal">
-                <img src="https://i.imgur.com/jSAeqRV.jpeg" alt="C4">
-                <div class="art-info">
-                    <h4>Nomad Warrior</h4>
-                    <p>Yörük Desen Ceket</p>
-                </div>
-            </div>
-            <div class="art-card reveal">
-                <img src="https://i.imgur.com/HSszXJf.jpeg" alt="Bag 1">
-                <div class="art-info">
-                    <h4>Asilkan Tote</h4>
-                    <p>El Dokuması Halı Çanta</p>
-                </div>
-            </div>
-            <div class="art-card reveal">
-                <img src="https://i.imgur.com/ykwtfHk.jpeg" alt="Short 1">
-                <div class="art-info">
-                    <h4>Summer Etnic</h4>
-                    <p>Özel Tasarım Şort</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer id="contact">
-        <div class="footer-grid">
-            <div class="footer-col">
-                <div class="footer-logo"><img src="https://i.imgur.com/14VgsWh.png" alt=""></div>
-                <p style="color: #666; line-height: 1.8;">Asilkan Custom, Anadolu'nun bin yıllık dokuma kültürünü modern terzilik sanatı ile birleştiren bir "Haute-Couture" atölyesidir.</p>
-            </div>
-            <div class="footer-col">
+            <div class="f-col">
                 <h6>Hizmetler</h6>
                 <ul>
-                    <li><a href="#">Bespoke Terzilik</a></li>
-                    <li><a href="#">3D Tasarım Desteği</a></li>
-                    <li><a href="#">Halı Restorasyonu</a></li>
-                    <li><a href="#">Kurumsal Çözümler</a></li>
+                    <li><a href="#">3D Sanal Terzi</a></li>
+                    <li><a href="#">Bespoke Sipariş</a></li>
+                    <li><a href="#">Halı Danışmanlığı</a></li>
+                    <li><a href="#">Global Teslimat</a></li>
                 </ul>
             </div>
-            <div class="footer-col">
+            <div class="f-col">
                 <h6>Kurumsal</h6>
                 <ul>
-                    <li><a href="#">Hakkımızda</a></li>
-                    <li><a href="#">Zanaat Hikayesi</a></li>
-                    <li><a href="#">Atölye Ziyareti</a></li>
-                    <li><a href="#">İletişim</a></li>
+                    <li><a href="#">Atölye Hikayesi</a></li>
+                    <li><a href="#">Zanaatkarlarımız</a></li>
+                    <li><a href="#">Basın & Arşiv</a></li>
+                    <li><a href="#">Legal & Gizlilik</a></li>
                 </ul>
             </div>
-            <div class="footer-col">
-                <h6>Bize Ulaşın</h6>
-                <p style="font-size: 14px; color: #888;">Karaman / Türkiye</p>
-                <p style="font-size: 14px; color: #888; margin-top: 10px;">asilkan.customwears@gmail.com</p>
-                <div style="margin-top: 20px; display: flex; gap: 15px;">
-                    <a href="#" style="color: white; font-size: 20px;"><i class="fab fa-instagram"></i></a>
-                    <a href="#" style="color: white; font-size: 20px;"><i class="fab fa-facebook"></i></a>
+            <div class="f-col">
+                <h6>Atelier Contact</h6>
+                <p style="margin-bottom: 20px;">Karaman / Türkiye</p>
+                <p style="color: var(--gold);">asilkan.customwears@gmail.com</p>
+                <div style="margin-top: 30px; display: flex; gap: 20px;">
+                    <a href="https://instagram.com/asilkancustom" style="color: white; font-size: 20px;"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/905454388096" style="color: white; font-size: 20px;"><i class="fab fa-whatsapp"></i></a>
                 </div>
             </div>
         </div>
-        <div style="text-align: center; margin-top: 80px; padding-top: 40px; border-top: 1px solid #111; color: #333; font-size: 11px; letter-spacing: 3px;">
-            &copy; 2026 ASILKAN CUSTOM | HANDCRAFTED HERITAGE
+        <div style="text-align: center; margin-top: 100px; color: #333; font-size: 10px; letter-spacing: 5px;">
+            &copy; 2026 ASILKAN CUSTOM | THE ART OF BESPOKE
         </div>
     </footer>
 
-    <a href="https://wa.me/905454388096" class="wa-v7" target="_blank">
+    <a href="https://wa.me/905454388096" class="wa-bespoke" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
 
     <script>
         /**
-         * ASILKAN CUSTOM ENGINE v7.0
-         * Real-time Carpet-to-Jacket Transformation & State Management
+         * ASILKAN CUSTOM - JAVASCRIPT CORE v8.0
+         * Handles Hardware Accelerated 3D Texture Mapping and State Logic
          */
 
-        let currentSelection = { name: "Anadolu No.1", img: "https://i.imgur.com/vJCJwvC.jpeg" };
+        let currentActiveDesign = { name: "Heritage No.01", texture: "https://i.imgur.com/vJCJwvC.jpeg" };
 
         window.addEventListener('load', () => {
-            const loader = document.getElementById('masterLoader');
-            setTimeout(() => {
-                loader.style.opacity = '0';
-                setTimeout(() => loader.remove(), 800);
-            }, 1500);
+            // Loader Logic
+            const loader = document.getElementById('atlierLoader');
+            const bar = document.getElementById('loadBar');
+            let progress = 0;
+            
+            const iv = setInterval(() => {
+                progress += 25;
+                bar.style.width = progress + '%';
+                if(progress >= 100) {
+                    clearInterval(iv);
+                    setTimeout(() => {
+                        loader.style.opacity = '0';
+                        setTimeout(() => loader.remove(), 1500);
+                    }, 500);
+                }
+            }, 300);
 
-            initEngine();
+            initAtelierEngine();
         });
 
-        function initEngine() {
-            // Scroll reveal
+        function initAtelierEngine() {
+            // Scroll Animation Observer
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) entry.target.classList.add('active');
@@ -384,46 +432,49 @@
 
             document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-            // Header scroll
+            // Nav Scroll Logic
             window.addEventListener('scroll', () => {
-                const header = document.getElementById('mainHeader');
-                if (window.scrollY > 100) header.classList.add('is-scrolled');
+                const header = document.getElementById('topHeader');
+                if (window.scrollY > 80) header.classList.add('is-scrolled');
                 else header.classList.remove('is-scrolled');
             });
         }
 
-        // transformation Logic
-        function transformJacket(el, imgUrl, name) {
-            // UI
-            document.querySelectorAll('.carpet-item').forEach(c => c.classList.remove('active'));
+        // Texture Mapping Logic (Fixed & GPU Optimized)
+        function syncJacket(el, texUrl, designName) {
+            // UI Toggle
+            document.querySelectorAll('.carpet-item').forEach(item => item.classList.remove('active'));
             el.classList.add('active');
             
-            const status = document.getElementById('currentStatus');
-            const skin = document.getElementById('patternSkin');
+            const status = document.getElementById('engineStatus');
+            const tex = document.getElementById('texLayer');
             
-            status.innerText = "TRANSFORMING...";
-            skin.classList.remove('active');
+            status.innerText = "MAPPING TEXTURE...";
+            tex.style.opacity = '0'; // Smooth transition
             
-            setTimeout(() => {
-                skin.style.backgroundImage = `url('${imgUrl}')`;
-                skin.classList.add('active');
-                status.innerText = `READY: ${name.toUpperCase()}`;
-                currentSelection = { name, img: imgUrl };
-            }, 600);
+            // Texture Change with Frame Update
+            requestAnimationFrame(() => {
+                setTimeout(() => {
+                    tex.style.backgroundImage = `url('${texUrl}')`;
+                    tex.style.opacity = '0.9';
+                    status.innerText = `READY: ${designName.toUpperCase()}`;
+                    currentActiveDesign = { name: designName, texture: texUrl };
+                }, 400);
+            });
         }
 
-        function completeOrder() {
-            const shoulder = document.getElementById('m_shoulder').value;
-            const chest = document.getElementById('m_chest').value;
-            const height = document.getElementById('m_height').value;
-            const fit = document.getElementById('m_fit').value;
+        // Order Handler
+        function placeOrder() {
+            const sh = document.getElementById('m_shoulder').value;
+            const ch = document.getElementById('m_chest').value;
+            const arm = document.getElementById('m_arm').value;
 
-            if(!shoulder || !chest) {
-                alert("Ölçüleri girmeden teklif alamazsınız.");
+            if(!sh || !ch) {
+                alert("Please enter your metrics for a bespoke calculation.");
                 return;
             }
 
-            const message = `ASILKAN CUSTOM ATELIER\n---\nSipariş/Teklif Talebi:\nSeçilen Halı: ${currentSelection.name}\nÖlçüler:\n- Omuz: ${shoulder}cm\n- Göğüs: ${chest}cm\n- Boy: ${height}cm\n- Kalıp: ${fit}\n---\nLütfen süreç ve fiyat hakkında bilgilendirme yapınız.`;
+            const message = `ASILKAN CUSTOM BESPOKE ORDER\n---\nSelected Design: ${currentActiveDesign.name}\nTexture Archive: ${currentActiveDesign.texture}\n\nMetrics:\n- Shoulder: ${sh}cm\n- Chest: ${ch}cm\n- Arm: ${arm}cm\n---\nPlease provide atelier timeline and pricing.`;
             window.open(`https://wa.me/905454388096?text=${encodeURIComponent(message)}`, '_blank');
         }
 
