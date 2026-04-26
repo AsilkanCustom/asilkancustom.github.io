@@ -3,26 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>ASİLKAN | Modern Miras Atölyesi v15.0</title>
+    <title>MAISON ASİLKAN | Modern Miras Atölyesi v17.0</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700;900&family=Playfair+Display:ital,wght@0,900;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
-        /* ASILKAN ULTIMATE ARCHITECTURE v15.0 
-           ESTETİK SEVİYE: MAKSİMUM | DİL: TÜRKÇE | STİL: LES BENJAMINS
+        /* MAISON ASILKAN v17.0 - THE GRAND ATELIER
+           ARCHITECTURE: STREET-LUXURY (LES BENJAMINS VIBE)
         */
         :root {
-            --bg: #f2f2f2; /* Off-White */
+            --bg: #f4f4f4; /* Kemik Beyazı */
             --black: #000000;
-            --accent: #e61919;
-            --border: #d1d1d1;
-            --transition-ultra: all 1.2s cubic-bezier(0.9, 0, 0.1, 1);
+            --accent: #ff0000;
+            --border: #e0e0e0;
+            --transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
             --safe-area: clamp(20px, 8vw, 120px);
         }
 
-        /* RESET & BASE */
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
         body, html { 
             height: 100svh; width: 100%; 
@@ -31,220 +30,226 @@
             overflow: hidden;
         }
 
-        /* --- ANA GİRİŞ (SADECE ANİMASYON) --- */
-        #heroStage {
-            position: fixed; inset: 0; z-index: 500; background: #000;
-            display: flex; align-items: center; justify-content: center;
-            transition: var(--transition-ultra);
+        /* --- PRELOADER --- */
+        #maisonLoader {
+            position: fixed; inset: 0; background: #000; z-index: 10000;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            transition: transform 1.2s cubic-bezier(0.8, 0, 0.1, 1);
         }
-        .hero-media { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.6; filter: grayscale(1); }
-        .hero-text {
-            position: relative; z-index: 501; text-align: center; color: white;
-            animation: textEntrance 2s forwards;
-        }
-        .hero-text h1 { font-size: clamp(4rem, 22vw, 20rem); font-weight: 900; letter-spacing: -12px; line-height: 0.7; }
-        @keyframes textEntrance { from { opacity: 0; transform: scale(1.1); } to { opacity: 1; transform: scale(1); } }
+        .loader-logo { width: 90px; filter: invert(1); animation: fadePulse 2s infinite; }
+        @keyframes fadePulse { 0%, 100% { opacity: 0.2; } 50% { opacity: 1; } }
 
-        /* --- ÜST NAVİGASYON --- */
-        nav {
-            position: fixed; top: 0; width: 100%; height: 110px; z-index: 5000;
+        /* --- NAVIGATION --- */
+        nav.nav-v17 {
+            position: fixed; top: 0; width: 100%; height: 100px; z-index: 5000;
             display: flex; align-items: center; justify-content: space-between;
             padding: 0 var(--safe-area); mix-blend-mode: difference;
         }
-        .logo img { height: 45px; filter: invert(1); }
-        .top-info { font-weight: 900; font-size: 11px; letter-spacing: 6px; color: white; text-transform: uppercase; }
+        .logo-v17 img { height: 38px; filter: invert(1); }
+        .nav-status { font-weight: 900; font-size: 10px; letter-spacing: 5px; color: white; text-transform: uppercase; }
 
-        /* --- SAYFA TETİKLEYİCİ BUTONLAR (SAĞ ALT) --- */
-        .master-controls {
-            position: fixed; bottom: 60px; right: var(--safe-area); z-index: 1000;
-            display: flex; flex-direction: column; gap: 15px;
+        /* --- HERO: SADECE ANİMASYON --- */
+        #heroSection {
+            position: fixed; inset: 0; z-index: 500; background: #000;
+            display: flex; align-items: center; justify-content: center;
         }
-        .nav-btn {
-            padding: 28px 55px; background: #000; color: #fff; border: none;
-            font-size: 11px; font-weight: 900; letter-spacing: 5px; cursor: pointer;
-            text-transform: uppercase; transition: var(--transition-ultra);
-            text-align: right; border-radius: 0;
+        .hero-media-wrap { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.6; filter: grayscale(1); }
+        .hero-title-v17 {
+            position: relative; z-index: 501; text-align: center; color: white;
         }
-        .nav-btn:hover { background: var(--accent); padding-right: 80px; }
+        .hero-title-v17 h1 { font-size: clamp(4rem, 22vw, 18rem); font-weight: 900; letter-spacing: -10px; line-height: 0.7; }
 
-        /* --- MODÜLER SAYFA SİSTEMİ --- */
-        .page-module {
+        /* --- MODÜLER KONTROL PANELİ --- */
+        .maison-actions {
+            position: fixed; bottom: 50px; right: var(--safe-area); z-index: 1000;
+            display: flex; flex-direction: column; gap: 12px;
+        }
+        .btn-v17 {
+            padding: 25px 55px; background: #000; color: #fff; border: none;
+            font-size: 11px; font-weight: 900; letter-spacing: 4px; cursor: pointer;
+            text-transform: uppercase; transition: var(--transition);
+            text-align: right;
+        }
+        .btn-v17:hover { background: var(--accent); transform: translateX(-15px); }
+
+        /* --- SAYFA MODÜLLERİ --- */
+        .page-wrap {
             position: fixed; inset: 0; background: var(--bg); z-index: 2000;
-            transform: translateY(100%); transition: var(--transition-ultra);
-            overflow-y: auto; padding: 140px var(--safe-area) 100px;
+            transform: translateY(100%); transition: var(--transition);
+            overflow-y: auto; padding: 140px var(--safe-area) 80px;
         }
-        .page-module.active { transform: translateY(0); }
-        .close-view { 
-            position: fixed; top: 45px; right: var(--safe-area); 
-            font-size: 50px; font-weight: 100; cursor: pointer; z-index: 6000;
+        .page-wrap.is-active { transform: translateY(0); }
+        .close-btn { 
+            position: fixed; top: 40px; right: var(--safe-area); 
+            font-size: 45px; font-weight: 100; cursor: pointer; z-index: 6000;
         }
 
-        /* --- 3D ATÖLYE v15 --- */
-        .studio-layout { display: grid; grid-template-columns: 1.2fr 1fr; gap: 100px; max-width: 1800px; margin: 0 auto; align-items: center; }
-        .canvas-container {
+        /* --- 3D STUDIO CORE v17 --- */
+        .studio-v17 { display: grid; grid-template-columns: 1.2fr 1fr; gap: 80px; max-width: 1800px; margin: 0 auto; align-items: start; }
+        .canvas-v17 {
             background: #fff; border: 1px solid var(--border); height: 78vh;
             position: relative; display: flex; align-items: center; justify-content: center;
             overflow: hidden;
         }
-        .canvas-container img { height: 92%; z-index: 10; filter: drop-shadow(0 50px 100px rgba(0,0,0,0.1)); }
+        .canvas-v17 img { height: 90%; z-index: 10; filter: contrast(1.05); }
         
-        /* 3D Texture Mapping Motoru */
-        .mask-layer {
+        .texture-engine {
             position: absolute; inset: 0; z-index: 5;
-            background-size: 380px; mix-blend-mode: multiply; opacity: 0;
-            transition: opacity 1s ease, background 0.6s ease;
+            background-size: 400px; mix-blend-mode: multiply; opacity: 0;
+            transition: opacity 0.8s, background 0.4s;
+            mask-image: url('https://i.imgur.com/vJCJwvC.jpeg');
             -webkit-mask-image: url('https://i.imgur.com/vJCJwvC.jpeg');
             -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat; -webkit-mask-position: center;
         }
-        .mask-layer.active { opacity: 0.95; }
+        .texture-engine.active { opacity: 0.95; }
 
-        .form-content h2 { font-size: clamp(3rem, 8vw, 7rem); font-weight: 900; letter-spacing: -7px; line-height: 0.75; margin-bottom: 40px; }
-        .hali-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin: 40px 0; }
-        .hali-thumb { aspect-ratio: 1; cursor: pointer; transition: 0.4s; border: 1px solid transparent; background-size: cover; filter: grayscale(1); }
-        .hali-thumb.active { filter: grayscale(0); border-color: #000; transform: scale(1.05); }
+        .studio-info h2 { font-size: clamp(3rem, 10vw, 8rem); font-weight: 900; letter-spacing: -6px; line-height: 0.75; margin-bottom: 30px; }
+        .grid-carpets { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin: 40px 0; }
+        .carpet-node { 
+            aspect-ratio: 1; background-size: cover; border: 1px solid #eee; 
+            cursor: pointer; transition: 0.4s; filter: grayscale(1);
+        }
+        .carpet-node:hover, .carpet-node.active { filter: grayscale(0); border-color: #000; transform: scale(1.05); }
 
-        /* --- KOLEKSİYON TASARIMI --- */
-        .collection-title { font-size: clamp(4rem, 15vw, 12rem); font-weight: 900; letter-spacing: -12px; line-height: 0.7; margin-bottom: 100px; }
-        .masonry { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-        .item { position: relative; aspect-ratio: 4/5; overflow: hidden; background: #fff; border: 1px solid var(--border); }
-        .item img { width: 100%; height: 100%; object-fit: cover; transition: 2s var(--transition-ultra); }
-        .item:hover img { transform: scale(1.1); filter: grayscale(1); }
-        .item-info { position: absolute; bottom: 40px; left: 40px; z-index: 10; }
-        .item-info h3 { font-size: 2.5rem; font-weight: 900; letter-spacing: -2px; }
+        /* --- ARŞİV GALERİ --- */
+        .archive-grid-v17 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+        .archive-card-v17 { position: relative; aspect-ratio: 4/5; overflow: hidden; background: #fff; border: 1px solid var(--border); }
+        .archive-card-v17 img { width: 100%; height: 100%; object-fit: cover; transition: 1.5s var(--transition); }
+        .archive-card-v17:hover img { transform: scale(1.1); filter: grayscale(1); }
+        .archive-meta { position: absolute; bottom: 30px; left: 30px; z-index: 10; font-weight: 900; font-size: 2rem; letter-spacing: -1.5px; text-transform: uppercase; }
 
-        /* --- MİRAS VE HİKAYE --- */
-        .story-text { max-width: 1000px; font-size: 2.2rem; font-weight: 300; line-height: 1.2; margin-bottom: 60px; }
-        .story-text b { font-weight: 900; color: var(--accent); }
-
-        /* MOBİL UYUMLULUK */
+        /* --- MOBİL --- */
         @media (max-width: 1024px) {
-            .studio-layout { grid-template-columns: 1fr; }
-            .masonry { grid-template-columns: 1fr; }
-            .nav-btn { width: 100%; text-align: center; }
-            .master-controls { left: 20px; right: 20px; bottom: 20px; }
-            .hero-text h1 { letter-spacing: -4px; }
-            .page-module { padding: 120px 20px 100px; }
+            .studio-v17 { grid-template-columns: 1fr; }
+            .archive-grid-v17 { grid-template-columns: 1fr; }
+            .maison-actions { left: 20px; right: 20px; bottom: 20px; }
+            .btn-v17 { width: 100%; text-align: center; }
+            .page-wrap { padding: 120px 20px 100px; }
         }
 
-        /* WHATSAPP v15 */
-        .wa-luxe { position: fixed; bottom: 60px; left: var(--safe-area); z-index: 1000; color: #000; text-decoration: none; font-weight: 900; letter-spacing: 4px; font-size: 12px; mix-blend-mode: difference; color: white; }
+        .wa-footer { position: fixed; bottom: 50px; left: var(--safe-area); z-index: 1000; color: #fff; mix-blend-mode: difference; font-weight: 900; letter-spacing: 5px; font-size: 11px; text-decoration: none; }
     </style>
 </head>
 <body>
 
-    <nav>
-        <a href="#" class="logo" onclick="closePages()"><img src="https://i.imgur.com/14VgsWh.png" alt="Asilkan"></a>
-        <div class="top-info">2026 TASARIM ARŞİVİ</div>
+    <div id="maisonLoader">
+        <img src="https://i.imgur.com/14VgsWh.png" class="loader-logo" alt="Asilkan">
+    </div>
+
+    <nav class="nav-v17">
+        <a href="#" class="logo-v17" onclick="closeAllModules()"><img src="https://i.imgur.com/14VgsWh.png" alt="Asilkan"></a>
+        <div class="nav-status">ATELIER v17.0 / READY</div>
     </nav>
 
-    <section id="heroStage">
-        <img src="https://i.imgur.com/hAPeeeA.jpeg" class="hero-media" alt="Background">
-        <div class="hero-text">
+    <section id="heroSection">
+        <img src="https://i.imgur.com/hAPeeeA.jpeg" class="hero-media-wrap" alt="Heritage Art">
+        <div class="hero-title-v17">
             <h1>ASİLKAN</h1>
         </div>
     </section>
 
-    <div class="master-controls">
-        <button class="nav-btn" onclick="openPage('pAtolye')">Atölye 3D</button>
-        <button class="nav-btn" onclick="openPage('pGaleri')">Koleksiyon</button>
-        <button class="nav-btn" onclick="openPage('pMiras')">Mirasımız</button>
+    <div class="maison-actions">
+        <button class="btn-v17" onclick="openModule('modStudio')">DİJİTAL ATÖLYE</button>
+        <button class="btn-v17" onclick="openModule('modCollection')">KOLEKSİYON</button>
+        <button class="btn-v17" onclick="openModule('modHeritage')">MİRASIMIZ</button>
     </div>
 
-    <div id="pAtolye" class="page-module">
-        <div class="close-view" onclick="closePages()">&times;</div>
-        <div class="studio-layout">
-            <div class="canvas-container">
-                <div class="mask-layer" id="texEngine" style="background-image: url('https://i.imgur.com/vJCJwvC.jpeg'); opacity: 0.95;"></div>
-                <img src="https://i.imgur.com/vJCJwvC.jpeg" alt="Mannequin">
+    <div id="modStudio" class="page-wrap">
+        <div class="close-btn" onclick="closeAllModules()">&times;</div>
+        <div class="studio-v17">
+            <div class="canvas-v17">
+                <div class="texture-engine active" id="canvasSkin" style="background-image: url('https://i.imgur.com/vJCJwvC.jpeg'); opacity: 0.95;"></div>
+                <img src="https://i.imgur.com/vJCJwvC.jpeg" alt="Model Base">
             </div>
-            <div class="form-content">
-                <h2>MODERN<br>ZANAAT.</h2>
-                <p style="font-weight: 400; opacity: 0.4; margin-bottom: 40px; line-height: 1.8;">Anadolu'nun kadim halı dokularını seçin, sistemimiz onu modern streetwear kalıplarıyla birleştirsin.</p>
+            <div class="studio-info">
+                <h2>ÖZEL<br>DİKİM.</h2>
+                <p style="font-weight: 300; opacity: 0.5; margin-bottom: 40px; line-height: 1.6;">Lüksü zanaatla buluşturun. Seçtiğiniz kadim Anadolu halısı, dijital motorumuz tarafından modern bir cekete dönüştürülsün.</p>
                 
-                <div class="hali-grid">
-                    <div class="hali-thumb active" onclick="syncAtelier('https://i.imgur.com/vJCJwvC.jpeg', 'Miras 01')" style="background-image: url('https://i.imgur.com/vJCJwvC.jpeg');"></div>
-                    <div class="hali-thumb" onclick="syncAtelier('https://i.imgur.com/FlNkiBA.jpeg', 'Anadolu 02')" style="background-image: url('https://i.imgur.com/FlNkiBA.jpeg');"></div>
-                    <div class="hali-thumb" onclick="syncAtelier('https://i.imgur.com/a0asIvM.jpeg', 'Yörük 03')" style="background-image: url('https://i.imgur.com/a0asIvM.jpeg');"></div>
-                    <div class="hali-thumb" onclick="syncAtelier('https://i.imgur.com/jSAeqRV.jpeg', 'Toros 04')" style="background-image: url('https://i.imgur.com/jSAeqRV.jpeg');"></div>
+                <div class="grid-carpets">
+                    <div class="carpet-node active" onclick="syncAtelierEngine('https://i.imgur.com/vJCJwvC.jpeg', 'Heritage 01')" style="background-image: url('https://i.imgur.com/vJCJwvC.jpeg');"></div>
+                    <div class="carpet-node" onclick="syncAtelierEngine('https://i.imgur.com/FlNkiBA.jpeg', 'Anatolian 02')" style="background-image: url('https://i.imgur.com/FlNkiBA.jpeg');"></div>
+                    <div class="carpet-node" onclick="syncAtelierEngine('https://i.imgur.com/a0asIvM.jpeg', 'Nomad 03')" style="background-image: url('https://i.imgur.com/a0asIvM.jpeg');"></div>
+                    <div class="carpet-node" onclick="syncAtelierEngine('https://i.imgur.com/jSAeqRV.jpeg', 'Taurus 04')" style="background-image: url('https://i.imgur.com/jSAeqRV.jpeg');"></div>
                 </div>
 
                 <div style="display: flex; flex-direction: column; gap: 20px;">
-                    <input type="text" id="userSize" placeholder="BEDEN VEYA ÖZEL ÖLÇÜ (CM)" style="width:100%; padding:25px; background:none; border:2px solid #000; font-family:var(--font-main); font-weight:900;">
-                    <button class="nav-btn" style="width:100%; text-align:center;" onclick="submitDesign()">TASARIMI KAYDET VE İLERLE</button>
+                    <input type="text" id="custMeasure" placeholder="BEDEN VEYA OMUZ/BOY ÖLÇÜLERİNİZ" style="width:100%; padding:25px; background:none; border:2px solid #000; font-family:'Montserrat'; font-weight:900;">
+                    <button class="btn-v17" style="width:100%; text-align:center;" onclick="confirmOffer()">TEKLİF TALEBİ OLUŞTUR</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <div id="pGaleri" class="page-module">
-        <div class="close-view" onclick="closePages()">&times;</div>
-        <h2 class="collection-title">KÜLTÜR<br>AKIMI.</h2>
-        <div class="masonry">
-            <div class="item"><img src="https://i.imgur.com/vJCJwvC.jpeg" alt=""><div class="item-info"><h3>CEKET 01</h3></div></div>
-            <div class="item"><img src="https://i.imgur.com/FlNkiBA.jpeg" alt=""><div class="item-info"><h3>CEKET 02</h3></div></div>
-            <div class="item"><img src="https://i.imgur.com/HSszXJf.jpeg" alt=""><div class="item-info"><h3>TOTE BAG</h3></div></div>
-            <div class="item"><img src="https://i.imgur.com/ykwtfHk.jpeg" alt=""><div class="item-info"><h3>SHORT 01</h3></div></div>
+    <div id="modCollection" class="page-wrap">
+        <div class="close-btn" onclick="closeAllModules()">&times;</div>
+        <h2 style="font-size: 8rem; font-weight: 900; letter-spacing: -8px; margin-bottom: 60px;">ARŞİV.</h2>
+        <div class="archive-grid-v17">
+            <div class="archive-card-v17"><img src="https://i.imgur.com/vJCJwvC.jpeg" alt=""><div class="archive-meta">Miras 01</div></div>
+            <div class="archive-card-v17"><img src="https://i.imgur.com/FlNkiBA.jpeg" alt=""><div class="archive-meta">Miras 02</div></div>
+            <div class="archive-card-v17"><img src="https://i.imgur.com/HSszXJf.jpeg" alt=""><div class="archive-meta">Tote Bag</div></div>
+            <div class="archive-card-v17"><img src="https://i.imgur.com/ykwtfHk.jpeg" alt=""><div class="archive-meta">Şort 01</div></div>
         </div>
     </div>
 
-    <div id="pMiras" class="page-module">
-        <div class="close-view" onclick="closePages()">&times;</div>
+    <div id="modHeritage" class="page-wrap">
+        <div class="close-btn" onclick="closeAllModules()">&times;</div>
         <div style="max-width: 1200px;">
-            <h2 class="collection-title" style="font-size: 8rem;">GELECEK<br>GELENEKTE.</h2>
-            <p class="story-text">Biz, 50 yıllık <b>el dokuması Anadolu halılarını</b>, modern sokak kültürünün <b>asi ve minimal</b> çizgileriyle buluşturuyoruz. Her Asilkan parçası, giyilebilir bir tarih belgesidir.</p>
-            <img src="https://i.imgur.com/hAPeeeA.jpeg" style="width: 100%; filter: grayscale(1); margin-top: 40px;" alt="Zanaat">
+            <h2 style="font-size: clamp(3rem, 10vw, 7rem); font-weight: 900; letter-spacing: -6px; line-height: 0.9; margin-bottom: 40px;">ZANAAT VE<br>DEVRİM.</h2>
+            <p style="font-size: 2.5rem; font-weight: 100; line-height: 1.2;">Biz, Anadolu'nun <b>yarım asırlık mirasını</b> modern sokak stilinin <b>keskin çizgileriyle</b> harmanlayan bir zanaat atölyesiyiz. Her parça eşsiz, her dikiş bir hikayedir.</p>
+            <img src="https://i.imgur.com/hAPeeeA.jpeg" style="width: 100%; filter: grayscale(1); margin-top: 50px;" alt="Art">
         </div>
     </div>
 
-    <a href="https://wa.me/905454388096" class="wa-luxe">WHATSAPP / ATELIER</a>
+    <a href="https://wa.me/905454388096" class="wa-footer">WHATSAPP / ATELIER</a>
 
     <script>
         /**
-         * ASILKAN ATELIER ENGINE v15.0
-         * Modüler Sayfa Yönetimi ve Gelişmiş 3D Doku Motoru
+         * MAISON ASILKAN CORE - v17.0
+         * Hardware-Accelerated UX & Texture Engine
          */
 
-        // Sayfa Kontrol Sistemi
-        function openPage(id) {
-            document.querySelectorAll('.page-module').forEach(m => m.classList.remove('active'));
-            document.getElementById(id).classList.add('active');
+        // Preloader Logic
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('maisonLoader');
+            setTimeout(() => {
+                loader.style.transform = 'translateY(-100%)';
+            }, 1000);
+        });
+
+        // Module Management
+        function openModule(id) {
+            document.querySelectorAll('.page-wrap').forEach(m => m.classList.remove('is-active'));
+            document.getElementById(id).classList.add('is-active');
         }
 
-        function closePages() {
-            document.querySelectorAll('.page-module').forEach(m => m.classList.remove('active'));
+        function closeAllModules() {
+            document.querySelectorAll('.page-wrap').forEach(m => m.classList.remove('is-active'));
         }
 
-        // 3D Doku Motoru
-        let activeSelection = "Miras 01";
-        function syncAtelier(url, name) {
-            const engine = document.getElementById('texEngine');
-            engine.style.opacity = '0';
+        // Texture Mapping Engine v17 (GPU Accelerated)
+        let currentDesign = "Heritage 01";
+        function syncAtelierEngine(url, name) {
+            const skin = document.getElementById('canvasSkin');
+            skin.style.opacity = '0';
             
-            // UI Güncelleme
-            document.querySelectorAll('.hali-thumb').forEach(t => t.classList.remove('active'));
+            // UI Toggle
+            document.querySelectorAll('.carpet-node').forEach(n => n.classList.remove('active'));
             event.currentTarget.classList.add('active');
 
-            // Donanım Hızlandırmalı Doku Geçişi
+            // Force Reflow for Smooth Transition
             setTimeout(() => {
-                engine.style.backgroundImage = `url(${url})`;
-                engine.style.opacity = '0.95';
-                activeSelection = name;
-            }, 400);
+                skin.style.backgroundImage = `url(${url})`;
+                skin.style.opacity = '0.95';
+                currentDesign = name;
+            }, 350);
         }
 
-        function submitDesign() {
-            const size = document.getElementById('userSize').value;
-            if(!size) { alert("Lütfen ölçülerinizi belirtin."); return; }
-            const msg = `Asilkan v15 Tasarım Onayı:\nSeçilen Doku: ${activeSelection}\nÖlçüler: ${size}\nİletişim bekliyorum.`;
+        function confirmOffer() {
+            const m = document.getElementById('custMeasure').value;
+            if(!m) { alert("Lütfen ölçülerinizi belirtin."); return; }
+            const msg = `Atelier v17 Sipariş Talebi:\nSeçilen: ${currentDesign}\nÖlçüler: ${m}\nİletişim bekliyorum.`;
             window.open(`https://wa.me/905454388096?text=${encodeURIComponent(msg)}`);
         }
-
-        // Otomatik Giriş Animasyonu
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                // Giriş animasyonu bittikten sonra kontrolleri göster (isteğe bağlı)
-            }, 2000);
-        });
     </script>
 </body>
 </html>
