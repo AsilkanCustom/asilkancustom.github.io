@@ -300,22 +300,67 @@ h1, h2, h3, .brand span {
     .acc-panel{ padding:0 4px 14px; color:#444; line-height:1.6 }
 
     /* Ölçü formu (varsayılan 2 sütun) */
-    .measure-form{ display:grid; grid-template-columns:1fr 1fr; gap:10px; width:100%; margin-top:6px }
-    .measure-form label{ font-size:.9rem; color:#333; display:block }
-    .measure-form input, .measure-form textarea, .measure-form select{
-      width:100%; padding:10px; border:1px solid var(--border); border-radius:12px; font:inherit; background:#fff
-    }
-    .measure-form textarea{ grid-column:1/-1; min-height:84px }
+    /* MODERN BESPOKE FORM */
+.measure-form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px 30px;
+  margin-top: 30px;
+  padding: 20px 0;
+  border-top: 1px solid var(--border);
+}
 
-    /* Trend-2 & Trend-3: her ekranda 2 sütun sabit */
-    .measure-form--2col{ display:grid !important; grid-template-columns:1fr 1fr !important; gap:10px !important; }
-    @media (max-width:640px){ .measure-form--2col{ grid-template-columns:1fr 1fr !important; } }
+.measure-form label {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--muted);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
 
-    @media (hover:none){
-      .product-card:hover{ transform:none; box-shadow:var(--shadow); border-color:var(--border) }
-      .product-card:hover img{ transform:none; opacity:1 }
-    }
+.measure-form input, 
+.measure-form textarea {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #d1d1d1;
+  padding: 10px 0;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.15rem;
+  color: var(--primary);
+  outline: none;
+  transition: border-color 0.4s ease;
+  border-radius: 0;
+}
 
+.measure-form input:focus {
+  border-bottom-color: var(--accent);
+}
+
+.measure-form input::placeholder {
+  color: #ccc;
+  font-style: italic;
+  font-size: 0.9rem;
+}
+
+/* Not alanını tam genişlik yap */
+.measure-form label[style*="grid-column: 1 / -1"] {
+  margin-top: 10px;
+}
+
+.measure-form textarea {
+  min-height: 50px;
+  resize: none;
+}
+
+/* Sayı oklarını (spinner) gizle - daha temiz görünüm için */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
     /* ===== Atölyeden Seçkiler — yatay ürün kart şeridi ===== */
     .atelier-row{ position:relative; margin: 0 -8px; }
     .atelier-scroll{
