@@ -1834,8 +1834,594 @@ document.addEventListener('DOMContentLoaded',()=>{
   initStudio();
   saveWish();
   getPage();
+  initIntro();
 });
 })();
+</script>
+
+<!-- ═══════════════════════════════════════════════════════════
+     INTRO OVERLAY + MÜZİK + 3D GELİŞMİŞ STUDIO
+═══════════════════════════════════════════════════════════ -->
+<style>
+/* ─── INTRO OVERLAY ─── */
+#intro-overlay{
+  position:fixed;inset:0;z-index:99998;
+  background:#0a0806;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:0;
+  transition:opacity .8s ease, visibility .8s ease;
+}
+#intro-overlay.hide{opacity:0;visibility:hidden;pointer-events:none}
+.intro-logo-wrap{
+  width:120px;height:120px;border-radius:50%;
+  border:2px solid rgba(201,169,110,.3);
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+  animation:introPulse 2s ease-out forwards;
+  background:rgba(201,169,110,.05);
+}
+@keyframes introPulse{
+  0%{transform:scale(0.3);opacity:0;border-color:transparent}
+  40%{transform:scale(1.08);opacity:1;border-color:rgba(201,169,110,.6)}
+  60%{transform:scale(0.97)}
+  100%{transform:scale(1);border-color:rgba(201,169,110,.3)}
+}
+.intro-logo-wrap img{width:100px;height:100px;object-fit:contain}
+.intro-brand{
+  font-family:'Cinzel',serif;
+  font-size:clamp(22px,4vw,48px);
+  letter-spacing:.3em;text-transform:uppercase;
+  color:var(--cream);margin-top:28px;
+  opacity:0;animation:introFade .8s ease .6s forwards;
+}
+.intro-sub{
+  font-family:'Playfair Display',serif;font-style:italic;
+  font-size:clamp(13px,2vw,20px);color:var(--gold);
+  margin-top:10px;letter-spacing:.12em;
+  opacity:0;animation:introFade .8s ease 1s forwards;
+}
+.intro-loc{
+  font-size:.68rem;letter-spacing:.25em;text-transform:uppercase;
+  color:rgba(201,169,110,.5);margin-top:12px;
+  opacity:0;animation:introFade .8s ease 1.3s forwards;
+}
+@keyframes introFade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+.intro-line{
+  width:1px;height:0;background:var(--gold);
+  margin-top:32px;
+  animation:introLine 1s ease 1.6s forwards;
+}
+@keyframes introLine{from{height:0;opacity:0}to{height:60px;opacity:.6}}
+
+.intro-enter{
+  margin-top:40px;
+  padding:12px 36px;
+  border:1px solid rgba(201,169,110,.4);
+  background:none;color:var(--gold);
+  font-family:'Cinzel',serif;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;
+  opacity:0;animation:introFade .8s ease 2s forwards;
+  transition:background .25s,border-color .25s;
+  cursor:pointer;
+}
+.intro-enter:hover{background:rgba(201,169,110,.1);border-color:var(--gold)}
+
+/* Particle canvas */
+#intro-particles{
+  position:absolute;inset:0;pointer-events:none;z-index:0;opacity:.4;
+}
+.intro-logo-wrap,.intro-brand,.intro-sub,.intro-loc,.intro-line,.intro-enter{position:relative;z-index:1}
+
+/* ─── MUSIC PLAYER ─── */
+#music-player{
+  position:fixed;bottom:24px;right:24px;z-index:5000;
+  display:flex;align-items:center;gap:10px;
+  background:rgba(13,10,6,.92);
+  border:1px solid rgba(201,169,110,.2);
+  padding:10px 16px 10px 12px;
+  backdrop-filter:blur(12px);
+  transition:transform .3s,opacity .3s;
+  transform:translateY(100px);opacity:0;
+}
+#music-player.show{transform:none;opacity:1}
+.music-btn{
+  width:36px;height:36px;border-radius:50%;
+  background:var(--gold);border:none;
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;color:#000;flex-shrink:0;
+  transition:background .2s,transform .2s;
+}
+.music-btn:hover{background:var(--gold-light);transform:scale(1.08)}
+.music-info{display:flex;flex-direction:column;gap:2px}
+.music-title{font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--cream)}
+.music-note{font-size:.6rem;color:var(--muted);letter-spacing:.06em}
+.music-vol{
+  -webkit-appearance:none;appearance:none;
+  width:60px;height:2px;background:var(--border);border-radius:2px;outline:none;cursor:pointer;
+}
+.music-vol::-webkit-slider-thumb{
+  -webkit-appearance:none;width:12px;height:12px;border-radius:50%;background:var(--gold);cursor:pointer;
+}
+@media(max-width:480px){
+  #music-player{bottom:16px;right:16px;padding:8px 12px 8px 10px}
+  .music-vol{width:44px}
+}
+
+/* ─── 3D COAT SVG PREVIEW ─── */
+.coat-3d-wrap{
+  width:100%;aspect-ratio:3/4;
+  background:radial-gradient(ellipse at 50% 30%,#1e1a14 0%,#0a0806 100%);
+  display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;
+  perspective:900px;
+}
+.coat-3d-inner{
+  width:85%;max-width:300px;
+  transform-style:preserve-3d;
+  animation:coatFloat 5s ease-in-out infinite;
+  cursor:grab;user-select:none;
+}
+.coat-3d-inner:active{cursor:grabbing}
+@keyframes coatFloat{
+  0%,100%{transform:rotateX(2deg) rotateY(-6deg) translateY(0)}
+  33%{transform:rotateX(-2deg) rotateY(8deg) translateY(-8px)}
+  66%{transform:rotateX(3deg) rotateY(-4deg) translateY(-4px)}
+}
+.coat-3d-svg{width:100%;height:auto;filter:drop-shadow(0 24px 48px rgba(0,0,0,.7))}
+
+/* Pattern fill defs */
+.coat-shadow-left{fill:rgba(0,0,0,.25)}
+.coat-shadow-right{fill:rgba(0,0,0,.18)}
+.coat-collar{fill:#1a1510;stroke:rgba(201,169,110,.3);stroke-width:.5}
+.coat-button{fill:var(--gold)}
+.coat-stitch{stroke:rgba(201,169,110,.4);stroke-width:.5;stroke-dasharray:3,3;fill:none}
+
+.coat-3d-label{
+  position:absolute;bottom:16px;left:50%;transform:translateX(-50%);
+  font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(201,169,110,.4);white-space:nowrap;
+}
+.coat-3d-hint{
+  position:absolute;top:14px;right:14px;
+  font-size:.58rem;letter-spacing:.1em;color:rgba(201,169,110,.35);
+  display:flex;align-items:center;gap:4px;
+}
+
+/* Pattern overlay on coat */
+#coat-pattern-fill{
+  transition:opacity .4s;
+}
+
+/* ─── PRODUCT IMAGE GALLERY in modal — full upload ─── */
+.gallery-upload-btn{
+  display:flex;align-items:center;gap:6px;
+  padding:10px 14px;margin-top:10px;width:100%;
+  background:rgba(201,169,110,.06);border:1px dashed rgba(201,169,110,.25);
+  color:var(--gold);font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;
+  transition:background .2s,border-color .2s;
+}
+.gallery-upload-btn:hover{background:rgba(201,169,110,.1);border-color:var(--gold)}
+.gallery-extra-preview{
+  display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;
+}
+.gallery-extra-preview img{
+  width:56px;height:56px;object-fit:cover;cursor:pointer;
+  border:1px solid transparent;transition:border-color .2s;
+}
+.gallery-extra-preview img:hover{border-color:var(--gold)}
+.gallery-extra-preview img.active{border-color:var(--gold)}
+</style>
+
+<!-- INTRO OVERLAY HTML -->
+<div id="intro-overlay" role="dialog" aria-modal="true" aria-label="Hoş geldiniz">
+  <canvas id="intro-particles"></canvas>
+  <div class="intro-logo-wrap">
+    <img src="https://i.imgur.com/14VgsWh.png" alt="Asilkan Custom">
+  </div>
+  <div class="intro-brand">Asilkan Custom</div>
+  <div class="intro-sub">Karaman'dan Dünyaya</div>
+  <div class="intro-loc">37°10'K · 33°13'D · Türkiye</div>
+  <div class="intro-line"></div>
+  <button class="intro-enter" id="intro-enter" aria-label="Siteye gir">Koleksiyona Gir</button>
+</div>
+
+<!-- MUSIC PLAYER -->
+<div id="music-player" role="complementary" aria-label="Müzik çalar">
+  <button class="music-btn" id="music-btn" aria-label="Müziği oynat/durdur">▶</button>
+  <div class="music-info">
+    <span class="music-title">Asilkan Ambiyans</span>
+    <span class="music-note">♩ Anadolu Ritmi</span>
+  </div>
+  <input type="range" class="music-vol" id="music-vol" min="0" max="1" step="0.05" value="0.35" aria-label="Ses seviyesi">
+</div>
+
+<script>
+/* ═══════════════════════════════════════════════════
+   INTRO + MÜZİK + 3D COAT + PHOTO UPLOAD
+═══════════════════════════════════════════════════ */
+
+/* ─── AUDIO ENGINE (Web Audio API — no external file needed) ─── */
+let audioCtx = null;
+let masterGain = null;
+let isPlaying = false;
+let musicInterval = null;
+
+function createAudioCtx(){
+  if(audioCtx) return;
+  audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  masterGain = audioCtx.createGain();
+  masterGain.gain.value = 0.35;
+  masterGain.connect(audioCtx.destination);
+}
+
+/* Ambient Anatolian music: layered tones + slow oud-like melody */
+function playNote(freq, start, dur, vol=0.15, type='sine'){
+  if(!audioCtx) return;
+  const osc = audioCtx.createOscillator();
+  const gain = audioCtx.createGain();
+  osc.connect(gain); gain.connect(masterGain);
+  osc.type = type;
+  osc.frequency.setValueAtTime(freq, audioCtx.currentTime + start);
+  gain.gain.setValueAtTime(0, audioCtx.currentTime + start);
+  gain.gain.linearRampToValueAtTime(vol, audioCtx.currentTime + start + 0.1);
+  gain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + start + dur - 0.05);
+  osc.start(audioCtx.currentTime + start);
+  osc.stop(audioCtx.currentTime + start + dur);
+}
+
+/* Drone (tanpura-like) */
+function playDrone(){
+  if(!audioCtx) return;
+  const freqs = [130.81, 196, 261.63, 196]; // C3 G3 C4
+  freqs.forEach((f,i)=>{
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.connect(gain); gain.connect(masterGain);
+    osc.type = 'sawtooth';
+    osc.frequency.value = f;
+    gain.gain.setValueAtTime(0, audioCtx.currentTime);
+    gain.gain.linearRampToValueAtTime(0.04, audioCtx.currentTime + 1);
+    osc.start();
+    return {osc, gain};
+  });
+}
+
+/* Oud-like melody pattern (Hicaz scale) */
+const MELODY = [
+  // freq, start, dur
+  [293.66,0,1.2],[329.63,.9,.8],[349.23,1.5,.6],[392,2,.9],
+  [369.99,2.7,.7],[349.23,3.2,1],[329.63,4,.8],[293.66,4.6,1.4],
+  [261.63,5.8,1],[277.18,6.6,.7],[293.66,7.1,1.2],[329.63,7.9,.9],
+  [349.23,8.6,.6],[392,9.1,.8],[329.63,9.7,1],[293.66,10.5,2],
+];
+
+function playMelodyCycle(){
+  if(!audioCtx || !isPlaying) return;
+  MELODY.forEach(([f,s,d])=> playNote(f, s, d, 0.13, 'triangle'));
+  // subtle percussion (tabla-like)
+  [0,1.5,3,4.5,6,7.5,9,10.5].forEach(s=>{
+    playNote(80 + Math.random()*20, s, 0.08, 0.09, 'square');
+  });
+  // pad
+  [130.81, 164.81, 196].forEach(f=> playNote(f, 0, 12, 0.04, 'sine'));
+  musicInterval = setTimeout(playMelodyCycle, 11500);
+}
+
+/* Intro senfoni (fanfare) */
+function playIntroSymphony(){
+  createAudioCtx();
+  // Rising dramatic chord sweep
+  const fanfare = [
+    [261.63,0,.4,0.18,'triangle'],[329.63,.15,.4,0.16,'triangle'],
+    [392,.3,.5,0.15,'triangle'],[523.25,.45,.6,0.18,'triangle'],
+    [659.25,.6,.8,0.14,'triangle'],
+    [783.99,.75,1.2,0.16,'sine'],
+    [987.77,.9,1.5,0.12,'sine'],
+    // resolution
+    [523.25,1.8,2,0.1,'sine'],[392,1.9,2,0.08,'sine'],[261.63,2,2.5,0.1,'sine'],
+  ];
+  fanfare.forEach(([f,s,d,v,t])=> playNote(f,s,d,v,t));
+  // then start ambient
+  setTimeout(()=>{ if(isPlaying) playMelodyCycle(); }, 4500);
+}
+
+function toggleMusic(){
+  createAudioCtx();
+  if(audioCtx.state === 'suspended') audioCtx.resume();
+  const btn = document.getElementById('music-btn');
+  if(isPlaying){
+    isPlaying = false;
+    clearTimeout(musicInterval);
+    btn.textContent = '▶';
+    if(masterGain) masterGain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + .5);
+  } else {
+    isPlaying = true;
+    btn.textContent = '⏸';
+    if(masterGain){
+      const vol = parseFloat(document.getElementById('music-vol').value);
+      masterGain.gain.linearRampToValueAtTime(vol, audioCtx.currentTime + .5);
+    }
+    playMelodyCycle();
+  }
+}
+
+/* ─── INTRO PARTICLES ─── */
+function initParticles(){
+  const canvas = document.getElementById('intro-particles');
+  if(!canvas) return;
+  const ctx2 = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  const pts = Array.from({length:60},()=>({
+    x: Math.random()*canvas.width,
+    y: Math.random()*canvas.height,
+    r: Math.random()*1.5+.3,
+    vx:(Math.random()-.5)*.3,
+    vy:(Math.random()-.5)*.3,
+    a: Math.random()*.6+.1
+  }));
+  function drawParticles(){
+    ctx2.clearRect(0,0,canvas.width,canvas.height);
+    pts.forEach(p=>{
+      ctx2.beginPath();ctx2.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx2.fillStyle=`rgba(201,169,110,${p.a})`;ctx2.fill();
+      p.x+=p.vx;p.y+=p.vy;
+      if(p.x<0||p.x>canvas.width)p.vx*=-1;
+      if(p.y<0||p.y>canvas.height)p.vy*=-1;
+    });
+    if(!document.getElementById('intro-overlay').classList.contains('hide'))
+      requestAnimationFrame(drawParticles);
+  }
+  drawParticles();
+}
+
+/* ─── INIT INTRO ─── */
+function initIntro(){
+  initParticles();
+  const overlay = document.getElementById('intro-overlay');
+  const enterBtn = document.getElementById('intro-enter');
+  const musicPlayer = document.getElementById('music-player');
+  const musicBtn = document.getElementById('music-btn');
+  const volSlider = document.getElementById('music-vol');
+
+  // Auto-dismiss after 5s (fallback)
+  let autoDismiss = setTimeout(()=>dismissIntro(), 5500);
+
+  function dismissIntro(){
+    clearTimeout(autoDismiss);
+    overlay.classList.add('hide');
+    // Start music & show player
+    setTimeout(()=>{
+      createAudioCtx();
+      isPlaying = true;
+      musicPlayer.classList.add('show');
+      musicBtn.textContent = '⏸';
+      playIntroSymphony();
+    }, 500);
+  }
+
+  enterBtn && enterBtn.addEventListener('click', dismissIntro);
+
+  // Volume slider
+  volSlider && volSlider.addEventListener('input', ()=>{
+    if(masterGain && audioCtx){
+      masterGain.gain.setValueAtTime(parseFloat(volSlider.value), audioCtx.currentTime);
+    }
+  });
+
+  // Music toggle
+  musicBtn && musicBtn.addEventListener('click', toggleMusic);
+
+  // Handle page visibility (pause when tab hidden)
+  document.addEventListener('visibilitychange', ()=>{
+    if(!audioCtx) return;
+    if(document.hidden){ audioCtx.suspend(); }
+    else if(isPlaying){ audioCtx.resume(); }
+  });
+}
+
+/* ─── 3D COAT UPGRADE: full SVG with pattern image fill ─── */
+function initCoat3D(){
+  const wrap = document.getElementById('design-canvas');
+  if(!wrap) return;
+
+  // Replace content with proper 3D SVG coat
+  wrap.innerHTML = `
+    <div class="coat-3d-hint" aria-hidden="true">↔ Döndür</div>
+    <div class="coat-3d-inner" id="coat3d">
+      <svg class="coat-3d-svg" viewBox="0 0 200 280" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="coatPat" x="0" y="0" width="1" height="1">
+            <image id="coat-img-fill" href="https://i.imgur.com/WzlSfVi.jpeg"
+              x="0" y="0" width="200" height="280" preserveAspectRatio="xMidYMid slice"/>
+          </pattern>
+          <clipPath id="bodyClip">
+            <path d="M60,40 L30,60 L10,120 L15,260 L185,260 L190,120 L170,60 L140,40 L130,20 L100,18 L70,20 Z"/>
+          </clipPath>
+          <filter id="coatShadow">
+            <feDropShadow dx="0" dy="12" stdDeviation="10" flood-color="rgba(0,0,0,0.7)" flood-opacity="1"/>
+          </filter>
+          <linearGradient id="leftShade" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="rgba(0,0,0,0.35)"/>
+            <stop offset="100%" stop-color="rgba(0,0,0,0)"/>
+          </linearGradient>
+          <linearGradient id="rightShade" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="rgba(0,0,0,0)"/>
+            <stop offset="100%" stop-color="rgba(0,0,0,0.3)"/>
+          </linearGradient>
+        </defs>
+
+        <!-- Body with pattern fill -->
+        <path d="M60,40 L30,60 L10,120 L15,260 L185,260 L190,120 L170,60 L140,40 L130,20 L100,18 L70,20 Z"
+          fill="url(#coatPat)" filter="url(#coatShadow)" id="coat-body"/>
+
+        <!-- Shadow overlays for 3D depth -->
+        <path d="M60,40 L30,60 L10,120 L15,260 L100,260 L100,18 L70,20 Z"
+          fill="url(#leftShade)" class="coat-shadow-left" opacity="0.4"/>
+        <path d="M140,40 L170,60 L190,120 L185,260 L100,260 L100,18 L130,20 Z"
+          fill="url(#rightShade)" class="coat-shadow-right" opacity="0.3"/>
+
+        <!-- Lapels -->
+        <path d="M100,18 L70,20 L60,40 L80,70 L100,90 Z" class="coat-collar"/>
+        <path d="M100,18 L130,20 L140,40 L120,70 L100,90 Z" class="coat-collar"/>
+
+        <!-- Center seam stitch -->
+        <line x1="100" y1="90" x2="100" y2="260" class="coat-stitch"/>
+        <!-- Shoulder stitch left -->
+        <path d="M60,40 L40,55 L30,80" class="coat-stitch"/>
+        <!-- Shoulder stitch right -->
+        <path d="M140,40 L160,55 L170,80" class="coat-stitch"/>
+
+        <!-- Collar inner detail -->
+        <path d="M80,70 L100,90 L120,70" fill="none" stroke="rgba(201,169,110,.5)" stroke-width="0.6"/>
+
+        <!-- Buttons -->
+        <circle cx="100" cy="130" r="3.5" class="coat-button"/>
+        <circle cx="100" cy="160" r="3.5" class="coat-button"/>
+        <circle cx="100" cy="190" r="3.5" class="coat-button"/>
+        <circle cx="100" cy="220" r="3.5" class="coat-button"/>
+
+        <!-- Pocket lines -->
+        <path d="M30,190 L60,195 L62,230 L28,225 Z" fill="rgba(0,0,0,.2)" stroke="rgba(201,169,110,.2)" stroke-width="0.5"/>
+        <path d="M170,190 L140,195 L138,230 L172,225 Z" fill="rgba(0,0,0,.2)" stroke="rgba(201,169,110,.2)" stroke-width="0.5"/>
+
+        <!-- Brand label at hem -->
+        <text x="100" y="252" text-anchor="middle" font-family="serif" font-size="5"
+          fill="rgba(201,169,110,0.6)" letter-spacing="2">ASILKAN</text>
+      </svg>
+    </div>
+    <div class="coat-3d-label">Seçilen Desende Önizleme</div>`;
+
+  // Drag to rotate
+  const coat3d = document.getElementById('coat3d');
+  if(!coat3d) return;
+  let dragging=false, lastX=0, rotY=-6, rotX=2;
+
+  function applyRot(){
+    coat3d.style.transform=`rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+    coat3d.style.animation='none';
+  }
+
+  coat3d.addEventListener('mousedown',e=>{dragging=true;lastX=e.clientX;coat3d.style.animation='none';});
+  window.addEventListener('mousemove',e=>{
+    if(!dragging)return;
+    const dx=e.clientX-lastX; rotY+=dx*.4; lastX=e.clientX;
+    rotY=Math.max(-40,Math.min(40,rotY)); applyRot();
+  });
+  window.addEventListener('mouseup',()=>{
+    if(dragging){dragging=false;setTimeout(()=>{coat3d.style.animation='coatFloat 5s ease-in-out infinite';},300);}
+  });
+
+  // Touch rotate
+  let lastTX=0;
+  coat3d.addEventListener('touchstart',e=>{lastTX=e.changedTouches[0].clientX;coat3d.style.animation='none';},{passive:true});
+  coat3d.addEventListener('touchmove',e=>{
+    const dx=e.changedTouches[0].clientX-lastTX; rotY+=dx*.4; lastTX=e.changedTouches[0].clientX;
+    rotY=Math.max(-40,Math.min(40,rotY)); applyRot();
+  },{passive:true});
+  coat3d.addEventListener('touchend',()=>{setTimeout(()=>{coat3d.style.animation='coatFloat 5s ease-in-out infinite';},300);});
+}
+
+/* ─── SWATCH → COAT IMAGE UPDATE ─── */
+(function patchStudio(){
+  const origApply = window._origApplySwatch;
+  // Override swatch click to update SVG coat image
+  document.addEventListener('click', e=>{
+    const sw = e.target.closest('.swatch');
+    if(!sw) return;
+    const url = sw.dataset.pattern;
+    if(!url) return;
+    const img = document.getElementById('coat-img-fill');
+    if(img){ img.setAttribute('href', url); img.setAttribute('xlink:href', url); }
+  });
+})();
+
+/* ─── PHOTO UPLOAD IN PRODUCT MODAL ─── */
+(function enhanceModalUpload(){
+  // Add upload button to pm-gallery after modal opens
+  const origOpen = window._origOpenProd || function(){};
+  // Patch: after modal opens, inject upload area below thumbs
+  const obs2 = new MutationObserver(()=>{
+    const modal = document.getElementById('product-modal');
+    if(!modal || !modal.classList.contains('show')) return;
+    if(document.getElementById('modal-upload-wrap')) return;
+
+    const thumbsWrap = document.getElementById('g-thumbs');
+    if(!thumbsWrap) return;
+
+    const wrap = document.createElement('div');
+    wrap.id = 'modal-upload-wrap';
+    wrap.style.marginTop = '10px';
+
+    const btn = document.createElement('label');
+    btn.className = 'gallery-upload-btn';
+    btn.setAttribute('for','modal-file-input');
+    btn.innerHTML = '📷 Fotoğraf Ekle';
+
+    const input = document.createElement('input');
+    input.type='file'; input.id='modal-file-input';
+    input.accept='image/*'; input.multiple=true;
+    input.style.display='none';
+
+    const preview = document.createElement('div');
+    preview.className='gallery-extra-preview';
+    preview.id='modal-extra-preview';
+
+    const userImgs = [];
+
+    input.addEventListener('change', e=>{
+      Array.from(e.target.files).forEach(f=>{
+        if(!f.type.startsWith('image/'))return;
+        const reader=new FileReader();
+        reader.onload=ev=>{
+          userImgs.push(ev.target.result);
+          const img=new Image();
+          img.src=ev.target.result;
+          img.className='';
+          img.setAttribute('tabindex','0');
+          img.setAttribute('alt','Yüklenen görsel');
+          img.addEventListener('click',()=>{
+            const gm=document.getElementById('g-main');
+            if(gm){gm.src=ev.target.result;}
+            preview.querySelectorAll('img').forEach(i=>i.classList.remove('active'));
+            // deactivate product thumbs
+            document.querySelectorAll('.g-thumb').forEach(t=>t.classList.remove('active'));
+            img.classList.add('active');
+          });
+          preview.appendChild(img);
+        };
+        reader.readAsDataURL(f);
+      });
+    });
+
+    wrap.appendChild(btn);
+    wrap.appendChild(input);
+    wrap.appendChild(preview);
+
+    // Insert after thumbs parent
+    thumbsWrap.parentNode && thumbsWrap.parentNode.appendChild(wrap);
+  });
+
+  obs2.observe(document.body, {attributes:true, subtree:true, attributeFilter:['class']});
+})();
+
+/* ─── RESPONSIVE: extra mobile polish ─── */
+(function mobilePolish(){
+  // Viewport height fix for mobile browsers (address bar issue)
+  function setVH(){
+    document.documentElement.style.setProperty('--vh',''+window.innerHeight*.01+'px');
+  }
+  setVH();
+  window.addEventListener('resize',setVH,{passive:true});
+
+  // Prevent double-tap zoom on buttons/cards (iOS)
+  document.addEventListener('touchend',e=>{
+    if(e.target.tagName==='BUTTON'||e.target.closest('.product-card')){e.preventDefault();}
+  },{passive:false});
+})();
+
+/* ─── COAT 3D INIT AFTER DOM ─── */
+document.addEventListener('DOMContentLoaded', initCoat3D);
 </script>
 </body>
 </html>
