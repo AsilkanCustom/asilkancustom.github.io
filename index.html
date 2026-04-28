@@ -195,8 +195,11 @@ nav.scrolled{background:rgba(8,6,4,.94);backdrop-filter:blur(18px);-webkit-backd
   text-align:center;padding:90px 24px 70px;overflow:hidden;background:#000}
 .hero-slides{position:absolute;inset:0;z-index:0}
 .hero-slides img{position:absolute;inset:0;width:100%;height:100%;
-  object-fit:cover;object-position:50% 30%;opacity:0;transition:opacity 1.2s ease}
+  object-fit:cover;object-position:50% 30%;opacity:0;transition:opacity 1.2s ease;
+  background:#1a1208}
+.hero-slides img:first-child{opacity:.44}
 .hero-slides img.on{opacity:.44}
+.hero-slides img.off{opacity:0}
 .hero-slides img:nth-child(2){object-position:50% 45%}
 .hero-slides img:nth-child(3){object-position:50% 50%}
 .hero-veil{position:absolute;inset:0;z-index:1;
@@ -415,9 +418,37 @@ nav.scrolled{background:rgba(8,6,4,.94);backdrop-filter:blur(18px);-webkit-backd
   display:flex;align-items:center;justify-content:center;cursor:pointer;line-height:1}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 
-/* ══════════════════════════════════════════
-   ABOUT / MANIFESTO
-══════════════════════════════════════════ */
+/* Hero title typography – ayrı satırlar */
+.hero-h1{display:flex;flex-direction:column;align-items:center;gap:0;line-height:1.1;margin:0}
+.hero-h1-top{font-family:'Cinzel',serif;font-weight:400;letter-spacing:.1em;
+  font-size:clamp(28px,4.5vw,60px);color:#fff;text-shadow:0 2px 24px rgba(0,0,0,.5)}
+.hero-h1-divider{font-size:.9rem;letter-spacing:.4em;color:var(--gold);opacity:.6;
+  margin:4px 0;display:block;text-align:center}
+.hero-h1-bot{font-family:'Playfair Display',serif;font-style:italic;font-weight:400;
+  font-size:clamp(36px,6vw,80px);color:var(--gold);
+  text-shadow:0 0 40px rgba(201,169,110,.3),0 2px 20px rgba(0,0,0,.5);
+  letter-spacing:.04em}
+
+/* MAP SECTION */
+.map-section{background:var(--dark2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:80px 0}
+.map-inner{max-width:var(--W);margin:auto;padding:0 40px;display:grid;grid-template-columns:1fr 1.4fr;gap:56px;align-items:center}
+.map-text .eyebrow{display:block;margin-bottom:12px}
+.map-text h2{margin-bottom:18px}
+.map-text p{font-size:.9rem;color:rgba(232,224,212,.62);line-height:1.85;margin-bottom:14px}
+.map-address{display:flex;align-items:flex-start;gap:12px;
+  padding:16px 20px;border:1px solid rgba(201,169,110,.2);margin-top:20px;background:rgba(201,169,110,.04)}
+.map-address .addr-icon{font-size:1.4rem;flex-shrink:0;margin-top:2px}
+.map-address-text{display:flex;flex-direction:column;gap:3px}
+.map-address-text strong{font-size:.82rem;letter-spacing:.06em;color:var(--cream)}
+.map-address-text span{font-size:.78rem;color:var(--muted);line-height:1.5}
+.map-btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.map-frame-wrap{position:relative;border:1px solid var(--border);overflow:hidden}
+.map-frame-wrap iframe{width:100%;height:420px;display:block;border:none;filter:grayscale(20%)contrast(1.05)invert(5%)}
+.map-frame-overlay{position:absolute;top:12px;left:12px;background:rgba(8,6,4,.88);
+  border:1px solid rgba(201,169,110,.25);padding:8px 14px;
+  font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+@media(max-width:860px){.map-inner{grid-template-columns:1fr;gap:36px;padding:0 20px}
+  .map-frame-wrap iframe{height:280px}}
 .about-hero{position:relative;min-height:50vh;display:flex;align-items:center;justify-content:center;
   text-align:center;background:#000;padding:100px 24px 60px;overflow:hidden}
 .about-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.28}
@@ -660,7 +691,11 @@ footer{background:#030201;border-top:1px solid rgba(201,169,110,.1);padding:72px
     <div class="hero-c">
       <div class="hero-badge" data-i18n="hero_badge">Paris'ten Değil</div>
       <div class="hero-logo3" aria-hidden="true"><img src="https://i.imgur.com/14VgsWh.png" alt=""></div>
-      <h1 data-i18n-html="hero_h1">Karaman'dan<br><span class="italic">Dünyaya</span></h1>
+      <h1 class="hero-h1">
+        <span class="hero-h1-top" data-i18n="hero_top">Karaman'dan</span>
+        <span class="hero-h1-divider" aria-hidden="true">—</span>
+        <span class="hero-h1-bot italic" data-i18n="hero_bot">Dünyaya</span>
+      </h1>
       <p class="hero-sub" data-i18n="hero_sub">Anadolu'nun arka sokaklarından çıkan sanat</p>
       <div class="hero-loc" data-i18n="hero_loc">37°10'K · 33°13'D · Karaman, Türkiye</div>
       <div class="hero-btns">
@@ -887,6 +922,41 @@ footer{background:#030201;border-top:1px solid rgba(201,169,110,.1);padding:72px
 
 </main>
 
+<!-- ══ MAP / ADRES ══ -->
+<section class="map-section" aria-label="Konumumuz">
+  <div class="map-inner">
+    <div class="map-text">
+      <span class="eyebrow" data-i18n="map_eyebrow">Atölyemize Gelin</span>
+      <h2 data-i18n="map_h">Bizi Ziyaret Edin</h2>
+      <p data-i18n="map_p1">Atölyemiz, Karaman'ın kalbinde — dar sokaklarında sanatın hâlâ nefes aldığı o mahallede. Kapımız her zaman açık; bir fincan çay içip tasarımları yerinde görebilirsiniz.</p>
+      <p data-i18n="map_p2">Sipariş vermeden önce bizi ziyaret edebilir, kumaşları dokunarak inceleyebilir, yaşayan atölye atmosferini hissedebilirsiniz.</p>
+      <div class="map-address">
+        <span class="addr-icon">📍</span>
+        <div class="map-address-text">
+          <strong>Asilkan Custom Atölyesi</strong>
+          <span>Alişahane Mh. 164. Sokak No:32/B</span>
+          <span>Merkez / Karaman, Türkiye</span>
+        </div>
+      </div>
+      <div class="map-btns">
+        <a href="https://www.google.com/maps/dir/?api=1&destination=Alişahane+Mh.+164.+Sokak+No:32/B+Karaman" target="_blank" rel="noopener" class="btn-p" style="text-decoration:none" data-i18n="map_dir">🗺 Yol Tarifi Al</a>
+        <a href="https://wa.me/905454388096?text=Merhaba%2C%20atölyenizi%20ziyaret%20etmek%20istiyorum." target="_blank" rel="noopener" class="btn-o" style="text-decoration:none" data-i18n="map_apt">💬 Randevu Al</a>
+      </div>
+    </div>
+    <div class="map-frame-wrap rv">
+      <div class="map-frame-overlay">Asilkan Custom · Karaman</div>
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151!2d33.215!3d37.175!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzfCsDEwJzMwLjAiTiAzM8KwMTInNTQuMCJF!5e0!3m2!1str!2str!4v1700000000000!5m2!1str!2str"
+        loading="lazy"
+        allowfullscreen
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Asilkan Custom Atölyesi — Alişahane Mh. 164. Sokak No:32/B Karaman"
+        aria-label="Google Haritada Asilkan Custom konumu">
+      </iframe>
+    </div>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer>
   <div class="fi">
@@ -981,7 +1051,8 @@ const T = {
     nav_bags:'👜 Çantalar',nav_pants:'👖 Pantolonlar',nav_studio:'Stüdyo',
     nav_about:'Hikayemiz',nav_size:'Beden',nav_order:'Sipariş Ver',
     hero_badge:'Paris\'ten Değil',
-    hero_h1:'Karaman\'dan<br><span class="italic">Dünyaya</span>',
+    hero_top:'Karaman\'dan',
+    hero_bot:'Dünyaya',
     hero_sub:'Anadolu\'nun arka sokaklarından çıkan sanat',
     hero_loc:'37°10\'K · 33°13\'D · Karaman, Türkiye',
     hero_cta1:'Koleksiyonu Keşfet →',hero_cta2:'Kendi Tasarımını Yap',
@@ -1025,6 +1096,10 @@ const T = {
     wish_eyebrow:'Listelerim',wish_h:'Favorilerim',
     footer_desc:'El dokuması halı motiflerini modern tasarımla buluşturan Karaman kökenli atölye.',
     fc_col:'Koleksiyon',fc_brand:'Marka',fc_contact:'İletişim',
+    map_eyebrow:'Atölyemize Gelin',map_h:'Bizi Ziyaret Edin',
+    map_p1:'Atölyemiz, Karaman\'ın kalbinde — dar sokaklarında sanatın hâlâ nefes aldığı o mahallede.',
+    map_p2:'Sipariş vermeden önce bizi ziyaret edebilir, kumaşları dokunarak inceleyebilirsiniz.',
+    map_dir:'🗺 Yol Tarifi Al',map_apt:'💬 Randevu Al',
     footer_copy:'© 2025 Asilkan Custom · Karaman, Türkiye',
     upload_photo:'Fotoğraf Ekle',ml:'Beden Ölçüleriniz',os_label:'Özet:',
     wa_order:'WhatsApp ile Sipariş',share:'Paylaş',
@@ -1039,7 +1114,8 @@ const T = {
     nav_bags:'👜 Bags',nav_pants:'👖 Trousers',nav_studio:'Studio',
     nav_about:'Our Story',nav_size:'Size Guide',nav_order:'Order Now',
     hero_badge:'Not From Paris',
-    hero_h1:'From Karaman<br><span class="italic">To The World</span>',
+    hero_top:'From Karaman',
+    hero_bot:'To The World',
     hero_sub:'Art emerging from the back streets of Anatolia',
     hero_loc:'37°10\'N · 33°13\'E · Karaman, Turkey',
     hero_cta1:'Explore Collection →',hero_cta2:'Design Your Own',
@@ -1083,6 +1159,10 @@ const T = {
     wish_eyebrow:'My List',wish_h:'Wishlist',
     footer_desc:'Karaman-based atelier merging traditional Turkish carpet motifs with modern design.',
     fc_col:'Collection',fc_brand:'Brand',fc_contact:'Contact',
+    map_eyebrow:'Visit Our Atelier',map_h:'Come See Us',
+    map_p1:'Our atelier is in the heart of Karaman — in the neighbourhood where art still breathes in its narrow streets.',
+    map_p2:'You are welcome to visit us before placing an order, touch the fabrics and feel the living atelier atmosphere.',
+    map_dir:'🗺 Get Directions',map_apt:'💬 Book a Visit',
     footer_copy:'© 2025 Asilkan Custom · Karaman, Turkey',
     upload_photo:'Add Photos',ml:'Your Measurements',os_label:'Summary:',
     wa_order:'Order via WhatsApp',share:'Share',
@@ -1498,33 +1578,150 @@ document.addEventListener('click',e=>{
 /* ══════════════════════════════════════════
    LUXURY WEB AUDIO ENGINE
 ══════════════════════════════════════════ */
-let actx=null,masterG=null,playing=false,musicTm=null;
-function createACtx(){if(actx)return;actx=new(window.AudioContext||window.webkitAudioContext)();masterG=actx.createGain();masterG.gain.value=0;masterG.connect(actx.destination);}
-function pNote(f,start,dur,vol=.08,type='sine'){if(!actx)return;const o=actx.createOscillator();const g=actx.createGain();o.connect(g);g.connect(masterG);o.type=type;o.frequency.value=f;g.gain.setValueAtTime(0,actx.currentTime+start);g.gain.linearRampToValueAtTime(vol,actx.currentTime+start+.12);g.gain.linearRampToValueAtTime(0,actx.currentTime+start+dur-.08);o.start(actx.currentTime+start);o.stop(actx.currentTime+start+dur);}
+// ── After Hours Dark Synth Engine ──────────────────────────────
+let actx=null,masterG=null,reverbConv=null,playing=false,barTimer=null,beatCount=0;
 
-// Luxury ambient: slow, minimal, oud-inspired with reverb simulation
-const CHORD_PROG=[[220,277.18,329.63],[196,246.94,293.66],[220,261.63,311.13],[185,233.08,277.18]];
-let chordIdx=0;
-function playChord(){if(!actx||!playing)return;const ch=CHORD_PROG[chordIdx%CHORD_PROG.length];ch.forEach(f=>{pNote(f,0,4.5,.055,'sine');pNote(f/2,0,4.5,.03,'sine');});chordIdx++;musicTm=setTimeout(playChord,4800);}
+function createACtx(){
+  if(actx)return;
+  actx=new(window.AudioContext||window.webkitAudioContext)();
+  masterG=actx.createGain();masterG.gain.value=0;
+  // Reverb
+  try{
+    reverbConv=actx.createConvolver();
+    const len=Math.floor(actx.sampleRate*2.8);
+    const rb=actx.createBuffer(2,len,actx.sampleRate);
+    for(let c=0;c<2;c++){const d=rb.getChannelData(c);for(let i=0;i<len;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/len,1.8);}
+    reverbConv.buffer=rb;
+    const wet=actx.createGain();wet.gain.value=.28;
+    const dry=actx.createGain();dry.gain.value=.72;
+    masterG.connect(dry);masterG.connect(reverbConv);reverbConv.connect(wet);
+    dry.connect(actx.destination);wet.connect(actx.destination);
+  }catch(_){masterG.connect(actx.destination);}
+}
 
-// Melody (sparse, cinematic)
-const MEL=[[329.63,0,2.2],[369.99,1.8,1.6],[392,3,.9],[349.23,3.7,1.4],[329.63,4.8,2.2],[293.66,6.5,3],[329.63,9,.9],[369.99,9.7,1.2],[392,10.5,3.5]];
-function playMel(){if(!actx||!playing)return;MEL.forEach(([f,s,d])=>pNote(f,s,d,.04,'triangle'));setTimeout(playMel,14000);}
+function pn(f,s,d,v=.06,type='sine',det=0){
+  if(!actx||!playing)return;
+  const now=actx.currentTime+s;
+  const o=actx.createOscillator();const g=actx.createGain();
+  const lp=actx.createBiquadFilter();lp.type='lowpass';lp.frequency.value=Math.min(f*4,3200);lp.Q.value=1.2;
+  o.connect(lp);lp.connect(g);g.connect(masterG);
+  o.type=type;o.frequency.value=f;o.detune.value=det;
+  g.gain.setValueAtTime(0,now);g.gain.linearRampToValueAtTime(v,now+.15);
+  g.gain.setValueAtTime(v*.9,now+d-.3);g.gain.linearRampToValueAtTime(0,now+d);
+  o.start(now);o.stop(now+d+.1);
+}
 
-// Drone (tanpura-like)
-let droneOscs=[];
-function startDrone(){if(!actx||droneOscs.length)return;[110,165,220].forEach((f,i)=>{const o=actx.createOscillator();const g=actx.createGain();o.connect(g);g.connect(masterG);o.type='sine';o.frequency.value=f;g.gain.setValueAtTime(.018-i*.004,actx.currentTime);o.start();droneOscs.push({o,g});});}
-function stopDrone(){droneOscs.forEach(({o,g})=>{g.gain.linearRampToValueAtTime(0,actx.currentTime+1);setTimeout(()=>o.stop(),1100);});droneOscs=[];}
+// After Hours chord progression (Am–F–C–G in minor)
+const CHORDS=[
+  {root:110,notes:[110,138.59,164.81,220],name:'Am'},   // A minor
+  {root:87.31,notes:[87.31,110,130.81,174.61],name:'F'},// F major
+  {root:130.81,notes:[130.81,164.81,196,261.63],name:'C'},// C major
+  {root:98,notes:[98,123.47,146.83,196],name:'G'},       // G minor
+];
 
-// Intro fanfare (dramatic, luxury)
-function playFanfare(){if(!actx)return;const fan=[[261.63,0,.35,.12,'triangle'],[329.63,.25,.35,.1,'triangle'],[392,.5,.45,.1,'triangle'],[523.25,.72,.7,.12,'sine'],[659.25,.92,1,.1,'sine'],[783.99,1.1,1.5,.09,'sine'],[1046.5,1.25,2,.07,'sine'],[523.25,2.2,2.5,.06,'sine'],[392,2.4,2.8,.05,'sine'],[261.63,2.6,3,.06,'sine']];fan.forEach(([f,s,d,v,t])=>pNote(f,s,d,v,t));}
+// Weeknd-style melody (Blinding Lights / After Hours vibe)
+const MELODY_NOTES=[
+  [329.63,0,1.4],[349.23,1.3,1],[392,2.2,.8],[440,2.9,.6],
+  [392,3.4,1.2],[349.23,4.5,.9],[329.63,5.3,1.8],[293.66,6.9,2.2],
+  [329.63,8.8,.8],[349.23,9.5,1],[392,10.3,.7],[329.63,10.9,1.4],
+  [293.66,12.1,1.2],[261.63,13.2,2.8],
+];
 
-function setVol(v){if(masterG&&actx){masterG.gain.linearRampToValueAtTime(v,actx.currentTime+.3);}}
-function startMusic(){playing=true;if(masterG){const vol=parseFloat($('#mp-vol').value||'.3');masterG.gain.linearRampToValueAtTime(vol,actx.currentTime+1);}startDrone();playChord();setTimeout(playMel,1800);}
-function stopMusic(){playing=false;clearTimeout(musicTm);stopDrone();if(masterG)masterG.gain.linearRampToValueAtTime(0,actx.currentTime+.8);}
+const BD=.75; // beat duration 80bpm
+
+function scheduleChord(ch,t){
+  // Bass — deep, punchy
+  pn(ch.root*.5,t,BD*4,.07,'sawtooth');
+  pn(ch.root,t+.05,BD*3.5,.04,'sine');
+  // Pad layers — lush 80s synth
+  ch.notes.forEach((f,i)=>{
+    pn(f,t+i*.06,BD*3.8,.03,'sawtooth',i%2===0?-4:4);
+    pn(f,t+i*.06+.02,BD*3.6,.015,'sine',i%2===0?3:-3);
+  });
+  // High shimmer
+  pn(ch.notes[2]*2,t+.2,BD*2,.012,'sine');
+}
+
+function scheduleMelody(offset){
+  if(!actx||!playing)return;
+  MELODY_NOTES.forEach(([f,s,d])=>{
+    pn(f,s+offset,d,.038,'triangle',Math.random()*3-1.5);
+  });
+}
+
+function kick(t){
+  if(!actx)return;
+  const o=actx.createOscillator();const g=actx.createGain();
+  o.connect(g);g.connect(masterG);o.type='sine';
+  const now=actx.currentTime+t;
+  o.frequency.setValueAtTime(200,now);o.frequency.exponentialRampToValueAtTime(38,now+.22);
+  g.gain.setValueAtTime(.22,now);g.gain.exponentialRampToValueAtTime(.001,now+.28);
+  o.start(now);o.stop(now+.32);
+}
+function hat(t,v=.035){
+  if(!actx)return;
+  const buf=actx.createBuffer(1,Math.floor(actx.sampleRate*.04),actx.sampleRate);
+  const d=buf.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=(Math.random()*2-1);
+  const src=actx.createBufferSource();src.buffer=buf;
+  const hp=actx.createBiquadFilter();hp.type='highpass';hp.frequency.value=8000;
+  const g=actx.createGain();g.gain.value=v;
+  src.connect(hp);hp.connect(g);g.connect(masterG);
+  src.start(actx.currentTime+t);
+}
+function snare(t){
+  if(!actx)return;
+  const buf=actx.createBuffer(1,Math.floor(actx.sampleRate*.12),actx.sampleRate);
+  const d=buf.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/d.length,1.2);
+  const src=actx.createBufferSource();src.buffer=buf;
+  const bp=actx.createBiquadFilter();bp.type='bandpass';bp.frequency.value=2200;bp.Q.value=.8;
+  const g=actx.createGain();g.gain.value=.09;
+  src.connect(bp);bp.connect(g);g.connect(masterG);
+  src.start(actx.currentTime+t);
+}
+
+function scheduleBar(bStart,bIdx){
+  const ch=CHORDS[bIdx%CHORDS.length];
+  scheduleChord(ch,bStart);
+  // Kick on 1 & 3
+  kick(bStart);kick(bStart+BD*2);
+  // Snare on 2 & 4
+  snare(bStart+BD);snare(bStart+BD*3);
+  // Hi-hats (8ths with shuffle)
+  for(let i=0;i<8;i++)hat(bStart+i*BD*.5,i%2===0?.04:.025);
+  // Melody every 4 bars
+  if(bIdx%4===0)scheduleMelody(bStart);
+}
+
+function musicLoop(){
+  if(!actx||!playing)return;
+  const barDur=BD*4;
+  scheduleBar(actx.currentTime+.08,beatCount);
+  beatCount++;
+  barTimer=setTimeout(musicLoop,(barDur*1000)-120);
+}
+
+// Cinematic fanfare — After Hours opening vibe
+function playFanfare(){
+  if(!actx)return;
+  const f=[
+    [55,0,2.5,.04,'sine'],[110,0,2.5,.03,'sine'],
+    [138.59,.4,2,.04,'sawtooth'],[164.81,.7,1.8,.035,'sawtooth'],
+    [220,1,1.5,.04,'sawtooth'],[261.63,1.3,1.3,.03,'sine'],
+    [329.63,1.6,1.1,.04,'sine'],[392,1.9,.9,.03,'sine'],
+    [440,2.2,1.8,.05,'sine'],[523.25,2.4,2,.04,'sine'],
+    [659.25,2.6,1.8,.035,'sine'],
+    [440,3.5,3,.04,'sawtooth'],[329.63,3.6,3,.03,'sawtooth'],[220,3.7,3,.03,'sawtooth'],
+  ];
+  const now=actx.currentTime;
+  f.forEach(([fr,s,d,v,t])=>pn(fr,s,d,v,t));
+}
+
+function setVol(v){if(masterG&&actx)masterG.gain.linearRampToValueAtTime(parseFloat(v),actx.currentTime+.4);}
+function startMusic(){playing=true;beatCount=0;const v=parseFloat(($('#mp-vol')||{value:'.28'}).value||'.28');if(masterG)masterG.gain.linearRampToValueAtTime(v,actx.currentTime+1.4);musicLoop();}
+function stopMusic(){playing=false;clearTimeout(barTimer);if(masterG)masterG.gain.linearRampToValueAtTime(0,actx.currentTime+.9);}
 function toggleMusic(){createACtx();if(actx.state==='suspended')actx.resume();const btn=$('#mp-btn');if(playing){stopMusic();btn.textContent='▶';}else{startMusic();btn.textContent='⏸';}}
 $('#mp-btn')&&$('#mp-btn').addEventListener('click',toggleMusic);
-$('#mp-vol')&&$('#mp-vol').addEventListener('input',e=>{if(playing)setVol(parseFloat(e.target.value));});
+$('#mp-vol')&&$('#mp-vol').addEventListener('input',e=>{if(playing)setVol(e.target.value);});
 document.addEventListener('visibilitychange',()=>{if(!actx)return;if(document.hidden)actx.suspend();else if(playing)actx.resume();});
 
 /* ══════════════════════════════════════════
@@ -1552,9 +1749,8 @@ function initIntro(){
     setTimeout(()=>{
       mplayer&&mplayer.classList.add('on');
       createACtx();if(actx.state==='suspended')actx.resume();
-      // Play fanfare then ambient
       playFanfare();
-      setTimeout(()=>{playing=true;$('#mp-btn').textContent='⏸';startMusic();},4200);
+      setTimeout(()=>{if(!playing){playing=true;beatCount=0;const v=parseFloat(($('#mp-vol')||{value:'.28'}).value);if(masterG)masterG.gain.linearRampToValueAtTime(v,actx.currentTime+1.2);musicLoop();const btn=$('#mp-btn');if(btn)btn.textContent='⏸';}},4000);
     },700);
   }
 
